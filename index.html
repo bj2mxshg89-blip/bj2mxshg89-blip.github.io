@@ -1,530 +1,595 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ЕГЭ Химия</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Химия ЕГЭ — подготовка</title>
+
   <style>
+    *{ margin:0; padding:0; box-sizing:border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+
     :root{
-      --bg:#ffffff;
-      --text:#0b0b0c;
-      --muted:rgba(0,0,0,0.60);
-      --border:rgba(0,0,0,0.10);
-      --card:rgba(255,255,255,0.72);
-      --shadow:0 18px 40px rgba(0,0,0,0.10);
-      --accent:#007aff;
-      --ok:#16a34a;
-      --bad:#dc2626;
-      --radius:22px;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0b0c;
-        --text:rgba(255,255,255,0.94);
-        --muted:rgba(255,255,255,0.62);
-        --border:rgba(255,255,255,0.12);
-        --card:rgba(18,18,19,0.62);
-        --shadow:0 26px 60px rgba(0,0,0,0.55);
-        --accent:#0a84ff;
-      }
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
-                   "Segoe UI", Roboto, Arial, sans-serif;
-      min-height:100vh;
+      --primary-color:#3a7bd5;
+      --secondary-color:#00d2ff;
+      --accent-color:#ff5e62;
+      --light-color:#f8f9fa;
+      --dark-color:#333;
+      --success-color:#2ecc71;
+      --warning-color:#f39c12;
+      --bg:#f0f7ff;
     }
 
-    /* очень мягкий фон — не “эффект ради эффекта”, а глубина */
-    .bg{
-      position:fixed; inset:0; pointer-events:none;
-      background:
-        radial-gradient(980px 640px at 15% 8%, rgba(0,122,255,0.14), transparent 62%),
-        radial-gradient(860px 560px at 92% 18%, rgba(122,73,255,0.12), transparent 62%),
-        radial-gradient(980px 700px at 40% 110%, rgba(0,200,255,0.10), transparent 62%);
-      filter:saturate(1.05);
-    }
+    body{ background-color: var(--bg); color: var(--dark-color); line-height:1.6; }
+    .container{ width:100%; max-width:1200px; margin:0 auto; padding:0 20px; }
 
-    .wrap{
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 18px 16px 40px;
-      position:relative;
-    }
-
+    /* Header */
     header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 14px;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color:#fff;
+      padding:14px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+      position: sticky;
+      top:0;
+      z-index:1000;
     }
-
-    .brand{
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+    }
+    .logo{
       display:flex;
       align-items:center;
       gap:10px;
+      font-size:1.35rem;
+      font-weight:800;
+      letter-spacing:0.2px;
       user-select:none;
+      white-space:nowrap;
     }
-    .logo{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(0,122,255,1), rgba(122,73,255,1));
-      box-shadow: 0 18px 40px rgba(0,122,255,0.20);
-    }
-    .brandText{ line-height:1.05; }
-    .brandText b{ display:block; font-weight: 760; letter-spacing:-0.25px; font-size: 13px; opacity:0.95; }
-    .brandText span{ display:block; font-size: 12px; color: var(--muted); }
-
-    .pill{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.50);
-      border-radius: 999px;
-      padding: 8px 10px;
-      font-size: 12px;
-      color: var(--muted);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      white-space: nowrap;
-    }
-    @media (prefers-color-scheme: dark){
-      .pill{ background: rgba(255,255,255,0.06); }
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-    }
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      border: 1px solid var(--border);
-      background: var(--card);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
-      padding: 16px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .cardTitle{
-      margin:0;
-      font-size: 14px;
-      letter-spacing: 0.2px;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    h1{
-      margin: 10px 0 0;
-      font-size: 44px;
-      letter-spacing: -1.1px;
-      line-height: 1.02;
-    }
-    @media (max-width: 520px){
-      h1{ font-size: 36px; }
-    }
-
-    .lead{
-      margin: 10px 0 0;
-      color: var(--muted);
-      max-width: 65ch;
-      line-height: 1.55;
-      font-size: 15px;
-    }
-
-    .cta{
-      margin-top: 14px;
+    .logo-badge{
+      width:34px; height:34px;
+      border-radius:10px;
+      background: rgba(255,255,255,0.22);
       display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.20);
+    }
+
+    .nav-links{
+      display:flex;
+      list-style:none;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      color:#fff;
+      text-decoration:none;
+      font-weight:650;
+      font-size:1.02rem;
+      transition: all 0.2s;
+      padding:6px 10px;
+      border-radius:8px;
+      white-space:nowrap;
+    }
+    .nav-links a:hover{ background: rgba(255,255,255,0.18); }
+
+    .mobile-menu{
+      display:none;
+      font-size:1.6rem;
+      cursor:pointer;
+      user-select:none;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.16);
+    }
+
+    /* Hero */
+    .hero{
+      padding: 78px 0 64px;
+      background: linear-gradient(to bottom right, #e3f2fd, var(--bg));
+      text-align:center;
+    }
+    .hero h1{
+      font-size: 2.7rem;
+      margin-bottom: 14px;
+      color: var(--primary-color);
+      letter-spacing: -0.3px;
+    }
+    .hero p{
+      font-size: 1.18rem;
+      max-width: 880px;
+      margin: 0 auto 26px;
+      color:#555;
+    }
+    .cta-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
       align-items:center;
     }
+    .cta-button{
+      display:inline-block;
+      background: linear-gradient(to right, var(--accent-color), #ff9966);
+      color:#fff;
+      padding: 14px 34px;
+      border-radius: 50px;
+      text-decoration:none;
+      font-weight:800;
+      font-size: 1.08rem;
+      box-shadow: 0 10px 22px rgba(255,94,98,0.26);
+      transition: all 0.25s;
+    }
+    .cta-button:hover{ transform: translateY(-4px); box-shadow: 0 14px 26px rgba(255,94,98,0.34); }
 
-    .btn{
+    .ghost-button{
+      display:inline-block;
+      padding: 14px 26px;
+      border-radius: 50px;
+      text-decoration:none;
+      font-weight:800;
+      font-size: 1.02rem;
+      color: var(--primary-color);
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(58,123,213,0.25);
+      transition: all 0.25s;
+    }
+    .ghost-button:hover{ transform: translateY(-3px); border-color: rgba(58,123,213,0.40); }
+
+    /* Sections */
+    section{ scroll-margin-top: 86px; }
+
+    .features{
+      padding: 74px 0;
+      background:#fff;
+    }
+    .section-title{
+      text-align:center;
+      margin-bottom: 50px;
+      color: var(--primary-color);
+      font-size: 2.05rem;
+      letter-spacing: -0.2px;
+    }
+    .features-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+    .feature-card{
+      background: var(--light-color);
+      border-radius: 14px;
+      padding: 26px;
+      text-align:left;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      transition: all 0.25s;
+      border-top: 4px solid var(--primary-color);
+    }
+    .feature-card:hover{ transform: translateY(-8px); box-shadow: 0 16px 32px rgba(0,0,0,0.10); }
+    .feature-icon{
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(58,123,213,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      color: var(--primary-color);
+      margin-bottom: 14px;
+    }
+    .feature-card h3{ margin-bottom: 10px; }
+    .feature-card p{ color:#555; }
+
+    /* Modules/Topics */
+    .topics{
+      padding: 74px 0;
+      background: #f8f9fa;
+    }
+    .topics-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .topic-card{
+      background:#fff;
+      border-radius: 14px;
+      overflow:hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      transition: all 0.25s;
+    }
+    .topic-card:hover{ transform: translateY(-6px); box-shadow: 0 14px 26px rgba(0,0,0,0.10); }
+    .topic-header{
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color:#fff;
+      padding: 18px 18px;
+      text-align:left;
+    }
+    .topic-header h3{ font-size: 1.2rem; }
+    .topic-content{ padding: 18px; }
+    .topic-content ul{ list-style:none; margin-bottom: 14px; }
+    .topic-content li{
+      padding: 9px 0;
+      border-bottom: 1px solid #eee;
+      color:#444;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .check{
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      background: rgba(46,204,113,0.14);
+      color: var(--success-color);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap: 10px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.55);
-      color: inherit;
+      font-weight:900;
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .topic-button{
+      display:block;
+      text-align:center;
+      background-color: var(--primary-color);
+      color:#fff;
+      padding: 11px;
+      border-radius: 10px;
       text-decoration:none;
       font-weight: 700;
-      letter-spacing: -0.2px;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      cursor:pointer;
+      transition: background-color 0.2s;
     }
-    @media (prefers-color-scheme: dark){
-      .btn{ background: rgba(255,255,255,0.06); }
-    }
-    .btn:hover{ transform: translateY(-1px); }
-
-    .btnPrimary{
-      border: none;
-      color: white;
-      background: var(--accent);
-      box-shadow: 0 18px 40px rgba(0,122,255,0.22);
+    .topic-button:hover{ background-color:#2a6bc7; }
+    .topic-button.disabled{
+      background: #c9d6ea;
+      cursor: not-allowed;
+      pointer-events: none;
     }
 
-    .btnGhost{
-      background: transparent;
+    /* Practice */
+    .practice{
+      padding: 74px 0;
+      background:#fff;
     }
-
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    @media (max-width: 640px){
-      .split{ grid-template-columns: 1fr; }
-    }
-
-    .metric{
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: rgba(255,255,255,0.55);
-      padding: 12px;
-    }
-    @media (prefers-color-scheme: dark){
-      .metric{ background: rgba(255,255,255,0.05); }
-    }
-    .metric b{
-      display:block;
-      font-size: 28px;
-      letter-spacing: -0.8px;
-      margin-top: 2px;
-    }
-    .metric span{
-      display:block;
-      font-size: 12px;
-      color: var(--muted);
-      margin-top: 2px;
-    }
-
-    .list{
-      margin-top: 8px;
-      display:grid;
-      gap: 10px;
-    }
-
-    .item{
+    .practice-stats{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 12px 12px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.55);
-      text-decoration:none;
-      color: inherit;
-      transition: transform .18s ease;
-    }
-    @media (prefers-color-scheme: dark){
-      .item{ background: rgba(255,255,255,0.05); }
-    }
-    .item:hover{ transform: translateY(-1px); }
-
-    .left{
-      display:flex;
-      align-items:center;
+      justify-content:space-around;
+      flex-wrap:wrap;
       gap: 10px;
-      min-width: 0;
+      margin-bottom: 44px;
     }
-
-    .icon{
-      width: 38px; height: 38px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .stat{
+      text-align:center;
+      padding: 16px 14px;
+      min-width: 210px;
+    }
+    .stat-number{
+      font-size: 2.6rem;
       font-weight: 900;
-      letter-spacing: -0.6px;
-      opacity: 0.92;
-      background: rgba(255,255,255,0.40);
+      color: var(--primary-color);
+      margin-bottom: 6px;
     }
-    @media (prefers-color-scheme: dark){
-      .icon{ background: rgba(255,255,255,0.03); }
-    }
+    .stat-text{ font-size: 1.05rem; color:#666; }
 
-    .text{
-      min-width: 0;
+    .exam-simulation{
+      background: linear-gradient(to right, #4b6cb7, #182848);
+      color:#fff;
+      padding: 34px;
+      border-radius: 16px;
+      text-align:left;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
     }
-    .name{
-      margin:0;
-      font-size: 14px;
-      font-weight: 780;
+    .exam-simulation h3{
+      font-size: 1.65rem;
+      margin-bottom: 12px;
       letter-spacing: -0.2px;
-      white-space: nowrap;
-      overflow:hidden;
-      text-overflow: ellipsis;
     }
-    .meta{
-      margin: 3px 0 0;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .arrow{ opacity: .55; font-size: 18px; }
+    .exam-simulation p{ opacity: 0.92; }
 
-    .miniRow{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-      align-items:center;
+    .exam-button{
+      display:inline-block;
+      background-color: var(--accent-color);
+      color:#fff;
+      padding: 13px 30px;
+      border-radius: 50px;
+      text-decoration:none;
+      font-weight: 900;
+      font-size: 1.05rem;
+      margin-top: 16px;
+      transition: all 0.25s;
     }
-
-    .toggle{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 8px 10px;
-      background: rgba(255,255,255,0.45);
+    .exam-button:hover{
+      background-color:#ff4757;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.22);
     }
-    @media (prefers-color-scheme: dark){
-      .toggle{ background: rgba(255,255,255,0.04); }
+    .exam-button.disabled{
+      background: rgba(255,255,255,0.22);
+      color: rgba(255,255,255,0.80);
+      cursor:not-allowed;
+      pointer-events:none;
     }
 
+    /* Footer */
     footer{
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      opacity: 0.92;
+      background: var(--dark-color);
+      color:#fff;
+      padding: 44px 0 24px;
+      margin-top: 0;
+    }
+    .footer-content{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 28px;
+      margin-bottom: 26px;
+    }
+    .footer-column h3{
+      margin-bottom: 14px;
+      color: var(--secondary-color);
+      font-size: 1.15rem;
+    }
+    .footer-links{ list-style:none; }
+    .footer-links li{ margin-bottom: 10px; }
+    .footer-links a{
+      color:#ddd;
+      text-decoration:none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover{ color: var(--secondary-color); }
+    .copyright{
+      text-align:center;
+      padding-top: 18px;
+      border-top: 1px solid #444;
+      color:#aaa;
+      font-size: 0.9rem;
     }
 
-    @media (prefers-reduced-motion: no-preference){
-      header, .card, footer{
-        animation: fadeUp .45s ease both;
-      }
-      .card:nth-child(2){ animation-delay: .04s; }
-      @keyframes fadeUp{
-        from{ opacity:0; transform: translateY(8px); }
-        to{ opacity:1; transform: translateY(0); }
-      }
+    /* Responsive */
+    @media (max-width: 992px){
+      .nav-links{ display:none; }
+      .mobile-menu{ display:block; }
+      .hero h1{ font-size: 2.15rem; }
+      .hero p{ font-size: 1.08rem; }
+    }
+    @media (max-width: 520px){
+      .hero{ padding: 60px 0 52px; }
+      .hero h1{ font-size: 1.75rem; }
+      .cta-button{ padding: 12px 28px; font-size: 1rem; }
+      .ghost-button{ padding: 12px 22px; font-size: 0.98rem; }
+      .exam-simulation{ padding: 26px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="bg"></div>
-
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo"></div>
-        <div class="brandText">
-          <b>ЕГЭ Химия</b>
-          <span>центр тренировки</span>
-        </div>
-      </div>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
-        <span class="pill" id="today"></span>
-        <span class="pill" id="statusPill">готов к работе</span>
-      </div>
-    </header>
-
-    <div class="grid">
-      <!-- Левая: “Продолжить” + метрики -->
-      <section class="card" aria-label="Главный блок">
-        <p class="cardTitle">Продолжить</p>
-        <h1 id="headline">Открыть тренировку</h1>
-        <p class="lead" id="lead">
-          Один экран — один смысл: возвращайтесь туда, где остановились, и двигайтесь дальше.
-        </p>
-
-        <div class="cta">
-          <a class="btn btnPrimary" id="continueBtn" href="inorg-nomenclature.html">Продолжить</a>
-          <a class="btn btnGhost" href="inorg-nomenclature.html">Начать заново</a>
-          <button class="btn" id="resetStatsBtn" type="button">Сбросить прогресс</button>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo" aria-label="Химия ЕГЭ">
+          <div class="logo-badge">H</div>
+          <span>Химия ЕГЭ</span>
         </div>
 
-        <div class="split" aria-label="Метрики">
-          <div class="metric">
-            <span>точность (последняя попытка)</span>
-            <b id="acc">—</b>
-          </div>
-          <div class="metric">
-            <span>отвечено</span>
-            <b id="done">—</b>
-          </div>
-        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#features">Платформа</a></li>
+          <li><a href="#modules">Модули</a></li>
+          <li><a href="#practice">Практика</a></li>
+        </ul>
 
-        <div class="miniRow">
-          <div class="toggle">
-            <input type="checkbox" id="autoc" />
-            авто при верном
-          </div>
-          <div class="toggle">
-            <input type="checkbox" id="autow" />
-            авто при ошибке
-          </div>
-          <div class="toggle">
-            <input type="checkbox" id="mix" checked />
-            перемешать ответы
-          </div>
-        </div>
-      </section>
-
-      <!-- Правая: модульный “лаунчер” -->
-      <aside class="card" aria-label="Модули">
-        <p class="cardTitle">Модули</p>
-
-        <div class="list">
-          <a class="item" href="inorg-nomenclature.html" id="nomenItem">
-            <div class="left">
-              <div class="icon">N</div>
-              <div class="text">
-                <p class="name">Номенклатура неорганики</p>
-                <p class="meta" id="nomenMeta">32 задания</p>
-              </div>
-            </div>
-            <div class="arrow">›</div>
-          </a>
-
-          <a class="item" href="#" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
-            <div class="left">
-              <div class="icon">ОВ</div>
-              <div class="text">
-                <p class="name">ОВР и баланс</p>
-                <p class="meta">в разработке</p>
-              </div>
-            </div>
-            <div class="arrow">›</div>
-          </a>
-
-          <a class="item" href="#" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
-            <div class="left">
-              <div class="icon">pH</div>
-              <div class="text">
-                <p class="name">Растворы и pH</p>
-                <p class="meta">в разработке</p>
-              </div>
-            </div>
-            <div class="arrow">›</div>
-          </a>
-        </div>
-
-        <footer>
-          <div>© <span id="y"></span></div>
-          <div>минимализм без лишних слов</div>
-        </footer>
-      </aside>
+        <div class="mobile-menu" id="mobileMenu" aria-label="Меню">≡</div>
+      </nav>
     </div>
-  </div>
+  </header>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>Подготовка к ЕГЭ по химии</h1>
+      <p>Тренажёры, теория и практика в одном месте. Начнём с того, что реально даёт быстрый прирост — номенклатуры.</p>
 
-  // Дата “по-человечески”
-  const d = new Date();
-  const fmt = new Intl.DateTimeFormat("ru-RU", { weekday:"long", day:"2-digit", month:"long" });
-  document.getElementById("today").textContent = fmt.format(d);
+      <div class="cta-row">
+        <a href="inorg-nomenclature.html" class="cta-button">Открыть номенклатуру</a>
+        <a href="#modules" class="ghost-button">Выбрать модуль</a>
+      </div>
+    </div>
+  </section>
 
-  // --- Прогресс: читаем из localStorage тренажёра ---
-  // В текущей версии тренажёра мы не сохраняли прогресс специально.
-  // Здесь реализован “совместимый” вариант: если прогресс будет найден — используем его.
-  // Если нет — показываем аккуратные “—”, без ошибок.
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Как устроена подготовка</h2>
 
-  const PROGRESS_KEY = "chem_inorg_progress_v1";
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">✓</div>
+          <h3>Короткие подходы</h3>
+          <p>Тренировки по 3–7 минут: вопрос → выбор → ответ → следующий. Это не “урок”, это практика.</p>
+        </div>
 
-  function safeParse(json){
-    try { return JSON.parse(json); } catch(e){ return null; }
-  }
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Быстрый темп</h3>
+          <p>Автопереход и навигация по номерам позволяют держать ритм и повторять слабые места.</p>
+        </div>
 
-  function updateUI(p){
-    const accEl = document.getElementById("acc");
-    const doneEl = document.getElementById("done");
-    const headEl = document.getElementById("headline");
-    const leadEl = document.getElementById("lead");
-    const statusPill = document.getElementById("statusPill");
-    const continueBtn = document.getElementById("continueBtn");
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>ЕГЭ-ориентировано</h3>
+          <p>Собираем модули под реальные типы задач: номенклатура, ОВР, растворы, расчёты.</p>
+        </div>
 
-    if(!p){
-      accEl.textContent = "—";
-      doneEl.textContent = "—";
-      headEl.textContent = "Открыть тренировку";
-      leadEl.textContent = "Один экран — один смысл: тренируйтесь короткими подходами и фиксируйте результат.";
-      statusPill.textContent = "прогресс не сохранён";
-      continueBtn.textContent = "Открыть";
-      continueBtn.href = "inorg-nomenclature.html";
-      return;
-    }
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Повтор ошибок</h3>
+          <p>Отдельный режим “Ошибки”, чтобы не “просто решать”, а целенаправленно добивать пробелы.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    const total = Number(p.total || 0);
-    const correct = Number(p.correct || 0);
-    const answered = Number(p.answered || 0);
-    const idx = Number(p.lastIndex || 0);
+  <!-- Modules -->
+  <section class="topics" id="modules">
+    <div class="container">
+      <h2 class="section-title">Модули подготовки</h2>
 
-    const acc = answered ? Math.round((correct/answered)*100) : 0;
+      <div class="topics-grid">
+        <div class="topic-card">
+          <div class="topic-header">
+            <h3>Номенклатура неорганики</h3>
+          </div>
+          <div class="topic-content">
+            <ul>
+              <li><span class="check">✓</span> Формула → название</li>
+              <li><span class="check">✓</span> Кнопки-ответы (без ввода текста)</li>
+              <li><span class="check">✓</span> “Ответить” → “Далее”, режим ошибок</li>
+            </ul>
+            <a href="inorg-nomenclature.html" class="topic-button">Открыть тренажёр</a>
+          </div>
+        </div>
 
-    accEl.textContent = answered ? acc + "%" : "—";
-    doneEl.textContent = answered && total ? `${answered}/${total}` : (answered ? String(answered) : "—");
+        <div class="topic-card">
+          <div class="topic-header">
+            <h3>ОВР и баланс</h3>
+          </div>
+          <div class="topic-content">
+            <ul>
+              <li><span class="check">✓</span> Степени окисления</li>
+              <li><span class="check">✓</span> Баланс электронов</li>
+              <li><span class="check">✓</span> Окислитель/восстановитель</li>
+            </ul>
+            <a class="topic-button disabled">Скоро</a>
+          </div>
+        </div>
 
-    headEl.textContent = answered ? "Продолжить с места" : "Начать тренировку";
-    leadEl.textContent = answered
-      ? `Последняя сессия: ${answered} ответов, точность ${acc}%.`
-      : "Короткий подход, высокая отдача. Нажмите и начните.";
+        <div class="topic-card">
+          <div class="topic-header">
+            <h3>Растворы и pH</h3>
+          </div>
+          <div class="topic-content">
+            <ul>
+              <li><span class="check">✓</span> Массовая доля и концентрации</li>
+              <li><span class="check">✓</span> Гидролиз солей</li>
+              <li><span class="check">✓</span> pH слабых/сильных электролитов</li>
+            </ul>
+            <a class="topic-button disabled">Скоро</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    statusPill.textContent = answered ? `последний вопрос: ${Math.min(idx+1, total || idx+1)}` : "готов к работе";
-    continueBtn.textContent = answered ? "Продолжить" : "Начать";
+  <!-- Practice -->
+  <section class="practice" id="practice">
+    <div class="container">
+      <h2 class="section-title">Практика и экзаменный режим</h2>
 
-    // Передадим в тренажёр параметры через query (опционально на будущее).
-    continueBtn.href = "inorg-nomenclature.html";
-  }
+      <div class="practice-stats">
+        <div class="stat">
+          <div class="stat-number">1</div>
+          <div class="stat-text">готовый тренажёр</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">32</div>
+          <div class="stat-text">вопроса по номенклатуре</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">∞</div>
+          <div class="stat-text">повторов без лимита</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0</div>
+          <div class="stat-text">лишних кликов</div>
+        </div>
+      </div>
 
-  updateUI(safeParse(localStorage.getItem(PROGRESS_KEY)));
+      <div class="exam-simulation">
+        <h3>Экзаменный режим (в планах)</h3>
+        <p>Полноценная имитация: таймер, строгая последовательность, результат по блокам. Добавим, когда вы утвердите структуру модулей.</p>
+        <a class="exam-button disabled">Скоро</a>
+      </div>
+    </div>
+  </section>
 
-  // Переключатели (сохраняем предпочтения на главной)
-  const PREF_KEY = "chem_home_prefs_v1";
-  const prefs = safeParse(localStorage.getItem(PREF_KEY)) || { autoc:false, autow:false, mix:true };
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Химия ЕГЭ</h3>
+          <p style="color:#ddd;">
+            Сайт-тренажёр для подготовки: без лишней лирики, с фокусом на практике и повторе ошибок.
+          </p>
+        </div>
 
-  const autoc = document.getElementById("autoc");
-  const autow = document.getElementById("autow");
-  const mix = document.getElementById("mix");
+        <div class="footer-column">
+          <h3>Навигация</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#features">Платформа</a></li>
+            <li><a href="#modules">Модули</a></li>
+            <li><a href="#practice">Практика</a></li>
+          </ul>
+        </div>
 
-  autoc.checked = !!prefs.autoc;
-  autow.checked = !!prefs.autow;
-  mix.checked = prefs.mix !== false;
+        <div class="footer-column">
+          <h3>Тренажёры</h3>
+          <ul class="footer-links">
+            <li><a href="inorg-nomenclature.html">Номенклатура неорганики</a></li>
+            <li><a href="#modules">ОВР (скоро)</a></li>
+            <li><a href="#modules">Растворы и pH (скоро)</a></li>
+          </ul>
+        </div>
+      </div>
 
-  function savePrefs(){
-    localStorage.setItem(PREF_KEY, JSON.stringify({ autoc:autoc.checked, autow:autow.checked, mix:mix.checked }));
-  }
-  autoc.addEventListener("change", savePrefs);
-  autow.addEventListener("change", savePrefs);
-  mix.addEventListener("change", savePrefs);
+      <div class="copyright">
+        <p>&copy; <span id="year"></span> Химия ЕГЭ</p>
+      </div>
+    </div>
+  </footer>
 
-  // Сброс “прогресса” и настроек
-  document.getElementById("resetStatsBtn").addEventListener("click", () => {
-    localStorage.removeItem(PROGRESS_KEY);
-    localStorage.removeItem(PREF_KEY);
-    autoc.checked = false;
-    autow.checked = false;
-    mix.checked = true;
-    updateUI(null);
-  });
-</script>
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById("mobileMenu");
+    const navLinks = document.getElementById("navLinks");
+
+    mobileMenu.addEventListener("click", () => {
+      const isOpen = navLinks.style.display === "flex";
+      navLinks.style.display = isOpen ? "none" : "flex";
+      navLinks.style.flexDirection = "column";
+      navLinks.style.background = "rgba(255,255,255,0.14)";
+      navLinks.style.padding = "10px";
+      navLinks.style.borderRadius = "12px";
+      navLinks.style.backdropFilter = "blur(10px)";
+      navLinks.style.position = "absolute";
+      navLinks.style.right = "20px";
+      navLinks.style.top = "62px";
+      navLinks.style.width = "220px";
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if(!href || href === "#") return;
+        const el = document.querySelector(href);
+        if(!el) return;
+
+        e.preventDefault();
+        window.scrollTo({ top: el.offsetTop - 78, behavior: "smooth" });
+
+        // close mobile menu on small screens
+        if (window.innerWidth <= 992) navLinks.style.display = "none";
+      });
+    });
+  </script>
 </body>
 </html>
