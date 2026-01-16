@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Тренажёр ОВР</title>
+</head>
+
+<body>
+
+<h1>Тренажёр ОВР</h1>
+
+<div id="task"></div>
+
+<input id="answer" onkeyup="next(event)">
+<button onclick="check()">Проверить</button>
+
+<div id="result"></div>
+
+<script>
+
+let tasks = [
+  {q: "Степень окисления серы в H2SO4", a: "+6"},
+  {q: "Степень окисления азота в NH3", a: "-3"},
+  {q: "Окислитель или восстановитель: KMnO4", a: "окислитель"}
+];
+
+let i = 0;
+show();
+
+function show(){
+  task.innerText = tasks[i].q;
+  answer.value = "";
+  answer.focus();
+}
+
+function next(e){
+  if(e.key == "Enter") check();
+}
+
+function check(){
+  if(answer.value.trim().toLowerCase() == tasks[i].a){
+    result.innerText = "Верно";
+  } else {
+    result.innerText = "Ошибка. Ответ: " + tasks[i].a;
+  }
+
+  i++;
+  if(i < tasks.length) setTimeout(show, 1000);
+  else result.innerText += "\nКонец теста";
+}
+
+</script>
+
+</body>
+</html>
