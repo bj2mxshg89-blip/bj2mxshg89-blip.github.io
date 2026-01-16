@@ -6,93 +6,80 @@
   <title>ЕГЭ Химия</title>
   <style>
     :root{
-      --bg: #ffffff;
-      --text: #0b0b0c;
-      --muted: rgba(0,0,0,0.58);
-      --border: rgba(0,0,0,0.10);
-      --card: rgba(255,255,255,0.70);
-      --shadow: 0 18px 40px rgba(0,0,0,0.10);
-      --accent: #007aff; /* iOS blue */
-      --radius: 22px;
+      --bg:#ffffff;
+      --text:#0b0b0c;
+      --muted:rgba(0,0,0,0.60);
+      --border:rgba(0,0,0,0.10);
+      --card:rgba(255,255,255,0.72);
+      --shadow:0 18px 40px rgba(0,0,0,0.10);
+      --accent:#007aff;
+      --ok:#16a34a;
+      --bad:#dc2626;
+      --radius:22px;
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --bg: #0b0b0c;
-        --text: rgba(255,255,255,0.94);
-        --muted: rgba(255,255,255,0.62);
-        --border: rgba(255,255,255,0.12);
-        --card: rgba(18,18,19,0.64);
-        --shadow: 0 26px 60px rgba(0,0,0,0.55);
-        --accent: #0a84ff;
+        --bg:#0b0b0c;
+        --text:rgba(255,255,255,0.94);
+        --muted:rgba(255,255,255,0.62);
+        --border:rgba(255,255,255,0.12);
+        --card:rgba(18,18,19,0.62);
+        --shadow:0 26px 60px rgba(0,0,0,0.55);
+        --accent:#0a84ff;
       }
     }
-
-    *{ box-sizing: border-box; }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text);
       background: var(--bg);
-      min-height: 100vh;
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+                   "Segoe UI", Roboto, Arial, sans-serif;
+      min-height:100vh;
     }
 
-    /* Фон: очень мягкий, “как у Apple” */
+    /* очень мягкий фон — не “эффект ради эффекта”, а глубина */
     .bg{
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
+      position:fixed; inset:0; pointer-events:none;
       background:
-        radial-gradient(900px 560px at 20% 10%, rgba(0,122,255,0.14), transparent 62%),
-        radial-gradient(820px 520px at 90% 20%, rgba(122,73,255,0.12), transparent 62%),
-        radial-gradient(900px 600px at 40% 110%, rgba(0,200,255,0.10), transparent 62%);
-      filter: saturate(1.05);
+        radial-gradient(980px 640px at 15% 8%, rgba(0,122,255,0.14), transparent 62%),
+        radial-gradient(860px 560px at 92% 18%, rgba(122,73,255,0.12), transparent 62%),
+        radial-gradient(980px 700px at 40% 110%, rgba(0,200,255,0.10), transparent 62%);
+      filter:saturate(1.05);
     }
 
     .wrap{
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 18px 16px 44px;
-      position: relative;
+      padding: 18px 16px 40px;
+      position:relative;
     }
 
     header{
       display:flex;
       align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 18px;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 14px;
     }
 
-    .mark{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      text-decoration:none;
-      color: inherit;
-      user-select:none;
-    }
-    .glyph{
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(0,122,255,1), rgba(122,73,255,1));
-      box-shadow: 0 18px 40px rgba(0,122,255,0.22);
-    }
     .brand{
       display:flex;
-      flex-direction: column;
-      line-height: 1.05;
+      align-items:center;
+      gap:10px;
+      user-select:none;
     }
-    .brand b{ font-weight: 720; letter-spacing: -0.25px; font-size: 13px; opacity: 0.92; }
-    .brand span{ font-size: 12px; color: var(--muted); }
+    .logo{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0,122,255,1), rgba(122,73,255,1));
+      box-shadow: 0 18px 40px rgba(0,122,255,0.20);
+    }
+    .brandText{ line-height:1.05; }
+    .brandText b{ display:block; font-weight: 760; letter-spacing:-0.25px; font-size: 13px; opacity:0.95; }
+    .brandText span{ display:block; font-size: 12px; color: var(--muted); }
 
-    .meta{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-    .chip{
+    .pill{
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.50);
       border-radius: 999px;
@@ -101,69 +88,65 @@
       color: var(--muted);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      white-space: nowrap;
     }
     @media (prefers-color-scheme: dark){
-      .chip{ background: rgba(255,255,255,0.06); }
+      .pill{ background: rgba(255,255,255,0.06); }
     }
 
-    /* HERO — один смысл, один CTA */
-    .hero{
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 12px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .card{
       border: 1px solid var(--border);
       background: var(--card);
-      border-radius: 28px;
+      border-radius: 26px;
       box-shadow: var(--shadow);
-      padding: 22px;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      overflow: hidden;
-      position: relative;
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(520px 320px at 20% 0%, rgba(0,122,255,0.18), transparent 60%),
-        radial-gradient(520px 320px at 100% 40%, rgba(122,73,255,0.16), transparent 60%);
-      pointer-events:none;
-      opacity: .85;
+      padding: 16px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      overflow:hidden;
+      position:relative;
     }
 
-    .heroInner{
-      position: relative;
-      display:grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 14px;
-      align-items: start;
-    }
-    @media (max-width: 920px){
-      .heroInner{ grid-template-columns: 1fr; }
+    .cardTitle{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+      color: var(--muted);
+      text-transform: uppercase;
     }
 
     h1{
-      margin: 0;
-      font-size: 46px;
-      letter-spacing: -1.2px;
+      margin: 10px 0 0;
+      font-size: 44px;
+      letter-spacing: -1.1px;
       line-height: 1.02;
     }
     @media (max-width: 520px){
-      h1{ font-size: 38px; }
+      h1{ font-size: 36px; }
     }
 
     .lead{
       margin: 10px 0 0;
       color: var(--muted);
-      max-width: 60ch;
+      max-width: 65ch;
       line-height: 1.55;
       font-size: 15px;
     }
 
     .cta{
-      margin-top: 16px;
+      margin-top: 14px;
       display:flex;
       gap: 10px;
       flex-wrap: wrap;
-      align-items: center;
+      align-items:center;
     }
 
     .btn{
@@ -177,11 +160,12 @@
       background: rgba(255,255,255,0.55);
       color: inherit;
       text-decoration:none;
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: -0.2px;
-      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      cursor:pointer;
     }
     @media (prefers-color-scheme: dark){
       .btn{ background: rgba(255,255,255,0.06); }
@@ -195,57 +179,67 @@
       box-shadow: 0 18px 40px rgba(0,122,255,0.22);
     }
 
-    .dot{
-      width: 10px; height: 10px; border-radius: 999px;
-      background: rgba(255,255,255,0.92);
-      box-shadow: 0 0 0 3px rgba(255,255,255,0.20);
+    .btnGhost{
+      background: transparent;
     }
 
-    /* Правый блок в hero: компактный “пульт” */
-    .quick{
-      border-radius: var(--radius);
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (max-width: 640px){
+      .split{ grid-template-columns: 1fr; }
+    }
+
+    .metric{
       border: 1px solid var(--border);
+      border-radius: 20px;
       background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 14px;
+      padding: 12px;
     }
     @media (prefers-color-scheme: dark){
-      .quick{ background: rgba(255,255,255,0.05); }
+      .metric{ background: rgba(255,255,255,0.05); }
+    }
+    .metric b{
+      display:block;
+      font-size: 28px;
+      letter-spacing: -0.8px;
+      margin-top: 2px;
+    }
+    .metric span{
+      display:block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
-    .qTitle{
-      margin:0 0 10px 0;
-      font-weight: 720;
-      letter-spacing: -0.3px;
-      font-size: 14px;
-      opacity: 0.9;
-    }
-
-    .qGrid{
+    .list{
+      margin-top: 8px;
       display:grid;
       gap: 10px;
     }
 
-    .qItem{
+    .item{
       display:flex;
       align-items:center;
-      justify-content: space-between;
+      justify-content:space-between;
       gap: 12px;
       padding: 12px 12px;
-      border-radius: 16px;
+      border-radius: 20px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.62);
+      background: rgba(255,255,255,0.55);
       text-decoration:none;
       color: inherit;
-      transition: transform .18s ease, background .18s ease;
+      transition: transform .18s ease;
     }
     @media (prefers-color-scheme: dark){
-      .qItem{ background: rgba(255,255,255,0.04); }
+      .item{ background: rgba(255,255,255,0.05); }
     }
-    .qItem:hover{ transform: translateY(-1px); }
+    .item:hover{ transform: translateY(-1px); }
 
-    .qLeft{
+    .left{
       display:flex;
       align-items:center;
       gap: 10px;
@@ -253,118 +247,79 @@
     }
 
     .icon{
-      width: 34px; height: 34px;
-      border-radius: 14px;
+      width: 38px; height: 38px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: -0.6px;
-      opacity: 0.9;
+      opacity: 0.92;
+      background: rgba(255,255,255,0.40);
+    }
+    @media (prefers-color-scheme: dark){
+      .icon{ background: rgba(255,255,255,0.03); }
     }
 
-    .qText{ min-width: 0; }
-    .qName{
+    .text{
+      min-width: 0;
+    }
+    .name{
       margin:0;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 780;
       letter-spacing: -0.2px;
       white-space: nowrap;
       overflow:hidden;
       text-overflow: ellipsis;
     }
-    .qMeta{
+    .meta{
       margin: 3px 0 0;
       font-size: 12px;
       color: var(--muted);
     }
     .arrow{ opacity: .55; font-size: 18px; }
 
-    /* Модули ниже */
-    .sectionTitle{
-      margin: 18px 0 10px;
-      font-size: 14px;
-      color: var(--muted);
-      letter-spacing: 0.2px;
-      text-transform: uppercase;
-    }
-
-    .modules{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    @media (max-width: 920px){
-      .modules{ grid-template-columns: 1fr; }
-    }
-
-    .cardLink{
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
-      text-decoration:none;
-      color: inherit;
-      padding: 14px;
-      transition: transform .18s ease;
-      position: relative;
-      overflow:hidden;
-    }
-    @media (prefers-color-scheme: dark){
-      .cardLink{ background: rgba(255,255,255,0.05); box-shadow: 0 18px 44px rgba(0,0,0,0.45); }
-    }
-    .cardLink:hover{ transform: translateY(-2px); }
-
-    .cardLink h3{
-      margin: 0;
-      font-size: 16px;
-      font-weight: 780;
-      letter-spacing: -0.25px;
-    }
-    .cardLink p{
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .tags{
-      margin-top: 12px;
+    .miniRow{
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
+      margin-top: 12px;
+      align-items:center;
     }
-    .tag{
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 6px 10px;
+
+    .toggle{
+      display:flex;
+      align-items:center;
+      gap: 8px;
       font-size: 12px;
       color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 10px;
       background: rgba(255,255,255,0.45);
     }
     @media (prefers-color-scheme: dark){
-      .tag{ background: rgba(255,255,255,0.04); }
+      .toggle{ background: rgba(255,255,255,0.04); }
     }
 
     footer{
-      margin-top: 18px;
+      margin-top: 14px;
       color: var(--muted);
       font-size: 12px;
       display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
       opacity: 0.92;
     }
 
     @media (prefers-reduced-motion: no-preference){
-      header, .hero, .modules, footer{
+      header, .card, footer{
         animation: fadeUp .45s ease both;
       }
-      .modules{ animation-delay: .06s; }
+      .card:nth-child(2){ animation-delay: .04s; }
       @keyframes fadeUp{
         from{ opacity:0; transform: translateY(8px); }
         to{ opacity:1; transform: translateY(0); }
@@ -378,119 +333,198 @@
 
   <div class="wrap">
     <header>
-      <a class="mark" href="index.html" aria-label="Главная">
-        <div class="glyph"></div>
-        <div class="brand">
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="brandText">
           <b>ЕГЭ Химия</b>
-          <span>тренажёры и практика</span>
+          <span>центр тренировки</span>
         </div>
-      </a>
-
-      <div class="meta">
-        <span class="chip">минимум шума</span>
-        <span class="chip">максимум пользы</span>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+        <span class="pill" id="today"></span>
+        <span class="pill" id="statusPill">готов к работе</span>
       </div>
     </header>
 
-    <section class="hero" aria-label="Главный блок">
-      <div class="heroInner">
-        <div>
-          <h1>Тренируйся.<br>Сдавай.</h1>
-          <p class="lead">
-            Подготовка к ЕГЭ по химии в формате, который не отвлекает: вопрос → выбор → ответ → следующий.
-          </p>
+    <div class="grid">
+      <!-- Левая: “Продолжить” + метрики -->
+      <section class="card" aria-label="Главный блок">
+        <p class="cardTitle">Продолжить</p>
+        <h1 id="headline">Открыть тренировку</h1>
+        <p class="lead" id="lead">
+          Один экран — один смысл: возвращайтесь туда, где остановились, и двигайтесь дальше.
+        </p>
 
-          <div class="cta">
-            <a class="btn btnPrimary" href="inorg-nomenclature.html">
-              <span class="dot"></span>
-              Номенклатура
-            </a>
-            <a class="btn" href="#modules">Все модули</a>
+        <div class="cta">
+          <a class="btn btnPrimary" id="continueBtn" href="inorg-nomenclature.html">Продолжить</a>
+          <a class="btn btnGhost" href="inorg-nomenclature.html">Начать заново</a>
+          <button class="btn" id="resetStatsBtn" type="button">Сбросить прогресс</button>
+        </div>
+
+        <div class="split" aria-label="Метрики">
+          <div class="metric">
+            <span>точность (последняя попытка)</span>
+            <b id="acc">—</b>
+          </div>
+          <div class="metric">
+            <span>отвечено</span>
+            <b id="done">—</b>
           </div>
         </div>
 
-        <aside class="quick" aria-label="Быстрые действия">
-          <p class="qTitle">Сейчас доступно</p>
-          <div class="qGrid">
-            <a class="qItem" href="inorg-nomenclature.html">
-              <div class="qLeft">
-                <div class="icon">N</div>
-                <div class="qText">
-                  <p class="qName">Номенклатура неорганики</p>
-                  <p class="qMeta">32 задания · выбор ответов</p>
-                </div>
-              </div>
-              <div class="arrow">›</div>
-            </a>
-
-            <a class="qItem" href="#modules" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
-              <div class="qLeft">
-                <div class="icon">ОВ</div>
-                <div class="qText">
-                  <p class="qName">ОВР и баланс</p>
-                  <p class="qMeta">в разработке</p>
-                </div>
-              </div>
-              <div class="arrow">›</div>
-            </a>
-
-            <a class="qItem" href="#modules" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
-              <div class="qLeft">
-                <div class="icon">pH</div>
-                <div class="qText">
-                  <p class="qName">Растворы и pH</p>
-                  <p class="qMeta">в разработке</p>
-                </div>
-              </div>
-              <div class="arrow">›</div>
-            </a>
+        <div class="miniRow">
+          <div class="toggle">
+            <input type="checkbox" id="autoc" />
+            авто при верном
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <div class="sectionTitle" id="modules">Модули</div>
-
-    <section class="modules" aria-label="Список модулей">
-      <a class="cardLink" href="inorg-nomenclature.html">
-        <h3>Номенклатура неорганики</h3>
-        <p>Названия веществ по формулам. Контрольный формат без лишних шагов.</p>
-        <div class="tags">
-          <span class="tag">32 задания</span>
-          <span class="tag">навигация по номерам</span>
-          <span class="tag">автопереход</span>
+          <div class="toggle">
+            <input type="checkbox" id="autow" />
+            авто при ошибке
+          </div>
+          <div class="toggle">
+            <input type="checkbox" id="mix" checked />
+            перемешать ответы
+          </div>
         </div>
-      </a>
+      </section>
 
-      <a class="cardLink" href="#modules" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
-        <h3>ОВР и электронный баланс</h3>
-        <p>Степени окисления, окислитель/восстановитель, баланс — строго по ЕГЭ.</p>
-        <div class="tags">
-          <span class="tag">в разработке</span>
-          <span class="tag">задачи</span>
-          <span class="tag">практика</span>
+      <!-- Правая: модульный “лаунчер” -->
+      <aside class="card" aria-label="Модули">
+        <p class="cardTitle">Модули</p>
+
+        <div class="list">
+          <a class="item" href="inorg-nomenclature.html" id="nomenItem">
+            <div class="left">
+              <div class="icon">N</div>
+              <div class="text">
+                <p class="name">Номенклатура неорганики</p>
+                <p class="meta" id="nomenMeta">32 задания</p>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="item" href="#" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
+            <div class="left">
+              <div class="icon">ОВ</div>
+              <div class="text">
+                <p class="name">ОВР и баланс</p>
+                <p class="meta">в разработке</p>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
+
+          <a class="item" href="#" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
+            <div class="left">
+              <div class="icon">pH</div>
+              <div class="text">
+                <p class="name">Растворы и pH</p>
+                <p class="meta">в разработке</p>
+              </div>
+            </div>
+            <div class="arrow">›</div>
+          </a>
         </div>
-      </a>
 
-      <a class="cardLink" href="#modules" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
-        <h3>Растворы и pH</h3>
-        <p>Концентрации, гидролиз, pH — тренировка до автоматизма.</p>
-        <div class="tags">
-          <span class="tag">в разработке</span>
-          <span class="tag">тренажёр</span>
-          <span class="tag">сетка тем</span>
-        </div>
-      </a>
-    </section>
-
-    <footer>
-      <div>© <span id="y"></span> · ЕГЭ Химия</div>
-      <div>Минимализм — это когда интерфейс не мешает думать.</div>
-    </footer>
+        <footer>
+          <div>© <span id="y"></span></div>
+          <div>минимализм без лишних слов</div>
+        </footer>
+      </aside>
+    </div>
   </div>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+
+  // Дата “по-человечески”
+  const d = new Date();
+  const fmt = new Intl.DateTimeFormat("ru-RU", { weekday:"long", day:"2-digit", month:"long" });
+  document.getElementById("today").textContent = fmt.format(d);
+
+  // --- Прогресс: читаем из localStorage тренажёра ---
+  // В текущей версии тренажёра мы не сохраняли прогресс специально.
+  // Здесь реализован “совместимый” вариант: если прогресс будет найден — используем его.
+  // Если нет — показываем аккуратные “—”, без ошибок.
+
+  const PROGRESS_KEY = "chem_inorg_progress_v1";
+
+  function safeParse(json){
+    try { return JSON.parse(json); } catch(e){ return null; }
+  }
+
+  function updateUI(p){
+    const accEl = document.getElementById("acc");
+    const doneEl = document.getElementById("done");
+    const headEl = document.getElementById("headline");
+    const leadEl = document.getElementById("lead");
+    const statusPill = document.getElementById("statusPill");
+    const continueBtn = document.getElementById("continueBtn");
+
+    if(!p){
+      accEl.textContent = "—";
+      doneEl.textContent = "—";
+      headEl.textContent = "Открыть тренировку";
+      leadEl.textContent = "Один экран — один смысл: тренируйтесь короткими подходами и фиксируйте результат.";
+      statusPill.textContent = "прогресс не сохранён";
+      continueBtn.textContent = "Открыть";
+      continueBtn.href = "inorg-nomenclature.html";
+      return;
+    }
+
+    const total = Number(p.total || 0);
+    const correct = Number(p.correct || 0);
+    const answered = Number(p.answered || 0);
+    const idx = Number(p.lastIndex || 0);
+
+    const acc = answered ? Math.round((correct/answered)*100) : 0;
+
+    accEl.textContent = answered ? acc + "%" : "—";
+    doneEl.textContent = answered && total ? `${answered}/${total}` : (answered ? String(answered) : "—");
+
+    headEl.textContent = answered ? "Продолжить с места" : "Начать тренировку";
+    leadEl.textContent = answered
+      ? `Последняя сессия: ${answered} ответов, точность ${acc}%.`
+      : "Короткий подход, высокая отдача. Нажмите и начните.";
+
+    statusPill.textContent = answered ? `последний вопрос: ${Math.min(idx+1, total || idx+1)}` : "готов к работе";
+    continueBtn.textContent = answered ? "Продолжить" : "Начать";
+
+    // Передадим в тренажёр параметры через query (опционально на будущее).
+    continueBtn.href = "inorg-nomenclature.html";
+  }
+
+  updateUI(safeParse(localStorage.getItem(PROGRESS_KEY)));
+
+  // Переключатели (сохраняем предпочтения на главной)
+  const PREF_KEY = "chem_home_prefs_v1";
+  const prefs = safeParse(localStorage.getItem(PREF_KEY)) || { autoc:false, autow:false, mix:true };
+
+  const autoc = document.getElementById("autoc");
+  const autow = document.getElementById("autow");
+  const mix = document.getElementById("mix");
+
+  autoc.checked = !!prefs.autoc;
+  autow.checked = !!prefs.autow;
+  mix.checked = prefs.mix !== false;
+
+  function savePrefs(){
+    localStorage.setItem(PREF_KEY, JSON.stringify({ autoc:autoc.checked, autow:autow.checked, mix:mix.checked }));
+  }
+  autoc.addEventListener("change", savePrefs);
+  autow.addEventListener("change", savePrefs);
+  mix.addEventListener("change", savePrefs);
+
+  // Сброс “прогресса” и настроек
+  document.getElementById("resetStatsBtn").addEventListener("click", () => {
+    localStorage.removeItem(PROGRESS_KEY);
+    localStorage.removeItem(PREF_KEY);
+    autoc.checked = false;
+    autow.checked = false;
+    mix.checked = true;
+    updateUI(null);
+  });
+</script>
 </body>
 </html>
