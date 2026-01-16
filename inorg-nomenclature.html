@@ -1,554 +1,426 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ЕГЭ Химия — Номенклатура неорганики</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 20px; line-height: 1.4; }
-    a { color: inherit; }
-    .topbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
-    .pill { border:1px solid #e5e5e5; border-radius:999px; padding: 6px 10px; user-select:none; }
-    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px; max-width: 1100px; }
-    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-    .muted { color:#666; }
-    .small { font-size: 13px; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Номенклатура неорганики</title>
 
-    .grid2 { display:grid; grid-template-columns: 1fr; gap:12px; }
-    @media (min-width: 1000px) { .grid2 { grid-template-columns: 1.2fr 0.8fr; } }
+<style>
+:root {
+  --bg: #ffffff;
+  --card: #fafafa;
+  --border: #e5e5e5;
+  --text: #111;
+  --muted: #666;
+  --accent: #0066ff;
 
-    .answers { display:grid; grid-template-columns: 1fr; gap:10px; margin-top: 12px; }
-    @media (min-width: 760px) { .answers { grid-template-columns: 1fr 1fr; } }
+  --ok: #16a34a;
+  --bad: #dc2626;
+}
 
-    .btn {
-      text-align:left;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid #cfcfcf;
-      background: #f7f7f7;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .btn:hover { background:#f0f0f0; }
-    .btn:disabled { cursor: default; opacity: 0.92; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
+               "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  line-height: 1.3;
+}
 
-    .btn.selected { border-color:#2563eb; background:#eff6ff; }
-    .btn.correct  { border-color:#16a34a; background:#f0fdf4; }
-    .btn.wrong    { border-color:#dc2626; background:#fef2f2; }
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px;
+}
 
-    .ok { color:#16a34a; font-weight:600; }
-    .bad { color:#dc2626; font-weight:600; }
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
 
-    .primary {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid #111;
-      background:#111;
-      color:#fff;
-      cursor:pointer;
-      font-size: 15px;
-    }
-    .primary:hover { background:#000; }
-    .primary:disabled { opacity: 0.6; cursor: default; }
+.back {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+}
 
-    .secondary {
-      padding: 10px 12px;
-      border-radius: 10px;
-      border:1px solid #ccc;
-      background:#f7f7f7;
-      cursor:pointer;
-    }
-    .secondary:hover { background:#f0f0f0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 12px;
+}
 
-    select { padding: 6px 8px; border-radius: 10px; border:1px solid #ccc; }
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
 
-    /* Навигация по вопросам */
-    .nav {
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-top: 10px.0;
-    }
-    .qbtn {
-      width: 38px;
-      height: 34px;
-      border-radius: 10px;
-      border: 1px solid #cfcfcf;
-      background: #f7f7f7;
-      cursor: pointer;
-      font-size: 13px;
-      line-height: 34px;
-      text-align:center;
-      user-select:none;
-    }
-    .qbtn:hover { background:#f0f0f0; }
-    .qbtn.current { border-color:#111; box-shadow: 0 0 0 2px rgba(0,0,0,0.08) inset; }
-    .qbtn.unanswered { background:#f7f7f7; }
-    .qbtn.right { background:#f0fdf4; border-color:#16a34a; }
-    .qbtn.wrong { background:#fef2f2; border-color:#dc2626; }
-  </style>
+.pill {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+.question {
+  font-size: 26px;
+  margin: 12px 0 4px 0;
+  letter-spacing: -0.2px;
+}
+
+.tip {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+@media (min-width: 760px) {
+  .answers { grid-template-columns: 1fr 1fr; }
+}
+
+.btn {
+  text-align: left;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all .15s;
+}
+
+.btn:hover { background: #f5f5f5; }
+
+.btn.selected {
+  border-color: var(--accent);
+  background: #f0f6ff;
+}
+
+.btn.correct {
+  border-color: var(--ok);
+  background: #f0fdf4;
+}
+
+.btn.wrong {
+  border-color: var(--bad);
+  background: #fef2f2;
+}
+
+.primary {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--text);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.primary:disabled {
+  opacity: .4;
+}
+
+.secondary {
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: white;
+  cursor: pointer;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* Навигация по номерам */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.qbtn {
+  width: 36px;
+  height: 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.qbtn.current {
+  border-color: var(--text);
+}
+
+.qbtn.right {
+  border-color: var(--ok);
+  background: #f0fdf4;
+}
+
+.qbtn.wrong {
+  border-color: var(--bad);
+  background: #fef2f2;
+}
+
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+</style>
 </head>
-<body>
 
-<div class="topbar">
-  <a href="index.html">← На главную</a>
-  <span class="pill">Номенклатура неорганики</span>
-  <span class="pill">Выбор → Ответить → Далее</span>
+<body>
+<div class="container">
+
+<div class="header">
+  <a class="back" href="index.html">← Главная</a>
 </div>
 
-<div class="grid2">
-  <div class="card">
-    <h1 style="margin:0 0 6px 0;">Тренажёр</h1>
-    <div class="muted" style="margin-bottom:10px;">
-      Выберите вариант. Пока не нажали «Ответить», можно изменить выбор.
-    </div>
-
-    <div class="row" style="margin: 10px 0;">
-      <span class="pill">Вопрос: <span id="qIndex">1</span>/<span id="qTotal">0</span></span>
-      <span class="pill">Верно: <span id="okCount">0</span></span>
-      <span class="pill">Ошибок: <span id="badCount">0</span></span>
-      <span class="pill">Точность: <span id="score">0</span>%</span>
-    </div>
-
-    <h2 id="question" style="margin: 10px 0 6px 0; font-size: 26px;">—</h2>
-    <div class="muted small" id="tip">Подсказка появится после проверки.</div>
-
-    <div class="answers" id="answers"></div>
-
-    <div class="row" style="margin-top: 12px;">
-      <button id="actionBtn" class="primary" disabled>Ответить</button>
-      <button id="prevBtn" class="secondary" title="Назад к предыдущему вопросу">Назад</button>
-      <button id="nextBtn" class="secondary" title="Вперёд к следующему вопросу">Вперёд</button>
-      <span class="muted small" id="statusText">Выберите вариант ответа.</span>
-    </div>
-
-    <div id="feedback" style="margin-top: 12px;"></div>
-
-    <hr style="border:none; border-top:1px solid #eee; margin: 14px 0;">
-
-    <h3 style="margin: 0 0 8px 0;">Настройки</h3>
-    <div class="row">
-      <label class="pill">
-        <input type="checkbox" id="shuffle" checked />
-        Перемешать вопросы
-      </label>
-
-      <label class="pill">
-        <input type="checkbox" id="mixAnswers" checked />
-        Перемешать варианты
-      </label>
-
-      <label class="pill">
-        Вариантов:
-        <select id="choicesCount">
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="row" style="margin-top:10px;">
-      <label class="pill">
-        <input type="checkbox" id="autoNextCorrect">
-        Автопереход, если ответ правильный
-      </label>
-
-      <label class="pill">
-        <input type="checkbox" id="autoNextWrong">
-        Автопереход, если ответ неправильный
-      </label>
-    </div>
-
-    <div class="row" style="margin-top:10px;">
-      <button id="restartBtn" class="secondary">Сначала</button>
-      <button id="repeatWrongBtn" class="secondary" title="Пройти второй круг только по ошибкам">Повторить ошибки</button>
-    </div>
-
-    <p class="muted small" style="margin-top:10px;">
-      Подсветка номеров вопросов: серый — не отвечено, зелёный — правильно, красный — неправильно.
-    </p>
+<div class="card">
+  <div class="stats">
+    <span class="pill"><span id="qIndex">1</span>/<span id="qTotal">0</span></span>
+    <span class="pill" id="okCount">0</span>
+    <span class="pill" id="badCount">0</span>
+    <span class="pill"><span id="score">0</span>%</span>
   </div>
 
-  <div class="card">
-    <h2 style="margin:0 0 6px 0;">Навигация по вопросам</h2>
-    <p class="muted small" style="margin-top:0;">
-      Можно прыгать на любой вопрос. Цвет показывает, какой ответ был сохранён после нажатия «Ответить».
-    </p>
-    <div id="nav" class="nav"></div>
+  <div class="question" id="question">—</div>
+  <div class="tip" id="tip"> </div>
+
+  <div class="answers" id="answers"></div>
+
+  <div class="row">
+    <button id="actionBtn" class="primary" disabled>Ответить</button>
+    <button id="prevBtn" class="secondary">Назад</button>
+    <button id="nextBtn" class="secondary">Вперёд</button>
   </div>
+</div>
+
+<div class="card">
+  <div class="nav" id="nav"></div>
+
+  <div class="settings">
+    <label><input type="checkbox" id="shuffle" checked> перемешать вопросы</label>
+    <label><input type="checkbox" id="mixAnswers" checked> перемешать ответы</label>
+    <label><input type="checkbox" id="autoNextCorrect"> авто при верном</label>
+    <label><input type="checkbox" id="autoNextWrong"> авто при ошибке</label>
+  </div>
+
+  <div class="row">
+    <button id="restartBtn" class="secondary">Сначала</button>
+    <button id="repeatWrongBtn" class="secondary">Ошибки</button>
+  </div>
+</div>
+
 </div>
 
 <script>
-/** ===== Банк (32 вопроса) =====
- * f — формула, right — эталонный ответ (для кнопочного режима),
- * tip — краткая подсказка после проверки.
- */
+// --- БАНК 32 ВОПРОСОВ ---
 const TASKS = [
-  // Оксиды (10)
-  { f:"CO",    right:"оксид углерода(ii)",  tip:"C(+2)." },
-  { f:"CO2",   right:"оксид углерода(iv)",  tip:"C(+4)." },
-  { f:"SO2",   right:"оксид серы(iv)",      tip:"S(+4)." },
-  { f:"SO3",   right:"оксид серы(vi)",      tip:"S(+6)." },
-  { f:"P2O5",  right:"оксид фосфора(v)",    tip:"P(+5)." },
-  { f:"N2O5",  right:"оксид азота(v)",      tip:"N(+5)." },
-  { f:"FeO",   right:"оксид железа(ii)",    tip:"Fe(+2)." },
-  { f:"Fe2O3", right:"оксид железа(iii)",   tip:"Fe(+3)." },
-  { f:"Cu2O",  right:"оксид меди(i)",       tip:"Cu(+1)." },
-  { f:"CuO",   right:"оксид меди(ii)",      tip:"Cu(+2)." },
+  { f:"CO", right:"оксид углерода(ii)", tip:"C(+2)" },
+  { f:"CO2", right:"оксид углерода(iv)", tip:"C(+4)" },
+  { f:"SO2", right:"оксид серы(iv)", tip:"S(+4)" },
+  { f:"SO3", right:"оксид серы(vi)", tip:"S(+6)" },
+  { f:"P2O5", right:"оксид фосфора(v)", tip:"P(+5)" },
+  { f:"N2O5", right:"оксид азота(v)", tip:"N(+5)" },
+  { f:"FeO", right:"оксид железа(ii)", tip:"Fe(+2)" },
+  { f:"Fe2O3", right:"оксид железа(iii)", tip:"Fe(+3)" },
+  { f:"Cu2O", right:"оксид меди(i)", tip:"Cu(+1)" },
+  { f:"CuO", right:"оксид меди(ii)", tip:"Cu(+2)" },
 
-  // Кислоты (8)
-  { f:"HCl",    right:"соляная кислота",            tip:"HCl(р-р)." },
-  { f:"H2S",    right:"сероводородная кислота",     tip:"Слабая." },
-  { f:"H2SO4",  right:"серная кислота",             tip:"Сильная, 2-осн." },
-  { f:"H2SO3",  right:"сернистая кислота",          tip:"Соответствует SO2." },
-  { f:"HNO3",   right:"азотная кислота",            tip:"Сильная." },
-  { f:"HNO2",   right:"азотистая кислота",          tip:"Слабее HNO3." },
-  { f:"H3PO4",  right:"ортофосфорная кислота",      tip:"3-осн." },
-  { f:"H2CO3",  right:"угольная кислота",           tip:"Нестойкая." },
+  { f:"HCl", right:"соляная кислота", tip:"раствор HCl" },
+  { f:"H2S", right:"сероводородная кислота", tip:"слабая" },
+  { f:"H2SO4", right:"серная кислота", tip:"сильная, 2-осн." },
+  { f:"H2SO3", right:"сернистая кислота", tip:"SO2 + H2O" },
+  { f:"HNO3", right:"азотная кислота", tip:"сильная" },
+  { f:"HNO2", right:"азотистая кислота", tip:"слабее HNO3" },
+  { f:"H3PO4", right:"ортофосфорная кислота", tip:"3-осн." },
+  { f:"H2CO3", right:"угольная кислота", tip:"нестабильна" },
 
-  // Основания/амфотерные (7)
-  { f:"NaOH",     right:"гидроксид натрия",         tip:"Щёлочь." },
-  { f:"KOH",      right:"гидроксид калия",          tip:"Щёлочь." },
-  { f:"Ca(OH)2",  right:"гидроксид кальция",        tip:"Малораств. щёлочь." },
-  { f:"Ba(OH)2",  right:"гидроксид бария",          tip:"Щёлочь." },
-  { f:"Al(OH)3",  right:"гидроксид алюминия",       tip:"Амфотерный." },
-  { f:"Zn(OH)2",  right:"гидроксид цинка",          tip:"Амфотерный." },
-  { f:"Fe(OH)3",  right:"гидроксид железа(iii)",    tip:"Fe(+3)." },
+  { f:"NaOH", right:"гидроксид натрия", tip:"щёлочь" },
+  { f:"KOH", right:"гидроксид калия", tip:"щёлочь" },
+  { f:"Ca(OH)2", right:"гидроксид кальция", tip:"малораств." },
+  { f:"Ba(OH)2", right:"гидроксид бария", tip:"щёлочь" },
+  { f:"Al(OH)3", right:"гидроксид алюминия", tip:"амфотерный" },
+  { f:"Zn(OH)2", right:"гидроксид цинка", tip:"амфотерный" },
+  { f:"Fe(OH)3", right:"гидроксид железа(iii)", tip:"Fe(+3)" },
 
-  // Соли (7)
-  { f:"NaCl",     right:"хлорид натрия",            tip:"Средняя соль." },
-  { f:"K2SO4",    right:"сульфат калия",            tip:"Соль H2SO4." },
-  { f:"Na2SO3",   right:"сульфит натрия",           tip:"Соль H2SO3." },
-  { f:"CaCO3",    right:"карбонат кальция",         tip:"Соль H2CO3." },
-  { f:"Na2CO3",   right:"карбонат натрия",          tip:"Кальцинированная сода." },
-  { f:"NaHCO3",   right:"гидрокарбонат натрия",     tip:"Кислая соль." },
-  { f:"KNO3",     right:"нитрат калия",             tip:"Соль HNO3." }
+  { f:"NaCl", right:"хлорид натрия", tip:"средняя соль" },
+  { f:"K2SO4", right:"сульфат калия", tip:"соль H2SO4" },
+  { f:"Na2SO3", right:"сульфит натрия", tip:"соль H2SO3" },
+  { f:"CaCO3", right:"карбонат кальция", tip:"известняк" },
+  { f:"Na2CO3", right:"карбонат натрия", tip:"кальц. сода" },
+  { f:"NaHCO3", right:"гидрокарбонат натрия", tip:"кислая соль" },
+  { f:"KNO3", right:"нитрат калия", tip:"соль HNO3" }
 ];
 
-/** ===== Утилиты ===== */
-function norm(s){ return (s||"").toLowerCase().replace(/ё/g,"е").replace(/\s+/g," ").trim(); }
-function shuffleArray(arr){
-  for(let i = arr.length - 1; i > 0; i--){
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
+function norm(s){ return s.toLowerCase().replace(/ё/g,"е").trim(); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.random()* (i+1)|0; [a[i],a[j]]=[a[j],a[i]];} return a;}
 
-/** ===== DOM ===== */
-const elQIndex = document.getElementById("qIndex");
-const elQTotal = document.getElementById("qTotal");
-const elOk = document.getElementById("okCount");
-const elBad = document.getElementById("badCount");
-const elScore = document.getElementById("score");
-const elQuestion = document.getElementById("question");
-const elTip = document.getElementById("tip");
-const elAnswers = document.getElementById("answers");
-const elFeedback = document.getElementById("feedback");
-const elActionBtn = document.getElementById("actionBtn");
-const elStatusText = document.getElementById("statusText");
-const elNav = document.getElementById("nav");
+let items=[], idx=0, ok=0, bad=0;
+let answersState=[], selected=null, phase="choose", wrongPool=[];
+let timer=null;
 
-const elShuffle = document.getElementById("shuffle");
-const elMixAnswers = document.getElementById("mixAnswers");
-const elChoicesCount = document.getElementById("choicesCount");
-const elAutoNextCorrect = document.getElementById("autoNextCorrect");
-const elAutoNextWrong = document.getElementById("autoNextWrong");
+const qIndex=qTotal=okCount=badCount=score=null;
 
-document.getElementById("restartBtn").addEventListener("click", () => start("all"));
-document.getElementById("repeatWrongBtn").addEventListener("click", () => start("wrong"));
-document.getElementById("prevBtn").addEventListener("click", () => goTo(idx - 1));
-document.getElementById("nextBtn").addEventListener("click", () => goTo(idx + 1));
+const elQIndex=document.getElementById("qIndex");
+const elQTotal=document.getElementById("qTotal");
+const elOk=document.getElementById("okCount");
+const elBad=document.getElementById("badCount");
+const elScore=document.getElementById("score");
+const elQuestion=document.getElementById("question");
+const elTip=document.getElementById("tip");
+const elAnswers=document.getElementById("answers");
+const elActionBtn=document.getElementById("actionBtn");
+const elNav=document.getElementById("nav");
 
-/** ===== Состояние ===== */
-let items = [];
-let idx = 0;
-let ok = 0;
-let bad = 0;
+const elShuffle=document.getElementById("shuffle");
+const elMix=document.getElementById("mixAnswers");
+const elAutoC=document.getElementById("autoNextCorrect");
+const elAutoW=document.getElementById("autoNextWrong");
 
-// answersState[index] = { chosen: string|null, isCorrect: boolean|null, locked: boolean }
-let answersState = [];
+document.getElementById("restartBtn").onclick=()=>start("all");
+document.getElementById("repeatWrongBtn").onclick=()=>start("wrong");
+document.getElementById("prevBtn").onclick=()=>go(idx-1);
+document.getElementById("nextBtn").onclick=()=>go(idx+1);
 
-// текущий выбор до фиксации
-let selectedAnswer = null;
+elActionBtn.onclick=()=> phase==="choose"? submit(): go(idx+1);
 
-// choose | checked | finished
-let phase = "choose";
-
-// пул неправильных (для повтора)
-let wrongPool = [];
-
-// чтобы не было гонок при автопереходе
-let autoTimer = null;
-
-/** ===== Старт/перезапуск ===== */
 function start(mode){
-  clearAuto();
+  clearTimeout(timer);
+  items = mode==="wrong" && wrongPool.length ? [...wrongPool] : [...TASKS];
+  if(elShuffle.checked) shuffle(items);
 
-  // собираем items
-  if(mode === "wrong"){
-    const prevWrong = loadLastWrong();
-    if(prevWrong.length){
-      items = prevWrong.map(x => ({...x}));
-    } else {
-      items = TASKS.slice();
-      // пусть пользователь не остается в пустоте
-      elFeedback.innerHTML = `<div class="bad">Нет сохранённых ошибок для повтора — запускаю полный набор.</div>`;
-    }
-  } else {
-    items = TASKS.slice();
-  }
-
-  if(elShuffle.checked) shuffleArray(items);
-
-  idx = 0;
-  ok = 0;
-  bad = 0;
-  wrongPool = [];
-
-  answersState = items.map(_ => ({ chosen:null, isCorrect:null, locked:false }));
+  idx=ok=bad=0; wrongPool=[];
+  answersState=items.map(()=>({chosen:null,isCorrect:null,locked:false}));
 
   buildNav();
   render();
 }
 
-function clearAuto(){
-  if(autoTimer){
-    clearTimeout(autoTimer);
-    autoTimer = null;
-  }
-}
-
-/** ===== Навигация по номерам ===== */
 function buildNav(){
-  elNav.innerHTML = "";
-  for(let i=0; i<items.length; i++){
-    const b = document.createElement("button");
-    b.className = "qbtn unanswered";
-    b.textContent = String(i+1);
-    b.addEventListener("click", () => goTo(i));
+  elNav.innerHTML="";
+  items.forEach((_,i)=>{
+    const b=document.createElement("button");
+    b.className="qbtn";
+    b.textContent=i+1;
+    b.onclick=()=>go(i);
     elNav.appendChild(b);
-  }
+  });
   paintNav();
 }
 
 function paintNav(){
-  const btns = [...elNav.querySelectorAll("button")];
-  for(let i=0;i<btns.length;i++){
-    const st = answersState[i];
-    btns[i].classList.remove("current","unanswered","right","wrong");
-    if(i === idx) btns[i].classList.add("current");
-
-    if(st.isCorrect === true) btns[i].classList.add("right");
-    else if(st.isCorrect === false) btns[i].classList.add("wrong");
-    else btns[i].classList.add("unanswered");
-  }
+  [...elNav.children].forEach((b,i)=>{
+    b.className="qbtn"+(i===idx?" current":"");
+    const st=answersState[i];
+    if(st.isCorrect===true) b.classList.add("right");
+    if(st.isCorrect===false) b.classList.add("wrong");
+  });
 }
 
-function goTo(i){
-  clearAuto();
-  if(i < 0 || i >= items.length) return;
-  idx = i;
-  render();
-}
-
-/** ===== Рендер ===== */
-function updateStats(){
-  elQTotal.textContent = String(items.length);
-  elQIndex.textContent = String(Math.min(idx+1, items.length));
-  elOk.textContent = String(ok);
-  elBad.textContent = String(bad);
-  const done = ok + bad;
-  elScore.textContent = String(done ? Math.round((ok/done)*100) : 0);
+function go(i){
+  clearTimeout(timer);
+  if(i<0||i>=items.length) return;
+  idx=i; render();
 }
 
 function render(){
-  updateStats();
-  paintNav();
+  elQTotal.textContent=items.length;
+  elQIndex.textContent=idx+1;
+  elOk.textContent=ok;
+  elBad.textContent=bad;
+  elScore.textContent= ok+bad? Math.round(ok/(ok+bad)*100):0;
 
-  elAnswers.innerHTML = "";
-  elFeedback.innerHTML = "";
-  elTip.textContent = "Подсказка появится после проверки.";
-  selectedAnswer = null;
-  phase = "choose";
+  elAnswers.innerHTML=""; selected=null; phase="choose";
+  elActionBtn.textContent="Ответить"; elActionBtn.disabled=true;
 
-  if(idx >= items.length){
-    phase = "finished";
-    elQuestion.textContent = "Готово. Тренировка завершена.";
-    elStatusText.textContent = "Можно повторить ошибки или начать сначала.";
-    elActionBtn.textContent = "Готово";
-    elActionBtn.disabled = true;
-    saveLastWrong(wrongPool);
+  if(idx>=items.length){
+    elQuestion.textContent="Готово";
     return;
   }
 
-  const st = answersState[idx];
-  const cur = items[idx];
+  const cur=items[idx];
+  elQuestion.textContent="Выберите: "+cur.f;
 
-  elQuestion.textContent = `Выберите название: ${cur.f}`;
+  let opts=[cur.right,
+    ...shuffle(TASKS.map(t=>t.right).filter(x=>x!==cur.right)).slice(0,3)
+  ];
+  if(elMix.checked) shuffle(opts);
 
-  // строим варианты
-  let options = buildOptions(cur, Number(elChoicesCount.value));
-  if(elMixAnswers.checked) shuffleArray(options);
-
-  // рисуем кнопки
-  for(const opt of options){
-    const b = document.createElement("button");
-    b.className = "btn";
-    b.type = "button";
-    b.textContent = opt;
-    b.addEventListener("click", () => selectOption(opt, b));
+  opts.forEach(o=>{
+    const b=document.createElement("button");
+    b.className="btn";
+    b.textContent=o;
+    b.onclick=()=>select(o,b);
     elAnswers.appendChild(b);
-  }
+  });
 
-  // если вопрос уже был отвечен — показываем сохранённый результат и блокируем варианты
-  if(st.locked){
-    phase = "checked";
-    elActionBtn.textContent = "Далее";
-    elActionBtn.disabled = false;
-    elStatusText.textContent = "Ответ уже сохранён. Можно перейти далее.";
-    showSavedState(cur, st);
-  } else {
-    elActionBtn.textContent = "Ответить";
-    elActionBtn.disabled = true;
-    elStatusText.textContent = "Выберите вариант ответа.";
-  }
+  const st=answersState[idx];
+  if(st.locked) showSaved(cur,st);
+  paintNav();
 }
 
-function buildOptions(cur, count){
-  const correct = cur.right;
-  const pool = items
-    .map(t => t.right)
-    .filter(name => norm(name) !== norm(correct));
-
-  shuffleArray(pool);
-  const distractors = pool.slice(0, Math.max(0, count - 1));
-  const opts = [correct, ...distractors];
-  while(opts.length < count) opts.push("—");
-  return opts;
+function select(o,b){
+  if(phase!=="choose")return;
+  selected=o;
+  [...elAnswers.children].forEach(x=>x.classList.remove("selected"));
+  b.classList.add("selected");
+  elActionBtn.disabled=false;
 }
-
-function selectOption(opt, btnEl){
-  if(phase !== "choose") return;
-
-  selectedAnswer = opt;
-
-  for(const b of elAnswers.querySelectorAll("button")){
-    b.classList.remove("selected");
-  }
-  btnEl.classList.add("selected");
-
-  elActionBtn.disabled = false;
-  elStatusText.textContent = "Нажмите «Ответить», чтобы зафиксировать выбор.";
-}
-
-elActionBtn.addEventListener("click", () => {
-  if(phase === "choose") submit();
-  else if(phase === "checked") goTo(idx + 1);
-});
 
 function submit(){
-  if(phase !== "choose") return;
-  if(!selectedAnswer) return;
+  const cur=items[idx];
+  const correct=norm(selected)===norm(cur.right);
+  const st=answersState[idx];
 
-  const cur = items[idx];
-  const isCorrect = norm(selectedAnswer) === norm(cur.right);
+  st.chosen=selected; st.isCorrect=correct; st.locked=true;
+  correct? ok++: bad++, !correct&&wrongPool.push(cur);
 
-  // сохраняем состояние вопроса
-  const st = answersState[idx];
-  st.chosen = selectedAnswer;
-  st.isCorrect = isCorrect;
-  st.locked = true;
+  showSaved(cur,st);
 
-  // обновляем общую статистику (важно: считать только впервые)
-  if(isCorrect) ok++; else bad++;
-
-  if(!isCorrect) wrongPool.push(cur);
-
-  phase = "checked";
-  elActionBtn.textContent = "Далее";
-  elActionBtn.disabled = false;
-  elStatusText.textContent = "Можно перейти к следующему вопросу.";
-
-  // подсветка и блокировка вариантов
-  lockAndPaint(cur, st);
-
-  // подсказка
-  elTip.textContent = cur.tip || "—";
-
-  // сообщение
-  if(isCorrect){
-    elFeedback.innerHTML = `<div class="ok">Верно.</div>`;
-  } else {
-    elFeedback.innerHTML = `<div class="bad">Неверно.</div><div class="small muted">Правильный ответ: <b>${cur.right}</b></div>`;
+  if((correct&&elAutoC.checked)||(!correct&&elAutoW.checked)){
+    timer=setTimeout(()=>go(idx+1),700);
   }
+}
 
-  updateStats();
+function showSaved(cur,st){
+  phase="checked";
+  elActionBtn.textContent="Далее"; elActionBtn.disabled=false;
+
+  [...elAnswers.children].forEach(b=>{
+    b.disabled=true;
+    if(norm(b.textContent)===norm(cur.right)) b.classList.add("correct");
+    if(norm(b.textContent)===norm(st.chosen)&&!st.isCorrect) b.classList.add("wrong");
+  });
+
+  elTip.textContent=cur.tip||"";
   paintNav();
-
-  // автопереход по настройкам
-  const shouldAuto =
-    (isCorrect && elAutoNextCorrect.checked) ||
-    (!isCorrect && elAutoNextWrong.checked);
-
-  if(shouldAuto){
-    elStatusText.textContent = "Автопереход включён — переходим…";
-    elActionBtn.disabled = true;
-    clearAuto();
-    autoTimer = setTimeout(() => {
-      autoTimer = null;
-      goTo(idx + 1);
-    }, 700);
-  }
 }
 
-function lockAndPaint(cur, st){
-  const btns = [...elAnswers.querySelectorAll("button")];
-  for(const b of btns){
-    const t = norm(b.textContent);
-    if(t === norm(cur.right)) b.classList.add("correct");
-    if(st.chosen && t === norm(st.chosen) && st.isCorrect === false) b.classList.add("wrong");
-    if(st.chosen && t === norm(st.chosen)) b.classList.add("selected");
-    b.disabled = true;
-  }
-}
-
-function showSavedState(cur, st){
-  // подсказка
-  elTip.textContent = cur.tip || "—";
-
-  // подсветка + блокировка
-  lockAndPaint(cur, st);
-
-  // фидбек
-  if(st.isCorrect === true){
-    elFeedback.innerHTML = `<div class="ok">Верно (сохранено).</div>`;
-  } else if(st.isCorrect === false){
-    elFeedback.innerHTML = `<div class="bad">Неверно (сохранено).</div><div class="small muted">Правильный ответ: <b>${cur.right}</b></div>`;
-  }
-}
-
-/** ===== Повтор ошибок (LocalStorage) ===== */
-const WRONG_KEY = "chem_inorg_nomen_wrong_v3";
-
-function saveLastWrong(arr){
-  try{
-    const safe = (arr || []).map(x => ({ f:x.f, right:x.right, tip:x.tip }));
-    localStorage.setItem(WRONG_KEY, JSON.stringify(safe));
-  } catch(e){}
-}
-function loadLastWrong(){
-  try{
-    const raw = localStorage.getItem(WRONG_KEY);
-    if(!raw) return [];
-    return JSON.parse(raw) || [];
-  } catch(e){
-    return [];
-  }
-}
-
-/** Старт */
 start("all");
 </script>
 
