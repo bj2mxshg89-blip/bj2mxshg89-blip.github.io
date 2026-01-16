@@ -1,65 +1,113 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ЕГЭ Химия — Номенклатура неорганики (выбор)</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 20px; line-height: 1.4; }
-    a { color: inherit; }
-    .topbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
-    .pill { border:1px solid #e5e5e5; border-radius:999px; padding: 6px 10px; }
-    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px; max-width: 980px; }
-    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
-    .muted { color:#666; }
-    .small { font-size: 13px; }
-    .grid2 { display:grid; grid-template-columns: 1fr; gap:12px; }
-    @media (min-width: 900px) { .grid2 { grid-template-columns: 1.1fr 0.9fr; } }
-    textarea { width:100%; min-height: 170px; padding: 10px 12px; border-radius: 10px; border:1px solid #ccc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЕГЭ химия — Номенклатура неорганики</title>
 
-    .answers { display:grid; grid-template-columns: 1fr; gap:10px; margin-top: 12px; }
-    @media (min-width: 700px) { .answers { grid-template-columns: 1fr 1fr; } }
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 20px;
+  line-height: 1.4;
+}
 
-    .btn {
-      text-align:left;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid #cfcfcf;
-      background: #f7f7f7;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    .btn:hover { background:#f0f0f0; }
-    .btn:disabled { cursor: default; opacity: 0.92; }
+a { color: inherit; }
 
-    .btn.selected { border-color:#3b82f6; background:#eff6ff; }
-    .btn.correct  { border-color:#0b6; background: #f3fff8; }
-    .btn.wrong    { border-color:#c00; background: #fff4f4; }
+.topbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
 
-    .ok { color:#0b6; font-weight:600; }
-    .bad { color:#c00; font-weight:600; }
+.pill {
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+  padding: 6px 10px;
+  user-select: none;
+}
 
-    .controls button, .primary {
-      padding: 10px 12px;
-      border-radius: 10px;
-      border:1px solid #ccc;
-      background:#f7f7f7;
-      cursor:pointer;
-    }
-    .controls button:hover, .primary:hover { background:#f0f0f0; }
+.card {
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 14px;
+  max-width: 1000px;
+}
 
-    .primary {
-      border-color:#111;
-      background:#111;
-      color:#fff;
-    }
-    .primary:hover { background:#000; }
+.row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
 
-    .primary:disabled { opacity: 0.6; cursor: default; }
+.muted { color: #666; }
+.small { font-size: 13px; }
 
-    select { padding: 6px 8px; border-radius: 10px; border:1px solid #ccc; }
-  </style>
+.answers {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+@media (min-width: 700px) {
+  .answers { grid-template-columns: 1fr 1fr; }
+}
+
+.btn {
+  text-align: left;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  background: #f7f7f7;
+  cursor: pointer;
+  font-size: 16px;
+}
+.btn:hover { background: #f0f0f0; }
+
+.btn.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.btn.correct {
+  border-color: #16a34a;
+  background: #f0fdf4;
+}
+
+.btn.wrong {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.primary {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+.primary:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.ok { color: #16a34a; font-weight: 600; }
+.bad { color: #dc2626; font-weight: 600; }
+
+textarea {
+  width: 100%;
+  min-height: 180px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-family: ui-monospace, monospace;
+}
+</style>
 </head>
+
 <body>
 
 <div class="topbar">
@@ -68,379 +116,219 @@
   <span class="pill">Выбор → Ответить → Далее</span>
 </div>
 
-<div class="grid2">
-  <div class="card">
-    <h1 style="margin:0 0 6px 0;">Тренажёр</h1>
-    <div class="muted" style="margin-bottom:10px;">
-      Сначала выберите вариант. Можно менять выбор, пока не нажали «Ответить».
-    </div>
+<div class="card">
 
-    <div class="row" style="margin: 10px 0;">
-      <span class="pill">Вопрос: <span id="qIndex">1</span>/<span id="qTotal">0</span></span>
-      <span class="pill">Верно: <span id="okCount">0</span></span>
-      <span class="pill">Ошибок: <span id="badCount">0</span></span>
-      <span class="pill">Точность: <span id="score">0</span>%</span>
-    </div>
+<h1>Тренажёр</h1>
+<p class="muted">Выберите вариант, затем нажмите «Ответить». Пока не нажали — ответ можно менять.</p>
 
-    <h2 id="question" style="margin: 10px 0 6px 0; font-size: 26px;">—</h2>
-    <div class="muted small" id="tip">Подсказка появится после проверки.</div>
+<div class="row">
+  <span class="pill">Вопрос: <span id="qIndex">1</span>/<span id="qTotal">0</span></span>
+  <span class="pill">Верно: <span id="okCount">0</span></span>
+  <span class="pill">Ошибок: <span id="badCount">0</span></span>
+  <span class="pill">Точность: <span id="score">0</span>%</span>
+</div>
 
-    <div class="answers" id="answers"></div>
+<h2 id="question">—</h2>
+<p class="muted small" id="tip">Подсказка появится после проверки.</p>
 
-    <div class="row" style="margin-top: 12px;">
-      <button id="actionBtn" class="primary" disabled>Ответить</button>
-      <span class="muted small" id="statusText">Выберите вариант ответа.</span>
-    </div>
+<div class="answers" id="answers"></div>
 
-    <div id="feedback" style="margin-top: 12px;"></div>
+<div class="row" style="margin-top:12px;">
+  <button id="actionBtn" class="primary" disabled>Ответить</button>
+  <span class="muted small" id="status">Выберите вариант ответа</span>
+</div>
 
-    <hr style="border:none; border-top:1px solid #eee; margin: 14px 0;">
+<div id="feedback" style="margin-top:10px;"></div>
 
-    <div class="row controls">
-      <button id="restartBtn">Сначала</button>
-      <button id="repeatWrongBtn" title="Пройти второй круг только по ошибкам">Повторить ошибки</button>
+<hr>
 
-      <label class="pill" style="user-select:none;">
-        <input type="checkbox" id="shuffle" checked>
-        Перемешать вопросы
-      </label>
+<div class="row">
+  <label class="pill">
+    <input type="checkbox" id="autoCorrect">
+    Автопереход, если ответ правильный
+  </label>
 
-      <label class="pill" style="user-select:none;">
-        <input type="checkbox" id="mixAnswers" checked>
-        Перемешать варианты
-      </label>
+  <label class="pill">
+    <input type="checkbox" id="autoWrong">
+    Автопереход, если ответ неправильный
+  </label>
+</div>
 
-      <label class="pill" style="user-select:none;">
-        Вариантов:
-        <select id="choicesCount">
-          <option value="4" selected>4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </label>
-    </div>
+<hr>
 
-    <p class="muted small" style="margin-top:10px;">
-      Режим максимально близок к контрольной: выбор фиксируется кнопкой «Ответить».
-    </p>
-  </div>
+<div class="row">
+  <button onclick="restart()">Сначала</button>
+  <button onclick="repeatWrong()">Повторить ошибки</button>
+  <button onclick="downloadCSV()">Скачать CSV</button>
+</div>
 
-  <div class="card">
-    <h2 style="margin:0 0 6px 0;">Результаты и экспорт</h2>
-    <p class="muted small" style="margin-top:0;">
-      CSV: формула; выбранный ответ; правильный ответ; верно(1/0)
-    </p>
+<textarea id="log" readonly></textarea>
 
-    <div class="row" style="margin: 10px 0;">
-      <button id="downloadBtn">Скачать CSV</button>
-      <button id="copyBtn">Скопировать CSV</button>
-      <button id="clearBtn">Очистить результаты</button>
-    </div>
-
-    <textarea id="log" readonly placeholder="Здесь появятся результаты…"></textarea>
-  </div>
 </div>
 
 <script>
-/** ===== База: формула -> эталонное название ===== */
 const TASKS = [
-  { f:"CO",    right:"оксид углерода(ii)", tip:"C(+2) — CO." },
-  { f:"CO2",   right:"оксид углерода(iv)", tip:"C(+4) — CO₂." },
-  { f:"SO2",   right:"оксид серы(iv)", tip:"S(+4)." },
-  { f:"SO3",   right:"оксид серы(vi)", tip:"S(+6)." },
-  { f:"P2O5",  right:"оксид фосфора(v)", tip:"P(+5)." },
-  { f:"N2O5",  right:"оксид азота(v)", tip:"N(+5)." },
-  { f:"FeO",   right:"оксид железа(ii)", tip:"Fe(+2)." },
-  { f:"Fe2O3", right:"оксид железа(iii)", tip:"Fe(+3)." },
-  { f:"Cu2O",  right:"оксид меди(i)", tip:"Cu(+1)." },
-  { f:"CuO",   right:"оксид меди(ii)", tip:"Cu(+2)." },
-
-  { f:"HCl",   right:"соляная кислота", tip:"HCl(р-р) — соляная." },
-  { f:"H2S",   right:"сероводородная кислота", tip:"Слабая кислота." },
-  { f:"H2SO4", right:"серная кислота", tip:"Сильная двухосновная." },
-  { f:"H2SO3", right:"сернистая кислота", tip:"Соответствует SO₂." },
-  { f:"HNO3",  right:"азотная кислота", tip:"Сильная одноосновная." },
-  { f:"H3PO4", right:"ортофосфорная кислота", tip:"Трёхосновная." },
-  { f:"H2CO3", right:"угольная кислота", tip:"Нестойкая." },
-
-  { f:"NaOH",    right:"гидроксид натрия", tip:"Щёлочь." },
-  { f:"KOH",     right:"гидроксид калия", tip:"Щёлочь." },
-  { f:"Ca(OH)2", right:"гидроксид кальция", tip:"Малорастворимая щёлочь." },
-  { f:"Al(OH)3", right:"гидроксид алюминия", tip:"Амфотерный." },
-  { f:"Zn(OH)2", right:"гидроксид цинка", tip:"Амфотерный." },
-
-  { f:"NaCl",   right:"хлорид натрия", tip:"Средняя соль." },
-  { f:"K2SO4",  right:"сульфат калия", tip:"Соль серной кислоты." },
-  { f:"Na2SO3", right:"сульфит натрия", tip:"Соль сернистой кислоты." },
-  { f:"CaCO3",  right:"карбонат кальция", tip:"Соль угольной кислоты." },
-  { f:"Na2CO3", right:"карбонат натрия", tip:"Кальцинированная сода." },
-  { f:"NaHCO3", right:"гидрокарбонат натрия", tip:"Кислая соль." },
-  { f:"KNO3",   right:"нитрат калия", tip:"Соль азотной кислоты." },
-  { f:"CuSO4",  right:"сульфат меди(ii)", tip:"Cu(+2)." },
-  { f:"FeCl3",  right:"хлорид железа(iii)", tip:"Fe(+3)." },
-  { f:"FeSO4",  right:"сульфат железа(ii)", tip:"Fe(+2)." }
+  { f:"NaCl", right:"хлорид натрия", tip:"Средняя соль" },
+  { f:"K2SO4", right:"сульфат калия", tip:"Соль серной кислоты" },
+  { f:"Na2CO3", right:"карбонат натрия", tip:"Кальцинированная сода" },
+  { f:"NaHCO3", right:"гидрокарбонат натрия", tip:"Кислая соль" },
+  { f:"CaCO3", right:"карбонат кальция", tip:"Известняк" },
+  { f:"H2SO4", right:"серная кислота", tip:"Сильная двухосновная" },
+  { f:"HNO3", right:"азотная кислота", tip:"Сильная одноосновная" },
+  { f:"NaOH", right:"гидроксид натрия", tip:"Щёлочь" },
+  { f:"Al(OH)3", right:"гидроксид алюминия", tip:"Амфотерный" },
+  { f:"Fe2O3", right:"оксид железа(iii)", tip:"Fe³⁺" }
 ];
 
-/** ====== Утилиты ====== */
-function norm(s){ return (s||"").toLowerCase().replace(/ё/g,"е").replace(/\s+/g," ").trim(); }
-function shuffle(arr){
-  for(let i=arr.length-1;i>0;i--){
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
-    [arr[i],arr[j]]=[arr[j],arr[i]];
+    [a[i],a[j]]=[a[j],a[i]];
   }
-  return arr;
+  return a;
 }
-function csvCell(s){
-  const t = (s || "").replace(/"/g, '""');
-  if(/[;\n\r"]/.test(t)) return `"${t}"`;
-  return t;
-}
+function norm(s){ return s.toLowerCase().replace(/ё/g,"е").trim(); }
 
-/** ====== Состояние ====== */
-let items = [];
-let idx = 0;
-let ok = 0;
-let bad = 0;
-let results = [];
+let items = shuffle([...TASKS]);
+let idx = 0, ok = 0, bad = 0;
+let selected = null;
+let phase = "choose";
 let wrongPool = [];
+let results = [];
 
-let selectedAnswer = null;
-let phase = "choose"; // choose | checked | finished
-
-const elQIndex = document.getElementById("qIndex");
-const elQTotal = document.getElementById("qTotal");
-const elOk = document.getElementById("okCount");
-const elBad = document.getElementById("badCount");
-const elScore = document.getElementById("score");
-const elQuestion = document.getElementById("question");
-const elTip = document.getElementById("tip");
-const elAnswers = document.getElementById("answers");
-const elFeedback = document.getElementById("feedback");
-const elLog = document.getElementById("log");
-
-const elShuffle = document.getElementById("shuffle");
-const elMixAnswers = document.getElementById("mixAnswers");
-const elChoicesCount = document.getElementById("choicesCount");
-
-const elActionBtn = document.getElementById("actionBtn");
-const elStatusText = document.getElementById("statusText");
-
-document.getElementById("restartBtn").addEventListener("click", () => start("all"));
-document.getElementById("repeatWrongBtn").addEventListener("click", () => start("wrong"));
-document.getElementById("downloadBtn").addEventListener("click", downloadCSV);
-document.getElementById("copyBtn").addEventListener("click", copyCSV);
-document.getElementById("clearBtn").addEventListener("click", clearAll);
-
-elActionBtn.addEventListener("click", () => {
-  if(phase === "choose") submit();
-  else if(phase === "checked") next();
-});
-
-function start(mode){
-  idx = 0; ok = 0; bad = 0;
-  results = [];
-  wrongPool = [];
-  selectedAnswer = null;
-  phase = "choose";
-
-  if(mode === "wrong"){
-    const prevWrong = loadLastWrong();
-    if(!prevWrong.length){
-      elFeedback.innerHTML = `<div class="bad">Нет сохранённых ошибок для повтора.</div>`;
-      items = TASKS.slice();
-    } else {
-      items = prevWrong.map(x => ({...x}));
-      elFeedback.innerHTML = `<div class="ok">Повторяем только ошибки: ${items.length}.</div>`;
-    }
-  } else {
-    items = TASKS.slice();
-  }
-
-  if(elShuffle.checked) shuffle(items);
-  render();
-  renderLog();
-}
-
-function updateStats(){
-  elQTotal.textContent = String(items.length);
-  elQIndex.textContent = String(Math.min(idx+1, items.length));
-  elOk.textContent = String(ok);
-  elBad.textContent = String(bad);
-  const done = ok + bad;
-  elScore.textContent = String(done ? Math.round((ok/done)*100) : 0);
-}
+const qIndex = document.getElementById("qIndex");
+const qTotal = document.getElementById("qTotal");
+const okCount = document.getElementById("okCount");
+const badCount = document.getElementById("badCount");
+const score = document.getElementById("score");
+const question = document.getElementById("question");
+const tip = document.getElementById("tip");
+const answers = document.getElementById("answers");
+const actionBtn = document.getElementById("actionBtn");
+const status = document.getElementById("status");
+const feedback = document.getElementById("feedback");
+const log = document.getElementById("log");
+const autoCorrect = document.getElementById("autoCorrect");
+const autoWrong = document.getElementById("autoWrong");
 
 function render(){
-  updateStats();
-  elFeedback.innerHTML = "";
-  elTip.textContent = "Подсказка появится после проверки.";
-  elAnswers.innerHTML = "";
-  selectedAnswer = null;
-  phase = "choose";
+  qTotal.textContent = items.length;
+  qIndex.textContent = idx+1;
+  okCount.textContent = ok;
+  badCount.textContent = bad;
+  score.textContent = ok+bad ? Math.round(ok/(ok+bad)*100) : 0;
 
-  elActionBtn.textContent = "Ответить";
-  elActionBtn.disabled = true;
-  elStatusText.textContent = "Выберите вариант ответа.";
+  answers.innerHTML = "";
+  feedback.innerHTML = "";
+  selected = null;
+  phase = "choose";
+  actionBtn.textContent = "Ответить";
+  actionBtn.disabled = true;
+  status.textContent = "Выберите вариант ответа";
+  tip.textContent = "Подсказка появится после проверки.";
 
   if(idx >= items.length){
-    phase = "finished";
-    elQuestion.textContent = "Готово. Тренировка завершена.";
-    elTip.textContent = "Можно скачать CSV справа или повторить ошибки.";
-    elActionBtn.textContent = "Готово";
-    elActionBtn.disabled = true;
-    saveLastWrong(wrongPool);
+    question.textContent = "Тест завершён";
     return;
   }
 
   const cur = items[idx];
-  elQuestion.textContent = `Выберите название: ${cur.f}`;
+  question.textContent = "Выберите название: " + cur.f;
 
-  const choiceCount = Number(elChoicesCount.value);
-  let options = buildOptions(cur, choiceCount);
-  if(elMixAnswers.checked) options = shuffle(options);
+  let opts = shuffle([
+    cur.right,
+    ...shuffle(TASKS.map(t=>t.right).filter(x=>x!==cur.right)).slice(0,3)
+  ]);
 
-  for(const opt of options){
+  for(const o of opts){
     const b = document.createElement("button");
     b.className = "btn";
-    b.type = "button";
-    b.textContent = opt;
-
-    b.addEventListener("click", () => selectOption(opt, b));
-    elAnswers.appendChild(b);
+    b.textContent = o;
+    b.onclick = () => select(o, b);
+    answers.appendChild(b);
   }
 }
 
-function selectOption(opt, btnEl){
-  if(phase !== "choose") return;
-
-  selectedAnswer = opt;
-
-  // снять выделение со всех
-  for(const b of elAnswers.querySelectorAll("button")){
-    b.classList.remove("selected");
-  }
-  btnEl.classList.add("selected");
-
-  elActionBtn.disabled = false;
-  elStatusText.textContent = "Нажмите «Ответить», чтобы зафиксировать выбор.";
+function select(val, btn){
+  if(phase!=="choose") return;
+  selected = val;
+  [...answers.children].forEach(b=>b.classList.remove("selected"));
+  btn.classList.add("selected");
+  actionBtn.disabled = false;
+  status.textContent = "Нажмите «Ответить»";
 }
 
-function buildOptions(cur, count){
-  const correct = cur.right;
-  const pool = TASKS.map(t => t.right).filter(n => norm(n) !== norm(correct));
-  shuffle(pool);
-  const distractors = pool.slice(0, Math.max(0, count - 1));
-  const options = [correct, ...distractors];
-  while(options.length < count) options.push("—");
-  return options;
-}
+actionBtn.onclick = () => {
+  if(phase==="choose") submit();
+  else next();
+};
 
 function submit(){
-  if(phase !== "choose") return;
-  if(!selectedAnswer) return;
-
-  phase = "checked";
-  elActionBtn.textContent = "Далее";
-  elActionBtn.disabled = false;
-  elStatusText.textContent = "Можно перейти к следующему вопросу.";
-
   const cur = items[idx];
-  const isCorrect = norm(selectedAnswer) === norm(cur.right);
+  const correct = norm(selected) === norm(cur.right);
+  phase = "checked";
+  actionBtn.textContent = "Далее";
 
-  // блокируем и подсвечиваем ответы
-  const btns = [...elAnswers.querySelectorAll("button")];
-  for(const b of btns){
-    const t = norm(b.textContent);
-    if(t === norm(cur.right)) b.classList.add("correct");
-    if(t === norm(selectedAnswer) && !isCorrect) b.classList.add("wrong");
+  [...answers.children].forEach(b=>{
     b.disabled = true;
-  }
+    if(norm(b.textContent)===norm(cur.right)) b.classList.add("correct");
+    if(norm(b.textContent)===norm(selected) && !correct) b.classList.add("wrong");
+  });
 
-  if(isCorrect){
+  if(correct){
     ok++;
-    elFeedback.innerHTML = `<div class="ok">Верно.</div>`;
+    feedback.innerHTML = "<div class='ok'>Верно</div>";
   } else {
     bad++;
-    elFeedback.innerHTML = `<div class="bad">Неверно.</div>
-      <div class="small muted">Правильный ответ: <b>${cur.right}</b></div>`;
     wrongPool.push(cur);
+    feedback.innerHTML = "<div class='bad'>Неверно. Правильно: "+cur.right+"</div>";
   }
 
-  elTip.textContent = cur.tip || "—";
+  tip.textContent = cur.tip;
+  results.push(`${cur.f};${selected};${cur.right};${correct?1:0}`);
+  updateLog();
 
-  results.push({ formula: cur.f, chosen: selectedAnswer, right: cur.right, isCorrect });
-  updateStats();
-  renderLog();
+  if((correct && autoCorrect.checked) || (!correct && autoWrong.checked)){
+    actionBtn.disabled = true;
+    setTimeout(next, 700);
+  }
 }
 
 function next(){
-  if(phase !== "checked") return;
   idx++;
   render();
 }
 
-/** ===== Лог и экспорт ===== */
-function renderLog(){
-  const lines = [];
-  lines.push("Формула;Выбранный ответ;Правильный ответ;Верно");
-  for(const r of results){
-    lines.push(`${r.formula};${csvCell(r.chosen)};${csvCell(r.right)};${r.isCorrect ? "1" : "0"}`);
-  }
-  elLog.value = lines.join("\n");
-}
-
-function downloadCSV(){
-  const blob = new Blob([elLog.value], {type: "text/csv;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "inorg_nomenclature_results.csv";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
-
-async function copyCSV(){
-  try{
-    await navigator.clipboard.writeText(elLog.value);
-    elFeedback.innerHTML = `<div class="ok">CSV скопирован в буфер обмена.</div>`;
-  } catch(e){
-    elFeedback.innerHTML = `<div class="bad">Не удалось скопировать. Скопируйте вручную из поля справа.</div>`;
-  }
-}
-
-function clearAll(){
-  results = [];
-  wrongPool = [];
-  ok = 0; bad = 0; idx = 0;
-  elLog.value = "";
-  elFeedback.innerHTML = `<div class="ok">Результаты очищены.</div>`;
-  saveLastWrong([]);
+function restart(){
+  items = shuffle([...TASKS]);
+  idx=ok=bad=0;
+  wrongPool=[];
+  results=[];
+  updateLog();
   render();
 }
 
-/** ===== Повтор ошибок (LocalStorage) ===== */
-const WRONG_KEY = "chem_inorg_nomen_wrong_v2";
-
-function saveLastWrong(arr){
-  try{
-    const safe = (arr || []).map(x => ({ f:x.f, right:x.right, tip:x.tip }));
-    localStorage.setItem(WRONG_KEY, JSON.stringify(safe));
-  } catch(e){}
-}
-function loadLastWrong(){
-  try{
-    const raw = localStorage.getItem(WRONG_KEY);
-    if(!raw) return [];
-    return JSON.parse(raw) || [];
-  } catch(e){
-    return [];
-  }
+function repeatWrong(){
+  if(!wrongPool.length) return;
+  items = shuffle([...wrongPool]);
+  idx=ok=bad=0;
+  results=[];
+  updateLog();
+  render();
 }
 
-/** Старт */
-start("all");
+function updateLog(){
+  log.value = "Формула;Выбор;Правильный ответ;Верно\n" + results.join("\n");
+}
+
+function downloadCSV(){
+  const blob = new Blob([log.value],{type:"text/csv;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "nomenclature.csv";
+  a.click();
+}
+render();
 </script>
 
 </body>
