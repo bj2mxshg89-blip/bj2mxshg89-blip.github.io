@@ -3,55 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ЕГЭ Химия — Антон</title>
-
+  <title>ЕГЭ Химия</title>
   <style>
     :root{
       --bg: #ffffff;
-      --card: rgba(250,250,250,0.92);
-      --border: rgba(0,0,0,0.10);
       --text: #0b0b0c;
-      --muted: rgba(0,0,0,0.62);
-
-      --accent: #0066ff;
-      --accent2: #7c3aed;
-      --shadow: 0 14px 36px rgba(0,0,0,0.10);
-
-      --radius-xl: 26px;
-      --radius-lg: 18px;
+      --muted: rgba(0,0,0,0.58);
+      --border: rgba(0,0,0,0.10);
+      --card: rgba(255,255,255,0.70);
+      --shadow: 0 18px 40px rgba(0,0,0,0.10);
+      --accent: #007aff; /* iOS blue */
+      --radius: 22px;
     }
-
     @media (prefers-color-scheme: dark){
       :root{
         --bg: #0b0b0c;
-        --card: rgba(18,18,19,0.78);
-        --border: rgba(255,255,255,0.12);
         --text: rgba(255,255,255,0.94);
-        --muted: rgba(255,255,255,0.65);
-        --shadow: 0 18px 44px rgba(0,0,0,0.45);
+        --muted: rgba(255,255,255,0.62);
+        --border: rgba(255,255,255,0.12);
+        --card: rgba(18,18,19,0.64);
+        --shadow: 0 26px 60px rgba(0,0,0,0.55);
+        --accent: #0a84ff;
       }
     }
 
     *{ box-sizing: border-box; }
     body{
-      margin: 0;
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Arial, sans-serif;
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-                   "Segoe UI", Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 900px at 15% 10%, rgba(0,102,255,0.16), transparent 55%),
-                  radial-gradient(1000px 780px at 90% 25%, rgba(124,58,237,0.14), transparent 60%),
-                  radial-gradient(980px 680px at 35% 95%, rgba(0,200,255,0.10), transparent 60%),
-                  var(--bg);
+      background: var(--bg);
       min-height: 100vh;
     }
 
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 18px 16px 36px;
+    /* Фон: очень мягкий, “как у Apple” */
+    .bg{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 560px at 20% 10%, rgba(0,122,255,0.14), transparent 62%),
+        radial-gradient(820px 520px at 90% 20%, rgba(122,73,255,0.12), transparent 62%),
+        radial-gradient(900px 600px at 40% 110%, rgba(0,200,255,0.10), transparent 62%);
+      filter: saturate(1.05);
     }
 
-    .topbar{
+    .wrap{
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 16px 44px;
+      position: relative;
+    }
+
+    header{
       display:flex;
       align-items:center;
       justify-content: space-between;
@@ -59,87 +63,77 @@
       margin-bottom: 18px;
     }
 
+    .mark{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      text-decoration:none;
+      color: inherit;
+      user-select:none;
+    }
+    .glyph{
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(0,122,255,1), rgba(122,73,255,1));
+      box-shadow: 0 18px 40px rgba(0,122,255,0.22);
+    }
     .brand{
       display:flex;
-      align-items:center;
-      gap: 10px;
-      text-decoration: none;
-      color: inherit;
+      flex-direction: column;
+      line-height: 1.05;
     }
+    .brand b{ font-weight: 720; letter-spacing: -0.25px; font-size: 13px; opacity: 0.92; }
+    .brand span{ font-size: 12px; color: var(--muted); }
 
-    .logo{
-      width: 34px; height: 34px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, rgba(0,102,255,1), rgba(124,58,237,1));
-      box-shadow: 0 10px 22px rgba(0,102,255,0.25);
-    }
-
-    .brandTitle{
-      font-weight: 650;
-      letter-spacing: -0.2px;
-      font-size: 14px;
-      opacity: 0.92;
-    }
-
-    .chipRow{
+    .meta{
       display:flex;
-      flex-wrap:wrap;
       gap: 10px;
-      align-items:center;
+      flex-wrap: wrap;
       justify-content: flex-end;
     }
-
     .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.55);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      font-size: 13px;
+      background: rgba(255,255,255,0.50);
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 12px;
       color: var(--muted);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
     @media (prefers-color-scheme: dark){
-      .chip{ background: rgba(255,255,255,0.05); }
+      .chip{ background: rgba(255,255,255,0.06); }
     }
 
+    /* HERO — один смысл, один CTA */
     .hero{
-      border-radius: var(--radius-xl);
       border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.50));
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      background: var(--card);
+      border-radius: 28px;
       box-shadow: var(--shadow);
       padding: 22px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       overflow: hidden;
       position: relative;
     }
-    @media (prefers-color-scheme: dark){
-      .hero{
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
-      }
-    }
-
-    .hero::before{
+    .hero::after{
       content:"";
       position:absolute;
-      inset: -2px;
+      inset:-2px;
       background:
-        radial-gradient(460px 280px at 15% 25%, rgba(0,102,255,0.24), transparent 60%),
-        radial-gradient(420px 260px at 90% 10%, rgba(124,58,237,0.22), transparent 60%),
-        radial-gradient(540px 300px at 50% 120%, rgba(0,200,255,0.16), transparent 60%);
+        radial-gradient(520px 320px at 20% 0%, rgba(0,122,255,0.18), transparent 60%),
+        radial-gradient(520px 320px at 100% 40%, rgba(122,73,255,0.16), transparent 60%);
       pointer-events:none;
-      filter: blur(0px);
+      opacity: .85;
     }
 
     .heroInner{
       position: relative;
       display:grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 16px;
+      gap: 14px;
       align-items: start;
     }
     @media (max-width: 920px){
@@ -148,393 +142,355 @@
 
     h1{
       margin: 0;
-      font-size: 44px;
+      font-size: 46px;
+      letter-spacing: -1.2px;
       line-height: 1.02;
-      letter-spacing: -0.9px;
     }
     @media (max-width: 520px){
-      h1{ font-size: 36px; }
+      h1{ font-size: 38px; }
     }
 
-    .subtitle{
+    .lead{
       margin: 10px 0 0;
-      max-width: 56ch;
-      font-size: 15px;
       color: var(--muted);
+      max-width: 60ch;
       line-height: 1.55;
+      font-size: 15px;
     }
 
-    .ctaRow{
+    .cta{
       margin-top: 16px;
       display:flex;
       gap: 10px;
       flex-wrap: wrap;
-      align-items:center;
+      align-items: center;
     }
 
     .btn{
-      appearance: none;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      text-decoration: none;
-      color: inherit;
-      background: rgba(255,255,255,0.70);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       gap: 10px;
-      cursor: pointer;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.55);
+      color: inherit;
+      text-decoration:none;
+      font-weight: 650;
+      letter-spacing: -0.2px;
       transition: transform .18s ease, background .18s ease, border-color .18s ease;
-      font-weight: 600;
-      letter-spacing: -0.15px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
     @media (prefers-color-scheme: dark){
       .btn{ background: rgba(255,255,255,0.06); }
     }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(0,0,0,0.18); }
-    @media (prefers-color-scheme: dark){
-      .btn:hover{ border-color: rgba(255,255,255,0.18); }
-    }
+    .btn:hover{ transform: translateY(-1px); }
 
     .btnPrimary{
       border: none;
-      background: linear-gradient(135deg, rgba(0,102,255,1), rgba(124,58,237,1));
       color: white;
-      box-shadow: 0 14px 28px rgba(0,102,255,0.24);
+      background: var(--accent);
+      box-shadow: 0 18px 40px rgba(0,122,255,0.22);
     }
-    .btnPrimary:hover{ transform: translateY(-1px); }
 
-    .iconDot{
-      width: 10px;
-      height: 10px;
-      border-radius: 99px;
-      background: rgba(255,255,255,0.9);
+    .dot{
+      width: 10px; height: 10px; border-radius: 999px;
+      background: rgba(255,255,255,0.92);
       box-shadow: 0 0 0 3px rgba(255,255,255,0.20);
     }
 
-    .panel{
-      border-radius: var(--radius-lg);
+    /* Правый блок в hero: компактный “пульт” */
+    .quick{
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.62);
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       padding: 14px;
     }
     @media (prefers-color-scheme: dark){
-      .panel{ background: rgba(255,255,255,0.05); }
+      .quick{ background: rgba(255,255,255,0.05); }
     }
 
-    .panelTitle{
-      font-weight: 650;
-      letter-spacing: -0.2px;
-      margin: 0 0 10px;
+    .qTitle{
+      margin:0 0 10px 0;
+      font-weight: 720;
+      letter-spacing: -0.3px;
       font-size: 14px;
       opacity: 0.9;
     }
 
-    .panelList{
-      margin: 0;
-      padding: 0;
-      list-style: none;
+    .qGrid{
       display:grid;
       gap: 10px;
     }
 
-    .panelItem{
+    .qItem{
       display:flex;
       align-items:center;
       justify-content: space-between;
       gap: 12px;
-      padding: 10px 10px;
-      border-radius: 14px;
+      padding: 12px 12px;
+      border-radius: 16px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.62);
-      text-decoration: none;
+      text-decoration:none;
       color: inherit;
       transition: transform .18s ease, background .18s ease;
     }
     @media (prefers-color-scheme: dark){
-      .panelItem{ background: rgba(255,255,255,0.04); }
+      .qItem{ background: rgba(255,255,255,0.04); }
     }
-    .panelItem:hover{ transform: translateY(-1px); }
+    .qItem:hover{ transform: translateY(-1px); }
 
-    .panelLeft{
+    .qLeft{
       display:flex;
       align-items:center;
       gap: 10px;
       min-width: 0;
     }
 
-    .badge{
-      width: 34px;
-      height: 34px;
+    .icon{
+      width: 34px; height: 34px;
       border-radius: 14px;
       border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.45));
       display:flex;
       align-items:center;
       justify-content:center;
       font-weight: 800;
       letter-spacing: -0.6px;
-      color: rgba(0,0,0,0.72);
-    }
-    @media (prefers-color-scheme: dark){
-      .badge{
-        color: rgba(255,255,255,0.86);
-        background: rgba(255,255,255,0.06);
-      }
+      opacity: 0.9;
     }
 
-    .panelText{
-      min-width: 0;
-    }
-    .panelName{
-      font-weight: 650;
-      letter-spacing: -0.2px;
-      margin: 0;
+    .qText{ min-width: 0; }
+    .qName{
+      margin:0;
       font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
       white-space: nowrap;
-      overflow: hidden;
+      overflow:hidden;
       text-overflow: ellipsis;
     }
-    .panelMeta{
-      margin: 2px 0 0;
-      color: var(--muted);
+    .qMeta{
+      margin: 3px 0 0;
       font-size: 12px;
+      color: var(--muted);
+    }
+    .arrow{ opacity: .55; font-size: 18px; }
+
+    /* Модули ниже */
+    .sectionTitle{
+      margin: 18px 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
     }
 
-    .arrow{
-      opacity: 0.55;
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .section{
-      margin-top: 14px;
+    .modules{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
     @media (max-width: 920px){
-      .section{ grid-template-columns: 1fr; }
+      .modules{ grid-template-columns: 1fr; }
     }
 
-    .module{
-      border-radius: var(--radius-xl);
+    .cardLink{
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.62);
+      border-radius: 22px;
+      background: rgba(255,255,255,0.55);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 10px 24px rgba(0,0,0,0.06);
-      padding: 14px;
-      text-decoration: none;
+      text-decoration:none;
       color: inherit;
-      transition: transform .18s ease, border-color .18s ease;
+      padding: 14px;
+      transition: transform .18s ease;
       position: relative;
-      overflow: hidden;
+      overflow:hidden;
     }
     @media (prefers-color-scheme: dark){
-      .module{ background: rgba(255,255,255,0.05); box-shadow: 0 14px 34px rgba(0,0,0,0.45); }
+      .cardLink{ background: rgba(255,255,255,0.05); box-shadow: 0 18px 44px rgba(0,0,0,0.45); }
     }
-    .module:hover{ transform: translateY(-2px); }
+    .cardLink:hover{ transform: translateY(-2px); }
 
-    .module::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(280px 180px at 20% 15%, rgba(0,102,255,0.20), transparent 60%),
-        radial-gradient(260px 160px at 85% 0%, rgba(124,58,237,0.20), transparent 60%);
-      pointer-events:none;
-    }
-
-    .moduleInner{ position: relative; }
-
-    .moduleTitle{
+    .cardLink h3{
       margin: 0;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 780;
       letter-spacing: -0.25px;
     }
-    .moduleDesc{
+    .cardLink p{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
     }
 
-    .moduleFoot{
+    .tags{
       margin-top: 12px;
       display:flex;
       gap: 8px;
       flex-wrap: wrap;
-      align-items:center;
     }
-
     .tag{
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 6px 10px;
       font-size: 12px;
       color: var(--muted);
-      background: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.45);
     }
     @media (prefers-color-scheme: dark){
       .tag{ background: rgba(255,255,255,0.04); }
     }
 
-    .footer{
+    footer{
       margin-top: 18px;
       color: var(--muted);
       font-size: 12px;
       display:flex;
-      justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
-      opacity: 0.9;
+      justify-content: space-between;
+      opacity: 0.92;
     }
 
-    /* subtle intro animation */
     @media (prefers-reduced-motion: no-preference){
-      .hero, .module, .panel {
-        animation: rise .45s ease both;
+      header, .hero, .modules, footer{
+        animation: fadeUp .45s ease both;
       }
-      .module:nth-child(2){ animation-delay: .04s; }
-      .module:nth-child(3){ animation-delay: .08s; }
-      @keyframes rise{
-        from{ transform: translateY(8px); opacity: 0; }
-        to{ transform: translateY(0); opacity: 1; }
+      .modules{ animation-delay: .06s; }
+      @keyframes fadeUp{
+        from{ opacity:0; transform: translateY(8px); }
+        to{ opacity:1; transform: translateY(0); }
       }
     }
   </style>
 </head>
-<body>
-  <div class="wrap">
 
-    <div class="topbar">
-      <a class="brand" href="index.html" aria-label="Главная">
-        <div class="logo"></div>
-        <div class="brandTitle">ЕГЭ Химия</div>
+<body>
+  <div class="bg"></div>
+
+  <div class="wrap">
+    <header>
+      <a class="mark" href="index.html" aria-label="Главная">
+        <div class="glyph"></div>
+        <div class="brand">
+          <b>ЕГЭ Химия</b>
+          <span>тренажёры и практика</span>
+        </div>
       </a>
 
-      <div class="chipRow">
-        <div class="chip">Тренажёры</div>
-        <div class="chip">Теория</div>
-        <div class="chip">Практика</div>
+      <div class="meta">
+        <span class="chip">минимум шума</span>
+        <span class="chip">максимум пользы</span>
       </div>
-    </div>
+    </header>
 
     <section class="hero" aria-label="Главный блок">
       <div class="heroInner">
         <div>
-          <h1>Химия ЕГЭ —<br>быстро, чисто, по делу</h1>
-          <p class="subtitle">
-            Минималистичная подготовка без шума: тренажёры, которые реально экономят время и дают измеримый прогресс.
+          <h1>Тренируйся.<br>Сдавай.</h1>
+          <p class="lead">
+            Подготовка к ЕГЭ по химии в формате, который не отвлекает: вопрос → выбор → ответ → следующий.
           </p>
 
-          <div class="ctaRow">
+          <div class="cta">
             <a class="btn btnPrimary" href="inorg-nomenclature.html">
-              <span class="iconDot"></span>
-              Начать тренировку
+              <span class="dot"></span>
+              Номенклатура
             </a>
-            <a class="btn" href="#modules">Открыть модули</a>
+            <a class="btn" href="#modules">Все модули</a>
           </div>
         </div>
 
-        <div class="panel" aria-label="Быстрый доступ">
-          <p class="panelTitle">Быстрый доступ</p>
-          <ul class="panelList">
-            <li>
-              <a class="panelItem" href="inorg-nomenclature.html">
-                <div class="panelLeft">
-                  <div class="badge">N</div>
-                  <div class="panelText">
-                    <p class="panelName">Номенклатура неорганики</p>
-                    <p class="panelMeta">32 вопроса · режим «Ответить → Далее»</p>
-                  </div>
+        <aside class="quick" aria-label="Быстрые действия">
+          <p class="qTitle">Сейчас доступно</p>
+          <div class="qGrid">
+            <a class="qItem" href="inorg-nomenclature.html">
+              <div class="qLeft">
+                <div class="icon">N</div>
+                <div class="qText">
+                  <p class="qName">Номенклатура неорганики</p>
+                  <p class="qMeta">32 задания · выбор ответов</p>
                 </div>
-                <span class="arrow">›</span>
-              </a>
-            </li>
+              </div>
+              <div class="arrow">›</div>
+            </a>
 
-            <li>
-              <a class="panelItem" href="#soon" onclick="alert('Скоро добавим этот модуль.'); return false;">
-                <div class="panelLeft">
-                  <div class="badge">ОВ</div>
-                  <div class="panelText">
-                    <p class="panelName">ОВР и электронный баланс</p>
-                    <p class="panelMeta">в разработке</p>
-                  </div>
+            <a class="qItem" href="#modules" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
+              <div class="qLeft">
+                <div class="icon">ОВ</div>
+                <div class="qText">
+                  <p class="qName">ОВР и баланс</p>
+                  <p class="qMeta">в разработке</p>
                 </div>
-                <span class="arrow">›</span>
-              </a>
-            </li>
+              </div>
+              <div class="arrow">›</div>
+            </a>
 
-            <li>
-              <a class="panelItem" href="#soon" onclick="alert('Скоро добавим этот модуль.'); return false;">
-                <div class="panelLeft">
-                  <div class="badge">Р</div>
-                  <div class="panelText">
-                    <p class="panelName">Растворы и pH</p>
-                    <p class="panelMeta">в разработке</p>
-                  </div>
+            <a class="qItem" href="#modules" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
+              <div class="qLeft">
+                <div class="icon">pH</div>
+                <div class="qText">
+                  <p class="qName">Растворы и pH</p>
+                  <p class="qMeta">в разработке</p>
                 </div>
-                <span class="arrow">›</span>
-              </a>
-            </li>
-          </ul>
-        </div>
+              </div>
+              <div class="arrow">›</div>
+            </a>
+          </div>
+        </aside>
       </div>
     </section>
 
-    <section id="modules" class="section" aria-label="Модули">
-      <a class="module" href="inorg-nomenclature.html">
-        <div class="moduleInner">
-          <h2 class="moduleTitle">Номенклатура неорганики</h2>
-          <p class="moduleDesc">Названия веществ по формулам. Быстрый темп, контрольный формат.</p>
-          <div class="moduleFoot">
-            <span class="tag">32 задания</span>
-            <span class="tag">кнопки-ответы</span>
-            <span class="tag">навигация по номерам</span>
-          </div>
+    <div class="sectionTitle" id="modules">Модули</div>
+
+    <section class="modules" aria-label="Список модулей">
+      <a class="cardLink" href="inorg-nomenclature.html">
+        <h3>Номенклатура неорганики</h3>
+        <p>Названия веществ по формулам. Контрольный формат без лишних шагов.</p>
+        <div class="tags">
+          <span class="tag">32 задания</span>
+          <span class="tag">навигация по номерам</span>
+          <span class="tag">автопереход</span>
         </div>
       </a>
 
-      <a class="module" href="#soon" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
-        <div class="moduleInner">
-          <h2 class="moduleTitle">ОВР и баланс</h2>
-          <p class="moduleDesc">Степени окисления, окислитель/восстановитель, баланс. Будет строго и честно.</p>
-          <div class="moduleFoot">
-            <span class="tag">в разработке</span>
-            <span class="tag">ЕГЭ-ориентировано</span>
-          </div>
+      <a class="cardLink" href="#modules" onclick="alert('Скоро добавим модуль ОВР.'); return false;">
+        <h3>ОВР и электронный баланс</h3>
+        <p>Степени окисления, окислитель/восстановитель, баланс — строго по ЕГЭ.</p>
+        <div class="tags">
+          <span class="tag">в разработке</span>
+          <span class="tag">задачи</span>
+          <span class="tag">практика</span>
         </div>
       </a>
 
-      <a class="module" href="#soon" onclick="alert('Скоро добавим модуль Растворы и pH.'); return false;">
-        <div class="moduleInner">
-          <h2 class="moduleTitle">Растворы и pH</h2>
-          <p class="moduleDesc">Концентрации, электролиты, гидролиз, pH — тренажёр на автомат.</p>
-          <div class="moduleFoot">
-            <span class="tag">в разработке</span>
-            <span class="tag">задачи + теория</span>
-          </div>
+      <a class="cardLink" href="#modules" onclick="alert('Скоро добавим модуль Растворы.'); return false;">
+        <h3>Растворы и pH</h3>
+        <p>Концентрации, гидролиз, pH — тренировка до автоматизма.</p>
+        <div class="tags">
+          <span class="tag">в разработке</span>
+          <span class="tag">тренажёр</span>
+          <span class="tag">сетка тем</span>
         </div>
       </a>
     </section>
 
-    <div class="footer">
-      <div>© <span id="y"></span> ЕГЭ Химия · bj2mxshg89-blip.github.io</div>
-      <div>Минимализм — это когда ученик видит только то, что реально надо сделать.</div>
-    </div>
-
+    <footer>
+      <div>© <span id="y"></span> · ЕГЭ Химия</div>
+      <div>Минимализм — это когда интерфейс не мешает думать.</div>
+    </footer>
   </div>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
