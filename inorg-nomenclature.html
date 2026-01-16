@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ЕГЭ Химия — Номенклатура неорганики</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; margin: 20px; line-height: 1.4; }
+    a { color: inherit; }
+    .topbar { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom: 14px; }
+    .card { border: 1px solid #e5e5e5; border-radius: 12px; padding: 14px; max-width: 980px; }
+    .row { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .muted { color:#666; }
+    .pill { border:1px solid #e5e5e5; border-radius:999px; padding: 6px 10px; }
+    input[type="text"] { width: min(720px, 100%); padding: 10px 12px; border-radius: 10px; border:1px solid #ccc; font-size: 16px; }
+    button { padding: 10px 12px; border-radius: 10px; border:1px solid #ccc; background:#f7f7f7; cursor:pointer; }
+    button:hover { background:#f0f0f0; }
+    .ok { color:#0b6; font-weight:600; }
+    .bad { color:#c00; font-weight:600; }
+    .grid2 { display:grid; grid-template-columns: 1fr; gap:12px; }
+    @media (min-width: 900px) { .grid2 { grid-template-columns: 1.1fr 0.9fr; } }
+    textarea { width:100%; min-height: 160px; padding: 10px 12px; border-radius: 10px; border:1px solid #ccc; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .small { font-size: 13px; }
+    .kbd { border:1px solid #ccc; border-bottom-width:2px; border-radius:6px; padding: 1px 6px; background:#fafafa; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html">← На главную</a>
+  <span class="pill">Модуль: Номенклатура неорганики</span>
+  <span class="pill">Ввод → <span class="kbd">Enter</span> → автопереход</span>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h1 style="margin:0 0 6px 0;">Тренажёр</h1>
+    <div class="muted" style="margin-bottom:10px;">
+      Режим: формула → название. Пишите кратко и по делу (варианты допускаются).
+    </div>
+
+    <div class="row" style="margin: 10px 0;">
+      <label class="pill">Вопрос: <span id="qIndex">1</span>/<span id="qTotal">0</span></label>
+      <label class="pill">Верно: <span id="okCount">0</span></label>
+      <label class="pill">Ошибок: <span id="badCount">0</span></label>
+      <label class="pill">Баллы: <span id="score">0</span>%</label>
+    </div>
+
+    <h2 id="question" style="margin: 10px 0 6px 0; font-size: 22px;">—</h2>
+    <div class="muted small" id="hint" style="margin-bottom: 10px;">Подсказка появится после ответа.</div>
+
+    <div class="row" style="margin-top:10px;">
+      <input id="answer" type="text" placeholder="Введите название и нажмите Enter…" autocomplete="off" />
+      <button id="checkBtn">Проверить</button>
+      <button id="skipBtn" title="Отметить как ошибку и перейти дальше">Пропустить</button>
+      <button id="restartBtn">Сначала</button>
+    </div>
+
+    <div id="feedback" style="margin-top: 10px;"></div>
+
+    <hr style="border:none; border-top:1px solid #eee; margin: 14px 0;">
+
+    <h3 style="margin: 0 0 8px 0;">Настройки</h3>
+    <div class="row">
+      <label class="pill">
+        <input type="checkbox" id="shuffle" checked />
+        Перемешать вопросы
+      </label>
+      <label class="pill">
+        <input type="checkbox" id="strict" />
+        Строгий режим (только один вариант)
+      </label>
+    </div>
+
+    <p class="muted small" style="margin-top:10px;">
+      Примечание: «Строгий режим» удобен, когда вы уже согласовали единственный эталон формулировки.
+      В обычном режиме допускаются синонимы (например: “гидроксид натрия” и “едкий натр”).
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 style="margin:0 0 6px 0;">Ошибки и экспорт</h2>
+    <p class="muted small" style="margin-top:0;">
+      После прохождения нажмите «Скачать CSV» — получите таблицу: формула, ваш ответ, правильный ответ, верно/нет.
+    </p>
+
+    <div class="row" style="margin: 10px 0;">
+      <button id="downloadBtn">Скачать CSV</button>
+      <button id="copyBtn">Скопировать CSV</button>
+      <button id="clearBtn">Очистить результаты</button>
+    </div>
+
+    <textarea id="log" readonly placeholder="Здесь появятся ошибки и результаты…"></textarea>
+    <div class="muted small" style="margin-top:8px;">
+      Подсказка: CSV хорошо открывается в Excel, если разделитель — «;».
+      Я его таким и сделал, чтобы не было сюрпризов.
+    </div>
+  </div>
+</div>
+
+<script>
+/** =========================
+ *  Банк заданий (формула -> варианты названий)
+ *  Можно расширять простым добавлением элементов.
+ *  ========================= */
+const TASKS = [
+  // Оксиды
+  { f:"CO",    a:["оксид углерода(ii)","монооксид углерода","угарный газ"], tip:"Оксид с C(+2)." },
+  { f:"CO2",   a:["оксид углерода(iv)","диоксид углерода","углекислый газ"], tip:"Оксид с C(+4)." },
+  { f:"SO2",   a:["оксид серы(iv)","диоксид серы","сернистый газ"], tip:"S(+4)." },
+  { f:"SO3",   a:["оксид серы(vi)","триоксид серы"], tip:"S(+6)." },
+  { f:"P2O5",  a:["оксид фосфора(v)","пентаоксид дифосфора"], tip:"P(+5)." },
+  { f:"N2O5",  a:["оксид азота(v)","пентаоксид диазота"], tip:"N(+5)." },
+  { f:"FeO",   a:["оксид железа(ii)"], tip:"Fe(+2)." },
+  { f:"Fe2O3", a:["оксид железа(iii)"], tip:"Fe(+3)." },
+  { f:"Cu2O",  a:["оксид меди(i)"], tip:"Cu(+1)." },
+  { f:"CuO",   a:["оксид меди(ii)"], tip:"Cu(+2)." },
+
+  // Кислоты
+  { f:"HCl",   a:["соляная кислота","хлороводородная кислота"], tip:"Одноосновная, летучая." },
+  { f:"H2S",   a:["сероводородная кислота"], tip:"Слабая кислота." },
+  { f:"H2SO4", a:["серная кислота"], tip:"Сильная двухосновная." },
+  { f:"H2SO3", a:["сернистая кислота"], tip:"Соответствует SO2." },
+  { f:"HNO3",  a:["азотная кислота"], tip:"Сильная одноосновная." },
+  { f:"HNO2",  a:["азотистая кислота"], tip:"Слабее азотной." },
+  { f:"H3PO4", a:["ортофосфорная кислота"], tip:"Трёхосновная." },
+  { f:"H2CO3", a:["угольная кислота"], tip:"Нестойкая, CO2 + H2O." },
+  { f:"H2SiO3",a:["кремниевая кислота"], tip:"Очень слабая, малорастворима." },
+
+  // Основания и амфотерные гидроксиды
+  { f:"NaOH",  a:["гидроксид натрия","едкий натр"], tip:"Щёлочь." },
+  { f:"KOH",   a:["гидроксид калия","едкое кали"], tip:"Щёлочь." },
+  { f:"Ca(OH)2",a:["гидроксид кальция","известковая вода"], tip:"Щёлочь (малорастворима)." },
+  { f:"Al(OH)3",a:["гидроксид алюминия"], tip:"Амфотерный гидроксид." },
+  { f:"Zn(OH)2",a:["гидроксид цинка"], tip:"Амфотерный гидроксид." },
+  { f:"Fe(OH)2",a:["гидроксид железа(ii)"], tip:"Основание, Fe(+2)." },
+  { f:"Fe(OH)3",a:["гидроксид железа(iii)"], tip:"Основание, Fe(+3)." },
+
+  // Соли (простые и кислые)
+  { f:"NaCl",  a:["хлорид натрия","поваренная соль"], tip:"Средняя соль." },
+  { f:"K2SO4", a:["сульфат калия"], tip:"Средняя соль." },
+  { f:"Na2SO3",a:["сульфит натрия"], tip:"Соль сернистой кислоты." },
+  { f:"CaCO3", a:["карбонат кальция","мел","известняк"], tip:"Соль угольной кислоты." },
+  { f:"Na2CO3",a:["карбонат натрия","кальцинированная сода"], tip:"Средняя соль." },
+  { f:"NaHCO3",a:["гидрокарбонат натрия","пищевая сода"], tip:"Кислая соль." },
+  { f:"KNO3",  a:["нитрат калия"], tip:"Соль азотной кислоты." },
+  { f:"CuSO4", a:["сульфат меди(ii)"], tip:"Cu(+2)." },
+  { f:"FeCl3", a:["хлорид железа(iii)"], tip:"Fe(+3)." },
+  { f:"FeSO4", a:["сульфат железа(ii)"], tip:"Fe(+2)." }
+];
+
+/** =========================
+ *  Служебные функции нормализации
+ *  ========================= */
+function norm(s){
+  return (s || "")
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** =========================
+ *  Состояние тренажёра
+ *  ========================= */
+let items = [];
+let idx = 0;
+let ok = 0;
+let bad = 0;
+let results = []; // {formula, your, right, isCorrect}
+
+/** UI */
+const elQIndex = document.getElementById("qIndex");
+const elQTotal = document.getElementById("qTotal");
+const elOk = document.getElementById("okCount");
+const elBad = document.getElementById("badCount");
+const elScore = document.getElementById("score");
+const elQuestion = document.getElementById("question");
+const elHint = document.getElementById("hint");
+const elAnswer = document.getElementById("answer");
+const elFeedback = document.getElementById("feedback");
+const elLog = document.getElementById("log");
+
+const elShuffle = document.getElementById("shuffle");
+const elStrict = document.getElementById("strict");
+
+document.getElementById("checkBtn").addEventListener("click", check);
+document.getElementById("skipBtn").addEventListener("click", skip);
+document.getElementById("restartBtn").addEventListener("click", restart);
+
+document.getElementById("downloadBtn").addEventListener("click", downloadCSV);
+document.getElementById("copyBtn").addEventListener("click", copyCSV);
+document.getElementById("clearBtn").addEventListener("click", clearAll);
+
+elAnswer.addEventListener("keydown", (e) => {
+  if(e.key === "Enter"){ e.preventDefault(); check(); }
+});
+
+function shuffleArray(arr){
+  for(let i = arr.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function restart(){
+  items = TASKS.map(t => ({...t, a: t.a.slice()}));
+  if(elShuffle.checked) shuffleArray(items);
+  idx = 0; ok = 0; bad = 0; results = [];
+  elFeedback.innerHTML = "";
+  elHint.textContent = "Подсказка появится после ответа.";
+  render();
+  renderLog();
+  elAnswer.focus();
+}
+
+function render(){
+  elQTotal.textContent = String(items.length);
+  elQIndex.textContent = String(Math.min(idx + 1, items.length));
+  elOk.textContent = String(ok);
+  elBad.textContent = String(bad);
+  const totalDone = ok + bad;
+  const pct = totalDone ? Math.round((ok / totalDone) * 100) : 0;
+  elScore.textContent = String(pct);
+
+  if(idx >= items.length){
+    elQuestion.textContent = "Готово. Тренировка завершена.";
+    elAnswer.disabled = true;
+    elAnswer.value = "";
+    elHint.textContent = "Можно скачать CSV с результатами справа.";
+    return;
+  }
+
+  elAnswer.disabled = false;
+  const cur = items[idx];
+  elQuestion.textContent = `Дайте название: ${cur.f}`;
+  elAnswer.value = "";
+  elAnswer.focus();
+}
+
+function acceptAnswer(yourRaw, cur){
+  const your = norm(yourRaw);
+  const rightList = cur.a.map(norm);
+
+  if(elStrict.checked){
+    return rightList[0] === your;
+  }
+  return rightList.includes(your);
+}
+
+function check(){
+  if(idx >= items.length) return;
+
+  const cur = items[idx];
+  const yourRaw = elAnswer.value;
+  const your = norm(yourRaw);
+
+  const rightMain = cur.a[0];
+  const isCorrect = acceptAnswer(yourRaw, cur);
+
+  if(isCorrect){
+    ok++;
+    elFeedback.innerHTML = `<div class="ok">Верно.</div>`;
+  } else {
+    bad++;
+    elFeedback.innerHTML = `<div class="bad">Неверно.</div>
+      <div class="small muted">Ваш ответ: <b>${escapeHtml(yourRaw || "—")}</b></div>
+      <div class="small muted">Один из правильных: <b>${escapeHtml(rightMain)}</b></div>`;
+  }
+
+  elHint.textContent = cur.tip || "—";
+  results.push({ formula: cur.f, your: yourRaw, right: rightMain, isCorrect });
+
+  idx++;
+  render();
+  renderLog();
+}
+
+function skip(){
+  if(idx >= items.length) return;
+  const cur = items[idx];
+  bad++;
+  elFeedback.innerHTML = `<div class="bad">Пропуск.</div>
+    <div class="small muted">Один из правильных: <b>${escapeHtml(cur.a[0])}</b></div>`;
+  elHint.textContent = cur.tip || "—";
+  results.push({ formula: cur.f, your: "", right: cur.a[0], isCorrect: false });
+  idx++;
+  render();
+  renderLog();
+}
+
+function renderLog(){
+  const lines = [];
+  lines.push("Формула;Ваш ответ;Правильный ответ;Верно");
+  for(const r of results){
+    lines.push(`${r.formula};${csvCell(r.your)};${csvCell(r.right)};${r.isCorrect ? "1" : "0"}`);
+  }
+  elLog.value = lines.join("\n");
+}
+
+function csvCell(s){
+  const t = (s || "").replace(/"/g, '""');
+  // Если есть ; или переносы — экранируем кавычками
+  if(/[;\n\r"]/.test(t)) return `"${t}"`;
+  return t;
+}
+
+function downloadCSV(){
+  const blob = new Blob([elLog.value], {type: "text/csv;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "nomenclature_results.csv";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+async function copyCSV(){
+  try{
+    await navigator.clipboard.writeText(elLog.value);
+    elFeedback.innerHTML = `<div class="ok">CSV скопирован в буфер обмена.</div>`;
+  } catch(e){
+    elFeedback.innerHTML = `<div class="bad">Не удалось скопировать. Скопируйте вручную из поля справа.</div>`;
+  }
+}
+
+function clearAll(){
+  results = [];
+  ok = 0; bad = 0; idx = 0;
+  elFeedback.innerHTML = "";
+  elHint.textContent = "Подсказка появится после ответа.";
+  elAnswer.disabled = false;
+  restart();
+}
+
+function escapeHtml(str){
+  return (str || "").replace(/[&<>"']/g, (m) => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+
+restart();
+</script>
+
+</body>
+</html>
