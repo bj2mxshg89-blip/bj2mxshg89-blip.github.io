@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструмент рассадки учеников</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 10px;
+            max-width: 100%;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 400;
+            color: #222;
+            padding-bottom: 5px;
+            font-size: 1.5em;
+        }
+        
+        .app-container {
+            display: flex;
+            gap: 15px;
+            height: calc(100vh - 60px);
+            overflow: hidden;
+        }
+        
+        .controls {
+            flex: 0 0 300px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .classroom {
+            flex: 1;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+        }
+        
+        .input-section {
+            margin-bottom: 15px;
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 8px;
+        }
+        
+        .input-hint {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            padding: 8px 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+            background-color: #555;
+        }
+        
+        .add-btn {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .control-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .control-buttons button {
+            width: 100%;
+        }
+        
+        .export-buttons {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .export-buttons button {
+            flex: 1;
+        }
+        
+        .student-list-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .student-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .student-count {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .student-list {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+            padding: 8px;
+            overflow-y: auto;
+            min-height: 150px;
+            background-color: #fafafa;
+        }
+        
+        .student-item {
+            padding: 6px 8px;
+            margin-bottom: 4px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            cursor: move;
+            transition: background-color 0.2s;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .student-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .remove-student {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .remove-student:hover {
+            color: #e53935;
+        }
+        
+        .teacher-desk {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .desks-wrapper {
+            flex: 1;
+            overflow: auto;
+            padding: 5px;
+        }
+        
+        /* Горизонтальные парты */
+        .desks-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px 15px;
+            justify-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .desk {
+            width: 200px;
+            height: 65px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            padding: 6px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fafafa;
+            position: relative;
+        }
+        
+        .desk-number {
+            position: absolute;
+            top: -18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+        
+        .desk-seat {
+            width: 46%;
+            height: 100%;
+            border: 1px dashed #ccc;
+            border-radius: 3px;
+            padding: 4px 6px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            text-align: center;
+            transition: background-color 0.2s;
+            cursor: move;
+        }
+        
+        .desk-seat:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .desk-seat.occupied {
+            background-color: #e9e9e9;
+            border-style: solid;
+        }
+        
+        .row-label {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #666;
+            font-size: 12px;
+            padding: 2px;
+            background-color: #f5f5f5;
+            border-radius: 3px;
+        }
+        
+        .empty-slot {
+            color: #aaa;
+            font-style: italic;
+            font-size: 10px;
+        }
+        
+        .drag-over {
+            background-color: #e6f7ff !important;
+            border-color: #1890ff !important;
+        }
+        
+        .status-bar {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .hidden-input {
+            display: none;
+        }
+        
+        /* Стили для печати */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            .print-container,
+            .print-container * {
+                visibility: visible;
+            }
+            
+            .print-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 20px;
+                background: white;
+            }
+            
+            .print-header {
+                text-align: center;
+                margin-bottom: 20px;
+                border-bottom: 2px solid #333;
+                padding-bottom: 10px;
+            }
+            
+            .print-title {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            
+            .print-subtitle {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 10px;
+            }
+            
+            .print-date {
+                font-size: 12px;
+                color: #999;
+            }
+            
+            .print-desks-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px 20px;
+                justify-items: center;
+                margin: 0 auto;
+                max-width: 700px;
+            }
+            
+            .print-desk {
+                width: 170px;
+                height: 60px;
+                border: 2px solid #333;
+                border-radius: 4px;
+                padding: 5px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #fafafa;
+                position: relative;
+            }
+            
+            .print-desk-number {
+                position: absolute;
+                top: -16px;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-weight: bold;
+                color: #555;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+            
+            .print-desk-seat {
+                width: 46%;
+                height: 100%;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                padding: 3px 5px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+                text-align: center;
+                background-color: #e9e9e9;
+            }
+            
+            .print-empty-slot {
+                color: #aaa;
+                font-style: italic;
+                font-size: 9px;
+            }
+            
+            .print-row-label {
+                grid-column: 1 / -1;
+                text-align: center;
+                font-weight: bold;
+                margin-top: 5px;
+                color: #666;
+                font-size: 11px;
+                padding: 2px;
+                background-color: #f5f5f5;
+                border-radius: 3px;
+            }
+            
+            .print-teacher-desk {
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                text-align: center;
+                border-radius: 4px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                font-size: 14px;
+                max-width: 700px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .print-footer {
+                margin-top: 20px;
+                text-align: center;
+                font-size: 10px;
+                color: #999;
+                border-top: 1px solid #eee;
+                padding-top: 10px;
+            }
+        }
+        
+        /* Стили для скроллбара */
+        .student-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .student-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        
+        .student-list::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        
+        .student-list::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+        
+        /* Компактный режим для маленьких экранов */
+        @media (max-width: 1100px) {
+            .desk {
+                width: 160px;
+                height: 60px;
+            }
+            
+            .desk-seat {
+                padding: 3px 4px;
+                font-size: 10px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .app-container {
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+            }
+            
+            .controls {
+                flex: 0 0 auto;
+                min-width: 100%;
+            }
+            
+            .classroom {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Инструмент рассадки учеников</h1>
+    
+    <div class="app-container">
+        <div class="controls">
+            <div class="input-section">
+                <h3>Добавление учеников</h3>
+                <textarea id="studentNames" placeholder="Введите имена учеников, каждое с новой строки или через запятую. Пример:
+Иванов Иван
+Петрова Анна
+Сидоров Алексей"></textarea>
+                <div class="input-hint">Можно добавить сразу всех учеников класса</div>
+                <button id="addStudents" class="add-btn">Добавить всех учеников</button>
+                
+                <h3 style="margin-top: 20px;">Сохранить / Загрузить</h3>
+                <div class="control-buttons">
+                    <button id="saveToLocal">Сохранить в браузере</button>
+                    <button id="loadFromLocal">Загрузить из браузера</button>
+                </div>
+                
+                <div class="export-buttons">
+                    <button id="exportJSON">Экспорт в JSON</button>
+                    <button id="importJSON">Импорт из JSON</button>
+                </div>
+                
+                <div class="export-buttons">
+                    <button id="exportPDF">Сохранить в PDF</button>
+                    <button id="printLayout">Печать</button>
+                </div>
+                
+                <h3 style="margin-top: 20px;">Быстрые действия</h3>
+                <div class="control-buttons">
+                    <button id="clearAll">Очистить всё</button>
+                    <button id="autoArrange">Авторассадка</button>
+                </div>
+            </div>
+            
+            <div class="student-list-container">
+                <div class="student-list-header">
+                    <h3>Не распределенные ученики</h3>
+                    <span id="studentCount" class="student-count">0 учеников</span>
+                </div>
+                <div id="unassignedStudents" class="student-list">
+                    <!-- Сюда будут добавляться ученики -->
+                </div>
+                <div class="status-bar" id="statusBar">
+                    Перетащите учеников на свободные места
+                </div>
+            </div>
+        </div>
+        
+        <div class="classroom">
+            <h2 class="classroom-title">Классная комната</h2>
+            
+            <div class="desks-wrapper">
+                <div id="desksContainer" class="desks-container">
+                    <!-- Сюда будет добавлена сетка парт через JavaScript -->
+                </div>
+            </div>
+            
+            <div class="teacher-desk">
+                Стол учителя
+            </div>
+        </div>
+    </div>
+
+    <!-- Скрытые элементы для работы с файлами -->
+    <input type="file" id="jsonFileInput" class="hidden-input" accept=".json">
+    <a id="downloadAnchor" class="hidden-input"></a>
+    
+    <!-- Скрытый контейнер для печати -->
+    <div id="printContainer" class="hidden-input"></div>
+
+    <!-- Подключаем библиотеку jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Подключаем библиотеку html2canvas для создания скриншота -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        // Инициализация jsPDF
+        const { jsPDF } = window.jspdf;
+        
+        // Инициализация данных
+        let students = {
+            unassigned: [],
+            assigned: {} // ключ: deskId-seatPosition, значение: имя ученика
+        };
+
+        // Номера парт: ряд 1 (ближе к учителю) - парты 1,2,3; ряд 2 - 4,5,6 и т.д.
+        const deskNumbers = [
+                        [3, 2, 1],   // ряд 1 (нижний, ближе к учителю)
+            [6, 5, 4],   // ряд 2
+            [9, 8, 7],   // ряд 3
+            [12, 11, 10], // ряд 4
+            [15, 14, 13], // ряд 5
+            [18, 17, 16]  // ряд 6 (верхний, дальше от учителя)
+
+        ];
+
+        // DOM элементы
+        const studentNamesTextarea = document.getElementById('studentNames');
+        const addStudentsButton = document.getElementById('addStudents');
+        const unassignedStudentsDiv = document.getElementById('unassignedStudents');
+        const desksContainer = document.getElementById('desksContainer');
+        const saveToLocalButton = document.getElementById('saveToLocal');
+        const loadFromLocalButton = document.getElementById('loadFromLocal');
+        const exportJSONButton = document.getElementById('exportJSON');
+        const importJSONButton = document.getElementById('importJSON');
+        const exportPDFButton = document.getElementById('exportPDF');
+        const printLayoutButton = document.getElementById('printLayout');
+        const clearAllButton = document.getElementById('clearAll');
+        const autoArrangeButton = document.getElementById('autoArrange');
+        const studentCountSpan = document.getElementById('studentCount');
+        const statusBar = document.getElementById('statusBar');
+        const jsonFileInput = document.getElementById('jsonFileInput');
+        const downloadAnchor = document.getElementById('downloadAnchor');
+        const printContainer = document.getElementById('printContainer');
+
+        // Переменная для отслеживания перетаскиваемого элемента
+        let draggedStudent = null;
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            createDeskGrid();
+            loadFromLocalStorage();
+            renderUnassignedStudents();
+            renderDesks();
+            setupEventListeners();
+            updateStudentCount();
+            updateStatusBar();
+        });
+
+        // Создание сетки парт с горизонтальной ориентацией
+        function createDeskGrid() {
+            // Очищаем контейнер
+            desksContainer.innerHTML = '';
+            
+            // Создаем парты в правильном порядке (ряд 1 внизу)
+            for (let rowIndex = deskNumbers.length - 1; rowIndex >= 0; rowIndex--) {
+                const row = deskNumbers[rowIndex];
+                const rowNumber = deskNumbers.length - rowIndex;
+                
+                // Добавляем метку ряда
+                const rowLabel = document.createElement('div');
+                rowLabel.className = 'row-label';
+               
+                desksContainer.appendChild(rowLabel);
+                
+                // Создаем парты в ряду
+                row.forEach(deskNumber => {
+                    const desk = document.createElement('div');
+                    desk.className = 'desk';
+                    desk.id = `desk-${deskNumber}`;
+                    
+                    // Номер парты
+                    const deskNumberDiv = document.createElement('div');
+                    deskNumberDiv.className = 'desk-number';
+                    deskNumberDiv.textContent = `Парта ${deskNumber}`;
+                    desk.appendChild(deskNumberDiv);
+                    
+                    // Левое место
+                    const leftSeat = document.createElement('div');
+                    leftSeat.className = 'desk-seat';
+                    leftSeat.id = `desk-${deskNumber}-left`;
+                    leftSeat.setAttribute('data-desk', deskNumber);
+                    leftSeat.setAttribute('data-position', 'left');
+                    leftSeat.setAttribute('draggable', 'true');
+                    leftSeat.innerHTML = '<span class="empty-slot">Пусто</span>';
+                    desk.appendChild(leftSeat);
+                    
+                    // Правое место
+                    const rightSeat = document.createElement('div');
+                    rightSeat.className = 'desk-seat';
+                    rightSeat.id = `desk-${deskNumber}-right`;
+                    rightSeat.setAttribute('data-desk', deskNumber);
+                    rightSeat.setAttribute('data-position', 'right');
+                    rightSeat.setAttribute('draggable', 'true');
+                    rightSeat.innerHTML = '<span class="empty-slot">Пусто</span>';
+                    desk.appendChild(rightSeat);
+                    
+                    desksContainer.appendChild(desk);
+                });
+            }
+        }
+
+        // Настройка обработчиков событий
+        function setupEventListeners() {
+            // Добавление учеников
+            addStudentsButton.addEventListener('click', addStudents);
+            
+            // Кнопки управления
+            saveToLocalButton.addEventListener('click', saveToLocalStorage);
+            loadFromLocalButton.addEventListener('click', loadFromLocalStorage);
+            clearAllButton.addEventListener('click', clearAll);
+            autoArrangeButton.addEventListener('click', autoArrange);
+            
+            // Кнопки экспорта/импорта
+            exportJSONButton.addEventListener('click', exportToJSON);
+            importJSONButton.addEventListener('click', () => jsonFileInput.click());
+            jsonFileInput.addEventListener('change', importFromJSON);
+            
+            // Кнопки PDF и печати
+            exportPDFButton.addEventListener('click', exportToPDF);
+            printLayoutButton.addEventListener('click', printLayout);
+            
+            // Drag and Drop события
+            setupDragAndDrop();
+        }
+
+        // Добавление учеников (групповое)
+        function addStudents() {
+            const namesText = studentNamesTextarea.value.trim();
+            if (!namesText) {
+                alert('Введите имена учеников');
+                return;
+            }
+            
+            // Разбиваем текст на имена (по строкам и запятым)
+            const names = namesText
+                .split(/[\n,]/) // Разделяем по переносам строк и запятым
+                .map(name => name.trim()) // Убираем лишние пробелы
+                .filter(name => name.length > 0) // Убираем пустые строки
+                .filter((name, index, self) => self.indexOf(name) === index); // Убираем дубликаты
+            
+            if (names.length === 0) {
+                alert('Не найдено имен для добавления');
+                return;
+            }
+            
+            // Фильтруем имена, которые уже есть в системе
+            const newNames = names.filter(name => 
+                !students.unassigned.includes(name) && 
+                !Object.values(students.assigned).includes(name)
+            );
+            
+            if (newNames.length === 0) {
+                alert('Все указанные ученики уже добавлены');
+                return;
+            }
+            
+            // Добавляем новые имена
+            students.unassigned.push(...newNames);
+            
+            // Очищаем поле ввода
+            studentNamesTextarea.value = '';
+            
+            // Обновляем отображение
+            renderUnassignedStudents();
+            updateStudentCount();
+            updateStatusBar(`Добавлено ${newNames.length} учеников`);
+            
+            // Если есть сохраненная рассадка, предлагаем загрузить
+            if (localStorage.getItem('classroomLayout') && confirm('Загрузить последнюю сохраненную рассадку для этих учеников?')) {
+                loadFromLocalStorage();
+            }
+        }
+
+        // Отображение нераспределенных учеников
+        function renderUnassignedStudents() {
+            unassignedStudentsDiv.innerHTML = '';
+            
+            if (students.unassigned.length === 0) {
+                unassignedStudentsDiv.innerHTML = '<div class="student-item empty-slot">Нет учеников для распределения</div>';
+                return;
+            }
+            
+            // Сортируем имена по алфавиту
+            const sortedStudents = [...students.unassigned].sort();
+            
+            sortedStudents.forEach(student => {
+                const studentElement = document.createElement('div');
+                studentElement.className = 'student-item';
+                studentElement.setAttribute('draggable', 'true');
+                studentElement.setAttribute('data-name', student);
+                studentElement.setAttribute('data-type', 'unassigned');
+                
+                // Имя ученика
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = student;
+                studentElement.appendChild(nameSpan);
+                
+                // Кнопка удаления
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove-student';
+                removeButton.innerHTML = '×';
+                removeButton.title = 'Удалить ученика';
+                removeButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    removeStudent(student);
+                });
+                studentElement.appendChild(removeButton);
+                
+                unassignedStudentsDiv.appendChild(studentElement);
+            });
+        }
+
+        // Удаление ученика из системы
+        function removeStudent(studentName) {
+            if (!confirm(`Удалить ученика "${studentName}" из системы?`)) {
+                return;
+            }
+            
+            // Удаляем из списка нераспределенных
+            const unassignedIndex = students.unassigned.indexOf(studentName);
+            if (unassignedIndex !== -1) {
+                students.unassigned.splice(unassignedIndex, 1);
+            }
+            
+            // Удаляем с парты (если есть)
+            for (const [key, name] of Object.entries(students.assigned)) {
+                if (name === studentName) {
+                    delete students.assigned[key];
+                    break;
+                }
+            }
+            
+            // Обновляем отображение
+            renderUnassignedStudents();
+            renderDesks();
+            updateStudentCount();
+            updateStatusBar(`Ученик "${studentName}" удален`);
+        }
+
+        // Отображение парт с учениками
+        function renderDesks() {
+            // Проходим по всем местам в партах
+            for (let i = 1; i <= 18; i++) {
+                const leftSeat = document.getElementById(`desk-${i}-left`);
+                const rightSeat = document.getElementById(`desk-${i}-right`);
+                
+                // Левые места
+                const leftKey = `desk-${i}-left`;
+                if (students.assigned[leftKey]) {
+                    leftSeat.innerHTML = students.assigned[leftKey];
+                    leftSeat.classList.add('occupied');
+                    leftSeat.setAttribute('draggable', 'true');
+                } else {
+                    leftSeat.innerHTML = '<span class="empty-slot">Пусто</span>';
+                    leftSeat.classList.remove('occupied');
+                    leftSeat.setAttribute('draggable', 'true');
+                }
+                
+                // Правые места
+                const rightKey = `desk-${i}-right`;
+                if (students.assigned[rightKey]) {
+                    rightSeat.innerHTML = students.assigned[rightKey];
+                    rightSeat.classList.add('occupied');
+                    rightSeat.setAttribute('draggable', 'true');
+                } else {
+                    rightSeat.innerHTML = '<span class="empty-slot">Пусто</span>';
+                    rightSeat.classList.remove('occupied');
+                    rightSeat.setAttribute('draggable', 'true');
+                }
+            }
+        }
+
+        // Настройка Drag and Drop
+        function setupDragAndDrop() {
+            // Обработка начала перетаскивания
+            document.addEventListener('dragstart', function(e) {
+                // Если перетаскиваем ученика из списка
+                if (e.target.classList.contains('student-item')) {
+                    const studentName = e.target.getAttribute('data-name');
+                    draggedStudent = {
+                        name: studentName,
+                        type: 'unassigned',
+                        source: e.target
+                    };
+                    e.dataTransfer.setData('text/plain', JSON.stringify(draggedStudent));
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.target.style.opacity = '0.5';
+                }
+                // Если перетаскиваем ученика с парты
+                else if (e.target.classList.contains('desk-seat') && e.target.classList.contains('occupied')) {
+                    const deskId = e.target.getAttribute('data-desk');
+                    const position = e.target.getAttribute('data-position');
+                    const studentName = e.target.textContent;
+                    
+                    draggedStudent = {
+                        name: studentName,
+                        type: 'assigned',
+                        source: e.target,
+                        seatKey: `desk-${deskId}-${position}`
+                    };
+                    e.dataTransfer.setData('text/plain', JSON.stringify(draggedStudent));
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.target.style.opacity = '0.5';
+                }
+                // Если пытаемся перетащить пустое место
+                else if (e.target.classList.contains('desk-seat') && !e.target.classList.contains('occupied')) {
+                    e.preventDefault(); // Запрещаем перетаскивание пустых мест
+                }
+            });
+            
+            // Восстановление прозрачности после перетаскивания
+            document.addEventListener('dragend', function(e) {
+                if (e.target.classList.contains('student-item') || 
+                    (e.target.classList.contains('desk-seat') && e.target.classList.contains('occupied'))) {
+                    e.target.style.opacity = '1';
+                }
+                draggedStudent = null;
+            });
+            
+            // Разрешаем сбрасывание на места за партой и в список нераспределенных
+            document.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                
+                // Подсветка элементов при наведении
+                if (e.target.classList.contains('desk-seat') || 
+                    e.target.id === 'unassignedStudents' ||
+                    (e.target.parentElement && e.target.parentElement.id === 'unassignedStudents') ||
+                    e.target.classList.contains('student-list')) {
+                    
+                    // Убираем подсветку со всех элементов
+                    document.querySelectorAll('.drag-over').forEach(el => {
+                        el.classList.remove('drag-over');
+                    });
+                    
+                    // Подсвечиваем текущий элемент
+                    if (e.target.classList.contains('desk-seat')) {
+                        e.target.classList.add('drag-over');
+                    } else if (e.target.id === 'unassignedStudents' || e.target.classList.contains('student-list')) {
+                        e.target.classList.add('drag-over');
+                    } else if (e.target.parentElement && e.target.parentElement.id === 'unassignedStudents') {
+                        e.target.parentElement.classList.add('drag-over');
+                    }
+                }
+            });
+            
+            // Убираем подсветку при уходе с элемента
+            document.addEventListener('dragleave', function(e) {
+                if (e.target.classList.contains('desk-seat') || 
+                    e.target.id === 'unassignedStudents' ||
+                    e.target.classList.contains('student-list')) {
+                    e.target.classList.remove('drag-over');
+                }
+            });
+            
+            // Обработка сбрасывания
+            document.addEventListener('drop', function(e) {
+                e.preventDefault();
+                
+                // Убираем подсветку со всех элементов
+                document.querySelectorAll('.drag-over').forEach(el => {
+                    el.classList.remove('drag-over');
+                });
+                
+                // Получаем данные о перетаскиваемом ученике
+                const dataText = e.dataTransfer.getData('text/plain');
+                if (!dataText) return;
+                
+                const dragData = JSON.parse(dataText);
+                const studentName = dragData.name;
+                
+                // Определяем куда сбросили
+                let targetElement = e.target;
+                
+                // Если сбросили на текст внутри элемента (например, "Пусто")
+                if (targetElement.classList && targetElement.classList.contains('empty-slot')) {
+                    targetElement = targetElement.parentElement;
+                }
+                
+                // Если сбросили на место за партой
+                if (targetElement.classList && targetElement.classList.contains('desk-seat')) {
+                    const deskId = targetElement.getAttribute('data-desk');
+                    const position = targetElement.getAttribute('data-position');
+                    const seatKey = `desk-${deskId}-${position}`;
+                    
+                    // Проверяем, не сбрасываем ли на то же самое место
+                    if (dragData.seatKey === seatKey) {
+                        updateStatusBar('Ученик оставлен на своем месте');
+                        return;
+                    }
+                    
+                    // Получаем ученика, который уже сидит на этом месте (если есть)
+                    const currentStudent = students.assigned[seatKey];
+                    
+                    // Сценарий 1: Перетаскивание из списка на парту
+                    if (dragData.type === 'unassigned') {
+                        // Удаляем ученика из списка нераспределенных
+                        const index = students.unassigned.indexOf(studentName);
+                        students.unassigned.splice(index, 1);
+                        
+                        // Если место уже занято, перемещаем этого ученика в список нераспределенных
+                        if (currentStudent) {
+                            students.unassigned.push(currentStudent);
+                            updateStatusBar(`"${studentName}" заменяет "${currentStudent}" на парте ${deskId}`);
+                        } else {
+                            updateStatusBar(`"${studentName}" посажен на парту ${deskId}`);
+                        }
+                        
+                        // Сажаем нового ученика на место
+                        students.assigned[seatKey] = studentName;
+                    }
+                    // Сценарий 2: Перетаскивание с одной парты на другую
+                    else if (dragData.type === 'assigned') {
+                        // Удаляем ученика с исходного места
+                        delete students.assigned[dragData.seatKey];
+                        
+                        // Если новое место уже занято, перемещаем этого ученика на исходное место
+                        if (currentStudent) {
+                            students.assigned[dragData.seatKey] = currentStudent;
+                            updateStatusBar(`"${studentName}" и "${currentStudent}" поменялись местами`);
+                        } else {
+                            updateStatusBar(`"${studentName}" перемещен на другую парту`);
+                        }
+                        
+                        // Сажаем перетаскиваемого ученика на новое место
+                        students.assigned[seatKey] = studentName;
+                    }
+                    
+                    // Обновляем отображение
+                    renderDesks();
+                    renderUnassignedStudents();
+                    updateStudentCount();
+                    return;
+                }
+                
+                // Если сбросили в список нераспределенных
+                if (targetElement.id === 'unassignedStudents' || 
+                    (targetElement.parentElement && targetElement.parentElement.id === 'unassignedStudents')) {
+                    
+                    // Если перетаскиваем из списка, ничего не делаем
+                    if (dragData.type === 'unassigned') {
+                        updateStatusBar('Ученик оставлен в списке нераспределенных');
+                        return;
+                    }
+                    
+                    // Если перетаскиваем с парты
+                    if (dragData.type === 'assigned') {
+                        // Удаляем ученика с парты
+                        delete students.assigned[dragData.seatKey];
+                        
+                        // Добавляем ученика в список нераспределенных
+                        if (!students.unassigned.includes(studentName)) {
+                            students.unassigned.push(studentName);
+                        }
+                        
+                        updateStatusBar(`"${studentName}" перемещен в список нераспределенных`);
+                        
+                        // Обновляем отображение
+                        renderDesks();
+                        renderUnassignedStudents();
+                        updateStudentCount();
+                    }
+                    return;
+                }
+            });
+        }
+
+        // Авторассадка учеников
+        function autoArrange() {
+            if (students.unassigned.length === 0) {
+                alert('Нет учеников для распределения');
+                return;
+            }
+            
+            // Подтверждение
+            if (!confirm(`Рассадить ${students.unassigned.length} учеников автоматически? Текущая рассадка будет сброшена.`)) {
+                return;
+            }
+            
+            // Очищаем текущую рассадку
+            students.assigned = {};
+            
+            // Копируем и перемешиваем учеников
+            const shuffledStudents = [...students.unassigned].sort(() => Math.random() - 0.5);
+            
+            // Рассаживаем учеников по порядку
+            let studentIndex = 0;
+            for (let i = 1; i <= 18 && studentIndex < shuffledStudents.length; i++) {
+                const leftKey = `desk-${i}-left`;
+                const rightKey = `desk-${i}-right`;
+                
+                // Левое место
+                if (studentIndex < shuffledStudents.length) {
+                    students.assigned[leftKey] = shuffledStudents[studentIndex];
+                    studentIndex++;
+                }
+                
+                // Правое место
+                if (studentIndex < shuffledStudents.length) {
+                    students.assigned[rightKey] = shuffledStudents[studentIndex];
+                    studentIndex++;
+                }
+            }
+            
+            // Убираем рассаженных учеников из списка нераспределенных
+            students.unassigned = shuffledStudents.slice(studentIndex);
+            
+            // Обновляем отображение
+            renderDesks();
+            renderUnassignedStudents();
+            updateStudentCount();
+            updateStatusBar(`Авторассадка выполнена. Рассажено ${studentIndex} учеников`);
+        }
+
+        // Обновление счетчика учеников
+        function updateStudentCount() {
+            const total = students.unassigned.length + Object.keys(students.assigned).length;
+            const assigned = Object.keys(students.assigned).length;
+            studentCountSpan.textContent = `${total} учеников (${assigned} распределено)`;
+        }
+
+        // Обновление статусной строки
+        function updateStatusBar(message) {
+            if (message) {
+                statusBar.textContent = message;
+                // Через 3 секунды возвращаем стандартное сообщение
+                setTimeout(() => {
+                    statusBar.textContent = 'Перетащите учеников на свободные места';
+                }, 3000);
+            } else {
+                statusBar.textContent = 'Перетащите учеников на свободные места';
+            }
+        }
+
+        // Создание HTML для печати/PDF
+        function createPrintHTML() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('ru-RU');
+            const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+            
+            let html = `
+                <div class="print-container">
+                    <div class="print-header">
+                        <div class="print-title">Рассадка учеников в классе</div>
+                        <div class="print-subtitle">План рассадки на ${dateStr}</div>
+                        <div class="print-date">Создано: ${dateStr} ${timeStr}</div>
+                    </div>
+                    
+                    <div class="print-desks-container">
+            `;
+            
+            // Создаем парты в правильном порядке (ряд 1 внизу)
+            for (let rowIndex = deskNumbers.length - 1; rowIndex >= 0; rowIndex--) {
+                const row = deskNumbers[rowIndex];
+                const rowNumber = deskNumbers.length - rowIndex;
+                
+                // Добавляем метку ряда
+                html += `<div class="print-row-label">Ряд ${rowNumber}</div>`;
+                
+                // Создаем парты в ряду
+                row.forEach(deskNumber => {
+                    const leftKey = `desk-${deskNumber}-left`;
+                    const rightKey = `desk-${deskNumber}-right`;
+                    const leftStudent = students.assigned[leftKey];
+                    const rightStudent = students.assigned[rightKey];
+                    
+                    html += `
+                        <div class="print-desk">
+                            <div class="print-desk-number">Парта ${deskNumber}</div>
+                            <div class="print-desk-seat">
+                                ${leftStudent || '<span class="print-empty-slot">Пусто</span>'}
+                            </div>
+                            <div class="print-desk-seat">
+                                ${rightStudent || '<span class="print-empty-slot">Пусто</span>'}
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+            
+            html += `
+                    </div>
+                    
+                    <div class="print-teacher-desk">
+                        Стол учителя
+                    </div>
+                    
+                    <div class="print-footer">
+                        Всего учеников: ${students.unassigned.length + Object.keys(students.assigned).length} | 
+                        Распределено: ${Object.keys(students.assigned).length} | 
+                        Не распределено: ${students.unassigned.length}
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+
+        // Экспорт в PDF
+        async function exportToPDF() {
+            try {
+                updateStatusBar('Создание PDF...');
+                
+                // Создаем HTML для печати
+                const printHTML = createPrintHTML();
+                printContainer.innerHTML = printHTML;
+                
+                // Показываем контейнер для печати
+                printContainer.style.display = 'block';
+                printContainer.style.position = 'fixed';
+                printContainer.style.left = '0';
+                printContainer.style.top = '0';
+                printContainer.style.width = '210mm'; // Ширина A4
+                printContainer.style.padding = '20mm';
+                printContainer.style.background = 'white';
+                printContainer.style.zIndex = '9999';
+                
+                // Создаем скриншот контейнера
+                const canvas = await html2canvas(printContainer, {
+                    scale: 2, // Увеличиваем качество
+                    useCORS: true,
+                    backgroundColor: '#ffffff'
+                });
+                
+                // Скрываем контейнер
+                printContainer.style.display = 'none';
+                
+                // Создаем PDF
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                // Получаем размеры PDF
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = pdf.internal.pageSize.getHeight();
+                
+                // Рассчитываем размеры изображения для A4
+                const imgWidth = pdfWidth - 20; // Отступы по 10мм с каждой стороны
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                // Конвертируем canvas в Data URL
+                const imgData = canvas.toDataURL('image/jpeg', 0.9);
+                
+                // Добавляем изображение в PDF
+                pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+                
+                // Создаем имя файла
+                const date = new Date();
+                const fileName = `рассадка_${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}.pdf`;
+                
+                // Сохраняем PDF
+                pdf.save(fileName);
+                
+                updateStatusBar('PDF успешно сохранен');
+                
+            } catch (error) {
+                console.error('Ошибка при создании PDF:', error);
+                alert('Ошибка при создании PDF файла. Попробуйте снова.');
+                updateStatusBar('Ошибка при создании PDF');
+            } finally {
+                // Всегда скрываем контейнер
+                printContainer.style.display = 'none';
+                printContainer.innerHTML = '';
+            }
+        }
+
+        // Печать раскладки
+        function printLayout() {
+            updateStatusBar('Подготовка к печати...');
+            
+            // Создаем HTML для печати
+            const printHTML = createPrintHTML();
+            printContainer.innerHTML = printHTML;
+            
+            // Показываем контейнер для печати
+            printContainer.style.display = 'block';
+            printContainer.style.position = 'fixed';
+            printContainer.style.left = '0';
+            printContainer.style.top = '0';
+            printContainer.style.width = '100%';
+            printContainer.style.height = '100%';
+            printContainer.style.background = 'white';
+            printContainer.style.zIndex = '9999';
+            printContainer.style.overflow = 'auto';
+            
+            // Настраиваем стили для печати
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @media print {
+                    body * { visibility: hidden; }
+                    .print-container, .print-container * { visibility: visible; }
+                    .print-container { position: absolute; left: 0; top: 0; width: 100%; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Запускаем печать
+            window.print();
+            
+            // Убираем контейнер после печати
+            setTimeout(() => {
+                printContainer.style.display = 'none';
+                printContainer.innerHTML = '';
+                document.head.removeChild(style);
+                updateStatusBar('Печать завершена');
+            }, 500);
+        }
+
+        // Сохранение в LocalStorage
+        function saveToLocalStorage() {
+            const dataToSave = {
+                unassigned: students.unassigned,
+                assigned: students.assigned,
+                timestamp: new Date().toLocaleString(),
+                metadata: {
+                    version: '1.0',
+                    totalStudents: students.unassigned.length + Object.keys(students.assigned).length,
+                    totalDesks: 18,
+                    createdAt: new Date().toISOString()
+                }
+            };
+            
+            localStorage.setItem('classroomLayout', JSON.stringify(dataToSave));
+            updateStatusBar(`Раскладка сохранена в браузере (${dataToSave.timestamp})`);
+        }
+
+        // Загрузка из LocalStorage
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('classroomLayout');
+            if (savedData) {
+                try {
+                    const parsedData = JSON.parse(savedData);
+                    loadData(parsedData, 'браузера');
+                } catch (e) {
+                    alert('Ошибка при загрузке данных из браузера');
+                    console.error(e);
+                }
+            } else {
+                alert('Нет сохраненных данных в браузере');
+            }
+        }
+
+        // Экспорт в JSON файл
+        function exportToJSON() {
+            const dataToExport = {
+                unassigned: students.unassigned,
+                assigned: students.assigned,
+                timestamp: new Date().toLocaleString(),
+                metadata: {
+                    version: '1.0',
+                    description: 'Рассадка учеников в классе',
+                    totalStudents: students.unassigned.length + Object.keys(students.assigned).length,
+                    totalDesks: 18,
+                    exportedAt: new Date().toISOString()
+                }
+            };
+            
+            const jsonString = JSON.stringify(dataToExport, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            // Создаем имя файла с датой
+            const date = new Date();
+            const fileName = `рассадка_учеников_${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}_${String(date.getHours()).padStart(2, '0')}-${String(date.getMinutes()).padStart(2, '0')}.json`;
+            
+            // Создаем ссылку для скачивания
+            downloadAnchor.href = url;
+            downloadAnchor.download = fileName;
+            downloadAnchor.click();
+            
+            // Очищаем URL
+            URL.revokeObjectURL(url);
+            
+            updateStatusBar(`Раскладка экспортирована в файл ${fileName}`);
+        }
+
+        // Импорт из JSON файла
+        function importFromJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            // Сбрасываем значение input, чтобы можно было загрузить тот же файл снова
+            jsonFileInput.value = '';
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    const fileContent = e.target.result;
+                    const parsedData = JSON.parse(fileContent);
+                    
+                    // Подтверждение импорта
+                    if (!confirm(`Загрузить раскладку из файла "${file.name}"? Текущая раскладка будет заменена.`)) {
+                        return;
+                    }
+                    
+                    loadData(parsedData, `файла "${file.name}"`);
+                } catch (error) {
+                    alert('Ошибка при чтении JSON файла. Убедитесь, что файл имеет правильный формат.');
+                    console.error(error);
+                }
+            };
+            
+            reader.onerror = function() {
+                alert('Ошибка при чтении файла');
+            };
+            
+            reader.readAsText(file);
+        }
+
+        // Общая функция загрузки данных (из localStorage или файла)
+        function loadData(parsedData, source) {
+            // Проверяем структуру данных
+            if (!parsedData.unassigned || !parsedData.assigned) {
+                alert(`Некорректный формат данных в ${source}. Файл должен содержать поля "unassigned" и "assigned".`);
+                return;
+            }
+            
+            // Загружаем данные
+            students.unassigned = parsedData.unassigned || [];
+            students.assigned = parsedData.assigned || {};
+            
+            // Обновляем отображение
+            renderUnassignedStudents();
+            renderDesks();
+            updateStudentCount();
+            
+            // Показываем информацию о загруженных данных
+            const totalStudents = students.unassigned.length + Object.keys(students.assigned).length;
+            const assignedCount = Object.keys(students.assigned).length;
+            const timestamp = parsedData.timestamp || parsedData.metadata?.exportedAt || 'неизвестно';
+            
+            updateStatusBar(`Раскладка загружена из ${source}. ${totalStudents} учеников, ${assignedCount} распределено (сохранено: ${timestamp})`);
+        }
+
+        // Очистка всех данных
+        function clearAll() {
+            if (confirm('Вы уверены, что хотите очистить все? Все несохраненные данные будут потеряны.')) {
+                // Перемещаем всех учеников в список нераспределенных
+                Object.values(students.assigned).forEach(student => {
+                    if (!students.unassigned.includes(student)) {
+                        students.unassigned.push(student);
+                    }
+                });
+                
+                // Очищаем назначенные места
+                students.assigned = {};
+                
+                // Обновляем отображение
+                renderDesks();
+                renderUnassignedStudents();
+                updateStudentCount();
+                updateStatusBar('Все ученики перемещены в список нераспределенных');
+            }
+        }
+    </script>
+</body>
+</html>
