@@ -2,53 +2,99 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Тренажёр ОВР</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:720px;margin:40px auto;padding:0 16px;line-height:1.5;color:#172033;background:#f4f7fb}.back{display:inline-block;margin-bottom:20px;color:#555;text-decoration:none}.card{background:white;border:1px solid #dfe7f2;border-radius:16px;padding:22px}input{width:100%;box-sizing:border-box;padding:12px;font-size:18px;margin:14px 0;border:1px solid #cfd8e6;border-radius:10px}button{padding:10px 14px;border:0;border-radius:10px;background:#2563eb;color:white;font-weight:700;cursor:pointer}button:disabled,input:disabled{opacity:.55;cursor:not-allowed}.secondary{background:#111827;margin-left:8px}#task{font-size:22px;font-weight:700;margin:12px 0}#result{white-space:pre-line;margin-top:14px;font-weight:700}
+</style>
 </head>
-
 <body>
 
+<a class="back" href="index.html">← Главная</a>
 <h1>Тренажёр ОВР</h1>
 
-<div id="task"></div>
-
-<input id="answer" onkeyup="next(event)">
-<button onclick="check()">Проверить</button>
-
-<div id="result"></div>
+<div class="card">
+  <div id="task"></div>
+  <input id="answer" onkeyup="next(event)" autocomplete="off">
+  <button id="checkBtn" onclick="check()">Проверить</button>
+  <button class="secondary" onclick="restart()">Сначала</button>
+  <div id="result"></div>
+</div>
 
 <script>
-
-let tasks = [
+const tasks = [
   {q: "Степень окисления серы в H2SO4", a: "+6"},
   {q: "Степень окисления азота в NH3", a: "-3"},
   {q: "Окислитель или восстановитель: KMnO4", a: "окислитель"}
 ];
 
 let i = 0;
+let finished = false;
+
+const taskEl = document.getElementById("task");
+const answerEl = document.getElementById("answer");
+const resultEl = document.getElementById("result");
+const checkBtn = document.getElementById("checkBtn");
+
 show();
 
 function show(){
-  task.innerText = tasks[i].q;
-  answer.value = "";
-  answer.focus();
+  if (i >= tasks.length) {
+    finish();
+    return;
+  }
+
+  finished = false;
+  taskEl.innerText = tasks[i].q;
+  answerEl.value = "";
+  answerEl.disabled = false;
+  checkBtn.disabled = false;
+  answerEl.focus();
 }
 
 function next(e){
-  if(e.key == "Enter") check();
+  if(e.key === "Enter") check();
 }
 
 function check(){
-  if(answer.value.trim().toLowerCase() == tasks[i].a){
-    result.innerText = "Верно";
+  if (finished || i >= tasks.length) {
+    finish();
+    return;
+  }
+
+  const userAnswer = answerEl.value.trim().toLowerCase();
+  const correctAnswer = tasks[i].a.toLowerCase();
+
+  if(userAnswer === correctAnswer){
+    resultEl.innerText = "Верно";
   } else {
-    result.innerText = "Ошибка. Ответ: " + tasks[i].a;
+    resultEl.innerText = "Ошибка. Ответ: " + tasks[i].a;
   }
 
   i++;
-  if(i < tasks.length) setTimeout(show, 1000);
-  else result.innerText += "\nКонец теста";
+
+  if(i < tasks.length) {
+    setTimeout(show, 1000);
+  } else {
+    setTimeout(finish, 1000);
+  }
 }
 
+function finish(){
+  finished = true;
+  taskEl.innerText = "Тест завершён";
+  answerEl.value = "";
+  answerEl.disabled = true;
+  checkBtn.disabled = true;
+  resultEl.innerText = "Конец теста. Можно начать сначала.";
+}
+
+function restart(){
+  i = 0;
+  finished = false;
+  resultEl.innerText = "";
+  show();
+}
 </script>
 
 </body>
