@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рассадка учеников</title>
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#667085;--border:#dfe7f2;--primary:#2563eb;--dark:#111827;--bad:#dc2626}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}.page{max-width:1280px;margin:0 auto;padding:18px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.back{color:var(--muted);text-decoration:none;font-weight:700}.layout{display:grid;grid-template-columns:340px 1fr;gap:16px}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 10px 28px rgba(15,23,42,.06)}h1{font-size:28px;margin:0}h2{font-size:18px;margin:0 0 12px}textarea{width:100%;border:1px solid var(--border);border-radius:12px;padding:10px;font-size:15px;min-height:120px;resize:vertical}.hint{font-size:13px;color:var(--muted);margin:8px 0 12px}.btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.btn{border:0;border-radius:12px;padding:10px 12px;background:var(--dark);color:#fff;font-weight:700;cursor:pointer}.btn.primary{background:var(--primary)}.btn.light{background:#eef2f7;color:var(--text)}.btn.bad{background:var(--bad)}.students{min-height:180px;max-height:360px;overflow:auto;border:1px dashed var(--border);border-radius:14px;padding:8px;background:#fafcff}.student{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;margin-bottom:6px;border:1px solid var(--border);border-radius:12px;background:#fff;cursor:grab}.student button{border:0;background:#fee2e2;color:#991b1b;border-radius:8px;padding:3px 7px;cursor:pointer}.classroom{overflow:auto}.teacher{max-width:780px;margin:0 auto 18px;background:var(--dark);color:#fff;text-align:center;border-radius:14px;padding:12px;font-weight:800}.desks{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));gap:22px 14px;max-width:780px;margin:0 auto}.desk{border:2px solid var(--dark);border-radius:14px;padding:22px 8px 8px;background:#fff;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-height:86px}.desk-title{position:absolute;top:5px;left:0;right:0;text-align:center;font-size:12px;font-weight:800;color:var(--muted)}.seat{border:1px dashed #b9c4d4;border-radius:10px;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;padding:6px;font-size:13px;background:#f8fafc}.seat.occupied{border-style:solid;background:#eaf1ff;color:#1e3a8a;font-weight:700;cursor:grab}.seat.over{outline:3px solid rgba(37,99,235,.25)}.status{margin-top:12px;color:var(--muted);font-size:13px}.file{display:none}@media(max-width:900px){.layout{grid-template-columns:1fr}.desks{grid-template-columns:1fr 1fr}}@media(max-width:560px){.page{padding:12px}.top{align-items:flex-start;flex-direction:column}.desks{grid-template-columns:1fr}.btns{grid-template-columns:1fr}}@media print{body{background:#fff}.top,.controls,.btns,.status{display:none}.layout{display:block}.card{box-shadow:none;border:0}.teacher{background:#333!important;color:#fff!important}.desk{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top"><a class="back" href="index.html">← Главная</a><h1>Рассадка учеников</h1></div>
+  <div class="layout">
+    <aside class="card controls">
+      <h2>Добавление учеников</h2>
+      <textarea id="names" placeholder="Введите имена учеников: каждое с новой строки или через запятую"></textarea>
+      <div class="hint">Дубликаты удаляются автоматически. Ученика можно перетащить на место за партой.</div>
+      <button class="btn primary" onclick="addStudents()">Добавить учеников</button>
+      <div class="btns">
+        <button class="btn light" onclick="autoArrange()">Авторассадка</button>
+        <button class="btn light" onclick="clearSeats()">Очистить парты</button>
+        <button class="btn light" onclick="saveData()">Сохранить</button>
+        <button class="btn light" onclick="loadData()">Загрузить</button>
+        <button class="btn light" onclick="exportJSON()">Экспорт JSON</button>
+        <button class="btn light" onclick="importClick()">Импорт JSON</button>
+        <button class="btn light" onclick="window.print()">Печать</button>
+        <button class="btn bad" onclick="clearAll()">Очистить всё</button>
+      </div>
+      <input class="file" type="file" id="file" accept=".json" onchange="importJSON(event)">
+      <a class="file" id="download"></a>
+      <h2>Не распределены <span id="count"></span></h2>
+      <div class="students" id="unassigned"></div>
+      <div class="status" id="status">Готово к работе.</div>
+    </aside>
+    <main class="card classroom"><div class="teacher">Стол учителя</div><div class="desks" id="desks"></div></main>
+  </div>
+</div>
+<script>
+const STORAGE_KEY='teacher_seating_v2'; const DESKS=18; let state={unassigned:[],seats:{}}; let dragged=null;
+const namesEl=document.getElementById('names'), unassignedEl=document.getElementById('unassigned'), desksEl=document.getElementById('desks'), countEl=document.getElementById('count'), statusEl=document.getElementById('status'), fileEl=document.getElementById('file'), downloadEl=document.getElementById('download');
+function seatKey(d,s){return `desk-${d}-${s}`} function setStatus(t){statusEl.textContent=t} function normalizeName(n){return n.trim().replace(/\s+/g,' ')} function allNames(){return [...state.unassigned,...Object.values(state.seats)]}
+function init(){createDesks();loadData(false);render()}
+function createDesks(){desksEl.innerHTML='';for(let i=1;i<=DESKS;i++){const desk=document.createElement('div');desk.className='desk';desk.innerHTML=`<div class="desk-title">Парта ${i}</div>`;['left','right'].forEach(side=>{const seat=document.createElement('div');seat.className='seat';seat.dataset.key=seatKey(i,side);seat.addEventListener('dragover',onSeatDragOver);seat.addEventListener('dragleave',()=>seat.classList.remove('over'));seat.addEventListener('drop',onSeatDrop);desk.appendChild(seat)});desksEl.appendChild(desk)}}
+function addStudents(){const raw=namesEl.value.trim();if(!raw){alert('Введите имена учеников');return}const names=raw.split(/[\n,]/).map(normalizeName).filter(Boolean);const existing=new Set(allNames());let added=0;names.forEach(name=>{if(!existing.has(name)){state.unassigned.push(name);existing.add(name);added++}});namesEl.value='';render();setStatus(`Добавлено учеников: ${added}`)}
+function render(){renderUnassigned();renderSeats();countEl.textContent=`(${state.unassigned.length})`}
+function renderUnassigned(){unassignedEl.innerHTML='';if(!state.unassigned.length){unassignedEl.innerHTML='<div class="hint">Список пуст</div>';return}state.unassigned.sort((a,b)=>a.localeCompare(b,'ru')).forEach(name=>{const item=document.createElement('div');item.className='student';item.draggable=true;item.dataset.name=name;item.innerHTML=`<span>${escapeHTML(name)}</span><button title="Удалить">×</button>`;item.addEventListener('dragstart',()=>{dragged={type:'unassigned',name}});item.querySelector('button').onclick=()=>removeStudent(name);unassignedEl.appendChild(item)})}
+function renderSeats(){document.querySelectorAll('.seat').forEach(seat=>{const name=state.seats[seat.dataset.key];seat.className='seat'+(name?' occupied':'');seat.textContent=name||'Пусто';seat.draggable=!!name;seat.ondragstart=name?()=>{dragged={type:'seat',key:seat.dataset.key,name}}:null})}
+function onSeatDragOver(e){e.preventDefault();e.currentTarget.classList.add('over')}
+function onSeatDrop(e){e.preventDefault();const targetKey=e.currentTarget.dataset.key;e.currentTarget.classList.remove('over');if(!dragged)return;const targetName=state.seats[targetKey];if(dragged.type==='unassigned'){state.unassigned=state.unassigned.filter(n=>n!==dragged.name);if(targetName)state.unassigned.push(targetName);state.seats[targetKey]=dragged.name}if(dragged.type==='seat'){if(dragged.key===targetKey)return;state.seats[dragged.key]=targetName;if(!state.seats[dragged.key])delete state.seats[dragged.key];state.seats[targetKey]=dragged.name}dragged=null;render();setStatus('Рассадка обновлена.')}
+function removeStudent(name){if(!confirm(`Удалить ученика «${name}»?`))return;state.unassigned=state.unassigned.filter(n=>n!==name);Object.keys(state.seats).forEach(k=>{if(state.seats[k]===name)delete state.seats[k]});render()}
+function autoArrange(){const free=[];for(let d=1;d<=DESKS;d++)['left','right'].forEach(s=>{const k=seatKey(d,s);if(!state.seats[k])free.push(k)});shuffle(state.unassigned);while(state.unassigned.length&&free.length){state.seats[free.shift()]=state.unassigned.shift()}render();setStatus('Авторассадка выполнена.')}
+function clearSeats(){state.unassigned.push(...Object.values(state.seats));state.seats={};render();setStatus('Парты очищены.')}
+function clearAll(){if(!confirm('Очистить всех учеников и всю рассадку?'))return;state={unassigned:[],seats:{}};localStorage.removeItem(STORAGE_KEY);render();setStatus('Всё очищено.')}
+function saveData(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));setStatus('Сохранено в браузере.')}
+function loadData(showMessage=true){const saved=localStorage.getItem(STORAGE_KEY);if(!saved){if(showMessage)setStatus('Сохранённых данных нет.');return}try{state=JSON.parse(saved);state.unassigned=Array.isArray(state.unassigned)?state.unassigned:[];state.seats=state.seats&&typeof state.seats==='object'?state.seats:{};render();if(showMessage)setStatus('Загружено из браузера.')}catch{if(showMessage)alert('Не удалось загрузить сохранённые данные.')}}
+function exportJSON(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});downloadEl.href=URL.createObjectURL(blob);downloadEl.download='rassadka.json';downloadEl.click();URL.revokeObjectURL(downloadEl.href)}
+function importClick(){fileEl.click()} function importJSON(e){const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);state={unassigned:Array.isArray(data.unassigned)?data.unassigned:[],seats:data.seats&&typeof data.seats==='object'?data.seats:{}};render();setStatus('JSON импортирован.')}catch{alert('Ошибка импорта JSON.')}};reader.readAsText(file);e.target.value=''}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr} function escapeHTML(str){return str.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]))}
+init();
+</script>
+</body>
+</html>
