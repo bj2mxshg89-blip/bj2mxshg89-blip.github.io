@@ -3,593 +3,647 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Химия ЕГЭ — подготовка</title>
-
+  <title>Кабинет учителя — инструменты</title>
   <style>
-    *{ margin:0; padding:0; box-sizing:border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-
     :root{
-      --primary-color:#3a7bd5;
-      --secondary-color:#00d2ff;
-      --accent-color:#ff5e62;
-      --light-color:#f8f9fa;
-      --dark-color:#333;
-      --success-color:#2ecc71;
-      --warning-color:#f39c12;
-      --bg:#f0f7ff;
+      --bg:#f4f7fb;
+      --card:#ffffff;
+      --text:#172033;
+      --muted:#667085;
+      --border:#e3e8ef;
+      --primary:#2563eb;
+      --primary-dark:#1d4ed8;
+      --soft:#eaf1ff;
+      --green:#16a34a;
+      --orange:#f97316;
+      --shadow:0 18px 45px rgba(15,23,42,.08);
+      --radius:24px;
     }
 
-    body{ background-color: var(--bg); color: var(--dark-color); line-height:1.6; }
-    .container{ width:100%; max-width:1200px; margin:0 auto; padding:0 20px; }
+    *{box-sizing:border-box;margin:0;padding:0}
 
-    /* Header */
+    html{scroll-behavior:smooth}
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(22,163,74,.12), transparent 28%),
+        var(--bg);
+      color:var(--text);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+
+    .container{
+      width:min(1160px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
     header{
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color:#fff;
-      padding:14px 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
-      position: sticky;
+      position:sticky;
       top:0;
-      z-index:1000;
+      z-index:10;
+      backdrop-filter:blur(16px);
+      background:rgba(244,247,251,.82);
+      border-bottom:1px solid rgba(227,232,239,.85);
     }
-    nav{
+
+    .nav{
+      min-height:72px;
       display:flex;
+      align-items:center;
       justify-content:space-between;
-      align-items:center;
-      gap:16px;
+      gap:18px;
     }
-    .logo{
+
+    .brand{
       display:flex;
       align-items:center;
-      gap:10px;
-      font-size:1.35rem;
-      font-weight:800;
-      letter-spacing:0.2px;
-      user-select:none;
-      white-space:nowrap;
+      gap:12px;
+      text-decoration:none;
+      font-weight:850;
+      letter-spacing:-.03em;
+      font-size:1.12rem;
     }
-    .logo-badge{
-      width:34px; height:34px;
-      border-radius:10px;
-      background: rgba(255,255,255,0.22);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.20);
+
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:white;
+      background:linear-gradient(135deg,var(--primary),#0f172a);
+      box-shadow:0 10px 25px rgba(37,99,235,.25);
     }
 
     .nav-links{
       display:flex;
-      list-style:none;
+      align-items:center;
       gap:8px;
+      list-style:none;
       flex-wrap:wrap;
       justify-content:flex-end;
     }
+
     .nav-links a{
-      color:#fff;
+      display:inline-flex;
+      padding:9px 12px;
+      border-radius:999px;
       text-decoration:none;
-      font-weight:650;
-      font-size:1.02rem;
-      transition: all 0.2s;
-      padding:6px 10px;
-      border-radius:8px;
-      white-space:nowrap;
-    }
-    .nav-links a:hover{ background: rgba(255,255,255,0.18); }
-
-    .mobile-menu{
-      display:none;
-      font-size:1.6rem;
-      cursor:pointer;
-      user-select:none;
-      padding: 6px 10px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.16);
+      color:var(--muted);
+      font-weight:700;
+      font-size:.94rem;
+      transition:.18s ease;
     }
 
-    /* Hero */
+    .nav-links a:hover{
+      color:var(--primary);
+      background:var(--soft);
+    }
+
     .hero{
-      padding: 78px 0 64px;
-      background: linear-gradient(to bottom right, #e3f2fd, var(--bg));
-      text-align:center;
+      padding:76px 0 44px;
     }
-    .hero h1{
-      font-size: 2.7rem;
-      margin-bottom: 14px;
-      color: var(--primary-color);
-      letter-spacing: -0.3px;
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.18fr .82fr;
+      gap:28px;
+      align-items:stretch;
     }
-    .hero p{
-      font-size: 1.18rem;
-      max-width: 880px;
-      margin: 0 auto 26px;
-      color:#555;
+
+    .hero-card{
+      padding:42px;
+      border:1px solid var(--border);
+      border-radius:calc(var(--radius) + 8px);
+      background:rgba(255,255,255,.78);
+      box-shadow:var(--shadow);
     }
-    .cta-row{
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 12px;
+      border-radius:999px;
+      background:var(--soft);
+      color:var(--primary-dark);
+      font-weight:800;
+      font-size:.9rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      max-width:760px;
+      font-size:clamp(2.2rem, 5vw, 4.35rem);
+      line-height:1.02;
+      letter-spacing:-.065em;
+      margin-bottom:18px;
+    }
+
+    .lead{
+      max-width:730px;
+      color:var(--muted);
+      font-size:1.15rem;
+      margin-bottom:28px;
+    }
+
+    .actions{
       display:flex;
-      gap:12px;
       flex-wrap:wrap;
-      justify-content:center;
-      align-items:center;
+      gap:12px;
     }
-    .cta-button{
-      display:inline-block;
-      background: linear-gradient(to right, var(--accent-color), #ff9966);
-      color:#fff;
-      padding: 14px 34px;
-      border-radius: 50px;
-      text-decoration:none;
-      font-weight:800;
-      font-size: 1.08rem;
-      box-shadow: 0 10px 22px rgba(255,94,98,0.26);
-      transition: all 0.25s;
-    }
-    .cta-button:hover{ transform: translateY(-4px); box-shadow: 0 14px 26px rgba(255,94,98,0.34); }
 
-    .ghost-button{
-      display:inline-block;
-      padding: 14px 26px;
-      border-radius: 50px;
-      text-decoration:none;
-      font-weight:800;
-      font-size: 1.02rem;
-      color: var(--primary-color);
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(58,123,213,0.25);
-      transition: all 0.25s;
-    }
-    .ghost-button:hover{ transform: translateY(-3px); border-color: rgba(58,123,213,0.40); }
-
-    /* Sections */
-    section{ scroll-margin-top: 86px; }
-
-    .features{
-      padding: 74px 0;
-      background:#fff;
-    }
-    .section-title{
-      text-align:center;
-      margin-bottom: 50px;
-      color: var(--primary-color);
-      font-size: 2.05rem;
-      letter-spacing: -0.2px;
-    }
-    .features-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-    }
-    .feature-card{
-      background: var(--light-color);
-      border-radius: 14px;
-      padding: 26px;
-      text-align:left;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      transition: all 0.25s;
-      border-top: 4px solid var(--primary-color);
-    }
-    .feature-card:hover{ transform: translateY(-8px); box-shadow: 0 16px 32px rgba(0,0,0,0.10); }
-    .feature-icon{
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: rgba(58,123,213,0.12);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      color: var(--primary-color);
-      margin-bottom: 14px;
-    }
-    .feature-card h3{ margin-bottom: 10px; }
-    .feature-card p{ color:#555; }
-
-    /* Modules/Topics */
-    .topics{
-      padding: 74px 0;
-      background: #f8f9fa;
-    }
-    .topics-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 18px;
-    }
-    .topic-card{
-      background:#fff;
-      border-radius: 14px;
-      overflow:hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-      transition: all 0.25s;
-    }
-    .topic-card:hover{ transform: translateY(-6px); box-shadow: 0 14px 26px rgba(0,0,0,0.10); }
-    .topic-header{
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-      color:#fff;
-      padding: 18px 18px;
-      text-align:left;
-    }
-    .topic-header h3{ font-size: 1.2rem; }
-    .topic-content{ padding: 18px; }
-    .topic-content ul{ list-style:none; margin-bottom: 14px; }
-    .topic-content li{
-      padding: 9px 0;
-      border-bottom: 1px solid #eee;
-      color:#444;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .check{
-      width: 18px; height: 18px;
-      border-radius: 999px;
-      background: rgba(46,204,113,0.14);
-      color: var(--success-color);
+    .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      font-weight:900;
-      flex: 0 0 auto;
-      margin-top: 2px;
-    }
-
-    .topic-button{
-      display:block;
-      text-align:center;
-      background-color: var(--primary-color);
-      color:#fff;
-      padding: 11px;
-      border-radius: 10px;
+      gap:10px;
+      min-height:48px;
+      padding:13px 18px;
+      border-radius:15px;
+      border:1px solid transparent;
       text-decoration:none;
-      font-weight: 700;
-      transition: background-color 0.2s;
-    }
-    .topic-button:hover{ background-color:#2a6bc7; }
-    .topic-button.disabled{
-      background: #c9d6ea;
-      cursor: not-allowed;
-      pointer-events: none;
+      font-weight:850;
+      transition:.18s ease;
     }
 
-    /* Practice */
-    .practice{
-      padding: 74px 0;
-      background:#fff;
+    .btn-primary{
+      background:var(--primary);
+      color:white;
+      box-shadow:0 12px 26px rgba(37,99,235,.25);
     }
-    .practice-stats{
+
+    .btn-primary:hover{
+      background:var(--primary-dark);
+      transform:translateY(-2px);
+    }
+
+    .btn-secondary{
+      background:white;
+      color:var(--text);
+      border-color:var(--border);
+    }
+
+    .btn-secondary:hover{
+      border-color:#c6d3e5;
+      transform:translateY(-2px);
+    }
+
+    .today-panel{
+      min-height:100%;
+      padding:28px;
+      border-radius:calc(var(--radius) + 8px);
+      background:#0f172a;
+      color:white;
+      box-shadow:var(--shadow);
       display:flex;
-      justify-content:space-around;
-      flex-wrap:wrap;
-      gap: 10px;
-      margin-bottom: 44px;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:26px;
+      overflow:hidden;
+      position:relative;
     }
-    .stat{
-      text-align:center;
-      padding: 16px 14px;
-      min-width: 210px;
-    }
-    .stat-number{
-      font-size: 2.6rem;
-      font-weight: 900;
-      color: var(--primary-color);
-      margin-bottom: 6px;
-    }
-    .stat-text{ font-size: 1.05rem; color:#666; }
 
-    .exam-simulation{
-      background: linear-gradient(to right, #4b6cb7, #182848);
-      color:#fff;
-      padding: 34px;
-      border-radius: 16px;
-      text-align:left;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+    .today-panel:before{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      right:-80px;
+      top:-70px;
+      background:rgba(37,99,235,.45);
+      filter:blur(2px);
     }
-    .exam-simulation h3{
-      font-size: 1.65rem;
-      margin-bottom: 12px;
-      letter-spacing: -0.2px;
-    }
-    .exam-simulation p{ opacity: 0.92; }
 
-    .exam-button{
-      display:inline-block;
-      background-color: var(--accent-color);
-      color:#fff;
-      padding: 13px 30px;
-      border-radius: 50px;
+    .panel-content{position:relative;z-index:1}
+
+    .panel-label{
+      color:#93c5fd;
+      font-weight:850;
+      margin-bottom:12px;
+    }
+
+    .panel-title{
+      font-size:1.8rem;
+      line-height:1.12;
+      letter-spacing:-.04em;
+      margin-bottom:12px;
+      font-weight:900;
+    }
+
+    .panel-text{
+      color:#cbd5e1;
+      margin-bottom:22px;
+    }
+
+    .mini-list{
+      display:grid;
+      gap:10px;
+      list-style:none;
+    }
+
+    .mini-list li{
+      padding:12px;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:16px;
+      background:rgba(255,255,255,.06);
+      color:#e2e8f0;
+      font-size:.95rem;
+    }
+
+    section{padding:44px 0;scroll-margin-top:92px}
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:22px;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.65rem, 3vw, 2.45rem);
+      line-height:1.1;
+      letter-spacing:-.045em;
+    }
+
+    .section-head p{
+      color:var(--muted);
+      max-width:520px;
+    }
+
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .tool-card{
+      min-height:310px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      padding:24px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:var(--card);
+      box-shadow:0 10px 28px rgba(15,23,42,.06);
+      transition:.18s ease;
+    }
+
+    .tool-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 18px 38px rgba(15,23,42,.1);
+      border-color:#c8d5e8;
+    }
+
+    .tool-top{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+    }
+
+    .icon{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:1.55rem;
+      background:var(--soft);
+    }
+
+    .badge{
+      align-self:flex-start;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#ecfdf3;
+      color:#027a48;
+      font-size:.78rem;
+      font-weight:850;
+      white-space:nowrap;
+    }
+
+    .badge.draft{
+      background:#fff7ed;
+      color:#c2410c;
+    }
+
+    .tool-card h3{
+      font-size:1.35rem;
+      letter-spacing:-.03em;
+      margin-bottom:10px;
+    }
+
+    .tool-card p{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .features-list{
+      display:grid;
+      gap:8px;
+      margin:16px 0 22px;
+      list-style:none;
+      color:#3f4a5f;
+      font-size:.94rem;
+    }
+
+    .features-list li:before{
+      content:"✓";
+      color:var(--green);
+      font-weight:900;
+      margin-right:8px;
+    }
+
+    .tool-link{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:46px;
+      padding:12px 14px;
+      border-radius:14px;
+      background:#111827;
+      color:white;
       text-decoration:none;
-      font-weight: 900;
-      font-size: 1.05rem;
-      margin-top: 16px;
-      transition: all 0.25s;
+      font-weight:850;
+      transition:.18s ease;
     }
-    .exam-button:hover{
-      background-color:#ff4757;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 22px rgba(0,0,0,0.22);
-    }
-    .exam-button.disabled{
-      background: rgba(255,255,255,0.22);
-      color: rgba(255,255,255,0.80);
-      cursor:not-allowed;
+
+    .tool-link:hover{background:var(--primary)}
+
+    .tool-link.disabled{
+      background:#d5dce8;
+      color:#64748b;
       pointer-events:none;
     }
 
-    /* Footer */
-    footer{
-      background: var(--dark-color);
-      color:#fff;
-      padding: 44px 0 24px;
-      margin-top: 0;
-    }
-    .footer-content{
+    .quick-grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 28px;
-      margin-bottom: 26px;
-    }
-    .footer-column h3{
-      margin-bottom: 14px;
-      color: var(--secondary-color);
-      font-size: 1.15rem;
-    }
-    .footer-links{ list-style:none; }
-    .footer-links li{ margin-bottom: 10px; }
-    .footer-links a{
-      color:#ddd;
-      text-decoration:none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover{ color: var(--secondary-color); }
-    .copyright{
-      text-align:center;
-      padding-top: 18px;
-      border-top: 1px solid #444;
-      color:#aaa;
-      font-size: 0.9rem;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
     }
 
-    /* Responsive */
-    @media (max-width: 992px){
-      .nav-links{ display:none; }
-      .mobile-menu{ display:block; }
-      .hero h1{ font-size: 2.15rem; }
-      .hero p{ font-size: 1.08rem; }
+    .quick-card{
+      padding:18px;
+      border-radius:20px;
+      background:white;
+      border:1px solid var(--border);
     }
-    @media (max-width: 520px){
-      .hero{ padding: 60px 0 52px; }
-      .hero h1{ font-size: 1.75rem; }
-      .cta-button{ padding: 12px 28px; font-size: 1rem; }
-      .ghost-button{ padding: 12px 22px; font-size: 0.98rem; }
-      .exam-simulation{ padding: 26px; }
+
+    .quick-card strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:1.06rem;
+    }
+
+    .quick-card span{
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .roadmap{
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:white;
+      overflow:hidden;
+    }
+
+    .roadmap-item{
+      display:grid;
+      grid-template-columns:150px 1fr;
+      gap:18px;
+      padding:22px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .roadmap-item:last-child{border-bottom:0}
+
+    .roadmap-item b{
+      color:var(--primary-dark);
+    }
+
+    .roadmap-item p{color:var(--muted)}
+
+    footer{
+      padding:36px 0 44px;
+      color:var(--muted);
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      padding-top:24px;
+      border-top:1px solid var(--border);
+    }
+
+    @media (max-width:920px){
+      .hero-grid{grid-template-columns:1fr}
+      .tools-grid{grid-template-columns:1fr 1fr}
+      .quick-grid{grid-template-columns:1fr 1fr}
+      .section-head{align-items:flex-start;flex-direction:column}
+    }
+
+    @media (max-width:640px){
+      .container{width:min(100% - 22px, 1160px)}
+      .nav{align-items:flex-start;flex-direction:column;padding:14px 0}
+      .nav-links{justify-content:flex-start}
+      .hero{padding:42px 0 26px}
+      .hero-card{padding:26px}
+      .today-panel{padding:24px}
+      .tools-grid,.quick-grid{grid-template-columns:1fr}
+      .roadmap-item{grid-template-columns:1fr;gap:6px}
+      .btn{width:100%}
     }
   </style>
 </head>
-
 <body>
-  <!-- Header -->
   <header>
-    <div class="container">
-      <nav>
-        <div class="logo" aria-label="Химия ЕГЭ">
-          <div class="logo-badge">H</div>
-          <span>Химия ЕГЭ</span>
-        </div>
-
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Главная</a></li>
-          <li><a href="#features">Платформа</a></li>
-          <li><a href="#modules">Модули</a></li>
-          <li><a href="#practice">Практика</a></li>
-        </ul>
-
-        <div class="mobile-menu" id="mobileMenu" aria-label="Меню">≡</div>
-      </nav>
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Кабинет учителя">
+        <span class="brand-mark">К</span>
+        <span>Кабинет учителя</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#tools">Инструменты</a></li>
+        <li><a href="#quick">Быстрый доступ</a></li>
+        <li><a href="#plan">План развития</a></li>
+      </ul>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero" id="home">
-    <div class="container">
-      <h1>Подготовка к ЕГЭ по химии</h1>
-      <p>Тренажёры, теория и практика в одном месте. Начнём с того, что реально даёт быстрый прирост — номенклатуры.</p>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Рабочая панель для уроков</div>
+          <h1>Все учебные инструменты в одном месте</h1>
+          <p class="lead">Тренажёры по химии, рассадка учеников и будущие сервисы для подготовки материалов. Открыли страницу — выбрали нужный инструмент — работаете без лишних поисков по файлам.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="inorg-nomenclature.html">Открыть номенклатуру</a>
+            <a class="btn btn-secondary" href="#tools">Посмотреть все инструменты</a>
+          </div>
+        </div>
 
-      <div class="cta-row">
-        <a href="inorg-nomenclature.html" class="cta-button">Открыть номенклатуру</a>
-        <a href="#modules" class="ghost-button">Выбрать модуль</a>
+        <aside class="today-panel">
+          <div class="panel-content">
+            <div class="panel-label">Сейчас доступно</div>
+            <div class="panel-title">3 рабочих инструмента</div>
+            <p class="panel-text">Главная страница теперь служит навигационным центром, а не просто обложкой сайта.</p>
+          </div>
+          <ul class="mini-list panel-content">
+            <li>Номенклатура неорганических веществ</li>
+            <li>Тренажёр ОВР и степеней окисления</li>
+            <li>Инструмент рассадки учеников</li>
+          </ul>
+        </aside>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2 class="section-title">Как устроена подготовка</h2>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">✓</div>
-          <h3>Короткие подходы</h3>
-          <p>Тренировки по 3–7 минут: вопрос → выбор → ответ → следующий. Это не “урок”, это практика.</p>
+    <section id="tools">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Инструменты</h2>
+          </div>
+          <p>Карточки ведут напрямую к нужным HTML-страницам. Без охоты на файл в репозитории — мы всё-таки учим детей, а не ищем артефакты древней цивилизации.</p>
         </div>
 
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <h3>Быстрый темп</h3>
-          <p>Автопереход и навигация по номерам позволяют держать ритм и повторять слабые места.</p>
-        </div>
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div>
+              <div class="tool-top">
+                <div class="icon">⚗️</div>
+                <span class="badge">Готово</span>
+              </div>
+              <h3>Номенклатура неорганики</h3>
+              <p>Тренажёр формула → название для оксидов, кислот, оснований и солей.</p>
+              <ul class="features-list">
+                <li>32 вопроса</li>
+                <li>перемешивание заданий</li>
+                <li>режим повторения ошибок</li>
+              </ul>
+            </div>
+            <a class="tool-link" href="inorg-nomenclature.html">Открыть тренажёр</a>
+          </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>ЕГЭ-ориентировано</h3>
-          <p>Собираем модули под реальные типы задач: номенклатура, ОВР, растворы, расчёты.</p>
-        </div>
+          <article class="tool-card">
+            <div>
+              <div class="tool-top">
+                <div class="icon">⇄</div>
+                <span class="badge draft">Черновик</span>
+              </div>
+              <h3>ОВР и степени окисления</h3>
+              <p>Простой тренажёр по степеням окисления и определению окислителя/восстановителя.</p>
+              <ul class="features-list">
+                <li>ввод ответа</li>
+                <li>проверка по Enter</li>
+                <li>можно расширить до полноценного модуля</li>
+              </ul>
+            </div>
+            <a class="tool-link" href="trainer.html">Открыть ОВР</a>
+          </article>
 
-        <div class="feature-card">
-          <div class="feature-icon">🧠</div>
-          <h3>Повтор ошибок</h3>
-          <p>Отдельный режим “Ошибки”, чтобы не “просто решать”, а целенаправленно добивать пробелы.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modules -->
-  <section class="topics" id="modules">
-    <div class="container">
-      <h2 class="section-title">Модули подготовки</h2>
-
-      <div class="topics-grid">
-        <div class="topic-card">
-          <div class="topic-header">
-            <h3>Номенклатура неорганики</h3>
-          </div>
-          <div class="topic-content">
-            <ul>
-              <li><span class="check">✓</span> Формула → название</li>
-              <li><span class="check">✓</span> Кнопки-ответы (без ввода текста)</li>
-              <li><span class="check">✓</span> “Ответить” → “Далее”, режим ошибок</li>
-            </ul>
-            <a href="inorg-nomenclature.html" class="topic-button">Открыть тренажёр</a>
-          </div>
-        </div>
-
-        <div class="topic-card">
-          <div class="topic-header">
-            <h3>ОВР и баланс</h3>
-          </div>
-          <div class="topic-content">
-            <ul>
-              <li><span class="check">✓</span> Степени окисления</li>
-              <li><span class="check">✓</span> Баланс электронов</li>
-              <li><span class="check">✓</span> Окислитель/восстановитель</li>
-            </ul>
-            <a class="topic-button disabled">Скоро</a>
-          </div>
-        </div>
-
-        <div class="topic-card">
-          <div class="topic-header">
-            <h3>Растворы и pH</h3>
-          </div>
-          <div class="topic-content">
-            <ul>
-              <li><span class="check">✓</span> Массовая доля и концентрации</li>
-              <li><span class="check">✓</span> Гидролиз солей</li>
-              <li><span class="check">✓</span> pH слабых/сильных электролитов</li>
-            </ul>
-            <a class="topic-button disabled">Скоро</a>
-          </div>
+          <article class="tool-card">
+            <div>
+              <div class="tool-top">
+                <div class="icon">🪑</div>
+                <span class="badge">Готово</span>
+              </div>
+              <h3>Рассадка учеников</h3>
+              <p>Инструмент для распределения учеников по партам с сохранением и экспортом.</p>
+              <ul class="features-list">
+                <li>drag-and-drop</li>
+                <li>сохранение в браузере</li>
+                <li>экспорт JSON, PDF и печать</li>
+              </ul>
+            </div>
+            <a class="tool-link" href="%D0%A0%D0%B0%D1%81%D1%81%D0%B0%D0%B4%D0%BA%D0%B0">Открыть рассадку</a>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Practice -->
-  <section class="practice" id="practice">
-    <div class="container">
-      <h2 class="section-title">Практика и экзаменный режим</h2>
+    <section id="quick">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Быстрый доступ</h2>
+          </div>
+          <p>Короткая карта того, что уже есть и что логично развивать дальше.</p>
+        </div>
 
-      <div class="practice-stats">
-        <div class="stat">
-          <div class="stat-number">1</div>
-          <div class="stat-text">готовый тренажёр</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">32</div>
-          <div class="stat-text">вопроса по номенклатуре</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">∞</div>
-          <div class="stat-text">повторов без лимита</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">0</div>
-          <div class="stat-text">лишних кликов</div>
+        <div class="quick-grid">
+          <div class="quick-card">
+            <strong>Химия</strong>
+            <span>Номенклатура, ОВР, будущие расчётные задачи.</span>
+          </div>
+          <div class="quick-card">
+            <strong>Организация класса</strong>
+            <span>Рассадка, списки, правила размещения учеников.</span>
+          </div>
+          <div class="quick-card">
+            <strong>Проверка знаний</strong>
+            <span>Будущие мини-тесты, тренажёры и автоматическая проверка.</span>
+          </div>
+          <div class="quick-card">
+            <strong>Материалы урока</strong>
+            <span>Здесь можно собрать рабочие листы, таблицы и памятки.</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="exam-simulation">
-        <h3>Экзаменный режим (в планах)</h3>
-        <p>Полноценная имитация: таймер, строгая последовательность, результат по блокам. Добавим, когда вы утвердите структуру модулей.</p>
-        <a class="exam-button disabled">Скоро</a>
+    <section id="plan">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>План развития</h2>
+          </div>
+          <p>Что стоит сделать дальше, чтобы сайт стал полноценным рабочим кабинетом.</p>
+        </div>
+
+        <div class="roadmap">
+          <div class="roadmap-item">
+            <b>Шаг 1</b>
+            <p>Переименовать файл «Рассадка» в понятный адрес, например <strong>seating.html</strong>, чтобы ссылка была аккуратной.</p>
+          </div>
+          <div class="roadmap-item">
+            <b>Шаг 2</b>
+            <p>Переделать тренажёр ОВР в формат карточек с вариантами ответов и объяснениями.</p>
+          </div>
+          <div class="roadmap-item">
+            <b>Шаг 3</b>
+            <p>Добавить выбор тем в номенклатуре: оксиды, кислоты, основания, соли или всё вместе.</p>
+          </div>
+          <div class="roadmap-item">
+            <b>Шаг 4</b>
+            <p>Собрать единый стиль в отдельный CSS-файл, чтобы все инструменты выглядели как части одной системы.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h3>Химия ЕГЭ</h3>
-          <p style="color:#ddd;">
-            Сайт-тренажёр для подготовки: без лишней лирики, с фокусом на практике и повторе ошибок.
-          </p>
-        </div>
-
-        <div class="footer-column">
-          <h3>Навигация</h3>
-          <ul class="footer-links">
-            <li><a href="#home">Главная</a></li>
-            <li><a href="#features">Платформа</a></li>
-            <li><a href="#modules">Модули</a></li>
-            <li><a href="#practice">Практика</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Тренажёры</h3>
-          <ul class="footer-links">
-            <li><a href="inorg-nomenclature.html">Номенклатура неорганики</a></li>
-            <li><a href="#modules">ОВР (скоро)</a></li>
-            <li><a href="#modules">Растворы и pH (скоро)</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="copyright">
-        <p>&copy; <span id="year"></span> Химия ЕГЭ</p>
-      </div>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Кабинет учителя</span>
+      <span>Мини-сайт учебных инструментов</span>
     </div>
   </footer>
 
   <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Mobile menu toggle
-    const mobileMenu = document.getElementById("mobileMenu");
-    const navLinks = document.getElementById("navLinks");
-
-    mobileMenu.addEventListener("click", () => {
-      const isOpen = navLinks.style.display === "flex";
-      navLinks.style.display = isOpen ? "none" : "flex";
-      navLinks.style.flexDirection = "column";
-      navLinks.style.background = "rgba(255,255,255,0.14)";
-      navLinks.style.padding = "10px";
-      navLinks.style.borderRadius = "12px";
-      navLinks.style.backdropFilter = "blur(10px)";
-      navLinks.style.position = "absolute";
-      navLinks.style.right = "20px";
-      navLinks.style.top = "62px";
-      navLinks.style.width = "220px";
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", (e) => {
-        const href = a.getAttribute("href");
-        if(!href || href === "#") return;
-        const el = document.querySelector(href);
-        if(!el) return;
-
-        e.preventDefault();
-        window.scrollTo({ top: el.offsetTop - 78, behavior: "smooth" });
-
-        // close mobile menu on small screens
-        if (window.innerWidth <= 992) navLinks.style.display = "none";
-      });
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
