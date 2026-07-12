@@ -488,9 +488,179 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="site.css">
+    <style>
+        body {
+            height: auto;
+            min-height: 100vh;
+            padding: 0;
+            overflow: auto;
+        }
+
+        .legacy-page {
+            width: min(1380px, calc(100% - 28px));
+        }
+
+        .legacy-hero {
+            background: linear-gradient(135deg, #123d34 0%, #16815a 56%, #54af86 100%);
+        }
+
+        .legacy-page .app-container {
+            height: calc(100vh - 320px);
+            min-height: 620px;
+            margin-top: 18px;
+            gap: 18px;
+        }
+
+        .legacy-page .controls,
+        .legacy-page .classroom {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, .96);
+            box-shadow: var(--shadow);
+        }
+
+        .legacy-page .controls { flex-basis: 330px; padding: 18px; }
+        .legacy-page .classroom { padding: 18px; }
+
+        .legacy-page h2,
+        .legacy-page h3 {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .legacy-page textarea {
+            padding: 11px 12px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            outline: none;
+            color: var(--text);
+            background: #fff;
+        }
+
+        .legacy-page textarea:focus {
+            border-color: #16815a;
+            box-shadow: 0 0 0 4px rgba(22, 129, 90, .12);
+        }
+
+        .legacy-page button {
+            min-height: 38px;
+            border-radius: 10px;
+            color: #214338;
+            background: #edf5f1;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .legacy-page button:hover { background: #e1eee8; }
+
+        .legacy-page .add-btn,
+        .legacy-page #autoArrange {
+            color: #fff;
+            background: #16815a;
+        }
+
+        .legacy-page .add-btn:hover,
+        .legacy-page #autoArrange:hover { background: #116d4b; }
+
+        .legacy-page #clearAll {
+            color: #fff;
+            background: var(--bad);
+        }
+
+        .legacy-page .student-list {
+            border: 1px dashed #bdcbbc;
+            border-radius: 13px;
+            background: #fbfefc;
+        }
+
+        .legacy-page .student-item {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        .legacy-page .student-item:hover { background: #f4fbf7; }
+
+        .legacy-page .remove-student {
+            min-height: 22px;
+            color: var(--bad);
+            background: transparent;
+        }
+
+        .legacy-page .classroom-title {
+            padding-bottom: 13px;
+            border-bottom: 1px solid var(--line);
+            font-size: 20px;
+        }
+
+        .legacy-page .desk {
+            border-color: #31574d;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 14px rgba(18, 61, 52, .06);
+        }
+
+        .legacy-page .desk-seat {
+            border-color: #b9c8c3;
+            border-radius: 8px;
+            background: #f8fbfa;
+        }
+
+        .legacy-page .desk-seat.occupied {
+            color: #11563d;
+            border-color: #84c7a8;
+            background: #e9f8f1;
+        }
+
+        .legacy-page .teacher-desk {
+            border-radius: 12px;
+            background: #173f35;
+            font-weight: 800;
+        }
+
+        .legacy-page .status-bar {
+            color: #116546;
+            border-top-color: #cce7da;
+        }
+
+        @media (max-width: 900px) {
+            .legacy-page .app-container {
+                height: auto;
+                min-height: 0;
+                overflow: visible;
+            }
+
+            .legacy-page .controls { min-height: 680px; }
+            .legacy-page .classroom { min-height: 720px; }
+        }
+
+        @media (max-width: 620px) {
+            .legacy-page { width: min(100% - 18px, 1380px); }
+        }
+    </style>
 </head>
 <body>
-    <h1>Инструмент рассадки учеников</h1>
+    <header class="site-header">
+        <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+            <span class="site-brand-mark">H₂O</span>
+            <span class="site-brand-copy">
+                <strong>Кабинет учителя</strong>
+                <small>Химия · практика · инструменты</small>
+            </span>
+        </a>
+        <nav class="site-nav" aria-label="Основная навигация">
+            <a class="site-nav-link" href="index.html">← Все инструменты</a>
+        </nav>
+    </header>
+
+    <main class="site-page legacy-page">
+        <section class="site-hero legacy-hero">
+            <div class="site-hero-mark" aria-hidden="true">PDF</div>
+            <div class="site-eyebrow">Организация класса · Расширенная версия</div>
+            <h1>Рассадка учеников</h1>
+            <p>Расширенный инструмент с ручным распределением, сохранением схемы, импортом JSON, печатью и экспортом в PDF.</p>
+        </section>
     
     <div class="app-container">
         <div class="controls">
@@ -554,6 +724,9 @@
             </div>
         </div>
     </div>
+    </main>
+
+    <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
 
     <!-- Скрытые элементы для работы с файлами -->
     <input type="file" id="jsonFileInput" class="hidden-input" accept=".json">
