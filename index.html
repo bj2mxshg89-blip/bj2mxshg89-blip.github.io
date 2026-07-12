@@ -1,1 +1,111 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Кабинет учителя</title><style>body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0;padding:40px;color:#172033}h1{margin-bottom:10px}p{color:#555;max-width:700px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:30px}.card{background:#fff;border:1px solid #dfe7f2;border-radius:16px;padding:22px}.card h2{font-size:20px;margin:0 0 10px}.btn{display:inline-block;margin-top:12px;padding:10px 14px;background:#2563eb;color:#fff;text-decoration:none;border-radius:10px;font-weight:700}</style></head><body><h1>Кабинет учителя</h1><p>Главная страница учебных инструментов: тренажёры по химии и рассадка учеников.</p><div class="grid"><div class="card"><h2>Номенклатура неорганики</h2><p>Тренажёр формула → название.</p><a class="btn" href="inorg-nomenclature.html">Открыть</a></div><div class="card"><h2>ОВР и степени окисления</h2><p>Тренажёр по ОВР и степеням окисления.</p><a class="btn" href="trainer.html">Открыть</a></div><div class="card"><h2>Рассадка учеников</h2><p>Новая стабильная версия инструмента для распределения учеников по партам.</p><a class="btn" href="seating-v2.html">Открыть</a></div><div class="card"><h2>Гомология алканов</h2><p>Интерактивный тренажёр: 12 типов заданий, режимы тренировки и теста.</p><a class="btn" href="alkane-homology.html">Открыть</a></div></div></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Учебные тренажёры по химии и инструменты для организации класса.">
+  <title>Кабинет учителя</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <span class="site-nav-current">Все инструменты</span>
+    </nav>
+  </header>
+
+  <main class="site-page">
+    <section class="site-hero">
+      <div class="site-hero-mark" aria-hidden="true">H₂O</div>
+      <div class="site-eyebrow">Учебная лаборатория в браузере</div>
+      <h1>Кабинет учителя</h1>
+      <p>Тренажёры по химии и рабочие инструменты для урока — без регистрации, лишних экранов и поисков нужной кнопки под микроскопом.</p>
+      <div class="site-hero-chips" aria-label="Преимущества">
+        <span class="site-hero-chip">Работает на телефоне</span>
+        <span class="site-hero-chip">Мгновенная проверка</span>
+        <span class="site-hero-chip">Данные остаются в браузере</span>
+      </div>
+    </section>
+
+    <section aria-labelledby="toolsTitle">
+      <div class="site-section-head">
+        <div>
+          <h2 id="toolsTitle">Учебные инструменты</h2>
+        </div>
+        <p>Выберите тему для тренировки или откройте инструмент организации класса.</p>
+      </div>
+
+      <div class="tool-grid">
+        <article class="tool-card" style="--tool-accent:#3157d5;--tool-soft:#eef2ff">
+          <div class="tool-card-top">
+            <div>
+              <div class="tool-kicker">Органическая химия</div>
+              <h3>Гомология алканов</h3>
+            </div>
+            <div class="tool-symbol" aria-hidden="true">CH₂</div>
+          </div>
+          <p>Общая формула, соседние гомологи, названия, последовательности и расчётные задания.</p>
+          <div class="tool-card-bottom">
+            <span class="tool-meta">12 типов · тренировка и тест</span>
+            <a class="tool-link" href="alkane-homology.html">Открыть</a>
+          </div>
+        </article>
+
+        <article class="tool-card" style="--tool-accent:#7a43c4;--tool-soft:#f3edff">
+          <div class="tool-card-top">
+            <div>
+              <div class="tool-kicker">Неорганическая химия</div>
+              <h3>Номенклатура веществ</h3>
+            </div>
+            <div class="tool-symbol" aria-hidden="true">Fe₂O₃</div>
+          </div>
+          <p>Определение названий оксидов, кислот, оснований и солей по их формулам.</p>
+          <div class="tool-card-bottom">
+            <span class="tool-meta">32 задания · работа над ошибками</span>
+            <a class="tool-link" href="inorg-nomenclature.html">Открыть</a>
+          </div>
+        </article>
+
+        <article class="tool-card" style="--tool-accent:#c0522b;--tool-soft:#fff0e9">
+          <div class="tool-card-top">
+            <div>
+              <div class="tool-kicker">Окислительно-восстановительные реакции</div>
+              <h3>ОВР и степени окисления</h3>
+            </div>
+            <div class="tool-symbol" aria-hidden="true">e⁻</div>
+          </div>
+          <p>Короткая тренировка по степеням окисления, окислителям и восстановителям.</p>
+          <div class="tool-card-bottom">
+            <span class="tool-meta">Ввод ответа · мгновенная проверка</span>
+            <a class="tool-link" href="trainer.html">Открыть</a>
+          </div>
+        </article>
+
+        <article class="tool-card" style="--tool-accent:#16815a;--tool-soft:#e9f8f1">
+          <div class="tool-card-top">
+            <div>
+              <div class="tool-kicker">Организация класса</div>
+              <h3>Рассадка учеников</h3>
+            </div>
+            <div class="tool-symbol" aria-hidden="true">18×2</div>
+          </div>
+          <p>Распределение учеников по партам, ручное перемещение, сохранение, импорт и печать.</p>
+          <div class="tool-card-bottom">
+            <span class="tool-meta">18 парт · сохранение в браузере</span>
+            <a class="tool-link" href="seating-v2.html">Открыть</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">Учебные инструменты работают прямо в браузере</footer>
+</body>
+</html>
