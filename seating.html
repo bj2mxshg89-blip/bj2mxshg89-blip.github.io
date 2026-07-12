@@ -505,6 +505,13 @@
             background: linear-gradient(135deg, #123d34 0%, #16815a 56%, #54af86 100%);
         }
 
+        .legacy-page .legacy-hero h1 {
+            padding: 0;
+            color: #fff;
+            text-align: left;
+            font-weight: 850;
+        }
+
         .legacy-page .app-container {
             height: calc(100vh - 320px);
             min-height: 620px;
@@ -742,7 +749,7 @@
 
     <script>
         // Инициализация jsPDF
-        const { jsPDF } = window.jspdf;
+        const jsPDF = window.jspdf?.jsPDF || null;
         
         // Инициализация данных
         let students = {
@@ -1345,6 +1352,12 @@
 
         // Экспорт в PDF
         async function exportToPDF() {
+            if (!jsPDF || typeof html2canvas !== 'function') {
+                updateStatusBar('Экспорт PDF временно недоступен');
+                alert('Не удалось загрузить библиотеку экспорта PDF. Проверьте подключение к интернету и повторите попытку.');
+                return;
+            }
+
             try {
                 updateStatusBar('Создание PDF...');
                 
