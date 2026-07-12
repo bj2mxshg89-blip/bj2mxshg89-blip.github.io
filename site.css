@@ -283,7 +283,7 @@ a { -webkit-tap-highlight-color: transparent; }
   background: #f7f9fd;
 }
 
-.site-stat span {
+.site-stat > span {
   display: block;
   color: var(--muted);
   font-size: 10px;
@@ -292,7 +292,7 @@ a { -webkit-tap-highlight-color: transparent; }
   letter-spacing: .4px;
 }
 
-.site-stat strong {
+.site-stat > strong {
   display: block;
   margin-top: 2px;
   font-size: 20px;
