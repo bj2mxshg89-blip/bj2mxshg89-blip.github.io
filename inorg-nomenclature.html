@@ -346,6 +346,7 @@ const TASKS = [
 ];
 
 function norm(s){ return s.toLowerCase().replace(/ё/g,"е").trim(); }
+function chem(s){ return s.replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[Number(d)]); }
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.random()* (i+1)|0; [a[i],a[j]]=[a[j],a[i]];} return a;}
 
 let items=[], idx=0, ok=0, bad=0;
@@ -432,7 +433,7 @@ function render(){
   }
 
   const cur=items[idx];
-  elQuestion.textContent="Выберите: "+cur.f;
+  elQuestion.textContent=chem(cur.f);
 
   let opts=[cur.right,
     ...shuffle(TASKS.map(t=>t.right).filter(x=>x!==cur.right)).slice(0,3)
