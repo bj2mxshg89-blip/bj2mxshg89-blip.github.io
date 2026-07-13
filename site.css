@@ -388,6 +388,11 @@ a { -webkit-tap-highlight-color: transparent; }
   box-shadow: var(--shadow);
 }
 
+.tool-card-wide {
+  grid-column: 1 / -1;
+  min-height: 190px;
+}
+
 .tool-card-top {
   display: flex;
   align-items: flex-start;
@@ -482,6 +487,7 @@ a { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width: 720px) {
   .tool-grid { grid-template-columns: 1fr; }
+  .tool-card-wide { grid-column: auto; }
   .site-section-head { align-items: flex-start; flex-direction: column; gap: 5px; }
 }
 

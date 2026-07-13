@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Классификация органических веществ — тренажёр</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --panel:#ffffff;
+      --text:#182033;
+      --muted:#687085;
+      --primary:#3157d5;
+      --primary-2:#6d8cff;
+      --line:#dfe5ef;
+      --soft:#eef2ff;
+      --good:#147a4a;
+      --good-bg:#eaf8f0;
+      --bad:#b42318;
+      --bad-bg:#fff0ee;
+      --shadow:0 14px 40px rgba(36,51,90,.10);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(109,140,255,.16), transparent 30%),
+        linear-gradient(180deg,#edf2ff 0,#f4f7fb 320px);
+      min-height:100vh;
+    }
+
+    button,select{font:inherit}
+    button{cursor:pointer}
+
+    .page{
+      width:min(1180px,calc(100% - 28px));
+      margin:0 auto;
+      padding:28px 0 48px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:30px;
+      color:#fff;
+      border-radius:28px;
+      background:linear-gradient(135deg,#1d2d6d 0%,#3157d5 55%,#6f8cf2 100%);
+      box-shadow:var(--shadow);
+    }
+
+    .hero::after{
+      content:"R–X";
+      position:absolute;
+      right:30px;
+      bottom:-24px;
+      font-size:118px;
+      font-weight:900;
+      opacity:.10;
+      letter-spacing:-7px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      padding:7px 11px;
+      margin-bottom:16px;
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .hero h1{
+      margin:0 0 10px;
+      font-size:clamp(30px,5vw,50px);
+      line-height:1.04;
+      letter-spacing:-1.2px;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:780px;
+      opacity:.9;
+      font-size:17px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:290px minmax(0,1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .panel{
+      background:rgba(255,255,255,.97);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .sidebar{
+      padding:18px;
+      align-self:start;
+      position:sticky;
+      top:14px;
+    }
+
+    .sidebar h2,.trainer h2{
+      margin:0;
+      font-size:20px;
+    }
+
+    .section-label{
+      margin:20px 0 10px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+
+    .mode-tabs{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+    }
+
+    .mode,.topic{
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+      color:var(--text);
+      font-weight:800;
+    }
+
+    .mode{
+      padding:10px 8px;
+    }
+
+    .topic{
+      padding:11px 12px;
+      text-align:left;
+      line-height:1.25;
+    }
+
+    .mode.active,.topic.active{
+      border-color:#aebdf2;
+      background:var(--soft);
+      color:#2448bd;
+    }
+
+    .topic-list{
+      display:grid;
+      gap:8px;
+    }
+
+    .topic small{
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .memo{
+      margin-top:16px;
+      padding:14px;
+      border-radius:14px;
+      background:#101b43;
+      color:#fff;
+    }
+
+    .memo strong{
+      display:block;
+      margin-bottom:8px;
+    }
+
+    .memo div{
+      margin:4px 0;
+      font-family:"Times New Roman",serif;
+      font-size:18px;
+    }
+
+    .trainer{
+      min-height:650px;
+      padding:22px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      padding-bottom:16px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .sub{
+      margin-top:4px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .stats{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .stat{
+      min-width:84px;
+      padding:8px 11px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#f7f9fd;
+    }
+
+    .stat span{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+    }
+
+    .stat strong{
+      font-size:19px;
+    }
+
+    .progress{
+      height:9px;
+      margin:16px 0 22px;
+      overflow:hidden;
+      border-radius:999px;
+      background:#e9edf5;
+    }
+
+    .progress div{
+      height:100%;
+      width:10%;
+      background:linear-gradient(90deg,var(--primary),var(--primary-2));
+      transition:width .2s ease;
+    }
+
+    .question-card{
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:linear-gradient(180deg,#fff,#fbfcff);
+    }
+
+    .question-type{
+      display:inline-flex;
+      padding:6px 10px;
+      margin-bottom:15px;
+      border-radius:999px;
+      background:var(--soft);
+      color:#2a4bc2;
+      font-size:12px;
+      font-weight:850;
+    }
+
+    .question-card h3{
+      margin:0 0 8px;
+      font-size:clamp(22px,3vw,30px);
+      line-height:1.22;
+    }
+
+    .hint{
+      margin-bottom:18px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .matching-grid{
+      display:grid;
+      gap:10px;
+    }
+
+    .match-row{
+      display:grid;
+      grid-template-columns:minmax(0,1.25fr) minmax(210px,.9fr);
+      gap:12px;
+      align-items:center;
+      padding:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:#fff;
+    }
+
+    .match-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .badge{
+      width:30px;
+      height:30px;
+      flex:0 0 30px;
+      display:grid;
+      place-items:center;
+      border-radius:9px;
+      background:var(--soft);
+      color:#2448bd;
+      font-weight:900;
+    }
+
+    .formula{
+      font-family:"Times New Roman",serif;
+      font-size:20px;
+      font-weight:700;
+      overflow-wrap:anywhere;
+    }
+
+    .name{
+      font-weight:780;
+      overflow-wrap:anywhere;
+    }
+
+    select{
+      width:100%;
+      padding:11px 12px;
+      border:1px solid var(--line);
+      border-radius:11px;
+      color:var(--text);
+      background:#fff;
+      outline:none;
+    }
+
+    select:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(49,87,213,.12);
+    }
+
+    .feedback{
+      display:none;
+      margin-top:16px;
+      padding:13px 14px;
+      border-radius:13px;
+      font-size:14px;
+      line-height:1.5;
+    }
+
+    .feedback.good{
+      display:block;
+      color:#0f653d;
+      background:var(--good-bg);
+    }
+
+    .feedback.bad{
+      display:block;
+      color:#8f1b13;
+      background:var(--bad-bg);
+    }
+
+    .explanation-list{
+      margin:8px 0 0;
+      padding-left:20px;
+    }
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:18px;
+      flex-wrap:wrap;
+    }
+
+    .left-actions,.right-actions{
+      display:flex;
+      gap:9px;
+    }
+
+    .btn{
+      padding:12px 16px;
+      border:0;
+      border-radius:12px;
+      font-weight:850;
+    }
+
+    .btn.primary{
+      color:#fff;
+      background:var(--primary);
+    }
+
+    .btn.secondary{
+      color:#2343ae;
+      background:#edf1fb;
+    }
+
+    .btn.ghost{
+      color:var(--text);
+      background:#fff;
+      border:1px solid var(--line);
+    }
+
+    .btn:disabled{
+      cursor:not-allowed;
+      opacity:.55;
+    }
+
+    .summary{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:18px;
+      padding:16px;
+      border:1px dashed #c7d2f7;
+      border-radius:15px;
+      background:#f8faff;
+    }
+
+    .summary div{
+      padding:8px;
+      text-align:center;
+    }
+
+    .summary strong{
+      display:block;
+      font-size:24px;
+    }
+
+    .summary span{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .result-screen{
+      display:none;
+      text-align:center;
+      padding:34px 18px;
+    }
+
+    .result-screen.show{
+      display:block;
+    }
+
+    .result-score{
+      margin:8px 0;
+      color:var(--primary);
+      font-size:54px;
+      font-weight:900;
+    }
+
+    .review{
+      display:grid;
+      gap:10px;
+      margin-top:22px;
+      text-align:left;
+    }
+
+    .review-item{
+      padding:13px;
+      border:1px solid var(--line);
+      border-radius:13px;
+      background:#fff;
+    }
+
+    .footer-note{
+      margin-top:20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    @media(max-width:860px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{position:static}
+      .topic-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media(max-width:660px){
+      .page{width:min(100% - 18px,1180px);padding-top:10px}
+      .hero,.trainer,.sidebar{border-radius:16px}
+      .hero{padding:22px}
+      .layout{gap:10px;margin-top:10px}
+      .trainer{padding:16px}
+      .topbar{align-items:flex-start;flex-direction:column}
+      .stats{width:100%}
+      .stat{flex:1}
+      .topic-list{grid-template-columns:1fr}
+      .match-row{grid-template-columns:1fr}
+      .summary{grid-template-columns:1fr}
+      .actions{flex-direction:column}
+      .left-actions,.right-actions{width:100%}
+      .btn{flex:1}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Органическая химия · Классы веществ</div>
+      <h1>Классификация органических веществ</h1>
+      <p>Тренажёр на установление соответствия между формулами, названиями, характерными структурными признаками, функциональными группами и классами органических соединений.</p>
+    </section>
+
+    <div class="layout">
+      <aside class="panel sidebar">
+        <h2>Режим работы</h2>
+
+        <div class="section-label">Формат</div>
+        <div class="mode-tabs">
+          <button class="mode active" data-mode="training">Тренировка</button>
+          <button class="mode" data-mode="test">Тест</button>
+        </div>
+
+        <div class="section-label">Тип заданий</div>
+        <div class="topic-list">
+          <button class="topic active" data-topic="mixed">Смешанный режим<small>Все виды соответствий</small></button>
+          <button class="topic" data-topic="formula">Формула → класс<small>По сокращённой формуле</small></button>
+          <button class="topic" data-topic="name">Название → класс<small>По названию вещества</small></button>
+          <button class="topic" data-topic="group">Признак строения → класс<small>Связь, цикл или функциональная группа</small></button>
+          <button class="topic" data-topic="general">Формула/фрагмент → класс<small>По общей формуле или фрагменту</small></button>
+          <button class="topic" data-topic="function">Вещество → признак<small>Определить характерный фрагмент</small></button>
+        </div>
+
+        <div class="memo">
+          <strong>Памятка</strong>
+          <div>C=C, C≡C, цикл — признаки строения</div>
+          <div>–OH — гидроксильная группа</div>
+          <div>–CHO — альдегидная</div>
+          <div>&gt;C=O — карбонильная группа</div>
+          <div>–COOH — карбоксильная группа</div>
+          <div>–NH₂ — аминогруппа</div>
+          <div>–C(=O)–O– — сложноэфирный фрагмент</div>
+        </div>
+      </aside>
+
+      <section class="panel trainer">
+        <div id="workScreen">
+          <div class="topbar">
+            <div>
+              <h2 id="trainerTitle">Смешанный режим</h2>
+              <div class="sub" id="trainerSub">Установите четыре соответствия</div>
+            </div>
+
+            <div class="stats">
+              <div class="stat"><span>Задание</span><strong id="taskNo">1/10</strong></div>
+              <div class="stat"><span>Баллы</span><strong id="scoreCount">0</strong></div>
+              <div class="stat"><span>Максимум</span><strong id="maxScore">40</strong></div>
+            </div>
+          </div>
+
+          <div class="progress"><div id="progressBar"></div></div>
+
+          <article class="question-card">
+            <div class="question-type" id="questionType">Формула → класс</div>
+            <h3 id="questionText">Установите соответствие</h3>
+            <div class="hint" id="questionHint">Для каждого вещества выберите класс органических соединений.</div>
+
+            <div id="answerArea"></div>
+            <div class="feedback" id="feedback"></div>
+          </article>
+
+          <div class="actions">
+            <div class="left-actions">
+              <button class="btn ghost" id="skipBtn">Пропустить</button>
+              <button class="btn secondary" id="ruleBtn">Показать памятку</button>
+            </div>
+
+            <div class="right-actions">
+              <button class="btn primary" id="checkBtn">Проверить</button>
+              <button class="btn secondary" id="nextBtn" disabled>Следующее</button>
+            </div>
+          </div>
+
+          <div class="summary">
+            <div><strong id="accuracy">0%</strong><span>Точность</span></div>
+            <div><strong id="answered">0</strong><span>Проверено соответствий</span></div>
+            <div><strong id="correctPairs">0</strong><span>Верных соответствий</span></div>
+          </div>
+        </div>
+
+        <section class="result-screen" id="resultScreen">
+          <h2>Результат</h2>
+          <div class="result-score" id="finalPercent">0%</div>
+          <div id="finalText"></div>
+          <div class="review" id="review"></div>
+          <button class="btn primary" id="restartBtn" style="margin-top:18px">Пройти ещё раз</button>
+        </section>
+      </section>
+    </div>
+
+    <div class="footer-note">Автономная HTML-страница. Работает без подключения к интернету.</div>
+  </main>
+
+  <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
+
+<script>
+const classes = [
+  'Алканы','Циклоалканы','Алкены','Алкадиены','Алкины','Арены','Галогенпроизводные',
+  'Спирты','Фенолы','Простые эфиры','Альдегиды','Кетоны',
+  'Карбоновые кислоты','Сложные эфиры','Амины','Аминокислоты'
+];
+
+const database = [
+  {id:'alkane1', cls:'Алканы', formula:'CH₃–CH₂–CH₃', name:'пропан', group:'открытая цепь; только одинарные связи C–C и C–H', general:'CₙH₂ₙ₊₂ (ациклические соединения)'},
+  {id:'alkane2', cls:'Алканы', formula:'CH₃–CH₂–CH₂–CH₃', name:'бутан', group:'открытая цепь; только одинарные связи C–C и C–H', general:'CₙH₂ₙ₊₂ (ациклические соединения)'},
+
+  {id:'cyclo1', cls:'Циклоалканы', formula:'(CH₂)₃ (цикл)', name:'циклопропан', group:'насыщенный углеродный цикл; только одинарные связи C–C', general:'CₙH₂ₙ (насыщенный цикл)'},
+  {id:'cyclo2', cls:'Циклоалканы', formula:'(CH₂)₆ (цикл)', name:'циклогексан', group:'насыщенный углеродный цикл; только одинарные связи C–C', general:'CₙH₂ₙ (насыщенный цикл)'},
+
+  {id:'alkene1', cls:'Алкены', formula:'CH₂=CH₂', name:'этен', group:'открытая цепь и одна двойная связь C=C', general:'CₙH₂ₙ (ациклические; одна связь C=C)'},
+  {id:'alkene2', cls:'Алкены', formula:'CH₃–CH=CH₂', name:'пропен', group:'открытая цепь и одна двойная связь C=C', general:'CₙH₂ₙ (ациклические; одна связь C=C)'},
+
+  {id:'diene1', cls:'Алкадиены', formula:'CH₂=CH–CH=CH₂', name:'бута-1,3-диен', group:'открытая цепь и две двойные связи C=C', general:'CₙH₂ₙ₋₂ (ациклические; две связи C=C)'},
+  {id:'diene2', cls:'Алкадиены', formula:'CH₂=C(CH₃)–CH=CH₂', name:'2-метилбута-1,3-диен', group:'открытая цепь и две двойные связи C=C', general:'CₙH₂ₙ₋₂ (ациклические; две связи C=C)'},
+
+  {id:'alkyne1', cls:'Алкины', formula:'HC≡CH', name:'этин', group:'открытая цепь и одна тройная связь C≡C', general:'CₙH₂ₙ₋₂ (ациклические; одна связь C≡C)'},
+  {id:'alkyne2', cls:'Алкины', formula:'CH₃–C≡CH', name:'пропин', group:'открытая цепь и одна тройная связь C≡C', general:'CₙH₂ₙ₋₂ (ациклические; одна связь C≡C)'},
+
+  {id:'arene1', cls:'Арены', formula:'C₆H₆ (бензольное кольцо)', name:'бензол', group:'ароматическое бензольное кольцо', general:'бензольное кольцо в молекуле'},
+  {id:'arene2', cls:'Арены', formula:'C₆H₅–CH₃ (бензольное кольцо)', name:'толуол', group:'ароматическое бензольное кольцо', general:'Ar–R, где Ar — арильная группа'},
+
+  {id:'halo1', cls:'Галогенпроизводные', formula:'CH₃–Cl', name:'хлорметан', group:'атом галогена, связанный с атомом углерода: C–Cl', general:'R–X, где X — галоген'},
+  {id:'halo2', cls:'Галогенпроизводные', formula:'CH₃–CH₂–Br', name:'бромэтан', group:'атом галогена, связанный с атомом углерода: C–Br', general:'R–X, где X — галоген'},
+
+  {id:'alcohol1', cls:'Спирты', formula:'CH₃–CH₂–OH', name:'этанол', group:'гидроксильная группа –OH при насыщенном атоме C', general:'R–OH (одноатомные спирты)'},
+  {id:'alcohol2', cls:'Спирты', formula:'CH₃–CH(OH)–CH₃', name:'пропан-2-ол', group:'гидроксильная группа –OH при насыщенном атоме C', general:'R–OH (одноатомные спирты)'},
+
+  {id:'phenol1', cls:'Фенолы', formula:'C₆H₅–OH', name:'фенол', group:'группа –OH непосредственно связана с атомом C бензольного кольца', general:'Ar–OH'},
+  {id:'phenol2', cls:'Фенолы', formula:'CH₃–C₆H₄–OH', name:'метилфенол (крезол)', group:'группа –OH непосредственно связана с атомом C бензольного кольца', general:'Ar–OH'},
+
+  {id:'ether1', cls:'Простые эфиры', formula:'CH₃–O–CH₃', name:'диметиловый эфир', group:'эфирная связь –O– между двумя углеводородными радикалами', general:'R–O–R′'},
+  {id:'ether2', cls:'Простые эфиры', formula:'CH₃–O–CH₂–CH₃', name:'метоксиэтан', group:'эфирная связь –O– между двумя углеводородными радикалами', general:'R–O–R′'},
+
+  {id:'aldehyde1', cls:'Альдегиды', formula:'CH₃–CHO', name:'этаналь', group:'концевая альдегидная группа –CHO', general:'R–CHO'},
+  {id:'aldehyde2', cls:'Альдегиды', formula:'H–CHO', name:'метаналь', group:'концевая альдегидная группа –CHO', general:'R–CHO или H–CHO'},
+
+  {id:'ketone1', cls:'Кетоны', formula:'CH₃–C(=O)–CH₃', name:'пропанон', group:'карбонильная группа >C=O связана с двумя атомами C', general:'R–C(=O)–R′'},
+  {id:'ketone2', cls:'Кетоны', formula:'CH₃–C(=O)–CH₂–CH₃', name:'бутан-2-он', group:'карбонильная группа >C=O связана с двумя атомами C', general:'R–C(=O)–R′'},
+
+  {id:'acid1', cls:'Карбоновые кислоты', formula:'CH₃–COOH', name:'этановая кислота', group:'карбоксильная группа –COOH', general:'R–COOH'},
+  {id:'acid2', cls:'Карбоновые кислоты', formula:'H–COOH', name:'метановая кислота', group:'карбоксильная группа –COOH', general:'R–COOH или H–COOH'},
+
+  {id:'ester1', cls:'Сложные эфиры', formula:'CH₃–C(=O)–O–CH₃', name:'метилэтаноат', group:'сложноэфирный фрагмент –C(=O)–O–', general:'R–C(=O)–O–R′'},
+  {id:'ester2', cls:'Сложные эфиры', formula:'H–C(=O)–O–CH₂–CH₃', name:'этилметаноат', group:'сложноэфирный фрагмент –C(=O)–O–', general:'(R или H)–C(=O)–O–R′'},
+
+  {id:'amine1', cls:'Амины', formula:'CH₃–NH₂', name:'метиламин', group:'аминогруппа –NH₂ у первичного амина', general:'R–NH₂ (первичные амины)'},
+  {id:'amine2', cls:'Амины', formula:'CH₃–CH₂–NH₂', name:'этиламин', group:'аминогруппа –NH₂ у первичного амина', general:'R–NH₂ (первичные амины)'},
+
+  {id:'amino1', cls:'Аминокислоты', formula:'NH₂–CH₂–COOH', name:'2-аминоэтановая кислота (глицин)', group:'аминогруппа –NH₂ и карбоксильная группа –COOH', general:'NH₂–CH(R)–COOH (α-аминокислоты)'},
+  {id:'amino2', cls:'Аминокислоты', formula:'CH₃–CH(NH₂)–COOH', name:'2-аминопропановая кислота (аланин)', group:'аминогруппа –NH₂ и карбоксильная группа –COOH', general:'NH₂–CH(R)–COOH (α-аминокислоты)'}
+];
+
+const topicTitles = {
+  mixed:'Смешанный режим',
+  formula:'Формула → класс',
+  name:'Название → класс',
+  group:'Группа → класс',
+  general:'Формула/фрагмент → класс',
+  function:'Вещество → группа'
+};
+
+const state = {
+  mode:'training',
+  topic:'mixed',
+  total:10,
+  task:1,
+  score:0,
+  checkedPairs:0,
+  correctPairs:0,
+  current:null,
+  locked:false,
+  used:new Set(),
+  testAnswers:[],
+  testTasks:[]
+};
+
+function shuffle(array){
+  const result=[...array];
+  for(let i=result.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [result[i],result[j]]=[result[j],result[i]];
+  }
+  return result;
+}
+
+function pickDistinctClasses(count=4){
+  const shuffled=shuffle(database);
+  const picked=[];
+  const usedClasses=new Set();
+
+  for(const item of shuffled){
+    if(!usedClasses.has(item.cls)){
+      picked.push(item);
+      usedClasses.add(item.cls);
+    }
+    if(picked.length===count) break;
+  }
+
+  return picked;
+}
+
+function taskSignature(type,items){
+  return type+'|'+items
+    .map(item=>itemPrompt({type},item)+'→'+itemAnswer({type},item))
+    .sort()
+    .join('|');
+}
+
+function buildTask(type){
+  let actualType=type;
+  if(actualType==='mixed'){
+    actualType=shuffle(['formula','name','group','general','function'])[0];
+  }
+
+  let items;
+  let signature;
+  let attempts=0;
+
+  do{
+    items=pickDistinctClasses(4);
+    signature=taskSignature(actualType,items);
+    attempts++;
+  }while(state.used.has(signature) && attempts<200);
+
+  state.used.add(signature);
+
+  const options = actualType==='function'
+    ? shuffle(items.map(x=>x.group))
+    : shuffle(items.map(x=>x.cls));
+
+  return {
+    type:actualType,
+    items,
+    options,
+    signature
+  };
+}
+
+function itemPrompt(task,item){
+  switch(task.type){
+    case 'formula': return item.formula;
+    case 'name': return item.name;
+    case 'group': return item.group;
+    case 'general': return item.general;
+    case 'function': return `${item.name}: ${item.formula}`;
+  }
+}
+
+function itemAnswer(task,item){
+  return task.type==='function' ? item.group : item.cls;
+}
+
+function typeLabel(type){
+  return {
+    formula:'Формула → класс',
+    name:'Название → класс',
+    group:'Признак строения → класс',
+    general:'Формула/фрагмент → класс',
+    function:'Вещество → характерный признак'
+  }[type];
+}
+
+function hintText(type){
+  return type==='function'
+    ? 'Для каждого вещества выберите его характерный структурный признак или функциональную группу.'
+    : 'Для каждого пункта выберите наиболее специфический класс органических веществ из предложенных.';
+}
+
+function renderTask(){
+  state.current=buildTask(state.topic);
+  state.locked=false;
+
+  document.getElementById('questionType').textContent=typeLabel(state.current.type);
+  document.getElementById('questionText').textContent='Установите соответствие';
+  document.getElementById('questionHint').textContent=hintText(state.current.type);
+  document.getElementById('taskNo').textContent=`${state.task}/${state.total}`;
+  document.getElementById('progressBar').style.width=`${(state.task/state.total)*100}%`;
+  document.getElementById('feedback').className='feedback';
+  document.getElementById('feedback').innerHTML='';
+  document.getElementById('checkBtn').disabled=false;
+  document.getElementById('nextBtn').disabled=true;
+  document.getElementById('skipBtn').disabled=false;
+
+  const area=document.getElementById('answerArea');
+  area.innerHTML='';
+
+  const grid=document.createElement('div');
+  grid.className='matching-grid';
+
+  state.current.items.forEach((item,index)=>{
+    const row=document.createElement('div');
+    row.className='match-row';
+
+    const left=document.createElement('div');
+    left.className='match-left';
+
+    const badge=document.createElement('div');
+    badge.className='badge';
+    badge.textContent=String(index+1);
+
+    const content=document.createElement('div');
+    const prompt=itemPrompt(state.current,item);
+    content.textContent=prompt;
+    content.className = state.current.type==='formula' || state.current.type==='general' || state.current.type==='function'
+      ? 'formula'
+      : 'name';
+
+    left.appendChild(badge);
+    left.appendChild(content);
+
+    const select=document.createElement('select');
+    select.dataset.index=index;
+    select.innerHTML='<option value="">Выберите ответ</option>'+
+      state.current.options.map(option=>`<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join('');
+
+    row.appendChild(left);
+    row.appendChild(select);
+    grid.appendChild(row);
+  });
+
+  area.appendChild(grid);
+}
+
+function escapeHtml(text){
+  return String(text)
+    .replaceAll('&','&amp;')
+    .replaceAll('<','&lt;')
+    .replaceAll('>','&gt;')
+    .replaceAll('"','&quot;');
+}
+
+function readAnswers(){
+  return [...document.querySelectorAll('#answerArea select')].map(x=>x.value);
+}
+
+function checkCurrent(){
+  if(state.locked) return;
+
+  const answers=readAnswers();
+  if(answers.some(x=>!x)){
+    const fb=document.getElementById('feedback');
+    fb.className='feedback bad';
+    fb.textContent='Нужно установить все четыре соответствия.';
+    return;
+  }
+
+  if(new Set(answers).size!==answers.length){
+    const fb=document.getElementById('feedback');
+    fb.className='feedback bad';
+    fb.textContent='В этом задании каждый вариант ответа используется только один раз.';
+    return;
+  }
+
+  const details=state.current.items.map((item,index)=>{
+    const correct=itemAnswer(state.current,item);
+    return {
+      prompt:itemPrompt(state.current,item),
+      chosen:answers[index],
+      correct,
+      ok:answers[index]===correct
+    };
+  });
+
+  if(state.mode==='test'){
+    state.testTasks.push(state.current);
+    state.testAnswers.push(details);
+    state.checkedPairs+=4;
+    state.correctPairs+=details.filter(x=>x.ok).length;
+    state.score=state.correctPairs;
+    updateStats();
+    state.locked=true;
+    nextStep();
+    return;
+  }
+
+  state.locked=true;
+  const correctNow=details.filter(x=>x.ok).length;
+  state.checkedPairs+=4;
+  state.correctPairs+=correctNow;
+  state.score=state.correctPairs;
+
+  const fb=document.getElementById('feedback');
+  const allCorrect=correctNow===4;
+  fb.className=`feedback ${allCorrect?'good':'bad'}`;
+
+  const lines=details.map(x=>
+    `<li>${escapeHtml(x.prompt)} — <strong>${escapeHtml(x.correct)}</strong>${x.ok?'':' (ваш ответ: '+escapeHtml(x.chosen)+')'}</li>`
+  ).join('');
+
+  fb.innerHTML=`<strong>${allCorrect?'Все соответствия верны.':`Верно: ${correctNow} из 4.`}</strong><ul class="explanation-list">${lines}</ul>`;
+
+  document.getElementById('checkBtn').disabled=true;
+  document.getElementById('nextBtn').disabled=false;
+  document.getElementById('skipBtn').disabled=true;
+  document.querySelectorAll('#answerArea select').forEach(select=>select.disabled=true);
+  updateStats();
+}
+
+function updateStats(){
+  document.getElementById('maxScore').textContent=state.total*4;
+  document.getElementById('answered').textContent=state.checkedPairs;
+
+  if(state.mode==='test' && !document.getElementById('resultScreen').classList.contains('show')){
+    document.getElementById('scoreCount').textContent='—';
+    document.getElementById('correctPairs').textContent='—';
+    document.getElementById('accuracy').textContent='—';
+    return;
+  }
+
+  document.getElementById('scoreCount').textContent=state.score;
+  document.getElementById('correctPairs').textContent=state.correctPairs;
+  const accuracy=state.checkedPairs ? Math.round(state.correctPairs/state.checkedPairs*100) : 0;
+  document.getElementById('accuracy').textContent=accuracy+'%';
+}
+
+function nextStep(){
+  if(state.task>=state.total){
+    finish();
+    return;
+  }
+
+  state.task++;
+  renderTask();
+}
+
+function skipTask(){
+  if(state.locked) return;
+
+  if(state.mode==='test'){
+    const details=state.current.items.map(item=>({
+      prompt:itemPrompt(state.current,item),
+      chosen:'Пропущено',
+      correct:itemAnswer(state.current,item),
+      ok:false
+    }));
+    state.testTasks.push(state.current);
+    state.testAnswers.push(details);
+  }
+
+  state.checkedPairs+=4;
+  updateStats();
+  nextStep();
+}
+
+function finish(){
+  document.getElementById('workScreen').style.display='none';
+  const result=document.getElementById('resultScreen');
+  result.classList.add('show');
+
+  const max=state.total*4;
+  const percent=Math.round(state.correctPairs/max*100);
+  document.getElementById('finalPercent').textContent=percent+'%';
+
+  let text='Материал требует повторения.';
+  if(percent>=85) text='Отличное владение классификацией органических веществ.';
+  else if(percent>=70) text='Хороший результат. Остались отдельные неточности.';
+  else if(percent>=50) text='Основы усвоены, но часть классов нужно повторить.';
+
+  document.getElementById('finalText').textContent=`${state.correctPairs} верных соответствий из ${max}. ${text}`;
+
+  const review=document.getElementById('review');
+  review.innerHTML='';
+
+  if(state.mode==='test'){
+    state.testAnswers.forEach((task,index)=>{
+      const mistakes=task.filter(x=>!x.ok);
+      if(!mistakes.length) return;
+
+      const card=document.createElement('div');
+      card.className='review-item';
+      card.innerHTML=`<strong>Задание ${index+1}</strong><ul class="explanation-list">${
+        mistakes.map(x=>`<li>${escapeHtml(x.prompt)} — правильный ответ: <strong>${escapeHtml(x.correct)}</strong>; ваш ответ: ${escapeHtml(x.chosen)}</li>`).join('')
+      }</ul>`;
+      review.appendChild(card);
+    });
+
+    if(!review.children.length){
+      review.innerHTML='<div class="review-item"><strong>Ошибок нет.</strong></div>';
+    }
+  }
+}
+
+function resetSession(){
+  state.total=state.mode==='training'?10:15;
+  state.task=1;
+  state.score=0;
+  state.checkedPairs=0;
+  state.correctPairs=0;
+  state.current=null;
+  state.locked=false;
+  state.used=new Set();
+  state.testAnswers=[];
+  state.testTasks=[];
+
+  document.getElementById('workScreen').style.display='block';
+  document.getElementById('resultScreen').classList.remove('show');
+  updateStats();
+  renderTask();
+}
+
+document.querySelectorAll('.mode').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));
+    button.classList.add('active');
+    state.mode=button.dataset.mode;
+
+    document.getElementById('trainerSub').textContent=
+      state.mode==='training'
+      ?'Установите четыре соответствия с мгновенной проверкой'
+      :'15 заданий; проверка и разбор после завершения';
+
+    resetSession();
+  });
+});
+
+document.querySelectorAll('.topic').forEach(button=>{
+  button.addEventListener('click',()=>{
+    document.querySelectorAll('.topic').forEach(x=>x.classList.remove('active'));
+    button.classList.add('active');
+    state.topic=button.dataset.topic;
+    document.getElementById('trainerTitle').textContent=topicTitles[state.topic];
+    resetSession();
+  });
+});
+
+document.getElementById('checkBtn').addEventListener('click',checkCurrent);
+document.getElementById('nextBtn').addEventListener('click',nextStep);
+document.getElementById('skipBtn').addEventListener('click',skipTask);
+document.getElementById('restartBtn').addEventListener('click',resetSession);
+
+document.getElementById('ruleBtn').addEventListener('click',()=>{
+  const fb=document.getElementById('feedback');
+  fb.className='feedback good';
+  fb.innerHTML='<strong>Как рассуждать:</strong> сначала определите тип углеродного скелета и кратность связей, затем найдите функциональную группу: –OH, –CHO, &gt;C=O, –COOH, –C(=O)–O– или –NH₂. Одна молекулярная формула без строения не всегда позволяет однозначно определить класс.';
+});
+
+resetSession();
+</script>
+</body>
+</html>
