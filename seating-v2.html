@@ -188,7 +188,7 @@
 
     .teacher {
       max-width: 790px;
-      margin: 0 auto 22px;
+      margin: 22px auto 0;
       padding: 11px;
       border-radius: 13px;
       color: #fff;
@@ -361,8 +361,8 @@
           <span class="classroom-badge">36 мест</span>
         </div>
         <div class="classroom-stage">
-          <div class="teacher">Стол учителя</div>
           <div class="desks" id="desks"></div>
+          <div class="teacher">Стол учителя</div>
         </div>
       </section>
     </div>
@@ -398,7 +398,7 @@
 
     function createDesks() {
       desksEl.innerHTML = "";
-      for (let i = 1; i <= DESKS; i++) {
+      for (let i = DESKS; i >= 1; i--) {
         const desk = document.createElement("div");
         desk.className = "desk";
         desk.innerHTML = `<div class="desk-title">Парта ${i}</div>`;
