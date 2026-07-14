@@ -116,9 +116,16 @@
       font-size: 13px;
       font-weight: 700;
       cursor: grab;
+      touch-action: manipulation;
     }
 
     .student:last-child { margin-bottom: 0; }
+
+    .student.selected {
+      border-color: #16815a;
+      background: #e2f7ec;
+      box-shadow: 0 0 0 3px rgba(22, 129, 90, .16);
+    }
 
     .student button {
       width: 26px;
@@ -234,6 +241,8 @@
       background: #f8fbfa;
       text-align: center;
       font-size: 12px;
+      cursor: pointer;
+      touch-action: manipulation;
     }
 
     .seat.occupied {
@@ -242,6 +251,12 @@
       background: #e9f8f1;
       font-weight: 750;
       cursor: grab;
+    }
+
+    .seat.selected {
+      border-color: #16815a;
+      background: #d9f5e7;
+      box-shadow: 0 0 0 3px rgba(22, 129, 90, .18);
     }
 
     .seat.over {
@@ -301,7 +316,7 @@
       <p>Добавляйте списки, распределяйте учеников автоматически или вручную и сохраняйте готовую схему в браузере.</p>
       <div class="site-hero-chips">
         <span class="site-hero-chip">18 парт</span>
-        <span class="site-hero-chip">Перетаскивание</span>
+        <span class="site-hero-chip">Перетаскивание и касания</span>
         <span class="site-hero-chip">Импорт и экспорт JSON</span>
         <span class="site-hero-chip">Печать</span>
       </div>
@@ -312,7 +327,7 @@
         <h2>Ученики и действия</h2>
         <label for="names">Добавление учеников</label>
         <textarea class="site-input" id="names" placeholder="Введите имена: каждое с новой строки или через запятую"></textarea>
-        <div class="hint">Дубликаты удаляются автоматически. Учеников можно перетаскивать между списком и партами.</div>
+        <div class="hint">Дубликаты удаляются автоматически. На телефоне нажмите на ученика, затем на нужное место.</div>
         <button class="site-btn add-btn" onclick="addStudents()">Добавить учеников</button>
 
         <div class="btns">
@@ -341,7 +356,7 @@
         <div class="classroom-head">
           <div>
             <h2>Классная комната</h2>
-            <p>Перетащите ученика на свободное место или поменяйте двух учеников местами.</p>
+            <p>Перетащите ученика мышью или нажмите на ученика и затем на нужное место.</p>
           </div>
           <span class="classroom-badge">36 мест</span>
         </div>
@@ -360,6 +375,7 @@
     const DESKS = 18;
     let state = {unassigned: [], seats: {}};
     let dragged = null;
+    let selected = null;
 
     const namesEl = document.getElementById("names");
     const unassignedEl = document.getElementById("unassigned");
@@ -393,6 +409,13 @@
           seat.addEventListener("dragover", onSeatDragOver);
           seat.addEventListener("dragleave", () => seat.classList.remove("over"));
           seat.addEventListener("drop", onSeatDrop);
+          seat.addEventListener("click", onSeatClick);
+          seat.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              onSeatClick(event);
+            }
+          });
           desk.appendChild(seat);
         });
         desksEl.appendChild(desk);
@@ -434,12 +457,33 @@
       }
       state.unassigned.sort((a, b) => a.localeCompare(b, "ru")).forEach(name => {
         const item = document.createElement("div");
-        item.className = "student";
+        const isSelected = selected?.type === "unassigned" && selected.name === name;
+        item.className = `student${isSelected ? " selected" : ""}`;
         item.draggable = true;
         item.dataset.name = name;
+        item.tabIndex = 0;
+        item.setAttribute("role", "button");
+        item.setAttribute("aria-pressed", String(isSelected));
+        item.setAttribute("aria-label", `Выбрать ученика ${name}`);
         item.innerHTML = `<span>${escapeHTML(name)}</span><button title="Удалить" aria-label="Удалить ${escapeHTML(name)}">×</button>`;
-        item.addEventListener("dragstart", () => { dragged = {type: "unassigned", name}; });
-        item.querySelector("button").onclick = () => removeStudent(name);
+        item.addEventListener("dragstart", () => {
+          selected = null;
+          dragged = {type: "unassigned", name};
+        });
+        item.addEventListener("dragend", () => { dragged = null; });
+        item.addEventListener("click", event => {
+          if (!event.target.closest("button")) selectUnassigned(name);
+        });
+        item.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectUnassigned(name);
+          }
+        });
+        item.querySelector("button").onclick = event => {
+          event.stopPropagation();
+          removeStudent(name);
+        };
         unassignedEl.appendChild(item);
       });
     }
@@ -447,13 +491,76 @@
     function renderSeats() {
       document.querySelectorAll(".seat").forEach(seat => {
         const name = state.seats[seat.dataset.key];
-        seat.className = `seat${name ? " occupied" : ""}`;
+        const isSelected = selected?.type === "seat" && selected.key === seat.dataset.key;
+        seat.className = `seat${name ? " occupied" : ""}${isSelected ? " selected" : ""}`;
         seat.textContent = name || "Пусто";
         seat.draggable = Boolean(name);
+        seat.tabIndex = 0;
+        seat.setAttribute("role", "button");
+        seat.setAttribute("aria-pressed", String(isSelected));
+        seat.setAttribute("aria-label", name ? `${name}. Выбрать для перемещения` : "Свободное место");
         seat.ondragstart = name
-          ? () => { dragged = {type: "seat", key: seat.dataset.key, name}; }
+          ? () => {
+              selected = null;
+              dragged = {type: "seat", key: seat.dataset.key, name};
+            }
           : null;
+        seat.ondragend = () => { dragged = null; };
       });
+    }
+
+    function selectUnassigned(name) {
+      const sameStudent = selected?.type === "unassigned" && selected.name === name;
+      selected = sameStudent ? null : {type: "unassigned", name};
+      render();
+      setStatus(selected
+        ? `Выбран ученик «${name}». Теперь нажмите на нужное место.`
+        : "Выбор отменён.");
+    }
+
+    function onSeatClick(event) {
+      const targetKey = event.currentTarget.dataset.key;
+      const targetName = state.seats[targetKey];
+
+      if (!selected) {
+        if (!targetName) {
+          setStatus("Сначала выберите ученика, затем нажмите на свободное место.");
+          return;
+        }
+        selected = {type: "seat", key: targetKey, name: targetName};
+        render();
+        setStatus(`Выбран ученик «${targetName}». Теперь нажмите на другое место.`);
+        return;
+      }
+
+      if (selected.type === "seat" && selected.key === targetKey) {
+        selected = null;
+        render();
+        setStatus("Выбор отменён.");
+        return;
+      }
+
+      moveToSeat(selected, targetKey);
+      selected = null;
+      render();
+      setStatus("Рассадка обновлена.");
+    }
+
+    function moveToSeat(moving, targetKey) {
+      const targetName = state.seats[targetKey];
+
+      if (moving.type === "unassigned") {
+        state.unassigned = state.unassigned.filter(name => name !== moving.name);
+        if (targetName) state.unassigned.push(targetName);
+        state.seats[targetKey] = moving.name;
+      }
+
+      if (moving.type === "seat") {
+        if (moving.key === targetKey) return;
+        if (targetName) state.seats[moving.key] = targetName;
+        else delete state.seats[moving.key];
+        state.seats[targetKey] = moving.name;
+      }
     }
 
     function onSeatDragOver(event) {
@@ -466,28 +573,16 @@
       const targetKey = event.currentTarget.dataset.key;
       event.currentTarget.classList.remove("over");
       if (!dragged) return;
-      const targetName = state.seats[targetKey];
-
-      if (dragged.type === "unassigned") {
-        state.unassigned = state.unassigned.filter(name => name !== dragged.name);
-        if (targetName) state.unassigned.push(targetName);
-        state.seats[targetKey] = dragged.name;
-      }
-
-      if (dragged.type === "seat") {
-        if (dragged.key === targetKey) return;
-        state.seats[dragged.key] = targetName;
-        if (!state.seats[dragged.key]) delete state.seats[dragged.key];
-        state.seats[targetKey] = dragged.name;
-      }
-
+      moveToSeat(dragged, targetKey);
       dragged = null;
+      selected = null;
       render();
       setStatus("Рассадка обновлена.");
     }
 
     function removeStudent(name) {
       if (!confirm(`Удалить ученика «${name}»?`)) return;
+      if (selected?.name === name) selected = null;
       state.unassigned = state.unassigned.filter(item => item !== name);
       Object.keys(state.seats).forEach(key => {
         if (state.seats[key] === name) delete state.seats[key];
@@ -496,6 +591,7 @@
     }
 
     function autoArrange() {
+      selected = null;
       const free = [];
       for (let desk = 1; desk <= DESKS; desk++) {
         ["left", "right"].forEach(side => {
@@ -512,6 +608,7 @@
     }
 
     function clearSeats() {
+      selected = null;
       state.unassigned.push(...Object.values(state.seats));
       state.seats = {};
       render();
@@ -520,6 +617,7 @@
 
     function clearAll() {
       if (!confirm("Очистить всех учеников и всю рассадку?")) return;
+      selected = null;
       state = {unassigned: [], seats: {}};
       localStorage.removeItem(STORAGE_KEY);
       render();
@@ -538,6 +636,7 @@
         return;
       }
       try {
+        selected = null;
         state = JSON.parse(saved);
         state.unassigned = Array.isArray(state.unassigned) ? state.unassigned : [];
         state.seats = state.seats && typeof state.seats === "object" ? state.seats : {};
@@ -565,6 +664,7 @@
       reader.onload = () => {
         try {
           const data = JSON.parse(reader.result);
+          selected = null;
           state = {
             unassigned: Array.isArray(data.unassigned) ? data.unassigned : [],
             seats: data.seats && typeof data.seats === "object" ? data.seats : {}
