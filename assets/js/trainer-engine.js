@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js";
+} from "./utils.js?v=4";
 import {
   appendHistory,
   clearProgress,
@@ -21,8 +21,8 @@ import {
   saveProgress,
   updateSettings
 } from "./storage.js";
-import { calculateResult, isAnswerCorrect } from "./grading.js";
-import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=4";
+import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js?v=4";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -35,7 +35,7 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js";
+} from "./question-types.js?v=4";
 
 class TrainerEngine {
   constructor() {
