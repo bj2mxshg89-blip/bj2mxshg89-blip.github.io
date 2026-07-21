@@ -1,5 +1,19 @@
 export const SUPPORTED_QUESTION_TYPES = Object.freeze(["single", "multiple"]);
 
+export function formatCount(count, one, few, many) {
+  const numeric = Math.abs(Number(count));
+  const lastTwo = numeric % 100;
+  const last = numeric % 10;
+  let word = many;
+
+  if (lastTwo < 11 || lastTwo > 14) {
+    if (last === 1) word = one;
+    else if (last >= 2 && last <= 4) word = few;
+  }
+
+  return `${count} ${word}`;
+}
+
 const REQUIRED_TEST_FIELDS = [
   "schemaVersion",
   "id",

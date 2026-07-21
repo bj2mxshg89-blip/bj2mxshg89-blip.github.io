@@ -1,0 +1,483 @@
+{
+  "schemaVersion": 1,
+  "id": "inorg-nomenclature",
+  "version": 1,
+  "title": "Номенклатура неорганических веществ",
+  "description": "Названия оксидов, кислот, оснований и солей по их формулам.",
+  "subject": "chemistry",
+  "category": "inorganic",
+  "symbol": "Fe₂O₃",
+  "theme": {
+    "accent": "#7a43c4",
+    "soft": "#f3edff"
+  },
+  "modes": {
+    "training": {
+      "enabled": true,
+      "instantFeedback": true,
+      "showExplanation": true
+    },
+    "test": {
+      "enabled": true,
+      "instantFeedback": false,
+      "showExplanation": false
+    }
+  },
+  "grading": {
+    "thresholds": {
+      "3": 50,
+      "4": 70,
+      "5": 90
+    }
+  },
+  "settings": {
+    "shuffleQuestions": true,
+    "shuffleAnswers": true,
+    "saveProgress": true,
+    "allowBack": true
+  },
+  "sections": [
+    {
+      "id": "oxides",
+      "title": "Оксиды"
+    },
+    {
+      "id": "acids",
+      "title": "Кислоты"
+    },
+    {
+      "id": "bases",
+      "title": "Основания"
+    },
+    {
+      "id": "salts",
+      "title": "Соли"
+    }
+  ],
+  "variants": [
+    {
+      "id": "all",
+      "title": "Все вещества",
+      "questionIds": [
+        "inorg-nomenclature-oxide-001",
+        "inorg-nomenclature-oxide-002",
+        "inorg-nomenclature-oxide-003",
+        "inorg-nomenclature-oxide-004",
+        "inorg-nomenclature-oxide-005",
+        "inorg-nomenclature-oxide-006",
+        "inorg-nomenclature-oxide-007",
+        "inorg-nomenclature-oxide-008",
+        "inorg-nomenclature-oxide-009",
+        "inorg-nomenclature-oxide-010",
+        "inorg-nomenclature-acid-001",
+        "inorg-nomenclature-acid-002",
+        "inorg-nomenclature-acid-003",
+        "inorg-nomenclature-acid-004",
+        "inorg-nomenclature-acid-005",
+        "inorg-nomenclature-acid-006",
+        "inorg-nomenclature-acid-007",
+        "inorg-nomenclature-acid-008",
+        "inorg-nomenclature-base-001",
+        "inorg-nomenclature-base-002",
+        "inorg-nomenclature-base-003",
+        "inorg-nomenclature-base-004",
+        "inorg-nomenclature-base-005",
+        "inorg-nomenclature-base-006",
+        "inorg-nomenclature-base-007",
+        "inorg-nomenclature-salt-001",
+        "inorg-nomenclature-salt-002",
+        "inorg-nomenclature-salt-003",
+        "inorg-nomenclature-salt-004",
+        "inorg-nomenclature-salt-005",
+        "inorg-nomenclature-salt-006",
+        "inorg-nomenclature-salt-007"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "inorg-nomenclature-oxide-001",
+      "section": "oxides",
+      "type": "single",
+      "formula": "CO",
+      "text": "Как называется вещество CO?",
+      "options": ["Оксид углерода(II)", "Оксид углерода(IV)", "Оксид кальция", "Угольная кислота"],
+      "correct": [0],
+      "explanation": "Кислород имеет степень окисления −2, поэтому степень окисления углерода в CO равна +2. Название вещества — оксид углерода(II).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "carbon"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-002",
+      "section": "oxides",
+      "type": "single",
+      "formula": "CO2",
+      "text": "Как называется вещество CO₂?",
+      "options": ["Оксид углерода(IV)", "Оксид углерода(II)", "Оксид серы(IV)", "Угольная кислота"],
+      "correct": [0],
+      "explanation": "Два атома кислорода имеют суммарную степень окисления −4, поэтому степень окисления углерода равна +4. Это оксид углерода(IV).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "carbon"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-003",
+      "section": "oxides",
+      "type": "single",
+      "formula": "SO2",
+      "text": "Как называется вещество SO₂?",
+      "options": ["Оксид серы(IV)", "Оксид серы(VI)", "Сернистая кислота", "Оксид углерода(IV)"],
+      "correct": [0],
+      "explanation": "Суммарная степень окисления двух атомов кислорода равна −4, следовательно, сера имеет степень окисления +4. Это оксид серы(IV).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "sulfur"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-004",
+      "section": "oxides",
+      "type": "single",
+      "formula": "SO3",
+      "text": "Как называется вещество SO₃?",
+      "options": ["Оксид серы(VI)", "Оксид серы(IV)", "Серная кислота", "Сульфит натрия"],
+      "correct": [0],
+      "explanation": "Три атома кислорода имеют суммарную степень окисления −6, поэтому степень окисления серы равна +6. Название — оксид серы(VI).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "sulfur"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-005",
+      "section": "oxides",
+      "type": "single",
+      "formula": "P2O5",
+      "text": "Как называется вещество P₂O₅?",
+      "options": ["Оксид фосфора(V)", "Оксид фосфора(III)", "Оксид азота(V)", "Ортофосфорная кислота"],
+      "correct": [0],
+      "explanation": "Пять атомов кислорода дают суммарную степень окисления −10, поэтому каждый атом фосфора имеет степень окисления +5. В школьных заданиях P₂O₅ используют как традиционную эмпирическую формулу оксида фосфора(V); его молекулярную формулу часто записывают P₄O₁₀.",
+      "difficulty": 2,
+      "tags": ["oxides", "oxidation-state", "phosphorus", "empirical-formula"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-006",
+      "section": "oxides",
+      "type": "single",
+      "formula": "N2O5",
+      "text": "Как называется вещество N₂O₅?",
+      "options": ["Оксид азота(V)", "Оксид азота(III)", "Оксид азота(IV)", "Азотная кислота"],
+      "correct": [0],
+      "explanation": "Пять атомов кислорода имеют суммарную степень окисления −10. На два атома азота приходится +10, поэтому каждый атом азота имеет степень окисления +5.",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "nitrogen"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-007",
+      "section": "oxides",
+      "type": "single",
+      "formula": "FeO",
+      "text": "Как называется вещество FeO?",
+      "options": ["Оксид железа(II)", "Оксид железа(III)", "Гидроксид железа(II)", "Сульфид железа(II)"],
+      "correct": [0],
+      "explanation": "Кислород имеет степень окисления −2, поэтому железо в FeO имеет степень окисления +2. Это оксид железа(II), а не гидроксид.",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "iron"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-008",
+      "section": "oxides",
+      "type": "single",
+      "formula": "Fe2O3",
+      "text": "Как называется вещество Fe₂O₃?",
+      "options": ["Оксид железа(III)", "Оксид железа(II)", "Гидроксид железа(III)", "Оксид железа(VI)"],
+      "correct": [0],
+      "explanation": "Три атома кислорода имеют суммарную степень окисления −6. Суммарная степень окисления двух атомов железа равна +6, поэтому каждый атом железа имеет степень окисления +3.",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "iron"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-009",
+      "section": "oxides",
+      "type": "single",
+      "formula": "Cu2O",
+      "text": "Как называется вещество Cu₂O?",
+      "options": ["Оксид меди(I)", "Оксид меди(II)", "Гидроксид меди(II)", "Карбонат меди(II)"],
+      "correct": [0],
+      "explanation": "Кислород имеет степень окисления −2. Два атома меди вместе имеют +2, поэтому каждый атом меди находится в степени окисления +1. Это оксид меди(I).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "copper"]
+    },
+    {
+      "id": "inorg-nomenclature-oxide-010",
+      "section": "oxides",
+      "type": "single",
+      "formula": "CuO",
+      "text": "Как называется вещество CuO?",
+      "options": ["Оксид меди(II)", "Оксид меди(I)", "Гидроксид меди(II)", "Оксид железа(II)"],
+      "correct": [0],
+      "explanation": "Один атом кислорода имеет степень окисления −2, поэтому медь имеет степень окисления +2. Название вещества — оксид меди(II).",
+      "difficulty": 1,
+      "tags": ["oxides", "oxidation-state", "copper"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-001",
+      "section": "acids",
+      "type": "single",
+      "formula": "HCl(aq)",
+      "text": "Как называется водный раствор HCl?",
+      "options": ["Соляная кислота", "Хлороводород", "Хлорноватая кислота", "Хлорид натрия"],
+      "correct": [0],
+      "explanation": "HCl как индивидуальное молекулярное вещество называется хлороводородом. Его водный раствор HCl(aq) называют соляной кислотой, поэтому среда в условии указана явно.",
+      "difficulty": 1,
+      "tags": ["acids", "aqueous-solution", "chlorine"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-002",
+      "section": "acids",
+      "type": "single",
+      "formula": "H2S(aq)",
+      "text": "Как называется водный раствор H₂S?",
+      "options": ["Сероводородная кислота", "Сероводород", "Серная кислота", "Сернистая кислота"],
+      "correct": [0],
+      "explanation": "H₂S как молекулярное вещество называется сероводородом. Его водный раствор H₂S(aq) — слабая двухосновная сероводородная кислота.",
+      "difficulty": 1,
+      "tags": ["acids", "aqueous-solution", "sulfur"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-003",
+      "section": "acids",
+      "type": "single",
+      "formula": "H2SO4",
+      "text": "Как называется кислота H₂SO₄?",
+      "options": ["Серная кислота", "Сернистая кислота", "Сероводородная кислота", "Соляная кислота"],
+      "correct": [0],
+      "explanation": "H₂SO₄ — серная кислота. Она является сильной двухосновной кислородсодержащей кислотой; соответствующий кислотный остаток SO₄²⁻ называется сульфатом.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "sulfur", "sulfate"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-004",
+      "section": "acids",
+      "type": "single",
+      "formula": "H2SO3",
+      "text": "Как называется кислота H₂SO₃?",
+      "options": ["Сернистая кислота", "Серная кислота", "Сероводородная кислота", "Угольная кислота"],
+      "correct": [0],
+      "explanation": "H₂SO₃ — сернистая кислота. Ей соответствует кислотный остаток SO₃²⁻ — сульфит, тогда как H₂SO₄ является серной кислотой и образует сульфаты.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "sulfur", "sulfite"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-005",
+      "section": "acids",
+      "type": "single",
+      "formula": "HNO3",
+      "text": "Как называется кислота HNO₃?",
+      "options": ["Азотная кислота", "Азотистая кислота", "Соляная кислота", "Ортофосфорная кислота"],
+      "correct": [0],
+      "explanation": "HNO₃ — азотная кислота. Её кислотный остаток NO₃⁻ называется нитратом; не следует путать его с нитритом NO₂⁻ азотистой кислоты HNO₂.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "nitrogen", "nitrate"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-006",
+      "section": "acids",
+      "type": "single",
+      "formula": "HNO2",
+      "text": "Как называется кислота HNO₂?",
+      "options": ["Азотистая кислота", "Азотная кислота", "Сернистая кислота", "Угольная кислота"],
+      "correct": [0],
+      "explanation": "HNO₂ — азотистая кислота. Её кислотный остаток NO₂⁻ называется нитритом; азотная кислота имеет формулу HNO₃ и образует нитраты.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "nitrogen", "nitrite"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-007",
+      "section": "acids",
+      "type": "single",
+      "formula": "H3PO4",
+      "text": "Как называется кислота H₃PO₄?",
+      "options": ["Ортофосфорная кислота", "Фосфористая кислота", "Метафосфорная кислота", "Азотная кислота"],
+      "correct": [0],
+      "explanation": "H₃PO₄ — ортофосфорная кислота. Это трёхосновная кислота, которой соответствует фосфат-ион PO₄³⁻.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "phosphorus", "phosphate"]
+    },
+    {
+      "id": "inorg-nomenclature-acid-008",
+      "section": "acids",
+      "type": "single",
+      "formula": "H2CO3",
+      "text": "Как называется кислота H₂CO₃?",
+      "options": ["Угольная кислота", "Соляная кислота", "Сернистая кислота", "Ортофосфорная кислота"],
+      "correct": [0],
+      "explanation": "H₂CO₃ — угольная кислота. Это слабая неустойчивая двухосновная кислота, которая может разлагаться на CO₂ и H₂O.",
+      "difficulty": 1,
+      "tags": ["acids", "oxoacids", "carbon", "carbonate"]
+    },
+    {
+      "id": "inorg-nomenclature-base-001",
+      "section": "bases",
+      "type": "single",
+      "formula": "NaOH",
+      "text": "Как называется вещество NaOH?",
+      "options": ["Гидроксид натрия", "Оксид натрия", "Карбонат натрия", "Гидрид натрия"],
+      "correct": [0],
+      "explanation": "NaOH состоит из катиона Na⁺ и гидроксид-иона OH⁻. Это гидроксид натрия — растворимое основание, то есть щёлочь.",
+      "difficulty": 1,
+      "tags": ["bases", "alkalis", "sodium"]
+    },
+    {
+      "id": "inorg-nomenclature-base-002",
+      "section": "bases",
+      "type": "single",
+      "formula": "KOH",
+      "text": "Как называется вещество KOH?",
+      "options": ["Гидроксид калия", "Оксид калия", "Нитрат калия", "Гидроксид кальция"],
+      "correct": [0],
+      "explanation": "KOH состоит из катиона K⁺ и гидроксид-иона OH⁻. Это гидроксид калия — растворимое основание, относящееся к щелочам.",
+      "difficulty": 1,
+      "tags": ["bases", "alkalis", "potassium"]
+    },
+    {
+      "id": "inorg-nomenclature-base-003",
+      "section": "bases",
+      "type": "single",
+      "formula": "Ca(OH)2",
+      "text": "Как называется вещество Ca(OH)₂?",
+      "options": ["Гидроксид кальция", "Оксид кальция", "Карбонат кальция", "Гидроксид бария"],
+      "correct": [0],
+      "explanation": "Катион Ca²⁺ соединён с двумя гидроксид-ионами OH⁻, поэтому формула основания — Ca(OH)₂, а название — гидроксид кальция. В воде он растворяется ограниченно.",
+      "difficulty": 1,
+      "tags": ["bases", "hydroxides", "calcium"]
+    },
+    {
+      "id": "inorg-nomenclature-base-004",
+      "section": "bases",
+      "type": "single",
+      "formula": "Ba(OH)2",
+      "text": "Как называется вещество Ba(OH)₂?",
+      "options": ["Гидроксид бария", "Оксид бария", "Сульфат бария", "Гидроксид кальция"],
+      "correct": [0],
+      "explanation": "Катион Ba²⁺ соединён с двумя гидроксид-ионами OH⁻. Ba(OH)₂ — гидроксид бария, сильное основание, раствор которого проявляет свойства щёлочи.",
+      "difficulty": 1,
+      "tags": ["bases", "alkalis", "barium"]
+    },
+    {
+      "id": "inorg-nomenclature-base-005",
+      "section": "bases",
+      "type": "single",
+      "formula": "Al(OH)3",
+      "text": "Как называется вещество Al(OH)₃?",
+      "options": ["Гидроксид алюминия", "Оксид алюминия", "Хлорид алюминия", "Гидроксид железа(III)"],
+      "correct": [0],
+      "explanation": "Катиону Al³⁺ соответствуют три гидроксид-иона OH⁻, поэтому Al(OH)₃ называется гидроксидом алюминия. Это амфотерный гидроксид.",
+      "difficulty": 1,
+      "tags": ["bases", "amphoteric-hydroxides", "aluminium"]
+    },
+    {
+      "id": "inorg-nomenclature-base-006",
+      "section": "bases",
+      "type": "single",
+      "formula": "Zn(OH)2",
+      "text": "Как называется вещество Zn(OH)₂?",
+      "options": ["Гидроксид цинка", "Оксид цинка", "Сульфид цинка", "Гидроксид кальция"],
+      "correct": [0],
+      "explanation": "Катион Zn²⁺ соединён с двумя гидроксид-ионами OH⁻. Zn(OH)₂ — гидроксид цинка, проявляющий амфотерные свойства.",
+      "difficulty": 1,
+      "tags": ["bases", "amphoteric-hydroxides", "zinc"]
+    },
+    {
+      "id": "inorg-nomenclature-base-007",
+      "section": "bases",
+      "type": "single",
+      "formula": "Fe(OH)3",
+      "text": "Как называется вещество Fe(OH)₃?",
+      "options": ["Гидроксид железа(III)", "Гидроксид железа(II)", "Оксид железа(III)", "Оксид железа(II)"],
+      "correct": [0],
+      "explanation": "Три гидроксид-иона OH⁻ имеют суммарный заряд −3, поэтому железо находится в степени окисления +3. Это гидроксид железа(III).",
+      "difficulty": 1,
+      "tags": ["bases", "hydroxides", "oxidation-state", "iron"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-001",
+      "section": "salts",
+      "type": "single",
+      "formula": "NaCl",
+      "text": "Как называется вещество NaCl?",
+      "options": ["Хлорид натрия", "Хлорат натрия", "Гипохлорит натрия", "Соляная кислота"],
+      "correct": [0],
+      "explanation": "NaCl состоит из катиона Na⁺ и аниона Cl⁻. Анион Cl⁻ называется хлоридом, поэтому вещество — хлорид натрия.",
+      "difficulty": 1,
+      "tags": ["salts", "chlorides", "sodium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-002",
+      "section": "salts",
+      "type": "single",
+      "formula": "K2SO4",
+      "text": "Как называется вещество K₂SO₄?",
+      "options": ["Сульфат калия", "Сульфит калия", "Гидросульфат калия", "Сульфид калия"],
+      "correct": [0],
+      "explanation": "В K₂SO₄ содержится сульфат-ион SO₄²⁻, поэтому это сульфат калия. Гидросульфат калия является кислой солью и имеет формулу KHSO₄.",
+      "difficulty": 1,
+      "tags": ["salts", "sulfates", "potassium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-003",
+      "section": "salts",
+      "type": "single",
+      "formula": "Na2SO3",
+      "text": "Как называется вещество Na₂SO₃?",
+      "options": ["Сульфит натрия", "Сульфат натрия", "Гидросульфит натрия", "Сульфид натрия"],
+      "correct": [0],
+      "explanation": "Анион SO₃²⁻ называется сульфитом, поэтому Na₂SO₃ — сульфит натрия. Сульфат натрия содержит анион SO₄²⁻ и имеет формулу Na₂SO₄.",
+      "difficulty": 1,
+      "tags": ["salts", "sulfites", "sodium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-004",
+      "section": "salts",
+      "type": "single",
+      "formula": "CaCO3",
+      "text": "Как называется вещество CaCO₃?",
+      "options": ["Карбонат кальция", "Гидрокарбонат кальция", "Сульфат кальция", "Оксид кальция"],
+      "correct": [0],
+      "explanation": "CaCO₃ содержит карбонат-ион CO₃²⁻ и называется карбонатом кальция. Гидрокарбонат кальция — кислая соль состава Ca(HCO₃)₂.",
+      "difficulty": 1,
+      "tags": ["salts", "carbonates", "calcium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-005",
+      "section": "salts",
+      "type": "single",
+      "formula": "Na2CO3",
+      "text": "Как называется вещество Na₂CO₃?",
+      "options": ["Карбонат натрия", "Гидрокарбонат натрия", "Сульфат натрия", "Гидроксид натрия"],
+      "correct": [0],
+      "explanation": "Na₂CO₃ содержит карбонат-ион CO₃²⁻ и является средней солью — карбонатом натрия. Безводный карбонат натрия также называют кальцинированной содой.",
+      "difficulty": 1,
+      "tags": ["salts", "carbonates", "sodium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-006",
+      "section": "salts",
+      "type": "single",
+      "formula": "NaHCO3",
+      "text": "Как называется вещество NaHCO₃?",
+      "options": ["Гидрокарбонат натрия", "Карбонат натрия", "Гидросульфат натрия", "Гидроксид натрия"],
+      "correct": [0],
+      "explanation": "NaHCO₃ содержит гидрокарбонат-ион HCO₃⁻. Это кислая соль угольной кислоты — гидрокарбонат натрия; средняя соль имеет формулу Na₂CO₃.",
+      "difficulty": 1,
+      "tags": ["salts", "acid-salts", "hydrogencarbonates", "sodium"]
+    },
+    {
+      "id": "inorg-nomenclature-salt-007",
+      "section": "salts",
+      "type": "single",
+      "formula": "KNO3",
+      "text": "Как называется вещество KNO₃?",
+      "options": ["Нитрат калия", "Нитрит калия", "Сульфат калия", "Гидроксид калия"],
+      "correct": [0],
+      "explanation": "Анион NO₃⁻ называется нитратом, поэтому KNO₃ — нитрат калия. Нитрит калия содержит анион NO₂⁻ и имеет формулу KNO₂.",
+      "difficulty": 1,
+      "tags": ["salts", "nitrates", "potassium"]
+    }
+  ]
+}

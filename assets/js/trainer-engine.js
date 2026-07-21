@@ -3,6 +3,7 @@ import {
   categoryTitle,
   createAttemptId,
   fetchJson,
+  formatCount,
   formatDuration,
   getSectionTitle,
   getTestId,
@@ -102,8 +103,8 @@ class TrainerEngine {
     const chips = [
       subjectTitle(test.subject),
       categoryTitle(test.category),
-      `${test.questions.length} заданий`,
-      `${test.variants.length} вариантов`
+      formatCount(test.questions.length, "задание", "задания", "заданий"),
+      formatCount(test.variants.length, "вариант", "варианта", "вариантов")
     ];
     this.elements.heroChips.replaceChildren(...chips.map((label) => {
       const chip = document.createElement("span");
@@ -153,7 +154,7 @@ class TrainerEngine {
       body.className = "trainer-choice-body";
       body.textContent = variant.title;
       const count = document.createElement("small");
-      count.textContent = `${variant.questionIds.length} заданий`;
+      count.textContent = formatCount(variant.questionIds.length, "задание", "задания", "заданий");
       body.appendChild(count);
       label.append(input, body);
       this.elements.variantChoices.appendChild(label);
@@ -197,7 +198,7 @@ class TrainerEngine {
   updateSetupStatus() {
     const variant = this.test.variants.find((item) => item.id === this.selection.variantId);
     this.elements.setupStatus.textContent = variant
-      ? `${variant.title} · ${modeTitle(this.selection.mode)} · ${variant.questionIds.length} заданий`
+      ? `${variant.title} · ${modeTitle(this.selection.mode)} · ${formatCount(variant.questionIds.length, "задание", "задания", "заданий")}`
       : "Выберите вариант и режим.";
   }
 
