@@ -70,9 +70,13 @@ function renderHistory() {
     date.textContent = `${formatDateTime(attempt.completedAt)} · версия ${attempt.testVersion ?? "—"}`;
     main.append(heading, date);
 
+    const hasPointScore = Number.isFinite(attempt.earnedPoints) && Number.isFinite(attempt.maxPoints) &&
+      attempt.maxPoints !== (attempt.totalQuestions ?? attempt.total);
     item.append(
       main,
-      metric(`${attempt.correctCount ?? 0}/${attempt.total ?? 0}`, "верно"),
+      hasPointScore
+        ? metric(`${attempt.earnedPoints}/${attempt.maxPoints}`, "баллы")
+        : metric(`${attempt.correctCount ?? 0}/${attempt.total ?? 0}`, "верно"),
       metric(`${attempt.percent ?? 0}%`, `оценка ${attempt.grade ?? "—"}`),
       metric(formatDuration(attempt.durationMs), "время")
     );
