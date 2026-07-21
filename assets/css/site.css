@@ -1,0 +1,6 @@
+/*
+ * Compatibility entry point for the platform pages.
+ * The existing root stylesheet remains the source of truth so legacy pages
+ * keep their current URLs and visual appearance.
+ */
+@import url("../../site.css");
