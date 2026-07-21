@@ -7,7 +7,7 @@ import {
   modeTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js";
+} from "./utils.js?v=4";
 import { clearHistory, getHistory } from "./storage.js";
 
 const elements = Object.fromEntries([
