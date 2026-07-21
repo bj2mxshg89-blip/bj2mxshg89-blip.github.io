@@ -70,6 +70,11 @@
             <div class="trainer-feature">Повторение заданий, где были ошибки</div>
           </div>
 
+          <details class="trainer-reference" id="referencePanel" hidden>
+            <summary id="referenceTitle">Памятка</summary>
+            <ul id="referenceList"></ul>
+          </details>
+
           <div class="trainer-resume-card" id="resumeCard" hidden>
             <strong id="resumeTitle">Есть незавершённая попытка</strong>
             <p id="resumeText"></p>
@@ -91,7 +96,7 @@
           <div class="site-stat-grid">
             <div class="site-stat"><span>Задание</span><strong id="questionCounter">1 / 20</strong></div>
             <div class="site-stat"><span>Отвечено</span><strong id="answeredCounter">0</strong></div>
-            <div class="site-stat"><span>Верно</span><strong id="correctCounter">—</strong></div>
+            <div class="site-stat"><span id="correctCounterLabel">Верно</span><strong id="correctCounter">—</strong></div>
             <div class="site-stat"><span>Ошибки</span><strong id="mistakeCounter">—</strong></div>
           </div>
 
@@ -143,7 +148,7 @@
         <p class="trainer-result-subtitle" id="resultSubtitle"></p>
 
         <div class="trainer-metrics">
-          <div class="trainer-metric"><strong id="resultScore">0/20</strong><span>верно</span></div>
+          <div class="trainer-metric"><strong id="resultScore">0/20</strong><span id="resultScoreLabel">верно</span></div>
           <div class="trainer-metric"><strong id="resultPercent">0%</strong><span>результат</span></div>
           <div class="trainer-metric"><strong id="resultGrade">2</strong><span>оценка</span></div>
           <div class="trainer-metric"><strong id="resultDuration">0:00</strong><span>время</span></div>
