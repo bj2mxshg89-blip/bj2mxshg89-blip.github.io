@@ -643,8 +643,10 @@ class TrainerEngine {
     this.elements.resultVariantBadge.textContent = variantTitle(this.test, this.state.variantId);
     this.elements.resultModeBadge.textContent = modeTitle(this.state.mode);
     this.elements.resultTitle.textContent = this.state.retryOf ? "Работа над ошибками завершена" : "Попытка завершена";
+    const thresholds = this.test.grading.thresholds;
     this.elements.resultSubtitle.textContent =
-      "Оценка рассчитана по шкале: 50% — «3», 70% — «4», 90% — «5».";
+      `Оценка рассчитана по шкале: ${thresholds["3"]}% — «3», ` +
+      `${thresholds["4"]}% — «4», ${thresholds["5"]}% — «5».`;
     this.elements.resultScore.textContent = `${result.correctCount}/${result.total}`;
     this.elements.resultPercent.textContent = `${result.percent}%`;
     this.elements.resultGrade.textContent = String(result.grade);
