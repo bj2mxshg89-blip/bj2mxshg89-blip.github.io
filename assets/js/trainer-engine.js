@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=4";
+} from "./utils.js?v=5";
 import {
   appendHistory,
   clearProgress,
@@ -20,9 +20,9 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=4";
-import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js?v=4";
+} from "./storage.js?v=5";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=5";
+import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js?v=5";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -35,7 +35,8 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=4";
+} from "./question-types.js?v=5";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=5";
 
 class TrainerEngine {
   constructor() {
@@ -298,10 +299,12 @@ class TrainerEngine {
 
     clearProgress(this.test.id);
     const isRetry = Boolean(questionIds?.length);
-    const sourceIds = isRetry ? [...questionIds] : [...variant.questionIds];
-    const selectionCount = isRetry ? sourceIds.length : this.variantQuestionCount(variant, mode);
-    const orderedSource = this.test.settings.shuffleQuestions ? shuffledCopy(sourceIds) : sourceIds;
-    const order = orderedSource.slice(0, selectionCount);
+    const order = createAttemptQuestionOrder({
+      baseQuestionIds: variant.questionIds,
+      selectionCount: this.variantQuestionCount(variant, mode),
+      shuffleQuestions: this.test.settings.shuffleQuestions,
+      retryQuestionIds: isRetry ? questionIds : null
+    }, shuffledCopy);
     const optionOrder = Object.fromEntries(order.map((questionId) => {
       const question = this.questionMap.get(questionId);
       const shuffle = (values) => this.test.settings.shuffleAnswers ? shuffledCopy(values) : [...values];
@@ -336,7 +339,8 @@ class TrainerEngine {
     if (this.savedProgress.status !== "compatible") return;
     const saved = this.savedProgress.data;
     const variant = this.test.variants.find((item) => item.id === saved.variantId);
-    const questionOrder = saved.questionOrder.filter((id) => this.questionMap.has(id));
+    const questionOrder = restoreQuestionOrder(saved.questionOrder, variant.questionIds)
+      .filter((id) => this.questionMap.has(id));
     const answers = {};
 
     questionOrder.forEach((questionId) => {
@@ -798,7 +802,9 @@ class TrainerEngine {
   }
 }
 
-const engine = new TrainerEngine();
-engine.init();
+if (typeof document !== "undefined") {
+  const engine = new TrainerEngine();
+  engine.init();
+}
 
 export { TrainerEngine };

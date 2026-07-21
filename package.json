@@ -1,0 +1,24 @@
+{
+  "name": "chem-cabinet",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "serve": "node scripts/static-server.mjs",
+    "validate:data": "node scripts/validate-data.mjs",
+    "validate:links": "node scripts/validate-links.mjs",
+    "validate:modules": "node scripts/validate-modules.mjs",
+    "assets:check": "node scripts/sync-asset-version.mjs check",
+    "assets:sync": "node scripts/sync-asset-version.mjs sync",
+    "assets:bump": "node scripts/sync-asset-version.mjs bump",
+    "test:unit": "node --test tests/unit/*.test.js",
+    "test:smoke": "playwright test",
+    "check": "npm run assets:check && npm run validate:data && npm run validate:links && npm run validate:modules && npm run test:unit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.0"
+  }
+}
