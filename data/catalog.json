@@ -64,6 +64,18 @@
     },
     {
       "id": "inorg-nomenclature",
+      "title": "Номенклатура веществ — новая версия",
+      "description": "Названия оксидов, кислот, оснований и солей на универсальном движке.",
+      "section": "inorganic",
+      "symbol": "Fe₂O₃",
+      "color": "#7a43c4",
+      "questionCount": 32,
+      "modes": ["training", "test"],
+      "url": "test.html?id=inorg-nomenclature",
+      "status": "beta"
+    },
+    {
+      "id": "inorg-nomenclature-legacy",
       "title": "Номенклатура веществ",
       "description": "Названия оксидов, кислот, оснований и солей по их формулам.",
       "section": "inorganic",
