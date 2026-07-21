@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Обобщающий тренажёр по органической химии: 5 вариантов по 20 заданий с мгновенной проверкой и пояснениями." />
+  <title>Обучающий тренажёр по органической химии — 5 вариантов</title>
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    :root {
+      --bg: #f3f6fb;
+      --surface: #ffffff;
+      --surface-2: #eef4ff;
+      --text: #182033;
+      --muted: #677089;
+      --primary: #315ddc;
+      --primary-dark: #2347ad;
+      --border: #dce3f1;
+      --success: #18794e;
+      --success-bg: #e9f8f0;
+      --danger: #b42318;
+      --danger-bg: #fff0ee;
+      --warning: #9a6700;
+      --warning-bg: #fff8e6;
+      --shadow: 0 18px 50px rgba(31, 54, 101, 0.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(49, 93, 220, 0.12), transparent 34%),
+        linear-gradient(180deg, #f8faff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    button, input { font: inherit; }
+
+    .page {
+      width: min(1040px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), #6b8cff);
+      box-shadow: 0 10px 25px rgba(49, 93, 220, 0.28);
+      font-size: 22px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(220, 227, 241, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: 42px;
+      background:
+        linear-gradient(135deg, rgba(49, 93, 220, 0.10), rgba(255,255,255,0.2)),
+        var(--surface);
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    h2 { letter-spacing: -0.02em; }
+
+    .lead {
+      max-width: 800px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 24px 0 28px;
+    }
+
+    .chip {
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: #284ba8;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .variant-heading {
+      margin: 4px 0 12px;
+      font-size: 18px;
+    }
+
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .variant-card {
+      position: relative;
+      min-height: 118px;
+      padding: 17px 15px;
+      border: 2px solid var(--border);
+      border-radius: 17px;
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .variant-card:hover {
+      transform: translateY(-2px);
+      border-color: #9eb2ef;
+      box-shadow: 0 10px 24px rgba(49, 93, 220, .10);
+    }
+
+    .variant-card.selected {
+      border-color: var(--primary);
+      background: var(--surface-2);
+      box-shadow: 0 0 0 4px rgba(49, 93, 220, .09);
+    }
+
+    .variant-number {
+      display: block;
+      font-size: 21px;
+      font-weight: 850;
+      margin-bottom: 7px;
+    }
+
+    .variant-meta, .variant-status {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .variant-status {
+      margin-top: 8px;
+      color: var(--primary-dark);
+      font-weight: 750;
+    }
+
+    .variant-card.has-progress::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      top: 12px;
+      right: 12px;
+      border-radius: 50%;
+      background: var(--warning);
+      box-shadow: 0 0 0 4px var(--warning-bg);
+    }
+
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:disabled { cursor: not-allowed; opacity: 0.45; transform: none; }
+
+    .btn-primary {
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 10px 22px rgba(49, 93, 220, 0.22);
+    }
+
+    .btn-primary:hover { background: var(--primary-dark); }
+
+    .btn-secondary { color: var(--text); background: #edf1f8; }
+    .btn-danger { color: var(--danger); background: var(--danger-bg); }
+    .btn-compact { padding: 9px 13px; font-size: 13px; }
+
+    .selection-note {
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .test-shell, .results-shell { display: none; }
+
+    .test-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.96);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .test-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .test-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 9px;
+      font-weight: 750;
+    }
+
+    .variant-badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--primary-dark);
+      background: var(--surface-2);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .progress-track {
+      height: 10px;
+      border-radius: 999px;
+      background: #e9edf5;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), #6f8fff);
+      transition: width .22s ease;
+    }
+
+    .question-area { padding: 38px 42px 42px; }
+
+    .section-label {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .question-title {
+      margin: 10px 0 10px;
+      font-size: clamp(23px, 3.3vw, 34px);
+      line-height: 1.25;
+    }
+
+    .question-hint {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .options { display: grid; gap: 12px; }
+
+    .option {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      gap: 12px;
+      min-height: 62px;
+      padding: 12px 15px;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .15s ease, background .15s ease, transform .15s ease;
+    }
+
+    .option:hover { transform: translateY(-1px); border-color: #adbbe0; }
+    .option.selected { border-color: var(--primary); background: var(--surface-2); }
+    .option.locked { cursor: default; transform: none; }
+    .option.correct-answer { border-color: var(--success); background: var(--success-bg); }
+    .option.wrong-answer { border-color: var(--danger); background: var(--danger-bg); }
+    .option input { position: absolute; opacity: 0; pointer-events: none; }
+
+    .marker {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      color: #3c4865;
+      background: #edf1f8;
+      font-weight: 850;
+    }
+
+    .option.selected .marker { color: #fff; background: var(--primary); }
+    .option.correct-answer .marker { color: #fff; background: var(--success); }
+    .option.wrong-answer .marker { color: #fff; background: var(--danger); }
+
+    .feedback-panel {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+    }
+
+    .feedback-panel.visible { display: block; }
+    .feedback-panel.correct { background: var(--success-bg); border-color: #bce4cd; }
+    .feedback-panel.incorrect { background: var(--danger-bg); border-color: #f0c0bb; }
+    .feedback-heading { margin: 0 0 8px; font-size: 20px; font-weight: 900; }
+    .feedback-explanation, .discussion-note { margin: 7px 0 0; line-height: 1.58; }
+
+    .question-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .answer-status { color: var(--muted); font-size: 14px; font-weight: 700; }
+    .nav-group { display: flex; gap: 10px; }
+
+    .results-header { padding: 40px 42px 32px; border-bottom: 1px solid var(--border); }
+
+    .results-header h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.08;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .metric { padding: 18px; border: 1px solid var(--border); border-radius: 16px; background: #f8faff; }
+    .metric strong { display: block; font-size: 28px; margin-bottom: 5px; }
+    .metric span { color: var(--muted); font-size: 13px; }
+
+    .review { padding: 30px 42px 42px; }
+    .review h2 { margin-top: 0; }
+    .review-item { margin: 14px 0; padding: 18px; border-radius: 16px; border: 1px solid var(--border); }
+    .review-item.correct { background: var(--success-bg); border-color: #bce4cd; }
+    .review-item.incorrect { background: var(--danger-bg); border-color: #f0c0bb; }
+    .review-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 15px; }
+    .badge { flex: 0 0 auto; padding: 6px 9px; border-radius: 999px; background: rgba(255,255,255,.7); font-size: 12px; font-weight: 850; }
+    .review-line { margin-top: 9px; line-height: 1.5; }
+    .explanation { margin-top: 10px; color: #3e465a; line-height: 1.56; }
+
+    .footer-note { color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .error-text { color: var(--danger); font-size: 14px; font-weight: 700; }
+
+    .site-hero.organic-review-hero {
+      background: linear-gradient(135deg, #4b251a 0%, #a84425 55%, #dc7652 100%);
+    }
+
+    .site-layout.organic-review-layout {
+      grid-template-columns: 320px minmax(0, 1fr);
+    }
+
+    .start-shell .site-sidebar,
+    .test-shell .site-sidebar {
+      align-self: start;
+    }
+
+    .start-shell .variant-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .start-shell .variant-card {
+      min-height: 76px;
+      padding: 12px 8px;
+      border-width: 1px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .start-shell .variant-number {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .start-shell .variant-meta { display: none; }
+
+    .start-shell .variant-status {
+      margin-top: 5px;
+      font-size: 10px;
+    }
+
+    .start-shell .variant-card.has-progress::after {
+      top: 7px;
+      right: 7px;
+    }
+
+    .start-shell .actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .start-shell .actions .btn { width: 100%; }
+
+    .start-main {
+      min-height: 470px;
+    }
+
+    .start-main .trainer-top h2,
+    .test-shell .trainer-top h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .start-main .trainer-top p,
+    .test-shell .trainer-top p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .intro-card {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fffaf7);
+    }
+
+    .intro-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+    }
+
+    .intro-card .lead { font-size: 16px; }
+
+    .intro-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .intro-list div {
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #fff;
+      color: #3d465d;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .test-shell .site-main-panel { min-width: 0; }
+
+    .test-shell .test-header {
+      position: static;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+    }
+
+    .test-shell .test-meta-row { margin-bottom: 12px; }
+
+    .test-shell .question-area {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fffaf7);
+    }
+
+    .question-nav {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .question-nav-btn {
+      min-width: 0;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 11px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .question-nav-btn:hover { border-color: #d49a85; }
+
+    .question-nav-btn.current {
+      color: #963d21;
+      border-color: #c0522b;
+      background: #fff0e9;
+      box-shadow: 0 0 0 2px rgba(192, 82, 43, .10);
+    }
+
+    .question-nav-btn.right {
+      color: var(--success);
+      border-color: #76c69d;
+      background: var(--success-bg);
+    }
+
+    .question-nav-btn.wrong {
+      color: var(--danger);
+      border-color: #e3aaa4;
+      background: var(--danger-bg);
+    }
+
+    .test-sidebar-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .test-sidebar-actions .btn {
+      padding: 10px 8px;
+      border-radius: 11px;
+      font-size: 12px;
+    }
+
+    .test-shell .options {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .results-shell {
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
+    @media (max-width: 900px) {
+      .variant-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .score-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 860px) {
+      .site-layout.organic-review-layout { grid-template-columns: 1fr; }
+      .question-nav { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .page { width: min(100% - 18px, 1040px); padding-top: 12px; }
+      .topbar { align-items: flex-start; }
+      .small-note { display: none; }
+      .hero, .question-area, .results-header, .review { padding: 24px 20px; }
+      .variant-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .score-grid { grid-template-columns: 1fr; }
+      .question-footer { align-items: stretch; flex-direction: column; }
+      .nav-group { width: 100%; }
+      .nav-group .btn { flex: 1; }
+      .test-header { padding: 14px 16px; }
+      .test-meta-row { align-items: flex-start; }
+      .test-meta { font-size: 14px; }
+      .review-top { flex-direction: column; }
+      .badge { align-self: flex-start; }
+      .intro-list { grid-template-columns: 1fr; }
+      .question-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .test-shell .options { grid-template-columns: 1fr; }
+      .test-shell .question-area { padding: 18px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .topbar, .results-header .actions, .test-shell, .start-shell { display: none !important; }
+      .page { width: 100%; padding: 0; }
+      .card { box-shadow: none; border: 0; }
+      .results-shell { display: block !important; }
+      .review-item { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="site-page">
+    <section class="site-hero organic-review-hero">
+      <div class="site-hero-mark" aria-hidden="true">5×20</div>
+      <div class="site-eyebrow">Органическая химия · Закрепление курса</div>
+      <h1>Обобщающий тренажёр</h1>
+      <p>Пять полноценных вариантов по классам веществ, номенклатуре, изомерии и гибридизации с разбором каждого ответа.</p>
+    </section>
+
+    <section class="start-shell" id="startShell">
+      <div class="site-layout organic-review-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Выберите вариант</h2>
+          <div class="site-label">Пять комплектов заданий</div>
+          <div class="variant-grid" id="variantGrid"></div>
+
+          <div class="selection-note" id="selectionNote">Вариант пока не выбран.</div>
+          <div class="actions">
+            <button class="btn btn-primary" id="startButton" disabled>Начать выбранный вариант</button>
+            <button class="btn btn-secondary" id="newAttemptButton" style="display:none">Начать этот вариант заново</button>
+            <span class="error-text" id="startError" aria-live="polite"></span>
+          </div>
+
+          <p class="footer-note">Прогресс каждого варианта сохраняется отдельно в браузере.</p>
+        </aside>
+
+        <section class="site-panel site-main-panel start-main">
+          <div class="trainer-top">
+            <div>
+              <h2>Как работать с тренажёром</h2>
+              <p>Выберите вариант слева и начните новую попытку или продолжите сохранённую.</p>
+            </div>
+          </div>
+
+          <div class="intro-card">
+            <h3>20 заданий с разбором ошибок</h3>
+            <p class="lead">После проверки правильные ответы подсвечиваются зелёным, ошибки — красным, а под заданием появляется пояснение для обсуждения.</p>
+            <div class="chips">
+              <span class="chip">Классы веществ</span>
+              <span class="chip">Номенклатура</span>
+              <span class="chip">Изомерия</span>
+              <span class="chip">Гибридизация</span>
+            </div>
+            <div class="intro-list">
+              <div>Мгновенная проверка ответа</div>
+              <div>Навигация по всем 20 заданиям</div>
+              <div>Отдельный прогресс для каждого варианта</div>
+              <div>Итоговая оценка и полный разбор</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="test-shell" id="testShell">
+      <div class="site-layout organic-review-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Ход работы</h2>
+
+          <div class="site-label">Статистика</div>
+          <div class="site-stat-grid">
+            <div class="site-stat"><span>Задание</span><strong id="progressLabel">1 / 20</strong></div>
+            <div class="site-stat"><span>Точность</span><strong id="sidebarAccuracy">0%</strong></div>
+            <div class="site-stat"><span>Верно</span><strong id="sidebarCorrect">0</strong></div>
+            <div class="site-stat"><span>Ошибки</span><strong id="sidebarWrong">0</strong></div>
+          </div>
+
+          <div class="site-label">Навигация по заданиям</div>
+          <div class="question-nav" id="questionNav"></div>
+
+          <div class="test-sidebar-actions">
+            <button class="btn btn-secondary" id="changeVariantButton">Варианты</button>
+            <button class="btn btn-secondary" id="restartSideButton">Сначала</button>
+          </div>
+          <p class="footer-note">Зелёным отмечены верные ответы, красным — задания с ошибками.</p>
+        </aside>
+
+        <section class="site-panel site-main-panel">
+          <div class="test-header">
+            <div class="test-meta-row">
+              <div class="test-meta">
+                <span class="variant-badge" id="activeVariantBadge">Вариант 1</span>
+                <span>20 заданий с пояснениями</span>
+              </div>
+            </div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+          </div>
+
+          <div class="question-area">
+            <div class="section-label" id="sectionLabel"></div>
+            <h2 class="question-title" id="questionTitle"></h2>
+            <p class="question-hint" id="questionHint"></p>
+            <div class="options" id="optionsContainer"></div>
+            <div class="feedback-panel" id="feedbackPanel" aria-live="polite"></div>
+
+            <div class="question-footer">
+              <span class="answer-status" id="answerStatus"></span>
+              <div class="nav-group">
+                <button class="btn btn-secondary" id="prevButton">Назад</button>
+                <button class="btn btn-primary" id="nextButton">Проверить ответ</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="site-panel results-shell" id="resultsShell">
+      <div class="results-header">
+        <div class="section-label" id="resultVariantLabel">Результат</div>
+        <h2 id="resultTitle">Тест завершён</h2>
+        <p class="lead" id="resultSubtitle"></p>
+
+        <div class="score-grid">
+          <div class="metric"><strong id="scoreValue">0/20</strong><span>правильных ответов</span></div>
+          <div class="metric"><strong id="percentValue">0%</strong><span>результат</span></div>
+          <div class="metric"><strong id="gradeValue">2</strong><span>оценка</span></div>
+          <div class="metric"><strong id="timeValue">0:00</strong><span>время выполнения</span></div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="printButton">Распечатать результат</button>
+          <button class="btn btn-secondary" id="restartButton">Пройти этот вариант ещё раз</button>
+          <button class="btn btn-secondary" id="chooseAnotherButton">Выбрать другой вариант</button>
+          <button class="btn btn-danger" id="clearButton">Удалить данные варианта</button>
+        </div>
+      </div>
+      <div class="review" id="reviewContainer"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
+
+  <script>
+    "use strict";
+
+    const variants = {
+      1: [
+      {
+        section: "Гомология и классификация",
+        type: "single",
+        text: "Какая пара веществ является гомологами?",
+        options: ["Пропан и бутан", "Бутан и циклобутан", "Этен и этин", "Этанол и диметиловый эфир"],
+        correct: [0],
+        explanation: "Пропан и бутан относятся к одному классу — алканам — и отличаются по составу на гомологическую разность CH₂."
+      },
+      {
+        section: "Гомология и классификация",
+        type: "single",
+        text: "Какая общая формула соответствует алканам?",
+        options: ["CₙH₂ₙ₊₂", "CₙH₂ₙ", "CₙH₂ₙ₋₂", "CₙH₂ₙ₋₆"],
+        correct: [0],
+        explanation: "Для ациклических предельных углеводородов общая формула имеет вид CₙH₂ₙ₊₂."
+      },
+      {
+        section: "Гомология и классификация",
+        type: "single",
+        text: "К какому классу относится вещество CH₃–CO–CH₃?",
+        options: ["Альдегиды", "Кетоны", "Карбоновые кислоты", "Простые эфиры"],
+        correct: [1],
+        explanation: "Карбонильная группа расположена между двумя углеводородными радикалами, поэтому вещество относится к кетонам."
+      },
+      {
+        section: "Гомология и классификация",
+        type: "single",
+        text: "К какому классу относится вещество CH₃–CHO?",
+        options: ["Альдегиды", "Одноатомные спирты", "Кетоны", "Сложные эфиры"],
+        correct: [0],
+        explanation: "Группа –CHO является альдегидной функциональной группой."
+      },
+      {
+        section: "Номенклатура алканов",
+        type: "single",
+        text: "Выберите правильное название вещества CH₃–CH(CH₃)–CH₂–CH₃.",
+        options: ["2-метилбутан", "3-метилбутан", "2-этилпропан", "Пентан"],
+        correct: [0],
+        explanation: "Главная цепь содержит четыре атома углерода, а метильный заместитель получает наименьший номер 2."
+      },
+      {
+        section: "Номенклатура алканов",
+        type: "single",
+        text: "Выберите правильное название вещества CH₃–C(CH₃)₂–CH₂–CH₃.",
+        options: ["2,2-диметилбутан", "2,3-диметилбутан", "3,3-диметилбутан", "2-этил-2-метилпропан"],
+        correct: [0],
+        explanation: "Самая длинная цепь содержит четыре атома углерода, а два метильных заместителя находятся у второго атома."
+      },
+      {
+        section: "Структурная изомерия",
+        type: "single",
+        text: "Сколько структурных изомеров имеет молекулярная формула C₅H₁₂?",
+        options: ["2", "3", "4", "5"],
+        correct: [1],
+        explanation: "Для C₅H₁₂ существуют пентан, 2-метилбутан и 2,2-диметилпропан."
+      },
+      {
+        section: "Структурная изомерия",
+        type: "single",
+        text: "Какая пара состоит из структурных изомеров?",
+        options: ["Бутан и 2-метилпропан", "Пропан и бутан", "Бутен-1 и бутан", "Этен и этин"],
+        correct: [0],
+        explanation: "Бутан и 2-метилпропан имеют одинаковую формулу C₄H₁₀, но разное строение углеродного скелета."
+      },
+      {
+        section: "Структурная изомерия",
+        type: "single",
+        text: "Какой вид изомерии наблюдается у бутена-1 и бутена-2?",
+        options: ["Изомерия положения кратной связи", "Изомерия углеродного скелета", "Межклассовая изомерия", "Геометрическая изомерия"],
+        correct: [0],
+        explanation: "У веществ одинаковы состав и углеродный скелет, но различается положение двойной связи."
+      },
+      {
+        section: "Структурная изомерия",
+        type: "single",
+        text: "Какой вид изомерии связывает этанол C₂H₅OH и диметиловый эфир CH₃–O–CH₃?",
+        options: ["Межклассовая изомерия", "Изомерия положения функциональной группы", "Изомерия углеродного скелета", "Геометрическая изомерия"],
+        correct: [0],
+        explanation: "Вещества имеют одинаковую молекулярную формулу C₂H₆O, но относятся к разным классам."
+      },
+      {
+        section: "Геометрическая изомерия",
+        type: "multi",
+        text: "Выберите вещества, для которых возможна геометрическая изомерия.",
+        hint: "Правильных ответов несколько.",
+        options: ["Бутен-2", "Пентен-1", "Гексен-3", "2-метилпропен"],
+        correct: [0, 2],
+        explanation: "У бутена-2 и гексена-3 каждый атом углерода при двойной связи соединён с двумя разными заместителями."
+      },
+      {
+        section: "Геометрическая изомерия",
+        type: "single",
+        text: "Какое условие необходимо для существования E/Z-изомерии у алкена?",
+        options: [
+          "У каждого атома углерода двойной связи должны быть два разных заместителя",
+          "В молекуле обязательно должна быть группа –OH",
+          "Один из атомов углерода двойной связи должен иметь два одинаковых заместителя",
+          "Молекула должна содержать тройную связь"
+        ],
+        correct: [0],
+        explanation: "Если хотя бы у одного атома углерода двойной связи заместители одинаковы, геометрическая изомерия невозможна."
+      },
+      {
+        section: "Геометрическая изомерия",
+        type: "single",
+        text: "Почему для пропена CH₃–CH=CH₂ не существует пары цис-/транс-изомеров?",
+        options: [
+          "У конечного атома углерода двойной связи находятся два одинаковых атома водорода",
+          "В молекуле слишком мало атомов углерода",
+          "Все атомы углерода имеют sp³-гибридизацию",
+          "Двойная связь свободно вращается"
+        ],
+        correct: [0],
+        explanation: "У группы =CH₂ два одинаковых заместителя — атомы водорода, поэтому условие геометрической изомерии не выполняется."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Какой тип гибридизации имеет атом углерода в метане CH₄?",
+        options: ["sp", "sp²", "sp³", "Гибридизация отсутствует"],
+        correct: [2],
+        explanation: "У атома углерода четыре σ-связи и тетраэдрическое окружение, что соответствует sp³-гибридизации."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Какой тип гибридизации имеют оба атома углерода в этене CH₂=CH₂?",
+        options: ["sp", "sp²", "sp³", "Один sp², другой sp³"],
+        correct: [1],
+        explanation: "Каждый атом углерода двойной связи имеет три области электронной плотности и находится в sp²-гибридизации."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Какой тип гибридизации имеют оба атома углерода в этине HC≡CH?",
+        options: ["sp", "sp²", "sp³", "Один sp, другой sp²"],
+        correct: [0],
+        explanation: "Атомы углерода тройной связи имеют линейное окружение и находятся в sp-гибридизации."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Укажите последовательность типов гибридизации атомов углерода в пропене CH₃–CH=CH₂ слева направо.",
+        options: ["sp³, sp², sp²", "sp², sp², sp³", "sp³, sp, sp", "sp², sp³, sp²"],
+        correct: [0],
+        explanation: "Атом углерода метильной группы имеет sp³-гибридизацию, а оба атома двойной связи — sp²."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Укажите последовательность типов гибридизации атомов углерода в пропине HC≡C–CH₃ слева направо.",
+        options: ["sp, sp, sp³", "sp², sp², sp³", "sp³, sp, sp", "sp, sp², sp³"],
+        correct: [0],
+        explanation: "Два атома углерода тройной связи находятся в sp-гибридизации, атом метильной группы — в sp³."
+      },
+      {
+        section: "Гибридизация",
+        type: "multi",
+        text: "Выберите вещества, в которых все атомы углерода находятся в sp²-гибридизации.",
+        hint: "Правильных ответов несколько.",
+        options: ["Этен", "Бензол", "Бутадиен-1,3", "Пропен", "Метан"],
+        correct: [0, 1, 2],
+        explanation: "В этене, бензоле и бутадиене-1,3 каждый атом углерода входит в систему двойных или ароматических связей и имеет sp²-гибридизацию."
+      },
+      {
+        section: "Гибридизация",
+        type: "single",
+        text: "Сколько атомов углерода в молекуле бутадиена-1,3 CH₂=CH–CH=CH₂ находятся в sp²-гибридизации?",
+        options: ["1", "2", "3", "4"],
+        correct: [3],
+        explanation: "Все четыре атома углерода участвуют в сопряжённой системе двойных связей и имеют sp²-гибридизацию."
+      }
+    ],
+      2: [
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая пара веществ является гомологами?",
+            "options": [
+                  "Пентан и гексан",
+                  "Пентан и пентен",
+                  "Бутан и циклобутан",
+                  "Этен и этин"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Пентан и гексан относятся к алканам и отличаются по составу на одну гомологическую разность CH₂."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая общая формула соответствует ациклическим алкенам с одной двойной связью?",
+            "options": [
+                  "CₙH₂ₙ₊₂",
+                  "CₙH₂ₙ",
+                  "CₙH₂ₙ₋₂",
+                  "CₙH₂ₙ₋₆"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "У ациклических алкенов с одной двойной связью на два атома водорода меньше, чем у соответствующих алканов: CₙH₂ₙ."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–CH₂–OH?",
+            "options": [
+                  "Одноатомные спирты",
+                  "Фенолы",
+                  "Альдегиды",
+                  "Простые эфиры"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Гидроксильная группа –OH соединена с насыщенным атомом углерода, поэтому вещество относится к одноатомным спиртам."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–CH₂–COOH?",
+            "options": [
+                  "Карбоновые кислоты",
+                  "Альдегиды",
+                  "Сложные эфиры",
+                  "Кетоны"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Функциональная группа –COOH является карбоксильной группой, характерной для карбоновых кислот."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH₂–CH(CH₃)–CH₂–CH₃.",
+            "options": [
+                  "2-метилпентан",
+                  "3-метилпентан",
+                  "3-этилбутан",
+                  "Гексан"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Самая длинная цепь содержит пять атомов углерода, а метильный заместитель находится у третьего атома."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH(CH₃)–CH(CH₃)–CH₃.",
+            "options": [
+                  "2,2-диметилбутан",
+                  "2,3-диметилбутан",
+                  "1,2-диметилбутан",
+                  "2-этилбутан"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Главная цепь содержит четыре атома углерода, а метильные заместители находятся у второго и третьего атомов."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Сколько структурных изомеров имеет молекулярная формула C₄H₁₀?",
+            "options": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Формуле C₄H₁₀ соответствуют бутан и 2-метилпропан."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какая пара состоит из структурных изомеров?",
+            "options": [
+                  "Пентан и 2-метилбутан",
+                  "Пентан и гексан",
+                  "Пентен-1 и пентан",
+                  "Пропан и циклопропан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Пентан и 2-метилбутан имеют одинаковую молекулярную формулу C₅H₁₂, но различное строение углеродного скелета."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии наблюдается у пентанола-1 и пентанола-2?",
+            "options": [
+                  "Изомерия положения функциональной группы",
+                  "Изомерия углеродного скелета",
+                  "Межклассовая изомерия",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "У веществ одинаковы состав и углеродный скелет, но различается положение гидроксильной группы."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии связывает пропаналь CH₃–CH₂–CHO и пропанон CH₃–CO–CH₃?",
+            "options": [
+                  "Межклассовая изомерия",
+                  "Изомерия углеродного скелета",
+                  "Геометрическая изомерия",
+                  "Изомерия положения кратной связи"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Оба вещества имеют формулу C₃H₆O, но относятся к разным классам: альдегидам и кетонам."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "multi",
+            "text": "Выберите вещества, для которых возможна геометрическая изомерия.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Пентен-2",
+                  "Гексен-1",
+                  "3-метилпентен-2",
+                  "2-метилбутен-2"
+            ],
+            "correct": [
+                  0,
+                  2
+            ],
+            "explanation": "У пентена-2 и 3-метилпентена-2 каждый атом углерода при двойной связи соединён с двумя разными заместителями."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Какое вещество существует в виде E- и Z-изомеров?",
+            "options": [
+                  "Пропен",
+                  "Пентен-2",
+                  "2-метилпропен",
+                  "Бутен-1"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "В пентене-2 у каждого атома углерода двойной связи имеются два разных заместителя."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Почему для бутена-1 CH₂=CH–CH₂–CH₃ невозможна геометрическая изомерия?",
+            "options": [
+                  "У первого атома углерода двойной связи два одинаковых заместителя — атомы водорода",
+                  "В молекуле есть только одна двойная связь",
+                  "В молекуле четыре атома углерода",
+                  "Одинарные связи не вращаются"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Концевой фрагмент =CH₂ содержит два одинаковых заместителя, поэтому условие E/Z-изомерии не выполняется."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют оба атома углерода в этане CH₃–CH₃?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Один sp², другой sp³"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Каждый атом углерода образует четыре σ-связи и имеет тетраэдрическое окружение, соответствующее sp³-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеет атом углерода карбонильной группы в этанале CH₃–CHO?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Гибридизация отсутствует"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Карбонильный атом углерода образует три σ-связи и одну π-связь, поэтому находится в sp²-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в пропине CH₃–C≡CH слева направо.",
+            "options": [
+                  "sp³, sp, sp",
+                  "sp, sp, sp³",
+                  "sp³, sp², sp",
+                  "sp², sp, sp³"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Атом углерода метильной группы имеет sp³-гибридизацию, а два атома тройной связи — sp."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в пропаноне CH₃–CO–CH₃ слева направо.",
+            "options": [
+                  "sp³, sp², sp³",
+                  "sp², sp², sp²",
+                  "sp³, sp, sp³",
+                  "sp², sp³, sp²"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Атомы углерода двух метильных групп имеют sp³-гибридизацию, карбонильный атом углерода — sp²."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "multi",
+            "text": "Выберите вещества, в которых все атомы углерода находятся в sp²-гибридизации.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Этен",
+                  "Бензол",
+                  "Бутадиен-1,3",
+                  "Этан",
+                  "Пропин"
+            ],
+            "correct": [
+                  0,
+                  1,
+                  2
+            ],
+            "explanation": "В этене, бензоле и бутадиене-1,3 все атомы углерода имеют тригонально-плоское окружение и sp²-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в бутене-1 CH₂=CH–CH₂–CH₃ находятся в sp³-гибридизации?",
+            "options": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Два атома двойной связи имеют sp²-гибридизацию, а два атома насыщенного фрагмента –CH₂–CH₃ — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в пропене CH₃–CH=CH₂ находятся в sp²-гибридизации?",
+            "options": [
+                  "1",
+                  "2",
+                  "3",
+                  "0"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Оба атома углерода двойной связи находятся в sp²-гибридизации; атом метильной группы имеет sp³-гибридизацию."
+      }
+],
+      3: [
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая пара веществ является гомологами?",
+            "options": [
+                  "Этен и пропен",
+                  "Этен и этин",
+                  "Пропен и пропан",
+                  "Бензол и циклогексан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Этен и пропен относятся к алкенам и отличаются по составу на гомологическую разность CH₂."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая общая формула соответствует ациклическим алкинам с одной тройной связью?",
+            "options": [
+                  "CₙH₂ₙ₊₂",
+                  "CₙH₂ₙ",
+                  "CₙH₂ₙ₋₂",
+                  "CₙH₂ₙ₋₆"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Для ациклических алкинов с одной тройной связью характерна общая формула CₙH₂ₙ₋₂."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–O–CH₃?",
+            "options": [
+                  "Простые эфиры",
+                  "Сложные эфиры",
+                  "Одноатомные спирты",
+                  "Альдегиды"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Атом кислорода соединяет два углеводородных радикала, что характерно для простых эфиров."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество C₆H₅–OH?",
+            "options": [
+                  "Фенолы",
+                  "Одноатомные спирты",
+                  "Карбоновые кислоты",
+                  "Альдегиды"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Гидроксильная группа непосредственно соединена с ароматическим кольцом, поэтому вещество относится к фенолам."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH(CH₃)–CH₂–CH₂–CH₃.",
+            "options": [
+                  "2-метилпентан",
+                  "3-метилпентан",
+                  "2-этилбутан",
+                  "Гексан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Главная цепь содержит пять атомов углерода; нумерация даёт метильному заместителю номер 2."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH₂–C(CH₃)₂–CH₂–CH₃.",
+            "options": [
+                  "2,2-диметилпентан",
+                  "3,3-диметилпентан",
+                  "3-этил-3-метилбутан",
+                  "2,3-диметилпентан"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Самая длинная цепь содержит пять атомов углерода, а оба метильных заместителя находятся у третьего атома."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Сколько структурных изомеров имеет молекулярная формула C₆H₁₄?",
+            "options": [
+                  "3",
+                  "4",
+                  "5",
+                  "6"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Формуле C₆H₁₄ соответствуют пять изомеров углеродного скелета."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какая пара состоит из структурных изомеров?",
+            "options": [
+                  "Гексан и 2-метилпентан",
+                  "Гексан и гептан",
+                  "Гексен-1 и гексан",
+                  "Пропан и пропен"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Гексан и 2-метилпентан имеют одинаковую молекулярную формулу C₆H₁₄, но разное строение скелета."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии наблюдается у бутина-1 и бутина-2?",
+            "options": [
+                  "Изомерия положения кратной связи",
+                  "Изомерия углеродного скелета",
+                  "Межклассовая изомерия",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "У соединений одинаковы состав и скелет, но тройная связь расположена в разных положениях."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии связывает пропаналь и пропанон?",
+            "options": [
+                  "Межклассовая изомерия",
+                  "Изомерия углеродного скелета",
+                  "Изомерия положения двойной связи",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Пропаналь и пропанон имеют общую формулу C₃H₆O, но относятся к альдегидам и кетонам."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "multi",
+            "text": "Выберите вещества, для которых возможна геометрическая изомерия.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Гексен-2",
+                  "Бутен-1",
+                  "3-метилгексен-2",
+                  "2-метилпропен"
+            ],
+            "correct": [
+                  0,
+                  2
+            ],
+            "explanation": "У гексена-2 и 3-метилгексена-2 при каждом атоме углерода двойной связи находятся два разных заместителя."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Какое вещество не может существовать в виде E- и Z-изомеров?",
+            "options": [
+                  "Бутен-2",
+                  "Пентен-2",
+                  "3-метилпентен-2",
+                  "2-метилбутен-2"
+            ],
+            "correct": [
+                  3
+            ],
+            "explanation": "У одного атома углерода двойной связи в 2-метилбутене-2 находятся два одинаковых метильных заместителя."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Почему для пентена-1 CH₂=CH–CH₂–CH₂–CH₃ невозможна геометрическая изомерия?",
+            "options": [
+                  "У конечного атома углерода двойной связи два одинаковых атома водорода",
+                  "Двойная связь расположена у первого атома",
+                  "В молекуле нечётное число атомов углерода",
+                  "Молекула не содержит разветвлений"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Решающая причина — наличие двух одинаковых заместителей H у концевого атома углерода двойной связи."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют атомы углерода в циклогексане?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Часть sp², часть sp³"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "В циклогексане все связи одинарные, каждый атом углерода образует четыре σ-связи и имеет sp³-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют все атомы углерода в бензоле?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Чередуются sp и sp²"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Каждый атом углерода бензольного кольца имеет тригонально-плоское окружение и находится в sp²-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют атомы углерода в этине HC≡CH?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Один sp, другой sp²"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Тройная связь соответствует линейному окружению атомов углерода и sp-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в бутене-2 CH₃–CH=CH–CH₃ слева направо.",
+            "options": [
+                  "sp³, sp², sp², sp³",
+                  "sp², sp², sp³, sp³",
+                  "sp³, sp, sp, sp³",
+                  "sp², sp³, sp³, sp²"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Концевые метильные атомы углерода имеют sp³-гибридизацию, два атома двойной связи — sp²."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в бутине-1 HC≡C–CH₂–CH₃ слева направо.",
+            "options": [
+                  "sp, sp, sp³, sp³",
+                  "sp³, sp³, sp, sp",
+                  "sp², sp², sp³, sp³",
+                  "sp, sp², sp³, sp³"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Два атома тройной связи имеют sp-гибридизацию, два атома насыщенного фрагмента — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "multi",
+            "text": "Выберите вещества, содержащие хотя бы один атом углерода в sp-гибридизации.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Этин",
+                  "Пропин",
+                  "Этен",
+                  "Бензол",
+                  "Метан"
+            ],
+            "correct": [
+                  0,
+                  1
+            ],
+            "explanation": "sp-гибридизация характерна для атомов углерода тройной связи, поэтому она присутствует в этине и пропине."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в 2-метилпропене CH₂=C(CH₃)₂ находятся в sp³-гибридизации?",
+            "options": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Два метильных атома углерода имеют sp³-гибридизацию, а два атома двойной связи — sp²."
+      }
+],
+      4: [
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая пара веществ является гомологами?",
+            "options": [
+                  "Метанол и этанол",
+                  "Метанол и фенол",
+                  "Этанол и диметиловый эфир",
+                  "Этанол и этаналь"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Метанол и этанол относятся к одноатомным спиртам и отличаются по составу на гомологическую разность CH₂."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая общая формула соответствует насыщенным моноциклическим углеводородам?",
+            "options": [
+                  "CₙH₂ₙ₊₂",
+                  "CₙH₂ₙ",
+                  "CₙH₂ₙ₋₂",
+                  "CₙH₂ₙ₋₆"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "У насыщенных углеводородов с одним циклом общая формула CₙH₂ₙ."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–COO–CH₃?",
+            "options": [
+                  "Сложные эфиры",
+                  "Простые эфиры",
+                  "Карбоновые кислоты",
+                  "Кетоны"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Группа –COO–, соединяющая два углеводородных остатка, является сложноэфирной группой."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–CH₂–CHO?",
+            "options": [
+                  "Альдегиды",
+                  "Кетоны",
+                  "Одноатомные спирты",
+                  "Карбоновые кислоты"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Концевая группа –CHO является альдегидной функциональной группой."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–C(CH₃)₂–CH₂–CH₂–CH₃.",
+            "options": [
+                  "2,2-диметилпентан",
+                  "2,3-диметилпентан",
+                  "4,4-диметилпентан",
+                  "2-этил-2-метилбутан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Главная цепь содержит пять атомов углерода, а два метильных заместителя получают номера 2 и 2."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH(CH₃)–CH(CH₂CH₃)–CH₂–CH₃.",
+            "options": [
+                  "3-этил-2-метилпентан",
+                  "2-этил-3-метилпентан",
+                  "3,4-диметилгексан",
+                  "2,3-диэтилбутан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Самая длинная цепь содержит пять атомов углерода; заместители получают номера 2 и 3 и перечисляются по алфавиту."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Сколько структурных изомеров имеет молекулярная формула C₇H₁₆?",
+            "options": [
+                  "5",
+                  "7",
+                  "9",
+                  "11"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Для гептана известно девять структурных изомеров углеродного скелета."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какая пара состоит из структурных изомеров?",
+            "options": [
+                  "2-метилпентан и 3-метилпентан",
+                  "Пентан и 2-метилпентан",
+                  "Гексан и гексен-1",
+                  "Пропан и циклопропан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Оба вещества имеют формулу C₆H₁₄, но различаются положением разветвления углеродной цепи."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии наблюдается у гексена-1 и гексена-2?",
+            "options": [
+                  "Изомерия положения кратной связи",
+                  "Изомерия углеродного скелета",
+                  "Межклассовая изомерия",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "У соединений одинаковый скелет, но двойная связь занимает разное положение."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии связывает бутанол-1 и диэтиловый эфир?",
+            "options": [
+                  "Межклассовая изомерия",
+                  "Изомерия положения функциональной группы",
+                  "Изомерия углеродного скелета",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Оба вещества имеют формулу C₄H₁₀O, но относятся к спиртам и простым эфирам."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "multi",
+            "text": "Выберите вещества, для которых возможна геометрическая изомерия.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Бутен-2",
+                  "Пентен-2",
+                  "2-метилбутен-2",
+                  "Пропен"
+            ],
+            "correct": [
+                  0,
+                  1
+            ],
+            "explanation": "В бутене-2 и пентене-2 каждый атом углерода двойной связи имеет два разных заместителя."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Какое вещество может существовать в виде E- и Z-изомеров?",
+            "options": [
+                  "3-метилпентен-2",
+                  "Пентен-1",
+                  "2-метилбутен-2",
+                  "Этен"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "В 3-метилпентене-2 у обоих атомов углерода двойной связи заместители попарно различны."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Почему для 2-метилпропена CH₂=C(CH₃)₂ невозможна геометрическая изомерия?",
+            "options": [
+                  "При атомах углерода двойной связи имеются одинаковые заместители",
+                  "В молекуле разветвлённая цепь",
+                  "Молекула содержит четыре атома углерода",
+                  "Двойная связь находится у первого атома"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "У концевого атома находятся два H, а у второго атома — два одинаковых метильных заместителя; условие E/Z-изомерии не выполняется."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеет атом углерода в метаноле CH₃OH?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Гибридизация отсутствует"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Атом углерода образует четыре σ-связи и имеет sp³-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеет атом углерода в метанале H₂C=O?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Один из перечисленных типов определить нельзя"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Карбонильный атом углерода имеет три области электронной плотности и находится в sp²-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют атомы углерода в этине HC≡CH?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Один sp², другой sp"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Линейное окружение атомов углерода тройной связи соответствует sp-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в этилбензоле C₆H₅–CH₂–CH₃ находятся в sp²-гибридизации?",
+            "options": [
+                  "2",
+                  "4",
+                  "6",
+                  "8"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Все шесть атомов углерода бензольного кольца имеют sp²-гибридизацию; два атома боковой цепи — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "multi",
+            "text": "Выберите вещества, в которых все атомы углерода находятся в sp³-гибридизации.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Этан",
+                  "Пропан",
+                  "Циклогексан",
+                  "Этен",
+                  "Бензол"
+            ],
+            "correct": [
+                  0,
+                  1,
+                  2
+            ],
+            "explanation": "В этане, пропане и циклогексане атомы углерода участвуют только в одинарных связях и имеют sp³-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в бутине-2 CH₃–C≡C–CH₃ находятся в sp-гибридизации?",
+            "options": [
+                  "1",
+                  "2",
+                  "3",
+                  "4"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Два атома углерода тройной связи имеют sp-гибридизацию; два метильных атома — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в толуоле C₆H₅–CH₃ находятся в sp³-гибридизации?",
+            "options": [
+                  "0",
+                  "1",
+                  "5",
+                  "6"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Шесть атомов кольца имеют sp²-гибридизацию, а атом углерода метильной группы — sp³."
+      }
+],
+      5: [
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая пара веществ является гомологами?",
+            "options": [
+                  "Пропен и бутен",
+                  "Пропен и пропин",
+                  "Бутен и бутан",
+                  "Этен и циклобутан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Пропен и бутен относятся к алкенам и отличаются по составу на гомологическую разность CH₂."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "Какая общая формула соответствует гомологам бензола с одним ароматическим кольцом и насыщенными боковыми цепями?",
+            "options": [
+                  "CₙH₂ₙ₊₂",
+                  "CₙH₂ₙ",
+                  "CₙH₂ₙ₋₂",
+                  "CₙH₂ₙ₋₆"
+            ],
+            "correct": [
+                  3
+            ],
+            "explanation": "Для гомологического ряда бензола характерна общая формула CₙH₂ₙ₋₆ при n ≥ 6."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–CH₂–COOH?",
+            "options": [
+                  "Карбоновые кислоты",
+                  "Альдегиды",
+                  "Кетоны",
+                  "Сложные эфиры"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "В молекуле присутствует карбоксильная группа –COOH, поэтому вещество относится к карбоновым кислотам."
+      },
+      {
+            "section": "Гомология и классификация",
+            "type": "single",
+            "text": "К какому классу относится вещество CH₃–CH₂–O–CH₂–CH₃?",
+            "options": [
+                  "Простые эфиры",
+                  "Сложные эфиры",
+                  "Одноатомные спирты",
+                  "Фенолы"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Атом кислорода соединяет два этильных радикала, что соответствует простому эфиру."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–CH₂–CH(CH₃)–CH₂–CH₂–CH₃.",
+            "options": [
+                  "3-метилгексан",
+                  "4-метилгексан",
+                  "3-этилпентан",
+                  "Гептан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Главная цепь содержит шесть атомов углерода; при нумерации с ближайшего конца заместитель получает номер 3."
+      },
+      {
+            "section": "Номенклатура алканов",
+            "type": "single",
+            "text": "Выберите правильное название вещества CH₃–C(CH₃)₂–CH(CH₃)–CH₃.",
+            "options": [
+                  "2,2,3-триметилбутан",
+                  "2,3,3-триметилбутан",
+                  "2-этил-2,3-диметилпропан",
+                  "2,2-диметилпентан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Наименьший набор локантов для трёх метильных заместителей — 2,2,3."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой алкан является первым представителем ряда, для которого возможна изомерия углеродного скелета?",
+            "options": [
+                  "Метан",
+                  "Этан",
+                  "Пропан",
+                  "Бутан"
+            ],
+            "correct": [
+                  3
+            ],
+            "explanation": "У бутана появляются два варианта строения скелета: бутан и 2-метилпропан."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какая пара состоит из структурных изомеров?",
+            "options": [
+                  "Бутен-1 и 2-метилпропен",
+                  "Бутен-1 и бутан",
+                  "Бутен-1 и пентен-1",
+                  "Пропен и пропан"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Бутен-1 и 2-метилпропен имеют формулу C₄H₈, но различное строение углеродного скелета."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии наблюдается у пентанона-2 и пентанона-3?",
+            "options": [
+                  "Изомерия положения функциональной группы",
+                  "Изомерия углеродного скелета",
+                  "Межклассовая изомерия",
+                  "Геометрическая изомерия"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Карбонильная группа занимает разные положения при неизменном углеродном скелете."
+      },
+      {
+            "section": "Структурная изомерия",
+            "type": "single",
+            "text": "Какой вид изомерии связывает этанол и диметиловый эфир?",
+            "options": [
+                  "Межклассовая изомерия",
+                  "Изомерия углеродного скелета",
+                  "Геометрическая изомерия",
+                  "Изомерия положения кратной связи"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Оба вещества имеют формулу C₂H₆O, но принадлежат к разным классам органических соединений."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "multi",
+            "text": "Выберите вещества, для которых возможна геометрическая изомерия.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Гексен-2",
+                  "2-метилпентен-2",
+                  "Гептен-3",
+                  "Пропен"
+            ],
+            "correct": [
+                  0,
+                  2
+            ],
+            "explanation": "В гексене-2 и гептене-3 у каждого атома углерода двойной связи имеются два разных заместителя."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Какое вещество может существовать в виде E- и Z-изомеров?",
+            "options": [
+                  "4-метилгексен-2",
+                  "2-метилбутен-2",
+                  "Пентен-1",
+                  "2-метилпропен"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "У атомов углерода двойной связи в 4-метилгексене-2 находятся попарно разные заместители."
+      },
+      {
+            "section": "Геометрическая изомерия",
+            "type": "single",
+            "text": "Почему для 2-метилбутена-2 невозможна геометрическая изомерия?",
+            "options": [
+                  "У одного атома углерода двойной связи находятся два одинаковых метильных заместителя",
+                  "Двойная связь расположена в середине цепи",
+                  "В молекуле пять атомов углерода",
+                  "Молекула является разветвлённой"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Два одинаковых метильных заместителя при одном атоме двойной связи исключают существование E/Z-изомеров."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют все атомы углерода в пропане?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Концевые sp³, центральный sp²"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "В пропане все атомы углерода образуют только одинарные связи и находятся в sp³-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеет атом углерода карбонильной группы в пропаноне?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Гибридизация отсутствует"
+            ],
+            "correct": [
+                  1
+            ],
+            "explanation": "Карбонильный атом углерода имеет тригонально-плоское окружение и sp²-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Какой тип гибридизации имеют атомы углерода в этине?",
+            "options": [
+                  "sp",
+                  "sp²",
+                  "sp³",
+                  "Один sp, другой sp³"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Атомы углерода тройной связи имеют линейное окружение и находятся в sp-гибридизации."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в пентене-1 CH₂=CH–CH₂–CH₂–CH₃ слева направо.",
+            "options": [
+                  "sp², sp², sp³, sp³, sp³",
+                  "sp³, sp², sp², sp³, sp³",
+                  "sp, sp, sp³, sp³, sp³",
+                  "sp², sp³, sp³, sp³, sp²"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Два атома двойной связи имеют sp²-гибридизацию, остальные три атома углерода — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Укажите последовательность типов гибридизации атомов углерода в бутине-2 CH₃–C≡C–CH₃ слева направо.",
+            "options": [
+                  "sp³, sp, sp, sp³",
+                  "sp, sp, sp³, sp³",
+                  "sp³, sp², sp², sp³",
+                  "sp², sp, sp, sp²"
+            ],
+            "correct": [
+                  0
+            ],
+            "explanation": "Два центральных атома тройной связи имеют sp-гибридизацию, концевые метильные атомы — sp³."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "multi",
+            "text": "Выберите вещества, в которых все атомы углерода находятся в sp²-гибридизации.",
+            "hint": "Правильных ответов несколько.",
+            "options": [
+                  "Бензол",
+                  "Этен",
+                  "Бутадиен-1,3",
+                  "Пропен",
+                  "Этин"
+            ],
+            "correct": [
+                  0,
+                  1,
+                  2
+            ],
+            "explanation": "Все атомы углерода бензола, этена и бутадиена-1,3 имеют sp²-гибридизацию."
+      },
+      {
+            "section": "Гибридизация",
+            "type": "single",
+            "text": "Сколько атомов углерода в 3-метилпентене-1 CH₂=CH–CH(CH₃)–CH₂–CH₃ находятся в sp³-гибридизации?",
+            "options": [
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+            ],
+            "correct": [
+                  2
+            ],
+            "explanation": "Два атома двойной связи имеют sp²-гибридизацию, а четыре остальных атома углерода — sp³."
+      }
+]
+    };
+
+    const memoryStore = new Map();
+    const storage = {
+      getItem(key) {
+        try { return window.localStorage.getItem(key); }
+        catch (_) { return memoryStore.has(key) ? memoryStore.get(key) : null; }
+      },
+      setItem(key, value) {
+        try { window.localStorage.setItem(key, value); }
+        catch (_) { memoryStore.set(key, String(value)); }
+      },
+      removeItem(key) {
+        try { window.localStorage.removeItem(key); }
+        catch (_) { memoryStore.delete(key); }
+      }
+    };
+
+    let activeVariant = null;
+    let questions = [];
+    let pendingSavedState = null;
+
+    const state = {
+      current: 0,
+      answers: [],
+      checked: [],
+      startedAt: null
+    };
+
+    const startShell = document.getElementById("startShell");
+    const testShell = document.getElementById("testShell");
+    const resultsShell = document.getElementById("resultsShell");
+    const variantGrid = document.getElementById("variantGrid");
+    const selectionNote = document.getElementById("selectionNote");
+    const startError = document.getElementById("startError");
+    const startButton = document.getElementById("startButton");
+    const newAttemptButton = document.getElementById("newAttemptButton");
+    const activeVariantBadge = document.getElementById("activeVariantBadge");
+    const progressLabel = document.getElementById("progressLabel");
+    const progressBar = document.getElementById("progressBar");
+    const questionNav = document.getElementById("questionNav");
+    const sidebarAccuracy = document.getElementById("sidebarAccuracy");
+    const sidebarCorrect = document.getElementById("sidebarCorrect");
+    const sidebarWrong = document.getElementById("sidebarWrong");
+    const sectionLabel = document.getElementById("sectionLabel");
+    const questionTitle = document.getElementById("questionTitle");
+    const questionHint = document.getElementById("questionHint");
+    const optionsContainer = document.getElementById("optionsContainer");
+    const feedbackPanel = document.getElementById("feedbackPanel");
+    const answerStatus = document.getElementById("answerStatus");
+    const prevButton = document.getElementById("prevButton");
+    const nextButton = document.getElementById("nextButton");
+
+    function progressKey(variant) { return `organicReviewTestProgressV${variant}`; }
+    function historyKey(variant) { return `organicReviewTestHistoryV${variant}`; }
+
+    function arraysEqual(a, b) {
+      if (a.length !== b.length) return false;
+      const x = [...a].sort((m, n) => m - n);
+      const y = [...b].sort((m, n) => m - n);
+      return x.every((value, index) => value === y[index]);
+    }
+
+    function readSavedProgress(variant) {
+      const raw = storage.getItem(progressKey(variant));
+      if (!raw) return null;
+
+      try {
+        const saved = JSON.parse(raw);
+        const variantQuestions = variants[variant];
+        if (!saved || !Array.isArray(saved.answers) || saved.answers.length !== variantQuestions.length) return null;
+
+        const answers = variantQuestions.map((question, index) => {
+          const source = Array.isArray(saved.answers[index]) ? saved.answers[index] : [];
+          const valid = [...new Set(source)]
+            .filter(value => Number.isInteger(value) && value >= 0 && value < question.options.length)
+            .sort((a, b) => a - b);
+          return question.type === "single" ? valid.slice(0, 1) : valid;
+        });
+
+        const checked = variantQuestions.map((_, index) => {
+          const value = Array.isArray(saved.checked) ? Boolean(saved.checked[index]) : false;
+          return value && answers[index].length > 0;
+        });
+
+        const rawCurrent = Number(saved.current);
+        const current = Number.isInteger(rawCurrent) && rawCurrent >= 0 && rawCurrent < variantQuestions.length
+          ? rawCurrent
+          : Math.max(0, checked.findIndex(value => !value));
+
+        const parsedDate = saved.startedAt ? new Date(saved.startedAt) : new Date();
+        const startedAt = Number.isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+
+        return { current, answers, checked, startedAt };
+      } catch (error) {
+        console.warn("Не удалось прочитать сохранённый прогресс", error);
+        return null;
+      }
+    }
+
+    function saveProgress() {
+      if (!activeVariant) return;
+      const payload = {
+        ...state,
+        variant: activeVariant,
+        startedAt: state.startedAt ? state.startedAt.toISOString() : null
+      };
+      storage.setItem(progressKey(activeVariant), JSON.stringify(payload));
+    }
+
+    function renderVariantGrid() {
+      variantGrid.innerHTML = "";
+      Object.keys(variants).forEach(rawVariant => {
+        const variant = Number(rawVariant);
+        const saved = readSavedProgress(variant);
+        const checkedCount = saved ? saved.checked.filter(Boolean).length : 0;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `variant-card${activeVariant === variant ? " selected" : ""}${saved ? " has-progress" : ""}`;
+        button.setAttribute("aria-pressed", activeVariant === variant ? "true" : "false");
+        button.innerHTML = `
+          <span class="variant-number">Вариант ${variant}</span>
+          <span class="variant-meta">20 заданий</span>
+          <span class="variant-status">${saved ? `Сохранено: ${checkedCount}/20` : "Новая попытка"}</span>
+        `;
+        button.addEventListener("click", () => selectVariant(variant));
+        variantGrid.appendChild(button);
+      });
+    }
+
+    function selectVariant(variant) {
+      activeVariant = variant;
+      questions = variants[variant];
+      pendingSavedState = readSavedProgress(variant);
+      startError.textContent = "";
+      startButton.disabled = false;
+
+      if (pendingSavedState) {
+        const checkedCount = pendingSavedState.checked.filter(Boolean).length;
+        selectionNote.textContent = `Выбран вариант ${variant}. Есть сохранённый прогресс: проверено ${checkedCount} из ${questions.length} заданий.`;
+        startButton.textContent = `Продолжить вариант ${variant}`;
+        newAttemptButton.style.display = "inline-block";
+      } else {
+        selectionNote.textContent = `Выбран вариант ${variant}. Можно начинать новую попытку.`;
+        startButton.textContent = `Начать вариант ${variant}`;
+        newAttemptButton.style.display = "none";
+      }
+      renderVariantGrid();
+    }
+
+    function resetState() {
+      state.current = 0;
+      state.answers = Array.from({ length: questions.length }, () => []);
+      state.checked = Array.from({ length: questions.length }, () => false);
+      state.startedAt = new Date();
+    }
+
+    function startTest() {
+      if (!activeVariant) {
+        startError.textContent = "Сначала выберите вариант.";
+        return;
+      }
+
+      if (pendingSavedState) Object.assign(state, pendingSavedState);
+      else resetState();
+
+      startError.textContent = "";
+      saveProgress();
+      showTest();
+    }
+
+    function startNewAttempt() {
+      if (!activeVariant) return;
+      const confirmed = window.confirm(`Удалить сохранённый прогресс варианта ${activeVariant} и начать его заново?`);
+      if (!confirmed) return;
+      storage.removeItem(progressKey(activeVariant));
+      pendingSavedState = null;
+      resetState();
+      saveProgress();
+      renderVariantGrid();
+      showTest();
+    }
+
+    function showSelection() {
+      startShell.style.display = "block";
+      testShell.style.display = "none";
+      resultsShell.style.display = "none";
+      pendingSavedState = activeVariant ? readSavedProgress(activeVariant) : null;
+      if (activeVariant) selectVariant(activeVariant);
+      renderVariantGrid();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showTest() {
+      startShell.style.display = "none";
+      resultsShell.style.display = "none";
+      testShell.style.display = "block";
+      activeVariantBadge.textContent = `Вариант ${activeVariant}`;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateSidebar() {
+      const checkedIndexes = state.checked
+        .map((checked, index) => checked ? index : -1)
+        .filter(index => index !== -1);
+      const correctCount = checkedIndexes.reduce((sum, index) =>
+        sum + (arraysEqual(state.answers[index], questions[index].correct) ? 1 : 0), 0);
+      const wrongCount = checkedIndexes.length - correctCount;
+      const accuracy = checkedIndexes.length ? Math.round(correctCount / checkedIndexes.length * 100) : 0;
+
+      sidebarAccuracy.textContent = `${accuracy}%`;
+      sidebarCorrect.textContent = correctCount;
+      sidebarWrong.textContent = wrongCount;
+
+      questionNav.innerHTML = "";
+      questions.forEach((question, index) => {
+        const button = document.createElement("button");
+        const classes = ["question-nav-btn"];
+        if (index === state.current) classes.push("current");
+        if (state.checked[index]) {
+          classes.push(arraysEqual(state.answers[index], question.correct) ? "right" : "wrong");
+        }
+        button.type = "button";
+        button.className = classes.join(" ");
+        button.textContent = index + 1;
+        button.title = `Задание ${index + 1}`;
+        if (index === state.current) button.setAttribute("aria-current", "step");
+        button.addEventListener("click", () => {
+          state.current = index;
+          saveProgress();
+          renderQuestion();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        questionNav.appendChild(button);
+      });
+    }
+
+    function renderQuestion() {
+      const q = questions[state.current];
+      const selected = state.answers[state.current];
+      const isChecked = state.checked[state.current];
+      const isCorrect = isChecked && arraysEqual(selected, q.correct);
+      const progress = ((state.current + 1) / questions.length) * 100;
+
+      progressLabel.textContent = `${state.current + 1} / ${questions.length}`;
+      progressBar.style.width = `${progress}%`;
+      sectionLabel.textContent = q.section;
+      questionTitle.innerHTML = `${state.current + 1}. ${q.text}`;
+      questionHint.textContent = q.hint || (q.type === "multi" ? "Выберите все правильные ответы." : "Выберите один правильный ответ.");
+      optionsContainer.innerHTML = "";
+
+      q.options.forEach((optionText, index) => {
+        const label = document.createElement("label");
+        const classes = ["option"];
+        if (selected.includes(index)) classes.push("selected");
+        if (isChecked) {
+          classes.push("locked");
+          if (q.correct.includes(index)) classes.push("correct-answer");
+          else if (selected.includes(index)) classes.push("wrong-answer");
+        }
+        label.className = classes.join(" ");
+        label.dataset.kind = q.type;
+
+        const input = document.createElement("input");
+        input.type = q.type === "multi" ? "checkbox" : "radio";
+        input.name = `question-${activeVariant}-${state.current}`;
+        input.checked = selected.includes(index);
+        input.disabled = isChecked;
+
+        const marker = document.createElement("span");
+        marker.className = "marker";
+        marker.textContent = String.fromCharCode(65 + index);
+
+        const text = document.createElement("span");
+        text.innerHTML = optionText;
+
+        if (!isChecked) {
+          input.addEventListener("change", () => toggleAnswer(index));
+        }
+
+        label.append(input, marker, text);
+        optionsContainer.appendChild(label);
+      });
+
+      feedbackPanel.className = "feedback-panel";
+      feedbackPanel.innerHTML = "";
+
+      if (isChecked) {
+        feedbackPanel.classList.add("visible", isCorrect ? "correct" : "incorrect");
+        feedbackPanel.innerHTML = `
+          <p class="feedback-heading">${isCorrect ? "Верно" : "Есть ошибка"}</p>
+          <p class="feedback-explanation">${q.explanation}</p>
+          ${isCorrect
+            ? '<p class="discussion-note">Можно кратко сформулировать правило своими словами и переходить дальше.</p>'
+            : `<p class="discussion-note"><b>Правильный ответ:</b> ${formatSelection(q, q.correct)}. Обсудите, почему выбранный вариант не подходит, и только затем переходите к следующему вопросу.</p>`}
+        `;
+      }
+
+      if (isChecked) {
+        answerStatus.textContent = isCorrect ? "Ответ проверен: верно" : "Ответ проверен: требуется разбор";
+        answerStatus.style.color = isCorrect ? "var(--success)" : "var(--danger)";
+      } else {
+        answerStatus.textContent = selected.length > 0
+          ? (q.type === "multi" ? `Выбрано вариантов: ${selected.length}` : "Ответ выбран")
+          : "Ответ пока не выбран";
+        answerStatus.style.color = "";
+      }
+
+      prevButton.disabled = state.current === 0;
+      if (!isChecked) nextButton.textContent = "Проверить ответ";
+      else if (state.current === questions.length - 1) nextButton.textContent = "Показать результат";
+      else nextButton.textContent = "Следующий вопрос";
+      updateSidebar();
+    }
+
+    function toggleAnswer(index) {
+      if (state.checked[state.current]) return;
+      const q = questions[state.current];
+      const selected = state.answers[state.current];
+
+      if (q.type === "single") state.answers[state.current] = [index];
+      else if (selected.includes(index)) state.answers[state.current] = selected.filter(value => value !== index);
+      else state.answers[state.current] = [...selected, index];
+
+      saveProgress();
+      renderQuestion();
+    }
+
+    function goNext() {
+      const isChecked = state.checked[state.current];
+      if (!isChecked) {
+        if (state.answers[state.current].length === 0) {
+          answerStatus.textContent = "Сначала выберите ответ.";
+          answerStatus.style.color = "var(--danger)";
+          return;
+        }
+        state.checked[state.current] = true;
+        saveProgress();
+        renderQuestion();
+        feedbackPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        return;
+      }
+
+      if (state.current < questions.length - 1) {
+        state.current += 1;
+        saveProgress();
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else finishTest();
+    }
+
+    function goPrev() {
+      if (state.current > 0) {
+        state.current -= 1;
+        saveProgress();
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    function getGrade(percent) {
+      if (percent >= 90) return 5;
+      if (percent >= 70) return 4;
+      if (percent >= 50) return 3;
+      return 2;
+    }
+
+    function formatDuration(ms) {
+      const totalSeconds = Math.max(0, Math.round(ms / 1000));
+      const minutes = Math.floor(totalSeconds / 60);
+      const seconds = totalSeconds % 60;
+      return `${minutes}:${String(seconds).padStart(2, "0")}`;
+    }
+
+    function formatSelection(q, indexes) {
+      if (!indexes.length) return "Нет ответа";
+      return indexes.map(i => q.options[i]).join("; ");
+    }
+
+    function finishTest() {
+      const unchecked = state.checked.findIndex(value => !value);
+      if (unchecked !== -1) {
+        state.current = unchecked;
+        renderQuestion();
+        answerStatus.textContent = "Сначала проверьте каждый ответ.";
+        answerStatus.style.color = "var(--danger)";
+        return;
+      }
+
+      const correctCount = questions.reduce((sum, q, index) => sum + (arraysEqual(state.answers[index], q.correct) ? 1 : 0), 0);
+      const percent = Math.round((correctCount / questions.length) * 100);
+      const grade = getGrade(percent);
+      const endedAt = new Date();
+      const duration = endedAt - state.startedAt;
+
+      document.getElementById("resultVariantLabel").textContent = `Результат · вариант ${activeVariant}`;
+      document.getElementById("resultTitle").textContent = "Тест завершён";
+      document.getElementById("resultSubtitle").textContent =
+        `Все ответы уже были разобраны по ходу тренажёра. Оценка рассчитана по шкале: 50% — «3», 70% — «4», 90% — «5».`;
+      document.getElementById("scoreValue").textContent = `${correctCount}/${questions.length}`;
+      document.getElementById("percentValue").textContent = `${percent}%`;
+      document.getElementById("gradeValue").textContent = grade;
+      document.getElementById("timeValue").textContent = formatDuration(duration);
+
+      const reviewContainer = document.getElementById("reviewContainer");
+      reviewContainer.innerHTML = "<h2>Разбор ответов</h2>";
+
+      questions.forEach((q, index) => {
+        const isCorrect = arraysEqual(state.answers[index], q.correct);
+        const item = document.createElement("article");
+        item.className = `review-item ${isCorrect ? "correct" : "incorrect"}`;
+        item.innerHTML = `
+          <div class="review-top">
+            <strong>${index + 1}. ${q.text}</strong>
+            <span class="badge">${isCorrect ? "Верно" : "Ошибка"}</span>
+          </div>
+          <div class="review-line"><b>Ваш ответ:</b> ${formatSelection(q, state.answers[index])}</div>
+          <div class="review-line"><b>Правильный ответ:</b> ${formatSelection(q, q.correct)}</div>
+          <div class="explanation">${q.explanation}</div>
+        `;
+        reviewContainer.appendChild(item);
+      });
+
+      let history = [];
+      try {
+        const parsedHistory = JSON.parse(storage.getItem(historyKey(activeVariant)) || "[]");
+        if (Array.isArray(parsedHistory)) history = parsedHistory;
+      } catch (_) {}
+
+      history.push({
+        variant: activeVariant,
+        correctCount,
+        total: questions.length,
+        percent,
+        grade,
+        durationMs: duration,
+        completedAt: endedAt.toISOString()
+      });
+      storage.setItem(historyKey(activeVariant), JSON.stringify(history.slice(-50)));
+      storage.removeItem(progressKey(activeVariant));
+      pendingSavedState = null;
+
+      testShell.style.display = "none";
+      startShell.style.display = "none";
+      resultsShell.style.display = "block";
+      renderVariantGrid();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function restartTest() {
+      resetState();
+      saveProgress();
+      showTest();
+    }
+
+    function clearVariantData() {
+      if (!activeVariant) return;
+      const confirmed = window.confirm(`Удалить сохранённый прогресс и историю результатов варианта ${activeVariant} на этом устройстве?`);
+      if (!confirmed) return;
+      storage.removeItem(progressKey(activeVariant));
+      storage.removeItem(historyKey(activeVariant));
+      pendingSavedState = null;
+      renderVariantGrid();
+      showSelection();
+    }
+
+
+    startButton.addEventListener("click", startTest);
+    newAttemptButton.addEventListener("click", startNewAttempt);
+    nextButton.addEventListener("click", goNext);
+    prevButton.addEventListener("click", goPrev);
+    document.getElementById("changeVariantButton").addEventListener("click", showSelection);
+    document.getElementById("restartSideButton").addEventListener("click", startNewAttempt);
+    document.getElementById("printButton").addEventListener("click", () => window.print());
+    document.getElementById("restartButton").addEventListener("click", restartTest);
+    document.getElementById("chooseAnotherButton").addEventListener("click", showSelection);
+    document.getElementById("clearButton").addEventListener("click", clearVariantData);
+
+    renderVariantGrid();
+  </script>
+</body>
+</html>
