@@ -376,6 +376,12 @@
 
     .results-header { padding: 40px 42px 32px; border-bottom: 1px solid var(--border); }
 
+    .results-header h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.08;
+    }
+
     .score-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -400,11 +406,11 @@
     .footer-note { color: var(--muted); font-size: 13px; line-height: 1.5; }
     .error-text { color: var(--danger); font-size: 14px; font-weight: 700; }
 
-    .organic-review-hero {
+    .site-hero.organic-review-hero {
       background: linear-gradient(135deg, #4b251a 0%, #a84425 55%, #dc7652 100%);
     }
 
-    .organic-review-layout {
+    .site-layout.organic-review-layout {
       grid-template-columns: 320px minmax(0, 1fr);
     }
 
@@ -588,7 +594,7 @@
     }
 
     @media (max-width: 860px) {
-      .organic-review-layout { grid-template-columns: 1fr; }
+      .site-layout.organic-review-layout { grid-template-columns: 1fr; }
       .question-nav { grid-template-columns: repeat(10, minmax(0, 1fr)); }
     }
 
