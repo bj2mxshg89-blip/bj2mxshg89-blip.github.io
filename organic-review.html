@@ -400,9 +400,196 @@
     .footer-note { color: var(--muted); font-size: 13px; line-height: 1.5; }
     .error-text { color: var(--danger); font-size: 14px; font-weight: 700; }
 
+    .organic-review-hero {
+      background: linear-gradient(135deg, #4b251a 0%, #a84425 55%, #dc7652 100%);
+    }
+
+    .organic-review-layout {
+      grid-template-columns: 320px minmax(0, 1fr);
+    }
+
+    .start-shell .site-sidebar,
+    .test-shell .site-sidebar {
+      align-self: start;
+    }
+
+    .start-shell .variant-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .start-shell .variant-card {
+      min-height: 76px;
+      padding: 12px 8px;
+      border-width: 1px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .start-shell .variant-number {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .start-shell .variant-meta { display: none; }
+
+    .start-shell .variant-status {
+      margin-top: 5px;
+      font-size: 10px;
+    }
+
+    .start-shell .variant-card.has-progress::after {
+      top: 7px;
+      right: 7px;
+    }
+
+    .start-shell .actions {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .start-shell .actions .btn { width: 100%; }
+
+    .start-main {
+      min-height: 470px;
+    }
+
+    .start-main .trainer-top h2,
+    .test-shell .trainer-top h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .start-main .trainer-top p,
+    .test-shell .trainer-top p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .intro-card {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fffaf7);
+    }
+
+    .intro-card h3 {
+      margin: 0 0 10px;
+      font-size: clamp(24px, 3vw, 34px);
+    }
+
+    .intro-card .lead { font-size: 16px; }
+
+    .intro-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .intro-list div {
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #fff;
+      color: #3d465d;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .test-shell .site-main-panel { min-width: 0; }
+
+    .test-shell .test-header {
+      position: static;
+      padding: 0 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: transparent;
+    }
+
+    .test-shell .test-meta-row { margin-bottom: 12px; }
+
+    .test-shell .question-area {
+      margin-top: 18px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #fffaf7);
+    }
+
+    .question-nav {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .question-nav-btn {
+      min-width: 0;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      background: #fff;
+      font-size: 11px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .question-nav-btn:hover { border-color: #d49a85; }
+
+    .question-nav-btn.current {
+      color: #963d21;
+      border-color: #c0522b;
+      background: #fff0e9;
+      box-shadow: 0 0 0 2px rgba(192, 82, 43, .10);
+    }
+
+    .question-nav-btn.right {
+      color: var(--success);
+      border-color: #76c69d;
+      background: var(--success-bg);
+    }
+
+    .question-nav-btn.wrong {
+      color: var(--danger);
+      border-color: #e3aaa4;
+      background: var(--danger-bg);
+    }
+
+    .test-sidebar-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .test-sidebar-actions .btn {
+      padding: 10px 8px;
+      border-radius: 11px;
+      font-size: 12px;
+    }
+
+    .test-shell .options {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .results-shell {
+      margin-top: 18px;
+      overflow: hidden;
+    }
+
     @media (max-width: 900px) {
       .variant-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .score-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 860px) {
+      .organic-review-layout { grid-template-columns: 1fr; }
+      .question-nav { grid-template-columns: repeat(10, minmax(0, 1fr)); }
     }
 
     @media (max-width: 620px) {
@@ -420,6 +607,10 @@
       .test-meta { font-size: 14px; }
       .review-top { flex-direction: column; }
       .badge { align-self: flex-start; }
+      .intro-list { grid-template-columns: 1fr; }
+      .question-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .test-shell .options { grid-template-columns: 1fr; }
+      .test-shell .question-area { padding: 18px; }
     }
 
     @media print {
@@ -446,72 +637,116 @@
     </nav>
   </header>
 
-  <main class="page">
-    <section class="card start-shell" id="startShell">
-      <div class="hero">
-        <h1>Обобщающий тренажёр</h1>
-        <p class="lead">
-          Выберите вариант. После проверки каждого ответа правильные варианты подсветятся зелёным,
-          ошибки — красным, а под заданием появится пояснение для обсуждения.
-        </p>
+  <main class="site-page">
+    <section class="site-hero organic-review-hero">
+      <div class="site-hero-mark" aria-hidden="true">5×20</div>
+      <div class="site-eyebrow">Органическая химия · Закрепление курса</div>
+      <h1>Обобщающий тренажёр</h1>
+      <p>Пять полноценных вариантов по классам веществ, номенклатуре, изомерии и гибридизации с разбором каждого ответа.</p>
+    </section>
 
-        <div class="chips">
-          <span class="chip">Классы веществ</span>
-          <span class="chip">Номенклатура</span>
-          <span class="chip">Изомерия</span>
-          <span class="chip">Гибридизация</span>
-        </div>
+    <section class="start-shell" id="startShell">
+      <div class="site-layout organic-review-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Выберите вариант</h2>
+          <div class="site-label">Пять комплектов заданий</div>
+          <div class="variant-grid" id="variantGrid"></div>
 
-        <h2 class="variant-heading">Выберите вариант</h2>
-        <div class="variant-grid" id="variantGrid"></div>
+          <div class="selection-note" id="selectionNote">Вариант пока не выбран.</div>
+          <div class="actions">
+            <button class="btn btn-primary" id="startButton" disabled>Начать выбранный вариант</button>
+            <button class="btn btn-secondary" id="newAttemptButton" style="display:none">Начать этот вариант заново</button>
+            <span class="error-text" id="startError" aria-live="polite"></span>
+          </div>
 
-        <div class="selection-note" id="selectionNote">Вариант пока не выбран.</div>
-        <div class="actions">
-          <button class="btn btn-primary" id="startButton" disabled>Начать выбранный вариант</button>
-          <button class="btn btn-secondary" id="newAttemptButton" style="display:none">Начать этот вариант заново</button>
-          <span class="error-text" id="startError" aria-live="polite"></span>
-        </div>
+          <p class="footer-note">Прогресс каждого варианта сохраняется отдельно в браузере.</p>
+        </aside>
 
-        <p class="footer-note">
-          Прогресс каждого варианта сохраняется отдельно в браузере. Можно вернуться к выбору,
-          открыть другой вариант, а затем продолжить предыдущий с того же места.
-        </p>
+        <section class="site-panel site-main-panel start-main">
+          <div class="trainer-top">
+            <div>
+              <h2>Как работать с тренажёром</h2>
+              <p>Выберите вариант слева и начните новую попытку или продолжите сохранённую.</p>
+            </div>
+          </div>
+
+          <div class="intro-card">
+            <h3>20 заданий с разбором ошибок</h3>
+            <p class="lead">После проверки правильные ответы подсвечиваются зелёным, ошибки — красным, а под заданием появляется пояснение для обсуждения.</p>
+            <div class="chips">
+              <span class="chip">Классы веществ</span>
+              <span class="chip">Номенклатура</span>
+              <span class="chip">Изомерия</span>
+              <span class="chip">Гибридизация</span>
+            </div>
+            <div class="intro-list">
+              <div>Мгновенная проверка ответа</div>
+              <div>Навигация по всем 20 заданиям</div>
+              <div>Отдельный прогресс для каждого варианта</div>
+              <div>Итоговая оценка и полный разбор</div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
 
-    <section class="card test-shell" id="testShell">
-      <div class="test-header">
-        <div class="test-meta-row">
-          <div class="test-meta">
-            <span class="variant-badge" id="activeVariantBadge">Вариант 1</span>
-            <span id="progressLabel">1 / 20</span>
-          </div>
-          <button class="btn btn-secondary btn-compact" id="changeVariantButton">Выбор варианта</button>
-        </div>
-        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
-      </div>
+    <section class="test-shell" id="testShell">
+      <div class="site-layout organic-review-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Ход работы</h2>
 
-      <div class="question-area">
-        <div class="section-label" id="sectionLabel"></div>
-        <h2 class="question-title" id="questionTitle"></h2>
-        <p class="question-hint" id="questionHint"></p>
-        <div class="options" id="optionsContainer"></div>
-        <div class="feedback-panel" id="feedbackPanel" aria-live="polite"></div>
-
-        <div class="question-footer">
-          <span class="answer-status" id="answerStatus"></span>
-          <div class="nav-group">
-            <button class="btn btn-secondary" id="prevButton">Назад</button>
-            <button class="btn btn-primary" id="nextButton">Проверить ответ</button>
+          <div class="site-label">Статистика</div>
+          <div class="site-stat-grid">
+            <div class="site-stat"><span>Задание</span><strong id="progressLabel">1 / 20</strong></div>
+            <div class="site-stat"><span>Точность</span><strong id="sidebarAccuracy">0%</strong></div>
+            <div class="site-stat"><span>Верно</span><strong id="sidebarCorrect">0</strong></div>
+            <div class="site-stat"><span>Ошибки</span><strong id="sidebarWrong">0</strong></div>
           </div>
-        </div>
+
+          <div class="site-label">Навигация по заданиям</div>
+          <div class="question-nav" id="questionNav"></div>
+
+          <div class="test-sidebar-actions">
+            <button class="btn btn-secondary" id="changeVariantButton">Варианты</button>
+            <button class="btn btn-secondary" id="restartSideButton">Сначала</button>
+          </div>
+          <p class="footer-note">Зелёным отмечены верные ответы, красным — задания с ошибками.</p>
+        </aside>
+
+        <section class="site-panel site-main-panel">
+          <div class="test-header">
+            <div class="test-meta-row">
+              <div class="test-meta">
+                <span class="variant-badge" id="activeVariantBadge">Вариант 1</span>
+                <span>20 заданий с пояснениями</span>
+              </div>
+            </div>
+            <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+          </div>
+
+          <div class="question-area">
+            <div class="section-label" id="sectionLabel"></div>
+            <h2 class="question-title" id="questionTitle"></h2>
+            <p class="question-hint" id="questionHint"></p>
+            <div class="options" id="optionsContainer"></div>
+            <div class="feedback-panel" id="feedbackPanel" aria-live="polite"></div>
+
+            <div class="question-footer">
+              <span class="answer-status" id="answerStatus"></span>
+              <div class="nav-group">
+                <button class="btn btn-secondary" id="prevButton">Назад</button>
+                <button class="btn btn-primary" id="nextButton">Проверить ответ</button>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
 
-    <section class="card results-shell" id="resultsShell">
+    <section class="site-panel results-shell" id="resultsShell">
       <div class="results-header">
         <div class="section-label" id="resultVariantLabel">Результат</div>
-        <h1 id="resultTitle">Тест завершён</h1>
+        <h2 id="resultTitle">Тест завершён</h2>
         <p class="lead" id="resultSubtitle"></p>
 
         <div class="score-grid">
@@ -1983,6 +2218,10 @@
     const activeVariantBadge = document.getElementById("activeVariantBadge");
     const progressLabel = document.getElementById("progressLabel");
     const progressBar = document.getElementById("progressBar");
+    const questionNav = document.getElementById("questionNav");
+    const sidebarAccuracy = document.getElementById("sidebarAccuracy");
+    const sidebarCorrect = document.getElementById("sidebarCorrect");
+    const sidebarWrong = document.getElementById("sidebarWrong");
     const sectionLabel = document.getElementById("sectionLabel");
     const questionTitle = document.getElementById("questionTitle");
     const questionHint = document.getElementById("questionHint");
@@ -2141,6 +2380,42 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function updateSidebar() {
+      const checkedIndexes = state.checked
+        .map((checked, index) => checked ? index : -1)
+        .filter(index => index !== -1);
+      const correctCount = checkedIndexes.reduce((sum, index) =>
+        sum + (arraysEqual(state.answers[index], questions[index].correct) ? 1 : 0), 0);
+      const wrongCount = checkedIndexes.length - correctCount;
+      const accuracy = checkedIndexes.length ? Math.round(correctCount / checkedIndexes.length * 100) : 0;
+
+      sidebarAccuracy.textContent = `${accuracy}%`;
+      sidebarCorrect.textContent = correctCount;
+      sidebarWrong.textContent = wrongCount;
+
+      questionNav.innerHTML = "";
+      questions.forEach((question, index) => {
+        const button = document.createElement("button");
+        const classes = ["question-nav-btn"];
+        if (index === state.current) classes.push("current");
+        if (state.checked[index]) {
+          classes.push(arraysEqual(state.answers[index], question.correct) ? "right" : "wrong");
+        }
+        button.type = "button";
+        button.className = classes.join(" ");
+        button.textContent = index + 1;
+        button.title = `Задание ${index + 1}`;
+        if (index === state.current) button.setAttribute("aria-current", "step");
+        button.addEventListener("click", () => {
+          state.current = index;
+          saveProgress();
+          renderQuestion();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+        questionNav.appendChild(button);
+      });
+    }
+
     function renderQuestion() {
       const q = questions[state.current];
       const selected = state.answers[state.current];
@@ -2216,6 +2491,7 @@
       if (!isChecked) nextButton.textContent = "Проверить ответ";
       else if (state.current === questions.length - 1) nextButton.textContent = "Показать результат";
       else nextButton.textContent = "Следующий вопрос";
+      updateSidebar();
     }
 
     function toggleAnswer(index) {
@@ -2375,6 +2651,7 @@
     nextButton.addEventListener("click", goNext);
     prevButton.addEventListener("click", goPrev);
     document.getElementById("changeVariantButton").addEventListener("click", showSelection);
+    document.getElementById("restartSideButton").addEventListener("click", startNewAttempt);
     document.getElementById("printButton").addEventListener("click", () => window.print());
     document.getElementById("restartButton").addEventListener("click", restartTest);
     document.getElementById("chooseAnotherButton").addEventListener("click", showSelection);
