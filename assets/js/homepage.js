@@ -1,5 +1,5 @@
-import { loadCatalog, visibleCatalogItems } from "./catalog.js";
-import { formatCount } from "./utils.js";
+import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=5";
+import { formatCount } from "./utils.js?v=5";
 
 const navigation = document.querySelector("#categoryNavigation");
 const catalogRoot = document.querySelector("#toolCatalog");
