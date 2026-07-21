@@ -22,7 +22,20 @@ import {
   updateSettings
 } from "./storage.js";
 import { calculateResult, isAnswerCorrect } from "./grading.js";
-import { questionInstruction, renderQuestionOptions } from "./question-renderers.js";
+import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js";
+import {
+  createQuestionOptionOrder,
+  evaluateAnswer,
+  formatAnswer,
+  getEmptyAnswer,
+  getQuestionMaxPoints,
+  hasAnyAnswer,
+  incompleteAnswerMessage,
+  isAnswerComplete,
+  normalizeAnswer,
+  normalizeQuestionOptionOrder,
+  updateQuestionAnswer
+} from "./question-types.js";
 
 class TrainerEngine {
   constructor() {
@@ -37,14 +50,15 @@ class TrainerEngine {
       "loadingPanel", "errorPanel", "errorTitle", "errorMessage", "errorList",
       "trainerHero", "heroSymbol", "heroEyebrow", "heroTitle", "heroDescription", "heroChips",
       "setupPanel", "variantChoices", "modeChoices", "setupStatus", "startAttemptButton",
+      "referencePanel", "referenceTitle", "referenceList",
       "historyLink", "introTitle", "introDescription", "resumeCard", "resumeTitle", "resumeText",
       "resumeButton", "discardButton", "workPanel", "questionCounter", "answeredCounter",
-      "correctCounter", "mistakeCounter", "questionNavigation", "backToSetupButton",
+      "correctCounter", "correctCounterLabel", "mistakeCounter", "questionNavigation", "backToSetupButton",
       "restartAttemptButton", "navigationLegend", "activeVariantBadge", "activeModeBadge",
       "progressBar", "questionSection", "questionTitle", "questionHint", "answerContainer",
       "feedbackPanel", "questionStatus", "previousButton", "primaryButton", "resultPanel",
       "resultVariantBadge", "resultModeBadge", "resultTitle", "resultSubtitle", "resultScore",
-      "resultPercent", "resultGrade", "resultDuration", "repeatMistakesButton", "newAttemptButton",
+      "resultScoreLabel", "resultPercent", "resultGrade", "resultDuration", "repeatMistakesButton", "newAttemptButton",
       "resultHistoryLink", "printResultButton", "reviewContainer"
     ].map((id) => [id, document.getElementById(id)]));
   }
@@ -116,6 +130,18 @@ class TrainerEngine {
     const historyUrl = `results.html?id=${encodeURIComponent(test.id)}`;
     this.elements.historyLink.href = historyUrl;
     this.elements.resultHistoryLink.href = historyUrl;
+
+    if (test.reference) {
+      this.elements.referenceTitle.textContent = test.reference.title;
+      this.elements.referenceList.replaceChildren(...test.reference.items.map((text) => {
+        const item = document.createElement("li");
+        item.textContent = text;
+        return item;
+      }));
+      this.elements.referencePanel.hidden = false;
+    } else {
+      this.elements.referencePanel.hidden = true;
+    }
   }
 
   prepareSetup() {
@@ -154,7 +180,11 @@ class TrainerEngine {
       body.className = "trainer-choice-body";
       body.textContent = variant.title;
       const count = document.createElement("small");
-      count.textContent = formatCount(variant.questionIds.length, "задание", "задания", "заданий");
+      const trainingCount = this.variantQuestionCount(variant, "training");
+      const testCount = this.variantQuestionCount(variant, "test");
+      count.textContent = trainingCount === testCount
+        ? formatCount(trainingCount, "задание", "задания", "заданий")
+        : `${trainingCount} в тренировке · ${testCount} в тесте`;
       body.appendChild(count);
       label.append(input, body);
       this.elements.variantChoices.appendChild(label);
@@ -197,9 +227,14 @@ class TrainerEngine {
 
   updateSetupStatus() {
     const variant = this.test.variants.find((item) => item.id === this.selection.variantId);
+    const count = variant ? this.variantQuestionCount(variant, this.selection.mode) : 0;
     this.elements.setupStatus.textContent = variant
-      ? `${variant.title} · ${modeTitle(this.selection.mode)} · ${formatCount(variant.questionIds.length, "задание", "задания", "заданий")}`
+      ? `${variant.title} · ${modeTitle(this.selection.mode)} · ${formatCount(count, "задание", "задания", "заданий")}`
       : "Выберите вариант и режим.";
+  }
+
+  variantQuestionCount(variant, mode) {
+    return variant.selectionCount?.[mode] || variant.questionIds.length;
   }
 
   rememberSelection() {
@@ -262,12 +297,15 @@ class TrainerEngine {
     }
 
     clearProgress(this.test.id);
-    const sourceIds = questionIds?.length ? [...questionIds] : [...variant.questionIds];
-    const order = this.test.settings.shuffleQuestions ? shuffledCopy(sourceIds) : sourceIds;
+    const isRetry = Boolean(questionIds?.length);
+    const sourceIds = isRetry ? [...questionIds] : [...variant.questionIds];
+    const selectionCount = isRetry ? sourceIds.length : this.variantQuestionCount(variant, mode);
+    const orderedSource = this.test.settings.shuffleQuestions ? shuffledCopy(sourceIds) : sourceIds;
+    const order = orderedSource.slice(0, selectionCount);
     const optionOrder = Object.fromEntries(order.map((questionId) => {
       const question = this.questionMap.get(questionId);
-      const indexes = question.options.map((_, index) => index);
-      return [questionId, this.test.settings.shuffleAnswers ? shuffledCopy(indexes) : indexes];
+      const shuffle = (values) => this.test.settings.shuffleAnswers ? shuffledCopy(values) : [...values];
+      return [questionId, createQuestionOptionOrder(question, shuffle)];
     }));
 
     this.selection = { variantId, mode };
@@ -303,23 +341,14 @@ class TrainerEngine {
 
     questionOrder.forEach((questionId) => {
       const question = this.questionMap.get(questionId);
-      const source = Array.isArray(saved.selectedAnswers?.[questionId])
-        ? saved.selectedAnswers[questionId]
-        : [];
-      const valid = [...new Set(source)]
-        .filter((value) => Number.isInteger(value) && value >= 0 && value < question.options.length)
-        .sort((a, b) => a - b);
-      answers[questionId] = question.type === "single" ? valid.slice(0, 1) : valid;
+      answers[questionId] = normalizeAnswer(question, saved.selectedAnswers?.[questionId]);
     });
 
     const optionOrder = {};
     questionOrder.forEach((questionId) => {
       const question = this.questionMap.get(questionId);
       const candidate = saved.optionOrder?.[questionId];
-      const valid = Array.isArray(candidate) && candidate.length === question.options.length &&
-        new Set(candidate).size === question.options.length &&
-        candidate.every((value) => Number.isInteger(value) && value >= 0 && value < question.options.length);
-      optionOrder[questionId] = valid ? [...candidate] : question.options.map((_, index) => index);
+      optionOrder[questionId] = normalizeQuestionOptionOrder(question, candidate);
     });
 
     const current = Math.max(0, questionOrder.indexOf(saved.currentQuestionId));
@@ -384,19 +413,31 @@ class TrainerEngine {
       return;
     }
 
-    const selected = this.state.answers[questionId] || [];
+    const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
     const isChecked = this.state.checked.has(questionId);
     const correct = isChecked && isAnswerCorrect(question, selected);
     const isTraining = this.state.mode === "training";
-    const answeredCount = this.state.questionOrder.filter((id) => (this.state.answers[id] || []).length > 0).length;
+    const answeredCount = this.state.questionOrder.filter((id) => {
+      const item = this.questionMap.get(id);
+      return isAnswerComplete(item, this.state.answers[id]);
+    }).length;
     const checkedQuestions = this.state.questionOrder.filter((id) => this.state.checked.has(id));
-    const correctCount = checkedQuestions.filter((id) =>
-      isAnswerCorrect(this.questionMap.get(id), this.state.answers[id] || [])
-    ).length;
+    const checkedScore = checkedQuestions.reduce((score, id) => {
+      const item = this.questionMap.get(id);
+      const evaluation = evaluateAnswer(item, this.state.answers[id]);
+      return {
+        earned: score.earned + evaluation.earnedPoints,
+        max: score.max + evaluation.maxPoints
+      };
+    }, { earned: 0, max: 0 });
+    const usesPoints = this.state.questionOrder.some((id) => getQuestionMaxPoints(this.questionMap.get(id)) > 1);
 
     this.elements.questionCounter.textContent = `${this.state.current + 1} / ${this.state.questionOrder.length}`;
     this.elements.answeredCounter.textContent = String(answeredCount);
-    this.elements.correctCounter.textContent = isTraining ? String(correctCount) : "—";
+    this.elements.correctCounterLabel.textContent = usesPoints ? "Баллы" : "Верно";
+    this.elements.correctCounter.textContent = isTraining
+      ? (usesPoints ? `${checkedScore.earned}/${checkedScore.max}` : String(checkedScore.earned))
+      : "—";
     this.elements.mistakeCounter.textContent = isTraining ? String(this.state.mistakes.size) : "—";
     this.elements.activeVariantBadge.textContent = variantTitle(this.test, this.state.variantId);
     this.elements.activeModeBadge.textContent = modeTitle(this.state.mode);
@@ -412,7 +453,7 @@ class TrainerEngine {
       locked: isTraining && isChecked,
       revealCorrect: isTraining && isChecked,
       optionOrder: this.state.optionOrder[questionId],
-      onChange: (optionIndex, checked) => this.updateAnswer(question, optionIndex, checked)
+      onChange: (change) => this.updateAnswer(question, change)
     });
 
     this.renderFeedback(question, selected, isChecked, correct);
@@ -427,33 +468,27 @@ class TrainerEngine {
           : "Следующий вопрос";
       this.elements.questionStatus.textContent = isChecked
         ? (correct ? "✓ Ответ проверен: верно" : "! Ответ проверен: требуется разбор")
-        : selected.length
-          ? (question.type === "multiple" ? `Выбрано вариантов: ${selected.length}` : "Ответ выбран")
+        : hasAnyAnswer(question, selected)
+          ? (question.type === "multiple" ? `Выбрано вариантов: ${selected.length}` : "Ответ сохранён")
           : "Ответ пока не выбран";
     } else {
       this.elements.primaryButton.textContent = this.state.current === this.state.questionOrder.length - 1
         ? "Завершить тест"
         : "Сохранить и продолжить";
-      this.elements.questionStatus.textContent = selected.length ? "● Ответ сохранён" : "Ответ пока не выбран";
+      this.elements.questionStatus.textContent = hasAnyAnswer(question, selected) ? "● Ответ сохранён" : "Ответ пока не выбран";
     }
   }
 
-  updateAnswer(question, optionIndex, checked) {
+  updateAnswer(question, change) {
     if (!this.state || (this.state.mode === "training" && this.state.checked.has(question.id))) return;
-    const selected = this.state.answers[question.id] || [];
-
-    if (question.type === "single") {
-      this.state.answers[question.id] = [optionIndex];
-    } else if (checked) {
-      this.state.answers[question.id] = [...new Set([...selected, optionIndex])].sort((a, b) => a - b);
-    } else {
-      this.state.answers[question.id] = selected.filter((value) => value !== optionIndex);
-    }
+    const selected = this.state.answers[question.id] ?? getEmptyAnswer(question);
+    this.state.answers[question.id] = updateQuestionAnswer(question, selected, change);
 
     this.persistProgress();
     this.renderWork();
     requestAnimationFrame(() => {
-      this.elements.answerContainer.querySelector(`input[value="${optionIndex}"]`)?.focus({ preventScroll: true });
+      const escaped = globalThis.CSS?.escape ? CSS.escape(change.focusKey) : change.focusKey;
+      this.elements.answerContainer.querySelector(`[data-focus-key="${escaped}"]`)?.focus({ preventScroll: true });
     });
   }
 
@@ -469,8 +504,11 @@ class TrainerEngine {
 
     panel.hidden = false;
     panel.classList.add(correct ? "is-correct" : "is-wrong");
+    const evaluation = evaluateAnswer(question, selected);
     const heading = document.createElement("h3");
-    heading.textContent = correct ? "✓ Верно" : "! Есть ошибка";
+    heading.textContent = evaluation.maxPoints > 1
+      ? `${correct ? "✓" : "!"} Верно: ${evaluation.earnedPoints} из ${evaluation.maxPoints}.`
+      : correct ? "✓ Верно" : "! Есть ошибка";
     const explanation = document.createElement("p");
     explanation.textContent = question.explanation;
     const discussion = document.createElement("p");
@@ -479,9 +517,10 @@ class TrainerEngine {
     if (correct) {
       discussion.textContent = "Можно кратко сформулировать правило своими словами и переходить дальше.";
     } else {
-      discussion.textContent =
-        `Правильный ответ: ${this.formatSelection(question, question.correct)}. ` +
-        "Обсудите, почему выбранный вариант не подходит, и только затем переходите дальше.";
+      discussion.textContent = evaluation.maxPoints > 1
+        ? "Разберите каждую ошибочную пару и только затем переходите дальше."
+        : `Правильный ответ: ${formatAnswer(question, question.correct)}. ` +
+          "Обсудите, почему выбранный вариант не подходит, и только затем переходите дальше.";
     }
 
     panel.append(heading, explanation, discussion);
@@ -502,10 +541,10 @@ class TrainerEngine {
         button.setAttribute("aria-current", "step");
       }
 
-      const selected = this.state.answers[questionId] || [];
-      if (selected.length) button.classList.add("is-answered");
+      const question = this.questionMap.get(questionId);
+      const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+      if (hasAnyAnswer(question, selected)) button.classList.add("is-answered");
       if (isTraining && this.state.checked.has(questionId)) {
-        const question = this.questionMap.get(questionId);
         button.classList.add(isAnswerCorrect(question, selected) ? "is-correct" : "is-wrong");
       }
 
@@ -528,12 +567,12 @@ class TrainerEngine {
     if (!this.state) return;
     const questionId = this.state.questionOrder[this.state.current];
     const question = this.questionMap.get(questionId);
-    const selected = this.state.answers[questionId] || [];
+    const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
 
     if (this.state.mode === "training") {
       if (!this.state.checked.has(questionId)) {
-        if (!selected.length) {
-          this.setQuestionError("Сначала выберите ответ.");
+        if (!isAnswerComplete(question, selected)) {
+          this.setQuestionError(incompleteAnswerMessage(question, selected));
           return;
         }
         this.state.checked.add(questionId);
@@ -583,15 +622,19 @@ class TrainerEngine {
     if (!this.state || this.state.completed) return;
     const incompleteId = this.state.mode === "training"
       ? this.state.questionOrder.find((id) => !this.state.checked.has(id))
-      : this.state.questionOrder.find((id) => !(this.state.answers[id] || []).length);
+      : this.state.questionOrder.find((id) => {
+        const question = this.questionMap.get(id);
+        return !isAnswerComplete(question, this.state.answers[id]);
+      });
 
     if (incompleteId) {
       this.state.current = this.state.questionOrder.indexOf(incompleteId);
       this.renderWork();
+      const incompleteQuestion = this.questionMap.get(incompleteId);
       this.setQuestionError(
         this.state.mode === "training"
           ? "Сначала проверьте ответ на каждое задание."
-          : "Перед завершением ответьте на все задания."
+          : incompleteAnswerMessage(incompleteQuestion, this.state.answers[incompleteId])
       );
       return;
     }
@@ -626,6 +669,10 @@ class TrainerEngine {
       durationMs: result.durationMs,
       correctCount: result.correctCount,
       total: result.total,
+      earnedPoints: result.earnedPoints,
+      maxPoints: result.maxPoints,
+      fullyCorrectCount: result.fullyCorrectCount,
+      totalQuestions: result.totalQuestions,
       percent: result.percent,
       grade: result.grade,
       mistakeQuestionIds: [...result.mistakes],
@@ -648,7 +695,11 @@ class TrainerEngine {
     this.elements.resultSubtitle.textContent =
       `Оценка рассчитана по шкале: ${thresholds["3"]}% — «3», ` +
       `${thresholds["4"]}% — «4», ${thresholds["5"]}% — «5».`;
-    this.elements.resultScore.textContent = `${result.correctCount}/${result.total}`;
+    const usesPoints = result.maxPoints !== result.totalQuestions;
+    this.elements.resultScore.textContent = usesPoints
+      ? `${result.earnedPoints}/${result.maxPoints}`
+      : `${result.correctCount}/${result.total}`;
+    this.elements.resultScoreLabel.textContent = usesPoints ? "баллы" : "верно";
     this.elements.resultPercent.textContent = `${result.percent}%`;
     this.elements.resultGrade.textContent = String(result.grade);
     this.elements.resultDuration.textContent = formatDuration(result.durationMs);
@@ -662,8 +713,9 @@ class TrainerEngine {
 
     this.state.questionOrder.forEach((questionId, index) => {
       const question = this.questionMap.get(questionId);
-      const selected = this.state.answers[questionId] || [];
-      const correct = isAnswerCorrect(question, selected);
+      const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+      const evaluation = evaluateAnswer(question, selected);
+      const correct = evaluation.isFullyCorrect;
       const item = document.createElement("article");
       item.className = `trainer-review-item${correct ? "" : " is-wrong"}`;
 
@@ -676,30 +728,12 @@ class TrainerEngine {
       status.textContent = correct ? "✓ Верно" : "! Ошибка";
       top.append(title, status);
 
-      const own = this.reviewLine("Ваш ответ", this.formatSelection(question, selected));
-      const right = this.reviewLine("Правильный ответ", this.formatSelection(question, question.correct));
-      const explanation = document.createElement("div");
-      explanation.className = "trainer-review-explanation";
-      explanation.textContent = question.explanation;
-      item.append(top, own, right, explanation);
+      item.append(top);
+      appendReviewContent(item, question, selected, evaluation);
       fragment.appendChild(item);
     });
 
     this.elements.reviewContainer.replaceChildren(fragment);
-  }
-
-  reviewLine(label, value) {
-    const line = document.createElement("div");
-    line.className = "trainer-review-line";
-    const strong = document.createElement("strong");
-    strong.textContent = `${label}: `;
-    line.append(strong, document.createTextNode(value));
-    return line;
-  }
-
-  formatSelection(question, indexes) {
-    if (!indexes?.length) return "Нет ответа";
-    return indexes.map((index) => question.options[index]).join("; ");
   }
 
   repeatMistakes() {

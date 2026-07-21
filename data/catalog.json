@@ -102,7 +102,25 @@
     },
     {
       "id": "organic-classification",
-      "title": "Классификация веществ",
+      "title": "Классификация веществ — новая версия",
+      "description": "Формулы, названия, признаки строения и функциональные группы в заданиях на соответствие.",
+      "section": "organic",
+      "kicker": "Новый движок",
+      "symbol": "R–X",
+      "color": "#2d718f",
+      "softColor": "#eaf5f9",
+      "questionCount": 90,
+      "modes": ["training", "test"],
+      "meta": "6 режимов · по 4 соответствия",
+      "url": "test.html?id=organic-classification",
+      "linkLabel": "Открыть beta",
+      "status": "beta",
+      "order": 40,
+      "wide": false
+    },
+    {
+      "id": "organic-classification-legacy",
+      "title": "Классификация веществ — старая версия",
       "description": "Соответствия между формулами, названиями, признаками строения, функциональными группами и классами веществ.",
       "section": "organic",
       "kicker": "Классы органических веществ",
@@ -115,6 +133,7 @@
       "url": "organic-classification.html",
       "linkLabel": "Открыть",
       "status": "active",
+      "badge": "Старая версия",
       "order": 50
     },
     {
