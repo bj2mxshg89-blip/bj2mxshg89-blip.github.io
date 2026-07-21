@@ -1,4 +1,6 @@
-export const SUPPORTED_QUESTION_TYPES = Object.freeze(["single", "multiple"]);
+import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js";
+
+export { SUPPORTED_QUESTION_TYPES };
 
 export function formatCount(count, one, few, many) {
   const numeric = Math.abs(Number(count));
@@ -129,12 +131,28 @@ export function validateTestDefinition(test, expectedId) {
   validateModes(test.modes, errors);
   validateSettings(test.settings, errors);
   validateGrading(test.grading, errors);
+  validateReference(test.reference, errors);
 
   const sectionIds = validateSections(test.sections, errors);
   const questionIds = validateQuestions(test.questions, sectionIds, errors);
   validateVariants(test.variants, questionIds, errors);
 
   return { valid: errors.length === 0, errors };
+}
+
+function validateReference(reference, errors) {
+  if (reference === undefined) return;
+  if (!isPlainObject(reference)) {
+    errors.push("Поле «reference» должно быть объектом.");
+    return;
+  }
+  if (typeof reference.title !== "string" || !reference.title.trim()) {
+    errors.push("Поле «reference.title» должно быть непустой строкой.");
+  }
+  if (!Array.isArray(reference.items) || reference.items.length === 0 ||
+      reference.items.some((item) => typeof item !== "string" || !item.trim())) {
+    errors.push("Поле «reference.items» должно быть непустым массивом непустых строк.");
+  }
 }
 
 function validateTheme(theme, errors) {
@@ -271,38 +289,7 @@ function validateQuestions(questions, sectionIds, errors) {
       errors.push(`Ошибка в вопросе ${id}: отсутствует текст вопроса.`);
     }
 
-    if (!Array.isArray(question.options) || question.options.length < 2) {
-      errors.push(`Ошибка в вопросе ${id}: требуется не менее двух вариантов ответа.`);
-    } else {
-      question.options.forEach((option, optionIndex) => {
-        if (typeof option !== "string" || !option.trim()) {
-          errors.push(`Ошибка в вопросе ${id}: вариант ответа ${optionIndex} пуст.`);
-        }
-      });
-    }
-
-    if (!Array.isArray(question.correct) || question.correct.length === 0) {
-      errors.push(`Ошибка в вопросе ${id}: должен быть хотя бы один правильный ответ.`);
-    } else if (Array.isArray(question.options)) {
-      const seen = new Set();
-      question.correct.forEach((answerIndex) => {
-        if (!Number.isInteger(answerIndex)) {
-          errors.push(`Ошибка в вопросе ${id}: индекс правильного ответа должен быть целым числом.`);
-        } else if (answerIndex < 0 || answerIndex >= question.options.length) {
-          errors.push(
-            `Ошибка в вопросе ${id}: индекс правильного ответа ${answerIndex} отсутствует. ` +
-            `Допустимые индексы: 0–${question.options.length - 1}.`
-          );
-        } else if (seen.has(answerIndex)) {
-          errors.push(`Ошибка в вопросе ${id}: индекс правильного ответа ${answerIndex} повторяется.`);
-        }
-        seen.add(answerIndex);
-      });
-    }
-
-    if (question.type === "single" && Array.isArray(question.correct) && question.correct.length !== 1) {
-      errors.push(`Ошибка в вопросе ${id}: тип single должен иметь ровно один правильный ответ.`);
-    }
+    if (SUPPORTED_QUESTION_TYPES.includes(question.type)) validateQuestionType(question, errors);
 
     if (typeof question.explanation !== "string" || !question.explanation.trim()) {
       errors.push(`Ошибка в вопросе ${id}: отсутствует объяснение.`);
@@ -345,6 +332,22 @@ function validateVariants(variants, questionIds, errors) {
       }
       ownIds.add(questionId);
     });
+
+    if (variant.selectionCount !== undefined) {
+      if (!isPlainObject(variant.selectionCount)) {
+        errors.push(`Вариант «${variant.id}»: selectionCount должен быть объектом.`);
+      } else {
+        ["training", "test"].forEach((mode) => {
+          if (variant.selectionCount[mode] === undefined) return;
+          const count = variant.selectionCount[mode];
+          if (!Number.isInteger(count) || count < 1) {
+            errors.push(`Вариант «${variant.id}»: selectionCount.${mode} должен быть положительным целым числом.`);
+          } else if (count > variant.questionIds.length) {
+            errors.push(`Вариант «${variant.id}»: selectionCount.${mode} не может превышать число questionIds.`);
+          }
+        });
+      }
+    }
   });
 }
 
