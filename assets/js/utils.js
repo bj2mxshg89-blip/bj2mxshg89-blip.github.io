@@ -57,6 +57,13 @@ export function getTestId(search = window.location.search) {
 }
 
 export async function fetchJson(url, options = {}) {
+  const resourceName = typeof options.resourceName === "string" && options.resourceName.trim()
+    ? options.resourceName.trim()
+    : "данные теста";
+  const loadMessage = `Не удалось загрузить ${resourceName}.`;
+  const invalidMessage = resourceName === "данные теста"
+    ? "Файл теста содержит некорректный JSON."
+    : `${resourceName[0].toUpperCase()}${resourceName.slice(1)} содержит некорректный JSON.`;
   let response;
   try {
     response = await fetch(url, {
@@ -65,7 +72,7 @@ export async function fetchJson(url, options = {}) {
       signal: options.signal
     });
   } catch (error) {
-    throw new TestLoadError("Не удалось загрузить данные теста.", [
+    throw new TestLoadError(loadMessage, [
       "Проверьте подключение к интернету и повторите попытку.",
       error instanceof Error ? error.message : String(error)
     ]);
@@ -73,15 +80,15 @@ export async function fetchJson(url, options = {}) {
 
   if (!response.ok) {
     const details = response.status === 404
-      ? ["Файл теста не найден в каталоге data/tests/."]
+      ? [options.notFoundMessage || "Файл теста не найден в каталоге data/tests/."]
       : [`Сервер вернул код ${response.status}.`];
-    throw new TestLoadError("Не удалось загрузить данные теста.", details);
+    throw new TestLoadError(loadMessage, details);
   }
 
   try {
     return await response.json();
   } catch (error) {
-    throw new TestLoadError("Файл теста содержит некорректный JSON.", [
+    throw new TestLoadError(invalidMessage, [
       error instanceof Error ? error.message : String(error)
     ]);
   }
