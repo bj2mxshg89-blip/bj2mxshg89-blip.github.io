@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Универсальный учебный тренажёр по химии.">
+  <title>Загрузка теста — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/trainer.css">
+</head>
+<body class="trainer-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="site-page">
+    <section class="site-hero trainer-hero" id="trainerHero">
+      <div class="site-hero-mark" id="heroSymbol" aria-hidden="true">…</div>
+      <div class="site-eyebrow" id="heroEyebrow">Учебный тренажёр</div>
+      <h1 id="heroTitle">Загрузка теста…</h1>
+      <p id="heroDescription">Получаем задания и проверяем структуру данных.</p>
+      <div class="site-hero-chips" id="heroChips" aria-label="Параметры теста"></div>
+    </section>
+
+    <section class="site-panel trainer-loading" id="loadingPanel" aria-live="polite">
+      <span class="trainer-spinner" aria-hidden="true"></span>
+      <span>Загружаем и проверяем данные теста…</span>
+    </section>
+
+    <section class="site-panel trainer-error" id="errorPanel" role="alert" hidden>
+      <h2 id="errorTitle">Не удалось открыть тест</h2>
+      <p id="errorMessage"></p>
+      <ul class="trainer-error-list" id="errorList"></ul>
+      <a class="site-btn" href="index.html">Вернуться на главную</a>
+    </section>
+
+    <section class="trainer-setup" id="setupPanel" hidden>
+      <div class="site-layout trainer-setup-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Параметры попытки</h2>
+
+          <div class="site-label">Вариант</div>
+          <div class="trainer-choice-list" id="variantChoices"></div>
+
+          <div class="site-label">Режим</div>
+          <div class="trainer-choice-list" id="modeChoices"></div>
+
+          <p class="trainer-status-line" id="setupStatus" aria-live="polite"></p>
+          <button class="site-btn" id="startAttemptButton" type="button">Начать попытку</button>
+          <a class="trainer-history-link" id="historyLink" href="results.html">История результатов →</a>
+        </aside>
+
+        <section class="site-panel site-main-panel">
+          <h2 class="trainer-intro-title" id="introTitle">О тесте</h2>
+          <p class="trainer-intro-text" id="introDescription"></p>
+
+          <div class="trainer-feature-grid">
+            <div class="trainer-feature">Мгновенная проверка в режиме тренировки</div>
+            <div class="trainer-feature">Разбор каждого ответа после завершения</div>
+            <div class="trainer-feature">Сохранение незавершённой попытки</div>
+            <div class="trainer-feature">Повторение заданий, где были ошибки</div>
+          </div>
+
+          <div class="trainer-resume-card" id="resumeCard" hidden>
+            <strong id="resumeTitle">Есть незавершённая попытка</strong>
+            <p id="resumeText"></p>
+            <div class="trainer-action-row">
+              <button class="site-btn" id="resumeButton" type="button">Продолжить</button>
+              <button class="site-btn secondary" id="discardButton" type="button">Начать новую</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="trainer-work" id="workPanel" hidden>
+      <div class="site-layout trainer-work-layout">
+        <aside class="site-panel site-sidebar">
+          <h2 class="site-panel-title">Ход работы</h2>
+
+          <div class="site-label">Статистика</div>
+          <div class="site-stat-grid">
+            <div class="site-stat"><span>Задание</span><strong id="questionCounter">1 / 20</strong></div>
+            <div class="site-stat"><span>Отвечено</span><strong id="answeredCounter">0</strong></div>
+            <div class="site-stat"><span>Верно</span><strong id="correctCounter">—</strong></div>
+            <div class="site-stat"><span>Ошибки</span><strong id="mistakeCounter">—</strong></div>
+          </div>
+
+          <div class="site-label">Навигация по заданиям</div>
+          <div class="trainer-question-nav" id="questionNavigation" aria-label="Навигация по заданиям"></div>
+
+          <div class="trainer-sidebar-actions">
+            <button class="site-btn secondary" id="backToSetupButton" type="button">Параметры</button>
+            <button class="site-btn secondary" id="restartAttemptButton" type="button">Сначала</button>
+          </div>
+          <p class="site-note" id="navigationLegend"></p>
+        </aside>
+
+        <section class="site-panel site-main-panel">
+          <div class="trainer-question-top">
+            <div class="trainer-badges">
+              <span class="trainer-badge" id="activeVariantBadge">Вариант 1</span>
+              <span class="trainer-badge" id="activeModeBadge">Тренировка</span>
+            </div>
+          </div>
+          <div class="trainer-progress-track" aria-hidden="true">
+            <div class="trainer-progress-bar" id="progressBar"></div>
+          </div>
+
+          <div class="trainer-question-section" id="questionSection"></div>
+          <h2 class="trainer-question-title" id="questionTitle"></h2>
+          <p class="trainer-question-hint" id="questionHint"></p>
+          <div id="answerContainer"></div>
+          <div class="trainer-feedback" id="feedbackPanel" aria-live="polite" hidden></div>
+
+          <div class="trainer-question-footer">
+            <div class="trainer-question-status" id="questionStatus" aria-live="polite"></div>
+            <div class="trainer-action-row">
+              <button class="site-btn secondary" id="previousButton" type="button">Назад</button>
+              <button class="site-btn" id="primaryButton" type="button">Проверить ответ</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="site-panel trainer-result" id="resultPanel" hidden>
+      <div class="trainer-result-head">
+        <div class="trainer-badges">
+          <span class="trainer-badge" id="resultVariantBadge">Вариант 1</span>
+          <span class="trainer-badge" id="resultModeBadge">Тренировка</span>
+        </div>
+        <h2 id="resultTitle">Попытка завершена</h2>
+        <p class="trainer-result-subtitle" id="resultSubtitle"></p>
+
+        <div class="trainer-metrics">
+          <div class="trainer-metric"><strong id="resultScore">0/20</strong><span>верно</span></div>
+          <div class="trainer-metric"><strong id="resultPercent">0%</strong><span>результат</span></div>
+          <div class="trainer-metric"><strong id="resultGrade">2</strong><span>оценка</span></div>
+          <div class="trainer-metric"><strong id="resultDuration">0:00</strong><span>время</span></div>
+        </div>
+
+        <div class="trainer-result-actions">
+          <button class="site-btn" id="repeatMistakesButton" type="button" hidden>Повторить ошибки</button>
+          <button class="site-btn secondary" id="newAttemptButton" type="button">Новая попытка</button>
+          <a class="site-btn ghost" id="resultHistoryLink" href="results.html">История</a>
+          <button class="site-btn ghost" id="printResultButton" type="button">Печать</button>
+        </div>
+      </div>
+      <div class="trainer-review" id="reviewContainer"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
+  <script type="module" src="assets/js/trainer-engine.js"></script>
+</body>
+</html>

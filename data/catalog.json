@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-21",
+  "items": [
+    {
+      "id": "organic-review",
+      "title": "Обобщающий тренажёр — новая версия",
+      "description": "Пять вариантов по классификации, номенклатуре, изомерии и гибридизации на универсальном движке.",
+      "section": "organic",
+      "symbol": "5×20",
+      "color": "#c0522b",
+      "questionCount": 100,
+      "modes": ["training", "test"],
+      "url": "test.html?id=organic-review",
+      "status": "beta"
+    },
+    {
+      "id": "organic-review-legacy",
+      "title": "Обобщающий тренажёр",
+      "description": "Существующая автономная версия тренажёра, сохранённая для совместимости и сравнения.",
+      "section": "organic",
+      "symbol": "5×20",
+      "color": "#c0522b",
+      "questionCount": 100,
+      "modes": ["training"],
+      "url": "organic-review.html",
+      "status": "active"
+    },
+    {
+      "id": "hybridization-theory",
+      "title": "Теория гибридизации",
+      "description": "Гибридные орбитали, геометрия, валентные углы и образование σ- и π-связей.",
+      "section": "organic",
+      "symbol": "sp³",
+      "color": "#5b4bc4",
+      "questionCount": 15,
+      "modes": ["training", "test"],
+      "url": "hybridization-theory.html",
+      "status": "active"
+    },
+    {
+      "id": "alkane-homology",
+      "title": "Гомология алканов",
+      "description": "Общая формула, соседние гомологи, названия, последовательности и расчётные задания.",
+      "section": "organic",
+      "symbol": "CH₂",
+      "color": "#3157d5",
+      "questionCount": 15,
+      "modes": ["training", "test"],
+      "url": "alkane-homology.html",
+      "status": "active"
+    },
+    {
+      "id": "organic-classification",
+      "title": "Классификация веществ",
+      "description": "Соответствия между формулами, названиями, функциональными группами и классами веществ.",
+      "section": "organic",
+      "symbol": "R–X",
+      "color": "#2d718f",
+      "questionCount": 15,
+      "modes": ["training", "test"],
+      "url": "organic-classification.html",
+      "status": "active"
+    },
+    {
+      "id": "inorg-nomenclature",
+      "title": "Номенклатура веществ",
+      "description": "Названия оксидов, кислот, оснований и солей по их формулам.",
+      "section": "inorganic",
+      "symbol": "Fe₂O₃",
+      "color": "#7a43c4",
+      "questionCount": 32,
+      "modes": ["training"],
+      "url": "inorg-nomenclature.html",
+      "status": "active"
+    },
+    {
+      "id": "redox-trainer",
+      "title": "ОВР и степени окисления",
+      "description": "Короткая тренировка по степеням окисления, окислителям и восстановителям.",
+      "section": "inorganic",
+      "symbol": "e⁻",
+      "color": "#c0522b",
+      "questionCount": 3,
+      "modes": ["training"],
+      "url": "trainer.html",
+      "status": "active"
+    },
+    {
+      "id": "seating",
+      "title": "Рассадка учеников",
+      "description": "Распределение учеников по партам, ручное перемещение, сохранение, импорт и печать.",
+      "section": "teacher-tools",
+      "symbol": "18×2",
+      "color": "#16815a",
+      "questionCount": 0,
+      "modes": ["tool"],
+      "url": "seating-v2.html",
+      "status": "active"
+    }
+  ]
+}

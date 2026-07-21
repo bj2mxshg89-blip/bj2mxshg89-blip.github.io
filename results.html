@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="История результатов учебного тренажёра.">
+  <title>История результатов — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/trainer.css">
+</head>
+<body class="trainer-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="site-page">
+    <section class="site-hero trainer-hero">
+      <div class="site-hero-mark" aria-hidden="true">%</div>
+      <div class="site-eyebrow">Данные этого браузера</div>
+      <h1 id="historyTitle">История результатов</h1>
+      <p id="historyDescription">Здесь отображаются завершённые попытки. Данные не отправляются на сервер.</p>
+    </section>
+
+    <section class="site-panel trainer-loading" id="historyLoading" aria-live="polite">
+      <span class="trainer-spinner" aria-hidden="true"></span>
+      <span>Загружаем историю…</span>
+    </section>
+
+    <section class="site-panel trainer-error" id="historyError" role="alert" hidden>
+      <h2>Не удалось открыть историю</h2>
+      <p id="historyErrorText"></p>
+      <a class="site-btn" href="index.html">Вернуться на главную</a>
+    </section>
+
+    <section class="site-panel site-main-panel" id="historyPanel" hidden>
+      <div class="trainer-question-top">
+        <div>
+          <h2 id="historyTestTitle">Результаты теста</h2>
+          <p class="site-note" id="historySummary"></p>
+        </div>
+        <div class="trainer-action-row">
+          <a class="site-btn" id="openTestLink" href="test.html">Открыть тест</a>
+          <button class="site-btn danger" id="clearHistoryButton" type="button">Очистить историю</button>
+        </div>
+      </div>
+      <div class="trainer-history-list" id="historyList"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">Результаты хранятся только в этом браузере</footer>
+  <script type="module" src="assets/js/results.js"></script>
+</body>
+</html>
