@@ -1,0 +1,3391 @@
+{
+  "schemaVersion": 1,
+  "id": "hybridization-theory",
+  "version": 1,
+  "title": "Теория гибридизации",
+  "description": "Гибридные и негибридные орбитали, геометрия молекул, валентные углы, гибридизация атомов углерода и образование σ- и π-связей.",
+  "subject": "chemistry",
+  "category": "organic",
+  "symbol": "sp³",
+  "theme": {
+    "accent": "#5b4bc4",
+    "soft": "#f0edff"
+  },
+  "modes": {
+    "training": {
+      "enabled": true,
+      "instantFeedback": true,
+      "showExplanation": true
+    },
+    "test": {
+      "enabled": true,
+      "instantFeedback": false,
+      "showExplanation": false
+    }
+  },
+  "grading": {
+    "thresholds": {
+      "3": 50,
+      "4": 70,
+      "5": 90
+    }
+  },
+  "settings": {
+    "shuffleQuestions": true,
+    "shuffleAnswers": true,
+    "saveProgress": true,
+    "allowBack": true
+  },
+  "reference": {
+    "title": "Памятка по гибридизации",
+    "items": [
+      "sp³: 4 гибридные орбитали, идеальный угол 109°28′, тетраэдрическая геометрия.",
+      "sp²: 3 гибридные орбитали, 1 негибридная p-орбиталь, угол 120°.",
+      "sp: 2 гибридные орбитали, 2 негибридные p-орбитали, угол 180°.",
+      "Одинарная связь содержит 1 σ-связь.",
+      "Двойная связь содержит 1 σ- и 1 π-связь.",
+      "Тройная связь содержит 1 σ- и 2 π-связи.",
+      "π-связь образуется боковым перекрыванием негибридных p-орбиталей."
+    ]
+  },
+  "sections": [
+    {
+      "id": "basics",
+      "title": "Основные понятия"
+    },
+    {
+      "id": "orbitals",
+      "title": "Состав и количество орбиталей"
+    },
+    {
+      "id": "geometry",
+      "title": "Пространственная геометрия и углы"
+    },
+    {
+      "id": "structure",
+      "title": "Гибридизация по структурной формуле"
+    },
+    {
+      "id": "sigma-pi",
+      "title": "Подсчёт и образование σ- и π-связей"
+    },
+    {
+      "id": "matching",
+      "title": "Соответствия"
+    },
+    {
+      "id": "statements",
+      "title": "Верные и неверные утверждения"
+    }
+  ],
+  "variants": [
+    {
+      "id": "mixed",
+      "title": "Смешанный режим",
+      "questionIds": [
+        "hybridization-basics-001",
+        "hybridization-basics-002",
+        "hybridization-basics-003",
+        "hybridization-basics-004",
+        "hybridization-basics-005",
+        "hybridization-basics-006",
+        "hybridization-basics-007",
+        "hybridization-basics-008",
+        "hybridization-basics-009",
+        "hybridization-basics-010",
+        "hybridization-basics-011",
+        "hybridization-basics-012",
+        "hybridization-basics-013",
+        "hybridization-basics-014",
+        "hybridization-basics-015",
+        "hybridization-orbitals-001",
+        "hybridization-orbitals-002",
+        "hybridization-orbitals-003",
+        "hybridization-orbitals-004",
+        "hybridization-orbitals-005",
+        "hybridization-orbitals-006",
+        "hybridization-orbitals-007",
+        "hybridization-orbitals-008",
+        "hybridization-orbitals-009",
+        "hybridization-orbitals-010",
+        "hybridization-orbitals-011",
+        "hybridization-orbitals-012",
+        "hybridization-orbitals-013",
+        "hybridization-orbitals-014",
+        "hybridization-orbitals-015",
+        "hybridization-geometry-001",
+        "hybridization-geometry-002",
+        "hybridization-geometry-003",
+        "hybridization-geometry-004",
+        "hybridization-geometry-005",
+        "hybridization-geometry-006",
+        "hybridization-geometry-007",
+        "hybridization-geometry-008",
+        "hybridization-geometry-009",
+        "hybridization-geometry-010",
+        "hybridization-geometry-011",
+        "hybridization-geometry-012",
+        "hybridization-geometry-013",
+        "hybridization-geometry-014",
+        "hybridization-geometry-015",
+        "hybridization-structure-001",
+        "hybridization-structure-002",
+        "hybridization-structure-003",
+        "hybridization-structure-004",
+        "hybridization-structure-005",
+        "hybridization-structure-006",
+        "hybridization-structure-007",
+        "hybridization-structure-008",
+        "hybridization-structure-009",
+        "hybridization-structure-010",
+        "hybridization-structure-011",
+        "hybridization-structure-012",
+        "hybridization-structure-013",
+        "hybridization-structure-014",
+        "hybridization-structure-015",
+        "hybridization-sigma-pi-001",
+        "hybridization-sigma-pi-002",
+        "hybridization-sigma-pi-003",
+        "hybridization-sigma-pi-004",
+        "hybridization-sigma-pi-005",
+        "hybridization-sigma-pi-006",
+        "hybridization-sigma-pi-007",
+        "hybridization-sigma-pi-008",
+        "hybridization-sigma-pi-009",
+        "hybridization-sigma-pi-010",
+        "hybridization-sigma-pi-011",
+        "hybridization-sigma-pi-012",
+        "hybridization-sigma-pi-013",
+        "hybridization-sigma-pi-014",
+        "hybridization-sigma-pi-015",
+        "hybridization-matching-001",
+        "hybridization-matching-002",
+        "hybridization-matching-003",
+        "hybridization-matching-004",
+        "hybridization-matching-005",
+        "hybridization-matching-006",
+        "hybridization-matching-007",
+        "hybridization-matching-008",
+        "hybridization-matching-009",
+        "hybridization-matching-010",
+        "hybridization-matching-011",
+        "hybridization-matching-012",
+        "hybridization-matching-013",
+        "hybridization-matching-014",
+        "hybridization-matching-015",
+        "hybridization-statements-001",
+        "hybridization-statements-002",
+        "hybridization-statements-003",
+        "hybridization-statements-004",
+        "hybridization-statements-005",
+        "hybridization-statements-006",
+        "hybridization-statements-007",
+        "hybridization-statements-008",
+        "hybridization-statements-009",
+        "hybridization-statements-010",
+        "hybridization-statements-011",
+        "hybridization-statements-012",
+        "hybridization-statements-013",
+        "hybridization-statements-014",
+        "hybridization-statements-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "basics",
+      "title": "Основные понятия",
+      "questionIds": [
+        "hybridization-basics-001",
+        "hybridization-basics-002",
+        "hybridization-basics-003",
+        "hybridization-basics-004",
+        "hybridization-basics-005",
+        "hybridization-basics-006",
+        "hybridization-basics-007",
+        "hybridization-basics-008",
+        "hybridization-basics-009",
+        "hybridization-basics-010",
+        "hybridization-basics-011",
+        "hybridization-basics-012",
+        "hybridization-basics-013",
+        "hybridization-basics-014",
+        "hybridization-basics-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "orbitals",
+      "title": "Состав и количество орбиталей",
+      "questionIds": [
+        "hybridization-orbitals-001",
+        "hybridization-orbitals-002",
+        "hybridization-orbitals-003",
+        "hybridization-orbitals-004",
+        "hybridization-orbitals-005",
+        "hybridization-orbitals-006",
+        "hybridization-orbitals-007",
+        "hybridization-orbitals-008",
+        "hybridization-orbitals-009",
+        "hybridization-orbitals-010",
+        "hybridization-orbitals-011",
+        "hybridization-orbitals-012",
+        "hybridization-orbitals-013",
+        "hybridization-orbitals-014",
+        "hybridization-orbitals-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "geometry",
+      "title": "Пространственная геометрия и углы",
+      "questionIds": [
+        "hybridization-geometry-001",
+        "hybridization-geometry-002",
+        "hybridization-geometry-003",
+        "hybridization-geometry-004",
+        "hybridization-geometry-005",
+        "hybridization-geometry-006",
+        "hybridization-geometry-007",
+        "hybridization-geometry-008",
+        "hybridization-geometry-009",
+        "hybridization-geometry-010",
+        "hybridization-geometry-011",
+        "hybridization-geometry-012",
+        "hybridization-geometry-013",
+        "hybridization-geometry-014",
+        "hybridization-geometry-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "structure",
+      "title": "Гибридизация по структурной формуле",
+      "questionIds": [
+        "hybridization-structure-001",
+        "hybridization-structure-002",
+        "hybridization-structure-003",
+        "hybridization-structure-004",
+        "hybridization-structure-005",
+        "hybridization-structure-006",
+        "hybridization-structure-007",
+        "hybridization-structure-008",
+        "hybridization-structure-009",
+        "hybridization-structure-010",
+        "hybridization-structure-011",
+        "hybridization-structure-012",
+        "hybridization-structure-013",
+        "hybridization-structure-014",
+        "hybridization-structure-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "sigma-pi",
+      "title": "Подсчёт и образование σ- и π-связей",
+      "questionIds": [
+        "hybridization-sigma-pi-001",
+        "hybridization-sigma-pi-002",
+        "hybridization-sigma-pi-003",
+        "hybridization-sigma-pi-004",
+        "hybridization-sigma-pi-005",
+        "hybridization-sigma-pi-006",
+        "hybridization-sigma-pi-007",
+        "hybridization-sigma-pi-008",
+        "hybridization-sigma-pi-009",
+        "hybridization-sigma-pi-010",
+        "hybridization-sigma-pi-011",
+        "hybridization-sigma-pi-012",
+        "hybridization-sigma-pi-013",
+        "hybridization-sigma-pi-014",
+        "hybridization-sigma-pi-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "matching",
+      "title": "Соответствия",
+      "questionIds": [
+        "hybridization-matching-001",
+        "hybridization-matching-002",
+        "hybridization-matching-003",
+        "hybridization-matching-004",
+        "hybridization-matching-005",
+        "hybridization-matching-006",
+        "hybridization-matching-007",
+        "hybridization-matching-008",
+        "hybridization-matching-009",
+        "hybridization-matching-010",
+        "hybridization-matching-011",
+        "hybridization-matching-012",
+        "hybridization-matching-013",
+        "hybridization-matching-014",
+        "hybridization-matching-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "statements",
+      "title": "Верные и неверные утверждения",
+      "questionIds": [
+        "hybridization-statements-001",
+        "hybridization-statements-002",
+        "hybridization-statements-003",
+        "hybridization-statements-004",
+        "hybridization-statements-005",
+        "hybridization-statements-006",
+        "hybridization-statements-007",
+        "hybridization-statements-008",
+        "hybridization-statements-009",
+        "hybridization-statements-010",
+        "hybridization-statements-011",
+        "hybridization-statements-012",
+        "hybridization-statements-013",
+        "hybridization-statements-014",
+        "hybridization-statements-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "hybridization-basics-001",
+      "section": "basics",
+      "type": "single",
+      "text": "Что в модели теории валентных связей называют гибридизацией атомных орбиталей?",
+      "tags": [
+        "model",
+        "definition"
+      ],
+      "options": [
+        "Математическое преобразование орбиталей одного атома в набор направленных гибридных орбиталей",
+        "Переход электронов от одного атома к другому",
+        "Физическое слияние орбиталей разных атомов",
+        "Разрыв всех связей в молекуле"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Гибридизация — модельное математическое преобразование атомных орбиталей одного атома в теории валентных связей, а не отдельно наблюдаемое смешивание.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-002",
+      "section": "basics",
+      "type": "single",
+      "text": "В рамках какой модели обычно используют обозначения sp³, sp² и sp?",
+      "tags": [
+        "model",
+        "valence-bond"
+      ],
+      "options": [
+        "Теории валентных связей",
+        "Теории электролитической диссоциации",
+        "Кинетической теории газов",
+        "Теории растворов"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Язык гибридизации применяется прежде всего в теории валентных связей.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-003",
+      "section": "basics",
+      "type": "single",
+      "text": "Орбитали каких атомов участвуют в одном акте гибридизации?",
+      "tags": [
+        "model",
+        "orbitals"
+      ],
+      "options": [
+        "Орбитали одного и того же атома",
+        "Орбитали двух соседних атомов",
+        "Орбитали разных молекул",
+        "Только молекулярные орбитали"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Гибридизуются атомные орбитали одного центра; перекрывание орбиталей разных атомов описывает образование связи.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-004",
+      "section": "basics",
+      "type": "single",
+      "text": "Как изменяется число орбиталей при их математическом преобразовании в гибридные орбитали?",
+      "tags": [
+        "model",
+        "orbital-count"
+      ],
+      "options": [
+        "Число орбиталей сохраняется",
+        "Число всегда удваивается",
+        "Остаётся одна орбиталь",
+        "Число уменьшается на одну"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Число гибридных орбиталей равно числу исходных орбиталей, включённых в преобразование.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-005",
+      "section": "basics",
+      "type": "single",
+      "text": "Какое свойство гибридных орбиталей помогает описывать образование направленных σ-связей?",
+      "tags": [
+        "sigma",
+        "direction"
+      ],
+      "options": [
+        "Выраженная направленность в пространстве",
+        "Полное отсутствие электронов",
+        "Обязательная сферическая форма",
+        "Неспособность перекрываться"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Направленные гибридные орбитали могут эффективно перекрываться вдоль межъядерной оси.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-006",
+      "section": "basics",
+      "type": "single",
+      "text": "Как учитывают двойную связь при подсчёте электронных областей вокруг данного атома?",
+      "tags": [
+        "domains",
+        "double-bond"
+      ],
+      "options": [
+        "Как одну электронную область",
+        "Как две независимые области",
+        "Как три области",
+        "Не учитывают"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Все компоненты двойной связи направлены к одному соседнему атому, поэтому кратная связь считается одной областью.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-007",
+      "section": "basics",
+      "type": "single",
+      "text": "Как учитывают тройную связь при подсчёте электронных областей вокруг данного атома?",
+      "tags": [
+        "domains",
+        "triple-bond"
+      ],
+      "options": [
+        "Как одну электронную область",
+        "Как две области",
+        "Как три области",
+        "Только как две π-связи"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Тройная связь занимает одно направление относительно рассматриваемого атома и считается одной электронной областью.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-008",
+      "section": "basics",
+      "type": "single",
+      "text": "Какую гибридизацию в школьной модели обычно приписывают атому углерода с четырьмя электронными областями?",
+      "tags": [
+        "domains",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Четыре электронные области вокруг атома углерода соответствуют sp³-гибридизации.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-009",
+      "section": "basics",
+      "type": "single",
+      "text": "Какую гибридизацию в школьной модели обычно приписывают атому углерода с тремя электронными областями?",
+      "tags": [
+        "domains",
+        "sp2"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Три электронные области вокруг атома углерода соответствуют sp²-гибридизации.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-010",
+      "section": "basics",
+      "type": "single",
+      "text": "Какую гибридизацию в школьной модели обычно приписывают атому углерода с двумя электронными областями?",
+      "tags": [
+        "domains",
+        "sp"
+      ],
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Две электронные области вокруг атома углерода соответствуют sp-гибридизации.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-011",
+      "section": "basics",
+      "type": "single",
+      "text": "Какая связь образуется при перекрывании орбиталей вдоль межъядерной оси?",
+      "tags": [
+        "sigma",
+        "overlap"
+      ],
+      "options": [
+        "σ-связь",
+        "π-связь",
+        "Водородная связь",
+        "Ионная связь"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Осевое перекрывание даёт σ-связь.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-012",
+      "section": "basics",
+      "type": "single",
+      "text": "Какая связь образуется при боковом перекрывании параллельных негибридных p-орбиталей?",
+      "tags": [
+        "pi",
+        "overlap"
+      ],
+      "options": [
+        "π-связь",
+        "σ-связь",
+        "Ионная связь",
+        "Металлическая связь"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Боковое перекрывание параллельных p-орбиталей образует π-связь.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-013",
+      "section": "basics",
+      "type": "single",
+      "text": "Что означает выражение «негибридная p-орбиталь»?",
+      "tags": [
+        "p-orbital",
+        "definition"
+      ],
+      "options": [
+        "p-орбиталь, не включённая в набор гибридных орбиталей",
+        "Свободная sp³-орбиталь",
+        "Орбиталь соседнего атома",
+        "Любая молекулярная орбиталь"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Такая p-орбиталь не вошла в гибридизацию и может участвовать в боковом перекрывании.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-014",
+      "section": "basics",
+      "type": "single",
+      "text": "К чему относится обозначение гибридизации в органической молекуле?",
+      "tags": [
+        "local-model",
+        "atoms"
+      ],
+      "options": [
+        "К конкретному атому и его локальному окружению",
+        "Сразу ко всей молекуле без исключений",
+        "Только к агрегатному состоянию",
+        "К молярной массе вещества"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Гибридизация — локальная характеристика в рамках модели; разные атомы одной молекулы могут иметь разные типы.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-basics-015",
+      "section": "basics",
+      "type": "single",
+      "text": "Почему вращение вокруг связи C=C без нарушения связи затруднено?",
+      "difficulty": 2,
+      "tags": [
+        "pi",
+        "rotation"
+      ],
+      "options": [
+        "Вращение нарушило бы боковое перекрывание p-орбиталей",
+        "Двойная связь состоит из двух σ-связей",
+        "Связь C=C является ионной",
+        "У атомов углерода нет p-орбиталей"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для сохранения π-связи негибридные p-орбитали двух атомов должны оставаться параллельными."
+    },
+    {
+      "id": "hybridization-orbitals-001",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какие атомные орбитали углерода включают в sp³-гибридизацию?",
+      "tags": [
+        "sp3",
+        "composition"
+      ],
+      "options": [
+        "Одну s- и три p-орбитали",
+        "Одну s- и две p-орбитали",
+        "Одну s- и одну p-орбиталь",
+        "Три s- и одну p-орбиталь"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s- и три p-орбитали преобразуются в четыре sp³-гибридные орбитали.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-002",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько гибридных орбиталей образуется при sp³-гибридизации?",
+      "content": {
+        "text": "sp³",
+        "format": "formula",
+        "caption": "Тип гибридизации"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "гибридных орбиталей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Четыре исходные орбитали дают четыре гибридные орбитали.",
+      "difficulty": 1,
+      "tags": [
+        "sp3",
+        "orbital-count"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-003",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько негибридных p-орбиталей остаётся при sp³-гибридизации?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 0,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 3,
+        "tolerance": 0,
+        "unit": "негибридных p-орбиталей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Все три p-орбитали включены в sp³-набор, поэтому негибридных p-орбиталей не остаётся.",
+      "difficulty": 1,
+      "tags": [
+        "sp3",
+        "p-orbitals"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-004",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какова доля s-характера одной sp³-гибридной орбитали?",
+      "tags": [
+        "sp3",
+        "s-character"
+      ],
+      "options": [
+        "25%",
+        "Около 33%",
+        "50%",
+        "75%"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s-орбиталь приходится на четыре эквивалентные sp³-орбитали, поэтому s-характер составляет 25%.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-005",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какие атомные орбитали включают в sp²-гибридизацию?",
+      "tags": [
+        "sp2",
+        "composition"
+      ],
+      "options": [
+        "Одну s- и две p-орбитали",
+        "Одну s- и три p-орбитали",
+        "Одну s- и одну p-орбиталь",
+        "Две s- и одну p-орбиталь"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s- и две p-орбитали преобразуются в три sp²-гибридные орбитали.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-006",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько гибридных орбиталей образуется при sp²-гибридизации?",
+      "content": {
+        "text": "sp²",
+        "format": "formula",
+        "caption": "Тип гибридизации"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "гибридных орбиталей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Три исходные орбитали дают три гибридные орбитали.",
+      "difficulty": 1,
+      "tags": [
+        "sp2",
+        "orbital-count"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-007",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько негибридных p-орбиталей остаётся при sp²-гибридизации?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 1,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 3,
+        "tolerance": 0,
+        "unit": "негибридная p-орбиталь",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Две p-орбитали участвуют в преобразовании, а одна p-орбиталь остаётся негибридной.",
+      "difficulty": 1,
+      "tags": [
+        "sp2",
+        "p-orbitals"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-008",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какова приблизительная доля s-характера одной sp²-гибридной орбитали?",
+      "tags": [
+        "sp2",
+        "s-character"
+      ],
+      "options": [
+        "Около 33%",
+        "25%",
+        "50%",
+        "75%"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s-орбиталь распределена между тремя sp²-орбиталями, поэтому s-характер близок к одной трети.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-009",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какие атомные орбитали включают в sp-гибридизацию?",
+      "tags": [
+        "sp",
+        "composition"
+      ],
+      "options": [
+        "Одну s- и одну p-орбиталь",
+        "Одну s- и две p-орбитали",
+        "Одну s- и три p-орбитали",
+        "Две s- и две p-орбитали"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s- и одна p-орбиталь преобразуются в две sp-гибридные орбитали.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-010",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько гибридных орбиталей образуется при sp-гибридизации?",
+      "content": {
+        "text": "sp",
+        "format": "formula",
+        "caption": "Тип гибридизации"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "гибридные орбитали",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Две исходные орбитали дают две sp-гибридные орбитали.",
+      "difficulty": 1,
+      "tags": [
+        "sp",
+        "orbital-count"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-011",
+      "section": "orbitals",
+      "type": "number",
+      "text": "Сколько негибридных p-орбиталей остаётся при sp-гибридизации?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 3,
+        "tolerance": 0,
+        "unit": "негибридные p-орбитали",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Из трёх p-орбиталей только одна участвует в sp-гибридизации, поэтому две остаются негибридными.",
+      "difficulty": 1,
+      "tags": [
+        "sp",
+        "p-orbitals"
+      ]
+    },
+    {
+      "id": "hybridization-orbitals-012",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Какова доля s-характера одной sp-гибридной орбитали?",
+      "tags": [
+        "sp",
+        "s-character"
+      ],
+      "options": [
+        "50%",
+        "25%",
+        "Около 33%",
+        "75%"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "В sp-наборе одна s- и одна p-орбиталь, поэтому s-характер равен 50%.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-orbitals-013",
+      "section": "orbitals",
+      "type": "single",
+      "text": "В каком ряду возрастает s-характер гибридных орбиталей?",
+      "difficulty": 2,
+      "tags": [
+        "s-character",
+        "comparison"
+      ],
+      "options": [
+        "sp³ → sp² → sp",
+        "sp → sp² → sp³",
+        "sp² → sp³ → sp",
+        "sp³ → sp → sp²"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Доля s-характера возрастает от 25% у sp³ через примерно 33% у sp² до 50% у sp."
+    },
+    {
+      "id": "hybridization-orbitals-014",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Как ориентирована негибридная p-орбиталь относительно плоскости трёх sp²-гибридных орбиталей?",
+      "difficulty": 2,
+      "tags": [
+        "sp2",
+        "p-orbital"
+      ],
+      "options": [
+        "Перпендикулярно этой плоскости",
+        "Лежит в этой плоскости",
+        "Под углом 45° к плоскости",
+        "Её ориентация не связана с плоскостью"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Ось негибридной p-орбитали перпендикулярна плоскости трёх sp²-направлений."
+    },
+    {
+      "id": "hybridization-orbitals-015",
+      "section": "orbitals",
+      "type": "single",
+      "text": "Как ориентированы две негибридные p-орбитали одного sp-гибридизованного атома углерода?",
+      "difficulty": 2,
+      "tags": [
+        "sp",
+        "p-orbitals"
+      ],
+      "options": [
+        "Их оси взаимно перпендикулярны",
+        "Их оси совпадают",
+        "Они параллельны друг другу",
+        "Они лежат вдоль оси sp-орбиталей"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Оси двух оставшихся p-орбиталей взаимно перпендикулярны и обе перпендикулярны оси sp-направлений."
+    },
+    {
+      "id": "hybridization-geometry-001",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова идеальная геометрия четырёх sp³-гибридных орбиталей?",
+      "tags": [
+        "sp3",
+        "geometry"
+      ],
+      "options": [
+        "Тетраэдрическая",
+        "Тригонально-плоская",
+        "Линейная",
+        "Квадратно-плоская"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Четыре sp³-направления ориентированы к вершинам тетраэдра.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-002",
+      "section": "geometry",
+      "type": "single",
+      "text": "Каков идеальный угол между направлениями sp³-гибридных орбиталей?",
+      "tags": [
+        "sp3",
+        "angle"
+      ],
+      "options": [
+        "109°28′ (приблизительно 109,5°)",
+        "120°",
+        "180°",
+        "90°"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Идеальный тетраэдрический угол равен 109°28′, приблизительно 109,5°; реальные углы могут отличаться.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-003",
+      "section": "geometry",
+      "type": "number",
+      "text": "Сколько направлений задают четыре sp³-гибридные орбитали вокруг атома?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "направления",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Каждая из четырёх sp³-орбиталей задаёт одно тетраэдрическое направление.",
+      "difficulty": 1,
+      "tags": [
+        "sp3",
+        "geometry"
+      ]
+    },
+    {
+      "id": "hybridization-geometry-004",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова идеальная геометрия трёх sp²-гибридных орбиталей?",
+      "tags": [
+        "sp2",
+        "geometry"
+      ],
+      "options": [
+        "Тригонально-плоская",
+        "Тетраэдрическая",
+        "Линейная",
+        "Квадратно-плоская"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Три sp²-направления лежат в одной плоскости и направлены к вершинам треугольника.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-005",
+      "section": "geometry",
+      "type": "single",
+      "text": "Каков идеальный угол между направлениями sp²-гибридных орбиталей?",
+      "tags": [
+        "sp2",
+        "angle"
+      ],
+      "options": [
+        "120°",
+        "109°28′",
+        "180°",
+        "90°"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для идеальной тригонально-плоской геометрии угол равен 120°.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-006",
+      "section": "geometry",
+      "type": "number",
+      "text": "Сколько sp²-гибридных орбиталей лежат в одной плоскости?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "гибридные орбитали",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Все три sp²-гибридные орбитали лежат в одной плоскости.",
+      "difficulty": 1,
+      "tags": [
+        "sp2",
+        "geometry"
+      ]
+    },
+    {
+      "id": "hybridization-geometry-007",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова идеальная геометрия двух sp-гибридных орбиталей?",
+      "tags": [
+        "sp",
+        "geometry"
+      ],
+      "options": [
+        "Линейная",
+        "Тригонально-плоская",
+        "Тетраэдрическая",
+        "Угловая"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Две sp-орбитали направлены в противоположные стороны вдоль одной прямой.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-008",
+      "section": "geometry",
+      "type": "single",
+      "text": "Каков угол между двумя sp-гибридными орбиталями?",
+      "tags": [
+        "sp",
+        "angle"
+      ],
+      "options": [
+        "180°",
+        "120°",
+        "109°28′",
+        "90°"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Противоположные sp-направления образуют угол 180°.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-009",
+      "section": "geometry",
+      "type": "number",
+      "text": "Сколько противоположных направлений вдоль одной прямой задают sp-гибридные орбитали?",
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 4,
+        "tolerance": 0,
+        "unit": "направления",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Две sp-гибридные орбитали направлены в противоположные стороны.",
+      "difficulty": 1,
+      "tags": [
+        "sp",
+        "geometry"
+      ]
+    },
+    {
+      "id": "hybridization-geometry-010",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова локальная геометрия связей вокруг атома углерода в идеализированной модели метана?",
+      "content": {
+        "text": "CH₄",
+        "format": "formula",
+        "caption": "Молекула метана"
+      },
+      "tags": [
+        "methane",
+        "sp3"
+      ],
+      "options": [
+        "Тетраэдрическая",
+        "Тригонально-плоская",
+        "Линейная",
+        "Квадратно-плоская"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "У атома углерода в CH₄ четыре σ-связи и тетраэдрическое sp³-окружение.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-011",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова локальная геометрия связей вокруг каждого атома углерода в этене?",
+      "content": {
+        "text": "CH₂=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула этена"
+      },
+      "tags": [
+        "ethene",
+        "sp2"
+      ],
+      "options": [
+        "Тригонально-плоская",
+        "Тетраэдрическая",
+        "Линейная",
+        "Пирамидальная"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Каждый атом углерода в этене sp²-гибридизован и имеет тригонально-плоское окружение.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-012",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова локальная геометрия связей вокруг каждого атома углерода в этине?",
+      "content": {
+        "text": "HC≡CH",
+        "format": "formula",
+        "caption": "Структурная формула этина"
+      },
+      "tags": [
+        "ethyne",
+        "sp"
+      ],
+      "options": [
+        "Линейная",
+        "Тригонально-плоская",
+        "Тетраэдрическая",
+        "Угловая"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Каждый атом углерода в этине sp-гибридизован; направления σ-связей лежат на одной прямой.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-geometry-013",
+      "section": "geometry",
+      "type": "single",
+      "text": "Как корректно сравнивать идеальный тетраэдрический угол с углами в реальных молекулах?",
+      "difficulty": 2,
+      "tags": [
+        "sp3",
+        "model-limit"
+      ],
+      "options": [
+        "109°28′ — идеальное значение, а реальные углы могут отклоняться",
+        "Во всех молекулах угол строго равен 109°28′",
+        "Тетраэдрический угол всегда равен 120°",
+        "Реальные углы не связаны с локальным окружением"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Идеальная геометрия служит моделью; заместители и электронные эффекты могут изменять реальные углы."
+    },
+    {
+      "id": "hybridization-geometry-014",
+      "section": "geometry",
+      "type": "single",
+      "text": "Как расположена негибридная p-орбиталь у sp²-гибридизованного атома относительно плоскости σ-связей?",
+      "difficulty": 2,
+      "tags": [
+        "sp2",
+        "pi"
+      ],
+      "options": [
+        "Перпендикулярно плоскости σ-связей",
+        "В плоскости σ-связей",
+        "Вдоль одной из σ-связей",
+        "Её положение всегда случайно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Негибридная p-орбиталь перпендикулярна плоскости трёх sp²-направлений и может образовывать π-связь."
+    },
+    {
+      "id": "hybridization-geometry-015",
+      "section": "geometry",
+      "type": "single",
+      "text": "Какова локальная геометрия σ-связей вокруг карбонильного атома углерода?",
+      "content": {
+        "text": ">C=O",
+        "format": "formula",
+        "caption": "Карбонильный фрагмент"
+      },
+      "tags": [
+        "carbonyl",
+        "sp2"
+      ],
+      "options": [
+        "Тригонально-плоская",
+        "Тетраэдрическая",
+        "Линейная",
+        "Квадратно-плоская"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Карбонильный атом углерода имеет три электронные области и sp²-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-001",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию атома углерода в метане.",
+      "content": {
+        "text": "CH₄",
+        "format": "formula",
+        "caption": "Молекула метана"
+      },
+      "tags": [
+        "methane",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Атом углерода образует четыре σ-связи и имеет четыре электронные области, что соответствует sp³.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-002",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию первого атома углерода слева в этане.",
+      "content": {
+        "text": "CH₃–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула этана"
+      },
+      "tags": [
+        "ethane",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Этот атом углерода образует четыре σ-связи и имеет sp³-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-003",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию любого из двух атомов углерода в этене.",
+      "content": {
+        "text": "CH₂=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула этена"
+      },
+      "tags": [
+        "ethene",
+        "sp2"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "У каждого атома C три электронные области и одна негибридная p-орбиталь, поэтому его гибридизация sp².",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-004",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию любого из двух атомов углерода в этине.",
+      "content": {
+        "text": "HC≡CH",
+        "format": "formula",
+        "caption": "Структурная формула этина"
+      },
+      "tags": [
+        "ethyne",
+        "sp"
+      ],
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "У каждого атома C две электронные области и две негибридные p-орбитали, поэтому его гибридизация sp.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-005",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию левого концевого атома углерода группы CH₃ в пропене.",
+      "content": {
+        "text": "CH₃–CH=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула пропена"
+      },
+      "tags": [
+        "propene",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Левый атом C группы CH₃ образует только σ-связи и имеет четыре электронные области, то есть sp³.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-006",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию среднего атома углерода в пропене.",
+      "content": {
+        "text": "CH₃–CH=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула пропена"
+      },
+      "tags": [
+        "propene",
+        "sp2"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Средний атом C входит в двойную связь, имеет три электронные области и sp²-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-007",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию атома углерода метильной группы CH₃ в пропине.",
+      "content": {
+        "text": "CH₃–C≡CH",
+        "format": "formula",
+        "caption": "Структурная формула пропина"
+      },
+      "tags": [
+        "propyne",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Атом C группы CH₃ образует четыре σ-связи и имеет sp³-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-008",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию среднего атома углерода, входящего в тройную связь пропина.",
+      "content": {
+        "text": "CH₃–C≡CH",
+        "format": "formula",
+        "caption": "Структурная формула пропина"
+      },
+      "tags": [
+        "propyne",
+        "sp"
+      ],
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Средний атом C имеет две электронные области и две негибридные p-орбитали, поэтому он sp-гибридизован.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-009",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию второго атома углерода слева в бута-1,3-диене.",
+      "content": {
+        "text": "CH₂=CH–CH=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула бута-1,3-диена"
+      },
+      "tags": [
+        "butadiene",
+        "sp2"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Второй атом C входит в двойную связь, имеет три электронные области и sp²-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-010",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию центрального атома углерода в аллене.",
+      "content": {
+        "text": "CH₂=C=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула аллена"
+      },
+      "difficulty": 2,
+      "tags": [
+        "allene",
+        "sp"
+      ],
+      "options": [
+        "sp",
+        "sp²",
+        "sp³",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Центральный атом C образует две σ-связи по одной прямой и использует две негибридные p-орбитали для двух π-связей; это sp."
+    },
+    {
+      "id": "hybridization-structure-011",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию левого концевого атома углерода в аллене.",
+      "content": {
+        "text": "CH₂=C=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула аллена"
+      },
+      "difficulty": 2,
+      "tags": [
+        "allene",
+        "sp2"
+      ],
+      "options": [
+        "sp²",
+        "sp",
+        "sp³",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Концевой атом C имеет три электронные области и одну негибридную p-орбиталь, поэтому он sp²-гибридизован."
+    },
+    {
+      "id": "hybridization-structure-012",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию карбонильного атома углерода в этанале.",
+      "content": {
+        "text": "CH₃–C(=O)–H",
+        "format": "formula",
+        "caption": "Структурная формула этаналя"
+      },
+      "tags": [
+        "ethanal",
+        "carbonyl"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Карбонильный атом C имеет три электронные области и sp²-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-013",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию атома углерода метильной группы CH₃ в этанале.",
+      "content": {
+        "text": "CH₃–C(=O)–H",
+        "format": "formula",
+        "caption": "Структурная формула этаналя"
+      },
+      "tags": [
+        "ethanal",
+        "sp3"
+      ],
+      "options": [
+        "sp³",
+        "sp²",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Метильный атом C образует четыре σ-связи и имеет sp³-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-014",
+      "section": "structure",
+      "type": "single",
+      "text": "Определите гибридизацию карбонильного атома углерода в пропаноне.",
+      "content": {
+        "text": "CH₃–C(=O)–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула пропанона"
+      },
+      "tags": [
+        "propanone",
+        "carbonyl"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "Гибридизация в этой модели не используется"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Карбонильный атом C связан с двумя атомами C и двойной связью с O; три электронные области соответствуют sp².",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-structure-015",
+      "section": "structure",
+      "type": "single",
+      "text": "Какова гибридизация всех атомов углерода бензольного кольца?",
+      "content": {
+        "text": "C₆H₆",
+        "format": "formula",
+        "caption": "Молекулярная формула бензола; рассматривается бензольное кольцо"
+      },
+      "difficulty": 2,
+      "tags": [
+        "benzene",
+        "sp2",
+        "delocalization"
+      ],
+      "options": [
+        "sp²",
+        "sp³",
+        "sp",
+        "В кольце чередуются sp³ и sp²"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Каждый атом углерода бензольного кольца имеет sp²-гибридизацию; негибридные p-орбитали образуют делокализованную π-систему."
+    },
+    {
+      "id": "hybridization-sigma-pi-001",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле метана?",
+      "content": {
+        "text": "CH₄",
+        "format": "formula",
+        "caption": "Молекула метана"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В метане четыре связи C–H; каждая из них является σ-связью.",
+      "difficulty": 1,
+      "tags": [
+        "methane",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-002",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько π-связей содержится в молекуле метана?",
+      "content": {
+        "text": "CH₄",
+        "format": "formula",
+        "caption": "Молекула метана"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 0,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В метане только одинарные C–H-связи, поэтому π-связей нет.",
+      "difficulty": 1,
+      "tags": [
+        "methane",
+        "pi-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-003",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле этана?",
+      "content": {
+        "text": "CH₃–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула этана"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 7,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В этане шесть связей C–H и одна σ-связь C–C. Всего семь σ-связей.",
+      "difficulty": 1,
+      "tags": [
+        "ethane",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-004",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле этена?",
+      "content": {
+        "text": "CH₂=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула этена"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 5,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В этене четыре связи C–H и одна σ-компонента связи C=C. Всего пять σ-связей.",
+      "difficulty": 1,
+      "tags": [
+        "ethene",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-005",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько π-связей содержится в молекуле этена?",
+      "content": {
+        "text": "CH₂=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула этена"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 1,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связь",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Двойная связь C=C содержит одну π-связь.",
+      "difficulty": 1,
+      "tags": [
+        "ethene",
+        "pi-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-006",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле этина?",
+      "content": {
+        "text": "HC≡CH",
+        "format": "formula",
+        "caption": "Структурная формула этина"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связи",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В этине две связи C–H и одна σ-компонента тройной связи C≡C. Всего три σ-связи.",
+      "difficulty": 1,
+      "tags": [
+        "ethyne",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-007",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько π-связей содержится в молекуле этина?",
+      "content": {
+        "text": "HC≡CH",
+        "format": "formula",
+        "caption": "Структурная формула этина"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связи",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Тройная связь C≡C состоит из одной σ- и двух π-связей.",
+      "difficulty": 1,
+      "tags": [
+        "ethyne",
+        "pi-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-008",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле пропана?",
+      "content": {
+        "text": "CH₃–CH₂–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула пропана"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 10,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В пропане восемь связей C–H и две связи C–C. Всего десять σ-связей.",
+      "difficulty": 1,
+      "tags": [
+        "propane",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-009",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле пропена?",
+      "content": {
+        "text": "CH₂=CH–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула пропена"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 8,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В пропене шесть связей C–H и две σ-связи между соседними атомами C. Всего восемь σ-связей.",
+      "difficulty": 1,
+      "tags": [
+        "propene",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-010",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько π-связей содержится в молекуле пропена?",
+      "content": {
+        "text": "CH₂=CH–CH₃",
+        "format": "formula",
+        "caption": "Структурная формула пропена"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 1,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связь",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Одна двойная связь C=C содержит одну π-связь.",
+      "difficulty": 1,
+      "tags": [
+        "propene",
+        "pi-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-011",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле пропина?",
+      "content": {
+        "text": "CH₃–C≡CH",
+        "format": "formula",
+        "caption": "Структурная формула пропина"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 6,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В пропине четыре связи C–H и две σ-связи между соседними атомами C. Всего шесть σ-связей.",
+      "difficulty": 1,
+      "tags": [
+        "propyne",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-012",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько π-связей содержится в молекуле пропина?",
+      "content": {
+        "text": "CH₃–C≡CH",
+        "format": "formula",
+        "caption": "Структурная формула пропина"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связи",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Тройная связь C≡C содержит две π-связи.",
+      "difficulty": 1,
+      "tags": [
+        "propyne",
+        "pi-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-013",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько всего σ-связей содержится в молекуле бута-1,3-диена?",
+      "content": {
+        "text": "CH₂=CH–CH=CH₂",
+        "format": "formula",
+        "caption": "Структурная формула бута-1,3-диена"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 9,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "В бута-1,3-диене шесть связей C–H и три σ-связи между соседними атомами C. Всего девять σ-связей.",
+      "difficulty": 2,
+      "tags": [
+        "butadiene",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-014",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Сколько σ-связей образуют σ-каркас молекулы бензола?",
+      "content": {
+        "text": "C₆H₆",
+        "format": "formula",
+        "caption": "Бензольное кольцо"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 12,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "σ-связей",
+        "placeholder": "Введите число"
+      },
+      "explanation": "σ-каркас бензола содержит шесть связей C–C и шесть связей C–H. Всего двенадцать σ-связей.",
+      "difficulty": 2,
+      "tags": [
+        "benzene",
+        "sigma-count"
+      ]
+    },
+    {
+      "id": "hybridization-sigma-pi-015",
+      "section": "sigma-pi",
+      "type": "number",
+      "text": "Какому числу формальных π-связей эквивалентна делокализованная π-система бензола в школьном подсчёте?",
+      "content": {
+        "text": "C₆H₆",
+        "format": "formula",
+        "caption": "Бензольное кольцо; π-система делокализована"
+      },
+      "hint": "Введите одно целое число без единицы измерения.",
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 0,
+        "max": 50,
+        "tolerance": 0,
+        "unit": "π-связи",
+        "placeholder": "Введите число"
+      },
+      "explanation": "Шесть p-электронов бензола образуют делокализованную π-систему; в школьном формальном подсчёте она эквивалентна трём π-связям.",
+      "difficulty": 2,
+      "tags": [
+        "benzene",
+        "pi-count",
+        "delocalization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-001",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между объектом и пространственной характеристикой.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "sp³-гибридизованный атом C",
+          "explanation": "Для sp³ идеальна тетраэдрическая геометрия."
+        },
+        {
+          "id": "row-2",
+          "text": "sp²-гибридизованный атом C",
+          "explanation": "Три sp²-направления лежат в одной плоскости."
+        },
+        {
+          "id": "row-3",
+          "text": "sp-гибридизованный атом C",
+          "explanation": "Две sp-орбитали направлены под углом 180°."
+        },
+        {
+          "id": "row-4",
+          "text": "Негибридная p-орбиталь при sp²",
+          "explanation": "p-орбиталь перпендикулярна плоскости трёх sp²-орбиталей."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Тетраэдрическое расположение четырёх направлений"
+        },
+        {
+          "id": "option-2",
+          "text": "Тригонально-плоское расположение трёх направлений"
+        },
+        {
+          "id": "option-3",
+          "text": "Два противоположных направления на одной прямой"
+        },
+        {
+          "id": "option-4",
+          "text": "Ось перпендикулярна плоскости sp²-направлений"
+        },
+        {
+          "id": "option-5",
+          "text": "Квадратно-плоское расположение четырёх направлений"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Геометрия определяется числом и ориентацией гибридных орбиталей.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-002",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между набором и его составом или способом перекрывания.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "sp³-набор",
+          "explanation": "В sp³-преобразование входят одна s- и три p-орбитали."
+        },
+        {
+          "id": "row-2",
+          "text": "sp²-набор",
+          "explanation": "В sp²-преобразование входят одна s- и две p-орбитали."
+        },
+        {
+          "id": "row-3",
+          "text": "sp-набор",
+          "explanation": "В sp-преобразование входят одна s- и одна p-орбиталь."
+        },
+        {
+          "id": "row-4",
+          "text": "π-связь",
+          "explanation": "π-связь возникает при боковом перекрывании p-орбиталей."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "1 s-орбиталь + 3 p-орбитали"
+        },
+        {
+          "id": "option-2",
+          "text": "1 s-орбиталь + 2 p-орбитали"
+        },
+        {
+          "id": "option-3",
+          "text": "1 s-орбиталь + 1 p-орбиталь"
+        },
+        {
+          "id": "option-4",
+          "text": "Боковое перекрывание негибридных p-орбиталей"
+        },
+        {
+          "id": "option-5",
+          "text": "2 s-орбитали + 2 p-орбитали"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Состав гибридного набора и образование π-связи описывают разные операции модели.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-003",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между условием и числом или правилом.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "sp³-гибридизация",
+          "explanation": "Одна s- и три p-орбитали дают четыре sp³-орбитали."
+        },
+        {
+          "id": "row-2",
+          "text": "sp²-гибридизация",
+          "explanation": "Одна s- и две p-орбитали дают три sp²-орбитали."
+        },
+        {
+          "id": "row-3",
+          "text": "sp-гибридизация",
+          "explanation": "Одна s- и одна p-орбиталь дают две sp-орбитали."
+        },
+        {
+          "id": "row-4",
+          "text": "Любое такое преобразование",
+          "explanation": "Число результирующих орбиталей равно числу исходных."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Образуются 4 гибридные орбитали"
+        },
+        {
+          "id": "option-2",
+          "text": "Образуются 3 гибридные орбитали"
+        },
+        {
+          "id": "option-3",
+          "text": "Образуются 2 гибридные орбитали"
+        },
+        {
+          "id": "option-4",
+          "text": "Число орбиталей сохраняется"
+        },
+        {
+          "id": "option-5",
+          "text": "Всегда образуется одна гибридная орбиталь"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Число гибридных орбиталей определяется числом исходных орбиталей.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-004",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между типом атома и характеристикой негибридных p-орбиталей.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "sp³-атом C",
+          "explanation": "Все три p-орбитали включены в sp³-набор."
+        },
+        {
+          "id": "row-2",
+          "text": "sp²-атом C",
+          "explanation": "Одна p-орбиталь не входит в sp²-набор."
+        },
+        {
+          "id": "row-3",
+          "text": "sp-атом C",
+          "explanation": "Две p-орбитали не входят в sp-набор."
+        },
+        {
+          "id": "row-4",
+          "text": "Атом C в этене",
+          "explanation": "Каждый sp²-атом углерода этена предоставляет одну p-орбиталь."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Негибридных p-орбиталей нет"
+        },
+        {
+          "id": "option-2",
+          "text": "Остаётся 1 негибридная p-орбиталь"
+        },
+        {
+          "id": "option-3",
+          "text": "Остаются 2 взаимно перпендикулярные p-орбитали"
+        },
+        {
+          "id": "option-4",
+          "text": "Одна p-орбиталь участвует в π-связи C=C"
+        },
+        {
+          "id": "option-5",
+          "text": "Остаются 3 негибридные p-орбитали"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Негибридные p-орбитали обеспечивают образование π-связей.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-005",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между кратностью связи и её составом.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Одинарная связь",
+          "explanation": "Одинарная связь является σ-связью."
+        },
+        {
+          "id": "row-2",
+          "text": "Двойная связь",
+          "explanation": "Двойная связь содержит одну σ- и одну π-компоненту."
+        },
+        {
+          "id": "row-3",
+          "text": "Тройная связь",
+          "explanation": "Тройная связь содержит одну σ- и две π-компоненты."
+        },
+        {
+          "id": "row-4",
+          "text": "π-система бензола",
+          "explanation": "p-орбитали шести атомов C образуют общую делокализованную систему."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "1 σ"
+        },
+        {
+          "id": "option-2",
+          "text": "1 σ + 1 π"
+        },
+        {
+          "id": "option-3",
+          "text": "1 σ + 2 π"
+        },
+        {
+          "id": "option-4",
+          "text": "Делокализована над всем кольцом"
+        },
+        {
+          "id": "option-5",
+          "text": "2 σ без π-компоненты"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Первая связь между двумя атомами — σ; дополнительные компоненты кратной связи — π.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-006",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между молекулой и полным числом σ- и π-связей.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Метан CH₄",
+          "explanation": "Четыре связи C–H являются σ-связями."
+        },
+        {
+          "id": "row-2",
+          "text": "Этан C₂H₆",
+          "explanation": "Шесть C–H и одна C–C дают семь σ-связей."
+        },
+        {
+          "id": "row-3",
+          "text": "Этен C₂H₄",
+          "explanation": "Четыре C–H и σ-компонента C=C дают пять σ; C=C содержит одну π."
+        },
+        {
+          "id": "row-4",
+          "text": "Этин C₂H₂",
+          "explanation": "Две C–H и σ-компонента C≡C дают три σ; тройная связь содержит две π."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "4 σ, 0 π"
+        },
+        {
+          "id": "option-2",
+          "text": "7 σ, 0 π"
+        },
+        {
+          "id": "option-3",
+          "text": "5 σ, 1 π"
+        },
+        {
+          "id": "option-4",
+          "text": "3 σ, 2 π"
+        },
+        {
+          "id": "option-5",
+          "text": "8 σ, 1 π"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "При подсчёте σ-связей учитываются все связи между соседними атомами, включая C–H.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-007",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между молекулой и полным числом σ- и π-связей.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Пропан C₃H₈",
+          "explanation": "Восемь C–H и две C–C дают десять σ-связей."
+        },
+        {
+          "id": "row-2",
+          "text": "Пропен C₃H₆",
+          "explanation": "Шесть C–H и две σ-связи C–C дают восемь σ; одна двойная связь даёт одну π."
+        },
+        {
+          "id": "row-3",
+          "text": "Пропин C₃H₄",
+          "explanation": "Четыре C–H и две σ-связи C–C дают шесть σ; тройная связь даёт две π."
+        },
+        {
+          "id": "row-4",
+          "text": "Бута-1,3-диен C₄H₆",
+          "explanation": "Шесть C–H и три σ-связи C–C дают девять σ; две двойные связи дают две π."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "10 σ, 0 π"
+        },
+        {
+          "id": "option-2",
+          "text": "8 σ, 1 π"
+        },
+        {
+          "id": "option-3",
+          "text": "6 σ, 2 π"
+        },
+        {
+          "id": "option-4",
+          "text": "9 σ, 2 π"
+        },
+        {
+          "id": "option-5",
+          "text": "12 σ, 3 π"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Число σ-связей равно числу пар соседних связанных атомов, а π-компоненты задаются кратными связями.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-008",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между молекулой и набором типов гибридизации атомов углерода.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Этан",
+          "explanation": "Оба атома C этана образуют только одинарные связи."
+        },
+        {
+          "id": "row-2",
+          "text": "Этен",
+          "explanation": "Оба атома C этена входят в двойную связь."
+        },
+        {
+          "id": "row-3",
+          "text": "Этин",
+          "explanation": "Оба атома C этина входят в тройную связь."
+        },
+        {
+          "id": "row-4",
+          "text": "Пропен",
+          "explanation": "Метильный атом C пропена sp³, а два атома C=C — sp²."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Только sp³"
+        },
+        {
+          "id": "option-2",
+          "text": "Только sp²"
+        },
+        {
+          "id": "option-3",
+          "text": "Только sp"
+        },
+        {
+          "id": "option-4",
+          "text": "sp³ и sp²"
+        },
+        {
+          "id": "option-5",
+          "text": "sp³ и sp"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Гибридизация определяется локальным окружением каждого атома углерода.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-009",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между молекулой и характеристикой атомов углерода.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Пропин",
+          "explanation": "Метильный атом C — sp³, два атома тройной связи — sp."
+        },
+        {
+          "id": "row-2",
+          "text": "Аллен",
+          "explanation": "Концевые атомы C — sp², центральный атом — sp."
+        },
+        {
+          "id": "row-3",
+          "text": "Бута-1,3-диен",
+          "explanation": "Каждый атом C входит в систему сопряжённых двойных связей."
+        },
+        {
+          "id": "row-4",
+          "text": "Бензол",
+          "explanation": "Каждый атом C кольца sp² и предоставляет p-орбиталь общей π-системе."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Сочетает sp³- и sp-атомы C"
+        },
+        {
+          "id": "option-2",
+          "text": "Сочетает sp²- и sp-атомы C"
+        },
+        {
+          "id": "option-3",
+          "text": "Все атомы C имеют sp²-гибридизацию"
+        },
+        {
+          "id": "option-4",
+          "text": "Все атомы C sp²; π-система делокализована"
+        },
+        {
+          "id": "option-5",
+          "text": "Все атомы C имеют sp³-гибридизацию"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Молекула может содержать один или несколько типов локального окружения C.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-010",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между термином и определением.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Гибридизация",
+          "explanation": "Гибридизация относится к орбиталям одного атомного центра."
+        },
+        {
+          "id": "row-2",
+          "text": "σ-связь",
+          "explanation": "σ-связь образуется осевым перекрыванием."
+        },
+        {
+          "id": "row-3",
+          "text": "π-связь",
+          "explanation": "π-связь образуется боковым перекрыванием параллельных p-орбиталей."
+        },
+        {
+          "id": "row-4",
+          "text": "Электронная область",
+          "explanation": "Кратная связь к одному соседу считается одной областью."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "Модельное преобразование орбиталей одного атома"
+        },
+        {
+          "id": "option-2",
+          "text": "Связь при перекрывании вдоль межъядерной оси"
+        },
+        {
+          "id": "option-3",
+          "text": "Связь при боковом перекрывании p-орбиталей"
+        },
+        {
+          "id": "option-4",
+          "text": "Одно направление связи или неподелённой пары"
+        },
+        {
+          "id": "option-5",
+          "text": "Переход электрона между разными молекулами"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Термины описывают разные элементы модели локальных связей.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-011",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между геометрической характеристикой и углом.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Идеальный тетраэдрический угол",
+          "explanation": "Это идеальный угол между sp³-направлениями."
+        },
+        {
+          "id": "row-2",
+          "text": "Идеальный угол при sp²",
+          "explanation": "Три sp²-направления образуют углы 120°."
+        },
+        {
+          "id": "row-3",
+          "text": "Угол между sp-направлениями",
+          "explanation": "Две sp-орбитали направлены противоположно."
+        },
+        {
+          "id": "row-4",
+          "text": "Угол между осями двух p-орбиталей у sp-атома",
+          "explanation": "Оси двух негибридных p-орбиталей взаимно перпендикулярны."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "109°28′ (примерно 109,5°)"
+        },
+        {
+          "id": "option-2",
+          "text": "120°"
+        },
+        {
+          "id": "option-3",
+          "text": "180°"
+        },
+        {
+          "id": "option-4",
+          "text": "90°"
+        },
+        {
+          "id": "option-5",
+          "text": "60°"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Идеальные углы относятся к геометрической модели; реальные углы могут отклоняться.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-012",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между видом перекрывания и результатом.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "Осевое перекрывание двух sp²-орбиталей C",
+          "explanation": "sp²-орбитали перекрываются вдоль оси C–C."
+        },
+        {
+          "id": "row-2",
+          "text": "Боковое перекрывание одной пары p-орбиталей",
+          "explanation": "Одна пара p-орбиталей образует одну π-связь."
+        },
+        {
+          "id": "row-3",
+          "text": "Боковое перекрывание двух взаимно перпендикулярных пар p-орбиталей",
+          "explanation": "Две пары p-орбиталей образуют две π-компоненты тройной связи."
+        },
+        {
+          "id": "row-4",
+          "text": "Осевое перекрывание 1s-орбитали H и гибридной орбитали C",
+          "explanation": "Связь C–H образуется перекрыванием вдоль межъядерной оси."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "σ-компонента связи C=C в этене"
+        },
+        {
+          "id": "option-2",
+          "text": "Одна π-связь в этене"
+        },
+        {
+          "id": "option-3",
+          "text": "Две π-связи в этине"
+        },
+        {
+          "id": "option-4",
+          "text": "σ-связь C–H"
+        },
+        {
+          "id": "option-5",
+          "text": "Две σ-связи между одной парой атомов C"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Тип перекрывания определяет σ- или π-характер связи.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-013",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между формулой и общим числом σ-связей.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "CH₄",
+          "explanation": "Четыре связи C–H."
+        },
+        {
+          "id": "row-2",
+          "text": "CH₃–CH₃",
+          "explanation": "Шесть C–H и одна C–C."
+        },
+        {
+          "id": "row-3",
+          "text": "CH₂=CH₂",
+          "explanation": "Четыре C–H и одна σ-компонента C=C."
+        },
+        {
+          "id": "row-4",
+          "text": "HC≡CH",
+          "explanation": "Две C–H и одна σ-компонента C≡C."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "4 σ-связи"
+        },
+        {
+          "id": "option-2",
+          "text": "7 σ-связей"
+        },
+        {
+          "id": "option-3",
+          "text": "5 σ-связей"
+        },
+        {
+          "id": "option-4",
+          "text": "3 σ-связи"
+        },
+        {
+          "id": "option-5",
+          "text": "10 σ-связей"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Кратность связи не увеличивает число σ-связей между одной парой атомов.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-014",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между формулой и числом π-связей.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "CH₄",
+          "explanation": "В метане нет кратных связей."
+        },
+        {
+          "id": "row-2",
+          "text": "CH₂=CH₂",
+          "explanation": "Одна двойная связь содержит одну π-компоненту."
+        },
+        {
+          "id": "row-3",
+          "text": "HC≡CH",
+          "explanation": "Одна тройная связь содержит две π-компоненты."
+        },
+        {
+          "id": "row-4",
+          "text": "C₆H₆, бензольное кольцо",
+          "explanation": "Делокализованная π-система бензола в школьном подсчёте эквивалентна трём π-связям."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "0 π-связей"
+        },
+        {
+          "id": "option-2",
+          "text": "1 π-связь"
+        },
+        {
+          "id": "option-3",
+          "text": "2 π-связи"
+        },
+        {
+          "id": "option-4",
+          "text": "Формальный эквивалент 3 π-связей"
+        },
+        {
+          "id": "option-5",
+          "text": "4 π-связи"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В бензоле π-электроны делокализованы, поэтому число три является формальным эквивалентом.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-matching-015",
+      "section": "matching",
+      "type": "matching",
+      "text": "Установите соответствие между ошибочным утверждением и его исправлением.",
+      "items": [
+        {
+          "id": "row-1",
+          "text": "«При sp³ остаётся одна p-орбиталь»",
+          "explanation": "Все три p-орбитали включены в sp³-набор."
+        },
+        {
+          "id": "row-2",
+          "text": "«При sp² остаются две p-орбитали»",
+          "explanation": "В sp²-набор входят две из трёх p-орбиталей."
+        },
+        {
+          "id": "row-3",
+          "text": "«Угол между sp-орбиталями равен 120°»",
+          "explanation": "Две sp-орбитали направлены противоположно."
+        },
+        {
+          "id": "row-4",
+          "text": "«Двойная связь содержит две σ-связи»",
+          "explanation": "Между одной парой атомов образуется одна σ-компонента."
+        }
+      ],
+      "options": [
+        {
+          "id": "option-1",
+          "text": "При sp³ негибридных p-орбиталей не остаётся"
+        },
+        {
+          "id": "option-2",
+          "text": "При sp² остаётся одна негибридная p-орбиталь"
+        },
+        {
+          "id": "option-3",
+          "text": "Угол между sp-орбиталями равен 180°"
+        },
+        {
+          "id": "option-4",
+          "text": "Двойная связь содержит 1 σ- и 1 π-связь"
+        },
+        {
+          "id": "option-5",
+          "text": "Тройная связь содержит 3 σ-связи"
+        }
+      ],
+      "correct": {
+        "row-1": "option-1",
+        "row-2": "option-2",
+        "row-3": "option-3",
+        "row-4": "option-4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Исправления опираются на состав гибридных наборов и кратных связей.",
+      "difficulty": 2,
+      "tags": [
+        "matching",
+        "hybridization"
+      ]
+    },
+    {
+      "id": "hybridization-statements-001",
+      "section": "statements",
+      "type": "single",
+      "text": "Гибридизация — модельное математическое преобразование атомных орбиталей одного атома.",
+      "tags": [
+        "model",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Это представление теории валентных связей, а не наблюдаемое физическое смешивание орбиталей.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-002",
+      "section": "statements",
+      "type": "single",
+      "text": "При sp³-гибридизации образуются четыре гибридные орбитали.",
+      "tags": [
+        "sp3",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Одна s- и три p-орбитали дают четыре sp³-орбитали.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-003",
+      "section": "statements",
+      "type": "single",
+      "text": "При sp²-гибридизации все три p-орбитали атома участвуют в преобразовании.",
+      "tags": [
+        "sp2",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "В sp²-гибридизации участвуют две p-орбитали; одна остаётся негибридной.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-004",
+      "section": "statements",
+      "type": "single",
+      "text": "При sp-гибридизации остаются две негибридные p-орбитали.",
+      "tags": [
+        "sp",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "В преобразовании участвует одна из трёх p-орбиталей, поэтому две остаются негибридными.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-005",
+      "section": "statements",
+      "type": "single",
+      "text": "Двойная связь в модели локализованных связей состоит из одной σ- и одной π-связи.",
+      "tags": [
+        "double-bond",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Первая связь между атомами — σ, дополнительная компонента двойной связи — π.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-006",
+      "section": "statements",
+      "type": "single",
+      "text": "Тройная связь состоит из трёх π-связей.",
+      "tags": [
+        "triple-bond",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Тройная связь содержит одну σ- и две π-связи.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-007",
+      "section": "statements",
+      "type": "single",
+      "text": "π-связь образуется осевым перекрыванием орбиталей.",
+      "tags": [
+        "pi",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "π-связь образуется боковым перекрыванием параллельных p-орбиталей; осевое перекрывание даёт σ-связь.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-008",
+      "section": "statements",
+      "type": "single",
+      "text": "Оба атома углерода в этене имеют sp²-гибридизацию.",
+      "tags": [
+        "ethene",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Каждый атом C в этене имеет три электронные области и одну негибридную p-орбиталь.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-009",
+      "section": "statements",
+      "type": "single",
+      "text": "Оба атома углерода в этине имеют sp³-гибридизацию.",
+      "tags": [
+        "ethyne",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Атомы C в этине имеют две электронные области и sp-гибридизацию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-010",
+      "section": "statements",
+      "type": "single",
+      "text": "Все атомы углерода бензольного кольца имеют sp²-гибридизацию.",
+      "tags": [
+        "benzene",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Каждый атом C кольца имеет три σ-направления и негибридную p-орбиталь общей π-системы.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-011",
+      "section": "statements",
+      "type": "single",
+      "text": "Центральный атом углерода в аллене CH₂=C=CH₂ имеет sp-гибридизацию.",
+      "tags": [
+        "allene",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Центральный атом образует две σ-связи вдоль одной прямой и использует две p-орбитали для двух π-связей.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-012",
+      "section": "statements",
+      "type": "single",
+      "text": "При sp²-гибридизации три гибридные орбитали лежат в одной плоскости.",
+      "tags": [
+        "sp2",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Три sp²-направления образуют тригонально-плоскую геометрию.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-013",
+      "section": "statements",
+      "type": "single",
+      "text": "Идеальный угол между sp-гибридными орбиталями равен 120°.",
+      "tags": [
+        "sp",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Две sp-орбитали направлены противоположно, поэтому угол равен 180°.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-014",
+      "section": "statements",
+      "type": "single",
+      "text": "Одна двойная связь считается двумя независимыми электронными областями вокруг атома.",
+      "tags": [
+        "domains",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Кратная связь направлена к одному соседнему атому и считается одной электронной областью.",
+      "difficulty": 1
+    },
+    {
+      "id": "hybridization-statements-015",
+      "section": "statements",
+      "type": "single",
+      "text": "Все атомы углерода одной органической молекулы обязательно имеют одинаковую гибридизацию.",
+      "tags": [
+        "local-model",
+        "statement"
+      ],
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Например, в пропене метильный атом C имеет sp³-, а атомы двойной связи — sp²-гибридизацию.",
+      "difficulty": 1
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-07-21",
+  "updatedAt": "2026-07-22",
   "sections": [
     {
       "id": "organic",
@@ -68,7 +68,24 @@
     },
     {
       "id": "hybridization-theory",
-      "title": "Теория гибридизации",
+      "title": "Теория гибридизации — новая версия",
+      "description": "Гибридные орбитали, геометрия, валентные углы, структурные формулы и подсчёт σ- и π-связей.",
+      "section": "organic",
+      "kicker": "Новый движок",
+      "symbol": "sp³",
+      "color": "#5b4bc4",
+      "softColor": "#f0edff",
+      "questionCount": 105,
+      "modes": ["training", "test"],
+      "meta": "8 режимов · 10/15 заданий",
+      "url": "test.html?id=hybridization-theory",
+      "linkLabel": "Открыть beta",
+      "status": "beta",
+      "order": 30
+    },
+    {
+      "id": "hybridization-theory-legacy",
+      "title": "Теория гибридизации — старая версия",
       "description": "Гибридные и негибридные орбитали, геометрия, валентные углы, определение гибридизации и образование σ- и π-связей.",
       "section": "organic",
       "kicker": "Строение органических молекул",
@@ -81,7 +98,8 @@
       "url": "hybridization-theory.html",
       "linkLabel": "Открыть",
       "status": "active",
-      "order": 30
+      "badge": "Старая версия",
+      "order": 40
     },
     {
       "id": "alkane-homology",
@@ -98,7 +116,7 @@
       "url": "alkane-homology.html",
       "linkLabel": "Открыть",
       "status": "active",
-      "order": 40
+      "order": 50
     },
     {
       "id": "organic-classification",
@@ -115,7 +133,7 @@
       "url": "test.html?id=organic-classification",
       "linkLabel": "Открыть beta",
       "status": "beta",
-      "order": 40,
+      "order": 60,
       "wide": false
     },
     {
@@ -134,7 +152,7 @@
       "linkLabel": "Открыть",
       "status": "active",
       "badge": "Старая версия",
-      "order": 50
+      "order": 70
     },
     {
       "id": "inorg-nomenclature",

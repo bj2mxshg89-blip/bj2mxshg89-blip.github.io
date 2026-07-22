@@ -1,10 +1,36 @@
-import { evaluateAnswer, formatAnswer } from "./question-types.js?v=5";
+import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=6";
 
 const renderers = {
   single: renderSingleQuestion,
   multiple: renderMultipleQuestion,
-  matching: renderMatchingQuestion
+  matching: renderMatchingQuestion,
+  number: renderNumberQuestion
 };
+
+export function renderQuestionContent(container, content, { append = false, review = false } = {}) {
+  if (!append) container.replaceChildren();
+  if (!content) {
+    if (!append) container.hidden = true;
+    return;
+  }
+
+  const figure = document.createElement("figure");
+  figure.className = `question-content${review ? " is-review" : ""}`;
+  const value = document.createElement("div");
+  value.className = `question-content-value${content.format === "formula" ? " is-formula" : ""}`;
+  value.textContent = content.text;
+  figure.appendChild(value);
+
+  if (content.caption) {
+    const caption = document.createElement("figcaption");
+    caption.className = "question-content-caption";
+    caption.textContent = content.caption;
+    figure.appendChild(caption);
+  }
+
+  container.appendChild(figure);
+  container.hidden = false;
+}
 
 export function renderQuestionOptions(context) {
   const renderer = renderers[context.question.type];
@@ -28,6 +54,70 @@ function renderSingleQuestion(context) {
 
 function renderMultipleQuestion(context) {
   renderChoiceQuestion(context, "checkbox");
+}
+
+function renderNumberQuestion({
+  container,
+  question,
+  selected,
+  locked,
+  revealCorrect,
+  onChange,
+  onEnter
+}) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "number-answer";
+  if (revealCorrect) {
+    wrapper.classList.add(evaluateAnswer(question, selected).isFullyCorrect ? "is-correct" : "is-wrong");
+  }
+
+  const inputId = `number-${question.id}`;
+  const label = document.createElement("label");
+  label.className = "number-answer-label";
+  label.htmlFor = inputId;
+  label.textContent = "Ваш ответ";
+
+  const row = document.createElement("div");
+  row.className = "number-answer-row";
+  const input = document.createElement("input");
+  input.id = inputId;
+  input.type = "text";
+  input.className = "number-answer-input";
+  input.value = typeof selected === "string" ? selected : "";
+  input.placeholder = question.number.placeholder || "Введите число";
+  input.inputMode = question.number.integer ? "numeric" : "decimal";
+  input.autocomplete = "off";
+  input.spellcheck = false;
+  input.readOnly = locked;
+  input.dataset.focusKey = "number-input";
+  input.dataset.answerControl = "true";
+
+  const describedBy = ["questionHint"];
+  if (question.number.unit) {
+    const unit = document.createElement("span");
+    unit.id = `${inputId}-unit`;
+    unit.className = "number-answer-unit";
+    unit.textContent = question.number.unit;
+    row.append(input, unit);
+    describedBy.push(unit.id);
+  } else {
+    row.appendChild(input);
+  }
+  input.setAttribute("aria-describedby", describedBy.join(" "));
+
+  input.addEventListener("input", () => onChange({
+    value: input.value,
+    focusKey: input.dataset.focusKey,
+    render: false
+  }));
+  input.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.isComposing) return;
+    event.preventDefault();
+    onEnter?.(input.dataset.focusKey);
+  });
+
+  wrapper.append(label, row);
+  container.appendChild(wrapper);
 }
 
 function renderChoiceQuestion({
@@ -187,16 +277,22 @@ function renderMatchingQuestion({
 export function questionInstruction(question) {
   if (question.hint) return question.hint;
   if (question.type === "matching") return "Для каждой строки выберите подходящий вариант.";
+  if (question.type === "number") {
+    return question.number.integer
+      ? "Введите одно целое число без единицы измерения."
+      : "Введите одно число; допустимы десятичная запятая или точка.";
+  }
   return question.type === "multiple"
     ? "Выберите все правильные ответы."
     : "Выберите один правильный ответ.";
 }
 
 export function appendReviewContent(container, question, answer, evaluation) {
+  renderQuestionContent(container, question.content, { append: true, review: true });
   if (question.type !== "matching") {
     container.append(
       reviewLine("Ваш ответ", formatAnswer(question, answer)),
-      reviewLine("Правильный ответ", formatAnswer(question, question.correct)),
+      reviewLine("Правильный ответ", formatCorrectAnswer(question)),
       explanationBlock(question.explanation)
     );
     return;

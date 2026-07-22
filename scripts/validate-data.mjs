@@ -54,7 +54,10 @@ if (errors.length) {
   );
   reports.forEach((report) => {
     const maxima = report.attempts
-      .map((attempt) => `${attempt.variantId}/${attempt.mode}: ${attempt.questions} → ${attempt.maximum}`)
+      .map((attempt) => {
+        const maximum = attempt.dynamic ? `${attempt.minimum}–${attempt.maximum}` : attempt.maximum;
+        return `${attempt.variantId}/${attempt.mode}: ${attempt.questions} → ${maximum}`;
+      })
       .join(", ");
     console.log(`- ${report.id}: ${report.questions} вопросов, ${report.variants} вариантов; ${maxima}`);
   });

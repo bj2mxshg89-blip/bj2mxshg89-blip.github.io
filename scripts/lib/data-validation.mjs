@@ -84,17 +84,25 @@ export function validateTestContent(test, expectedId) {
         .filter(Boolean)
         .map((question) => getQuestionMaxPoints(question));
       if (!maxima.length || !Number.isInteger(count) || count < 1 || count > maxima.length) return;
-      if (count < maxima.length && new Set(maxima).size > 1) {
-        errors.push(
-          `Вариант «${variant.id}», режим «${mode}»: при случайной выборке ${count} вопросов ` +
-          "максимум попытки зависит от состава выборки."
-        );
-        return;
-      }
-      const maximum = count === maxima.length
-        ? maxima.reduce((sum, value) => sum + value, 0)
-        : count * maxima[0];
-      attemptMaximums.push({ variantId: variant.id, mode, questions: count, maximum });
+      const selectedMaxima = count === maxima.length
+        ? maxima
+        : test.settings?.shuffleQuestions === false
+          ? maxima.slice(0, count)
+          : [...maxima].sort((left, right) => left - right).slice(0, count);
+      const minimum = selectedMaxima.reduce((sum, value) => sum + value, 0);
+      const maximum = count === maxima.length || test.settings?.shuffleQuestions === false
+        ? minimum
+        : [...maxima].sort((left, right) => right - left)
+          .slice(0, count)
+          .reduce((sum, value) => sum + value, 0);
+      attemptMaximums.push({
+        variantId: variant.id,
+        mode,
+        questions: count,
+        minimum,
+        maximum,
+        dynamic: minimum !== maximum
+      });
     });
   });
 

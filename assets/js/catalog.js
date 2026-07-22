@@ -1,4 +1,4 @@
-import { TestLoadError, fetchJson, isPlainObject } from "./utils.js?v=5";
+import { TestLoadError, fetchJson, isPlainObject } from "./utils.js?v=6";
 
 const CATALOG_SCHEMA_VERSION = 2;
 const ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
@@ -108,6 +108,7 @@ function validateSections(sections, errors) {
 
 function validateItems(items, sectionIds, errors) {
   const ids = new Set();
+  const sectionOrders = new Map();
   if (!Array.isArray(items)) {
     errors.push("Поле «items» должно быть массивом.");
     return;
@@ -152,6 +153,18 @@ function validateItems(items, sectionIds, errors) {
       errors.push(`Элемент ${label}: modes должен быть непустым массивом непустых строк.`);
     }
     if (!Number.isFinite(item.order)) errors.push(`Элемент ${label}: order должен быть конечным числом.`);
+    else if (typeof item.section === "string") {
+      const orders = sectionOrders.get(item.section) || new Map();
+      if (orders.has(item.order)) {
+        errors.push(
+          `Элементы «${orders.get(item.order)}» и «${item.id}» раздела «${item.section}» ` +
+          `имеют одинаковый order ${item.order}.`
+        );
+      } else {
+        orders.set(item.order, item.id);
+      }
+      sectionOrders.set(item.section, orders);
+    }
     if (item.wide !== undefined && typeof item.wide !== "boolean") {
       errors.push(`Элемент ${label}: wide должно быть логическим значением.`);
     }
