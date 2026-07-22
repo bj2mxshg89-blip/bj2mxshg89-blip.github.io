@@ -32,6 +32,33 @@ export const matchingQuestion = {
   allowOptionReuse: false
 };
 
+export const numberQuestion = {
+  id: "unit-number",
+  type: "number",
+  correct: 5,
+  number: {
+    integer: true,
+    min: 0,
+    max: 50,
+    tolerance: 0,
+    unit: "σ-связей",
+    placeholder: "Введите число"
+  }
+};
+
+export const decimalNumberQuestion = {
+  id: "unit-decimal-number",
+  type: "number",
+  correct: 12.5,
+  number: {
+    integer: false,
+    min: -20,
+    max: 20,
+    tolerance: 0.1,
+    unit: "градуса"
+  }
+};
+
 export const grading = {
   thresholds: { "3": 50, "4": 70, "5": 90 }
 };

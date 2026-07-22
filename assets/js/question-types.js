@@ -1,4 +1,5 @@
 const FORMATS = new Set(["text", "formula"]);
+const NUMBER_PATTERN = /^[+-]?\d+(?:[.,]\d+)?$/;
 
 function arraysEqual(left = [], right = []) {
   if (left.length !== right.length) return false;
@@ -65,6 +66,143 @@ function validateChoice(question, errors) {
   if (question.type === "single" && Array.isArray(question.correct) && question.correct.length !== 1) {
     errors.push(`Ошибка в вопросе ${id}: тип single должен иметь ровно один правильный ответ.`);
   }
+}
+
+function normalizeNumberAnswer(_question, rawAnswer) {
+  if (typeof rawAnswer === "string") return rawAnswer.trim();
+  return typeof rawAnswer === "number" && Number.isFinite(rawAnswer) ? String(rawAnswer) : "";
+}
+
+function parseNumberSyntax(rawAnswer) {
+  const enteredText = normalizeNumberAnswer(null, rawAnswer);
+  if (!enteredText) return { valid: false, enteredText, parsedValue: null, reason: "empty" };
+  if (!NUMBER_PATTERN.test(enteredText)) {
+    return { valid: false, enteredText, parsedValue: null, reason: "syntax" };
+  }
+  const parsedValue = Number(enteredText.replace(",", "."));
+  if (!Number.isFinite(parsedValue)) {
+    return { valid: false, enteredText, parsedValue: null, reason: "syntax" };
+  }
+  return { valid: true, enteredText, parsedValue, reason: null };
+}
+
+export function parseNumberAnswer(question, rawAnswer) {
+  const parsed = parseNumberSyntax(rawAnswer);
+  if (!parsed.valid) return parsed;
+  const settings = question?.number || {};
+  if (settings.integer === true && !Number.isInteger(parsed.parsedValue)) {
+    return { ...parsed, valid: false, reason: "integer" };
+  }
+  if (Number.isFinite(settings.min) && parsed.parsedValue < settings.min) {
+    return { ...parsed, valid: false, reason: "min" };
+  }
+  if (Number.isFinite(settings.max) && parsed.parsedValue > settings.max) {
+    return { ...parsed, valid: false, reason: "max" };
+  }
+  return parsed;
+}
+
+function evaluateNumber(question, rawAnswer) {
+  const parsed = parseNumberAnswer(question, rawAnswer);
+  const tolerance = question.number?.tolerance ?? 0;
+  const epsilon = parsed.valid
+    ? Number.EPSILON * Math.max(1, Math.abs(parsed.parsedValue), Math.abs(question.correct)) * 4
+    : 0;
+  const correct = parsed.valid && Math.abs(parsed.parsedValue - question.correct) <= tolerance + epsilon;
+  return {
+    earnedPoints: correct ? 1 : 0,
+    maxPoints: 1,
+    isFullyCorrect: correct,
+    details: [{
+      kind: "number",
+      enteredText: parsed.enteredText,
+      parsedValue: parsed.valid ? parsed.parsedValue : null,
+      correctValue: question.correct,
+      tolerance,
+      correct
+    }]
+  };
+}
+
+function formatRussianNumber(value) {
+  return String(value).replace(".", ",");
+}
+
+function formatNumber(_question, rawAnswer) {
+  const enteredText = normalizeNumberAnswer(null, rawAnswer);
+  return enteredText ? enteredText.replace(".", ",") : "Нет ответа";
+}
+
+function formatCorrectNumber(question) {
+  const tolerance = question.number?.tolerance ?? 0;
+  const value = formatRussianNumber(question.correct);
+  const withTolerance = tolerance > 0 ? `${value} ± ${formatRussianNumber(tolerance)}` : value;
+  return question.number?.unit ? `${withTolerance} ${question.number.unit}` : withTolerance;
+}
+
+function validateNumber(question, errors) {
+  const id = question.id;
+  const settings = question.number;
+  if (!Number.isFinite(question.correct)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» должно быть конечным числом.`);
+  }
+  if (!settings || typeof settings !== "object" || Array.isArray(settings)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «number» должно быть объектом.`);
+    return;
+  }
+  if (typeof settings.integer !== "boolean") {
+    errors.push(`Ошибка в вопросе ${id}: поле «number.integer» должно быть логическим значением.`);
+  }
+  if (settings.integer === true && Number.isFinite(question.correct) && !Number.isInteger(question.correct)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» должно быть целым при number.integer=true.`);
+  }
+
+  ["min", "max"].forEach((field) => {
+    if (settings[field] !== undefined && !Number.isFinite(settings[field])) {
+      errors.push(`Ошибка в вопросе ${id}: поле «number.${field}» должно быть конечным числом.`);
+    }
+  });
+  if (Number.isFinite(settings.min) && Number.isFinite(settings.max) && settings.min > settings.max) {
+    errors.push(`Ошибка в вопросе ${id}: поле «number.min» не может превышать «number.max».`);
+  }
+  if (Number.isFinite(question.correct) && Number.isFinite(settings.min) && question.correct < settings.min) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» меньше «number.min».`);
+  }
+  if (Number.isFinite(question.correct) && Number.isFinite(settings.max) && question.correct > settings.max) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» больше «number.max».`);
+  }
+
+  if (settings.tolerance !== undefined && (!Number.isFinite(settings.tolerance) || settings.tolerance < 0)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «number.tolerance» должно быть конечным неотрицательным числом.`);
+  }
+  ["unit", "placeholder"].forEach((field) => {
+    if (settings[field] !== undefined && (typeof settings[field] !== "string" || !settings[field].trim())) {
+      errors.push(`Ошибка в вопросе ${id}: поле «number.${field}» должно быть непустой строкой.`);
+    }
+  });
+}
+
+function numberIncompleteMessage(question, rawAnswer) {
+  const parsed = parseNumberAnswer(question, rawAnswer);
+  const settings = question.number || {};
+  if (parsed.reason === "integer" || (parsed.reason === "empty" && settings.integer)) {
+    return "Введите одно целое число.";
+  }
+  if (parsed.reason === "min" || parsed.reason === "max") {
+    if (Number.isFinite(settings.min) && Number.isFinite(settings.max)) {
+      return `Введите число от ${formatRussianNumber(settings.min)} до ${formatRussianNumber(settings.max)}.`;
+    }
+    if (Number.isFinite(settings.min)) return `Введите число не меньше ${formatRussianNumber(settings.min)}.`;
+    return `Введите число не больше ${formatRussianNumber(settings.max)}.`;
+  }
+  if (parsed.reason === "syntax") {
+    return settings.integer
+      ? "Используйте одно целое число без единицы измерения."
+      : "Используйте одно число без единицы измерения. Допустимы десятичная запятая или точка.";
+  }
+  return settings.integer
+    ? "Введите одно целое число."
+    : "Введите одно число. Допустимы десятичная запятая или точка.";
 }
 
 function normalizeMatchingAnswer(question, rawAnswer) {
@@ -212,7 +350,10 @@ const choiceType = {
   isAnswerComplete: (_question, answer) => Array.isArray(answer) && answer.length > 0,
   evaluateAnswer: evaluateChoice,
   formatAnswer: formatChoice,
+  formatCorrectAnswer: formatChoice,
+  getFeedbackDetails: () => [],
   getQuestionMaxPoints: () => 1,
+  incompleteAnswerMessage: () => "Сначала выберите ответ.",
   updateAnswer(question, current, change) {
     const answer = normalizeChoiceAnswer(question, current);
     if (question.type === "single") return [change.optionIndex];
@@ -243,7 +384,23 @@ const questionTypes = Object.freeze({
     isAnswerComplete: matchingComplete,
     evaluateAnswer: evaluateMatching,
     formatAnswer: formatMatching,
+    formatCorrectAnswer: formatMatching,
+    getFeedbackDetails: () => [],
     getQuestionMaxPoints: (question) => question.items.length,
+    incompleteAnswerMessage(question, rawAnswer) {
+      const answer = normalizeMatchingAnswer(question, rawAnswer);
+      const isFilled = question.items.every((item) => answer[item.id]);
+      if (isFilled && !question.allowOptionReuse && new Set(Object.values(answer)).size !== question.items.length) {
+        return "Каждый вариант ответа можно использовать только один раз.";
+      }
+      const count = question.items.length;
+      const lastTwo = count % 100;
+      const last = count % 10;
+      const word = lastTwo >= 11 && lastTwo <= 14 ? "соответствий"
+        : last === 1 ? "соответствие"
+          : last >= 2 && last <= 4 ? "соответствия" : "соответствий";
+      return `Установите все ${count} ${word}.`;
+    },
     updateAnswer(question, current, change) {
       const answer = normalizeMatchingAnswer(question, current);
       const next = { ...answer };
@@ -261,6 +418,34 @@ const questionTypes = Object.freeze({
       return valid ? [...candidate] : ids;
     },
     validate: validateMatching
+  },
+  number: {
+    getEmptyAnswer: () => "",
+    normalizeAnswer: normalizeNumberAnswer,
+    hasAnyAnswer: (_question, answer) => typeof answer === "string" && answer.trim().length > 0,
+    isAnswerComplete: (question, answer) => parseNumberAnswer(question, answer).valid,
+    evaluateAnswer: evaluateNumber,
+    formatAnswer: formatNumber,
+    formatCorrectAnswer: formatCorrectNumber,
+    getFeedbackDetails(question, answer, evaluation) {
+      const answerText = formatNumber(question, answer);
+      const displayedAnswer = evaluation.isFullyCorrect && question.number?.unit
+        ? `${answerText} ${question.number.unit}`
+        : answerText;
+      const details = [{ label: "Ваш ответ", value: displayedAnswer }];
+      if (!evaluation.isFullyCorrect) {
+        details.push({ label: "Правильный ответ", value: formatCorrectNumber(question) });
+      }
+      return details;
+    },
+    getQuestionMaxPoints: () => 1,
+    incompleteAnswerMessage: numberIncompleteMessage,
+    updateAnswer(_question, _current, change) {
+      return typeof change.value === "string" ? change.value : "";
+    },
+    createOptionOrder: () => [],
+    normalizeOptionOrder: () => [],
+    validate: validateNumber
   }
 });
 
@@ -278,26 +463,16 @@ export const hasAnyAnswer = (question, answer) => handler(question).hasAnyAnswer
 export const isAnswerComplete = (question, answer) => handler(question).isAnswerComplete(question, answer);
 export const evaluateAnswer = (question, answer) => handler(question).evaluateAnswer(question, answer);
 export const formatAnswer = (question, answer) => handler(question).formatAnswer(question, answer);
+export const formatCorrectAnswer = (question) => handler(question).formatCorrectAnswer(question, question.correct);
+export const getFeedbackDetails = (question, answer, evaluation) =>
+  handler(question).getFeedbackDetails(question, answer, evaluation);
 export const getQuestionMaxPoints = (question) => handler(question).getQuestionMaxPoints(question);
 export const updateQuestionAnswer = (question, answer, change) => handler(question).updateAnswer(question, answer, change);
 export const createQuestionOptionOrder = (question, shuffle) => handler(question).createOptionOrder(question, shuffle);
 export const normalizeQuestionOptionOrder = (question, order) => handler(question).normalizeOptionOrder(question, order);
 export const validateQuestionType = (question, errors) => handler(question).validate(question, errors);
 
-export function incompleteAnswerMessage(question, rawAnswer) {
-  if (question.type !== "matching") return "Сначала выберите ответ.";
-  const answer = normalizeMatchingAnswer(question, rawAnswer);
-  const isFilled = question.items.every((item) => answer[item.id]);
-  if (isFilled && !question.allowOptionReuse && new Set(Object.values(answer)).size !== question.items.length) {
-    return "Каждый вариант ответа можно использовать только один раз.";
-  }
-  const count = question.items.length;
-  const lastTwo = count % 100;
-  const last = count % 10;
-  const word = lastTwo >= 11 && lastTwo <= 14 ? "соответствий"
-    : last === 1 ? "соответствие"
-      : last >= 2 && last <= 4 ? "соответствия" : "соответствий";
-  return `Установите все ${count} ${word}.`;
-}
+export const incompleteAnswerMessage = (question, rawAnswer) =>
+  handler(question).incompleteAnswerMessage(question, rawAnswer);
 
 export { questionTypes };

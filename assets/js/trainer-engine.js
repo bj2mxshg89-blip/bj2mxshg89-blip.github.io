@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=5";
+} from "./utils.js?v=6";
 import {
   appendHistory,
   clearProgress,
@@ -20,13 +20,19 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=5";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=5";
-import { appendReviewContent, questionInstruction, renderQuestionOptions } from "./question-renderers.js?v=5";
+} from "./storage.js?v=6";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=6";
+import {
+  appendReviewContent,
+  questionInstruction,
+  renderQuestionContent,
+  renderQuestionOptions
+} from "./question-renderers.js?v=6";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
-  formatAnswer,
+  formatCorrectAnswer,
+  getFeedbackDetails,
   getEmptyAnswer,
   getQuestionMaxPoints,
   hasAnyAnswer,
@@ -35,8 +41,8 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=5";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=5";
+} from "./question-types.js?v=6";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=6";
 
 class TrainerEngine {
   constructor() {
@@ -57,6 +63,7 @@ class TrainerEngine {
       "correctCounter", "correctCounterLabel", "mistakeCounter", "questionNavigation", "backToSetupButton",
       "restartAttemptButton", "navigationLegend", "activeVariantBadge", "activeModeBadge",
       "progressBar", "questionSection", "questionTitle", "questionHint", "answerContainer",
+      "questionContent",
       "feedbackPanel", "questionStatus", "previousButton", "primaryButton", "resultPanel",
       "resultVariantBadge", "resultModeBadge", "resultTitle", "resultSubtitle", "resultScore",
       "resultScoreLabel", "resultPercent", "resultGrade", "resultDuration", "repeatMistakesButton", "newAttemptButton",
@@ -449,6 +456,7 @@ class TrainerEngine {
     this.elements.questionSection.textContent = getSectionTitle(this.test, question.section);
     this.elements.questionTitle.textContent = `${this.state.current + 1}. ${question.text}`;
     this.elements.questionHint.textContent = questionInstruction(question);
+    renderQuestionContent(this.elements.questionContent, question.content);
 
     renderQuestionOptions({
       container: this.elements.answerContainer,
@@ -457,7 +465,11 @@ class TrainerEngine {
       locked: isTraining && isChecked,
       revealCorrect: isTraining && isChecked,
       optionOrder: this.state.optionOrder[questionId],
-      onChange: (change) => this.updateAnswer(question, change)
+      onChange: (change) => this.updateAnswer(question, change),
+      onEnter: (focusKey) => {
+        this.handlePrimaryAction();
+        this.restoreAnswerFocus(focusKey);
+      }
     });
 
     this.renderFeedback(question, selected, isChecked, correct);
@@ -489,11 +501,37 @@ class TrainerEngine {
     this.state.answers[question.id] = updateQuestionAnswer(question, selected, change);
 
     this.persistProgress();
+    if (change.render === false) {
+      this.updateLiveAnswerState(question, this.state.answers[question.id]);
+      return;
+    }
     this.renderWork();
+    this.restoreAnswerFocus(change.focusKey);
+  }
+
+  restoreAnswerFocus(focusKey) {
+    if (!focusKey) return;
     requestAnimationFrame(() => {
-      const escaped = globalThis.CSS?.escape ? CSS.escape(change.focusKey) : change.focusKey;
+      const escaped = globalThis.CSS?.escape ? CSS.escape(focusKey) : focusKey;
       this.elements.answerContainer.querySelector(`[data-focus-key="${escaped}"]`)?.focus({ preventScroll: true });
     });
+  }
+
+  updateLiveAnswerState(question, selected) {
+    const answeredCount = this.state.questionOrder.filter((id) => {
+      const item = this.questionMap.get(id);
+      return isAnswerComplete(item, this.state.answers[id]);
+    }).length;
+    this.elements.answeredCounter.textContent = String(answeredCount);
+    this.elements.questionStatus.textContent = hasAnyAnswer(question, selected)
+      ? "Ответ сохранён"
+      : "Ответ пока не выбран";
+    this.elements.questionStatus.style.color = "";
+    this.elements.questionStatus.removeAttribute("role");
+    const control = this.elements.answerContainer.querySelector("[data-answer-control]");
+    control?.removeAttribute("aria-invalid");
+    control?.closest(".number-answer")?.classList.remove("is-invalid");
+    this.renderNavigation();
   }
 
   renderFeedback(question, selected, isChecked, correct) {
@@ -509,6 +547,7 @@ class TrainerEngine {
     panel.hidden = false;
     panel.classList.add(correct ? "is-correct" : "is-wrong");
     const evaluation = evaluateAnswer(question, selected);
+    const feedbackDetails = getFeedbackDetails(question, selected, evaluation);
     const heading = document.createElement("h3");
     heading.textContent = evaluation.maxPoints > 1
       ? `${correct ? "✓" : "!"} Верно: ${evaluation.earnedPoints} из ${evaluation.maxPoints}.`
@@ -523,11 +562,21 @@ class TrainerEngine {
     } else {
       discussion.textContent = evaluation.maxPoints > 1
         ? "Разберите каждую ошибочную пару и только затем переходите дальше."
-        : `Правильный ответ: ${formatAnswer(question, question.correct)}. ` +
+        : feedbackDetails.some((item) => item.label === "Правильный ответ")
+          ? "Разберите пояснение и только затем переходите дальше."
+          : `Правильный ответ: ${formatCorrectAnswer(question)}. ` +
           "Обсудите, почему выбранный вариант не подходит, и только затем переходите дальше.";
     }
 
-    panel.append(heading, explanation, discussion);
+    const detailNodes = feedbackDetails.map(({ label, value }) => {
+      const line = document.createElement("p");
+      line.className = "trainer-feedback-answer";
+      const strong = document.createElement("strong");
+      strong.textContent = `${label}: `;
+      line.append(strong, document.createTextNode(value));
+      return line;
+    });
+    panel.append(heading, ...detailNodes, explanation, discussion);
   }
 
   renderNavigation() {
@@ -616,6 +665,9 @@ class TrainerEngine {
     this.elements.questionStatus.textContent = `! ${message}`;
     this.elements.questionStatus.style.color = "var(--bad)";
     this.elements.questionStatus.setAttribute("role", "alert");
+    const control = this.elements.answerContainer.querySelector("[data-answer-control]");
+    control?.setAttribute("aria-invalid", "true");
+    control?.closest(".number-answer")?.classList.add("is-invalid");
     window.setTimeout(() => {
       this.elements.questionStatus.style.color = "";
       this.elements.questionStatus.removeAttribute("role");

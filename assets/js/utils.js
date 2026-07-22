@@ -1,6 +1,8 @@
-import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=5";
+import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=6";
 
 export { SUPPORTED_QUESTION_TYPES };
+
+const QUESTION_CONTENT_FORMATS = new Set(["text", "formula"]);
 
 export function formatCount(count, one, few, many) {
   const numeric = Math.abs(Number(count));
@@ -289,6 +291,8 @@ function validateQuestions(questions, sectionIds, errors) {
       errors.push(`Ошибка в вопросе ${id}: отсутствует текст вопроса.`);
     }
 
+    validateQuestionContent(question, id, errors);
+
     if (SUPPORTED_QUESTION_TYPES.includes(question.type)) validateQuestionType(question, errors);
 
     if (typeof question.explanation !== "string" || !question.explanation.trim()) {
@@ -297,6 +301,26 @@ function validateQuestions(questions, sectionIds, errors) {
   });
 
   return ids;
+}
+
+function validateQuestionContent(question, id, errors) {
+  if (question.content === undefined) return;
+  if (!isPlainObject(question.content)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «content» должно быть объектом.`);
+    return;
+  }
+  if (typeof question.content.text !== "string" || !question.content.text.trim()) {
+    errors.push(`Ошибка в вопросе ${id}: поле «content.text» должно быть непустой строкой.`);
+  }
+  if (!QUESTION_CONTENT_FORMATS.has(question.content.format)) {
+    errors.push(
+      `Ошибка в вопросе ${id}: поле «content.format» должно иметь значение «text» или «formula».`
+    );
+  }
+  if (question.content.caption !== undefined &&
+      (typeof question.content.caption !== "string" || !question.content.caption.trim())) {
+    errors.push(`Ошибка в вопросе ${id}: поле «content.caption» должно быть непустой строкой.`);
+  }
 }
 
 function validateVariants(variants, questionIds, errors) {

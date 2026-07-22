@@ -1,14 +1,16 @@
 import { test, expect } from "@playwright/test";
 import { collectRuntimeErrors, expectNoRuntimeErrors } from "./helpers.js";
 
-test("главная строит динамический каталог из 10 карточек", async ({ page }) => {
+test("главная строит динамический каталог из 11 карточек", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
   await page.goto("/index.html");
   await expect(page.locator("#catalogStatus")).toHaveText("Каталог обновлён.");
-  await expect(page.locator("#toolCatalog .tool-card")).toHaveCount(10);
+  await expect(page.locator("#toolCatalog .tool-card")).toHaveCount(11);
   await expect(page.locator("#categoryNavigation small")).toHaveText([
-    "6 тренажёров", "3 тренажёра", "1 инструмент"
+    "7 тренажёров", "3 тренажёра", "1 инструмент"
   ]);
+  await expect(page.locator('a[href="test.html?id=hybridization-theory"]')).toHaveCount(1);
+  await expect(page.locator('a[href="hybridization-theory.html"]')).toHaveCount(1);
   await expect(page.locator('a[href="test.html?id=organic-classification"]')).toHaveCount(1);
   await expect(page.locator('a[href="organic-classification.html"]')).toHaveCount(1);
   await expectNoRuntimeErrors(runtimeErrors);

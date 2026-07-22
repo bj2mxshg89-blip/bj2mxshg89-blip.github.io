@@ -46,3 +46,9 @@ test("отсутствующее обязательное поле обнару�
   delete catalog.items[0].title;
   assert.match(validateCatalog(catalog).join("\n"), /поле «title»/);
 });
+
+test("одинаковый order внутри раздела обнаруживается", () => {
+  const catalog = clone();
+  catalog.items[1].order = catalog.items[0].order;
+  assert.match(validateCatalog(catalog).join("\n"), /одинаковый order/);
+});
