@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=6";
+} from "./utils.js?v=7";
 import {
   appendHistory,
   clearProgress,
@@ -20,14 +20,14 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=6";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=6";
+} from "./storage.js?v=7";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=7";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=6";
+} from "./question-renderers.js?v=7";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -41,8 +41,8 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=6";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=6";
+} from "./question-types.js?v=7";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=7";
 
 class TrainerEngine {
   constructor() {
@@ -530,7 +530,7 @@ class TrainerEngine {
     this.elements.questionStatus.removeAttribute("role");
     const control = this.elements.answerContainer.querySelector("[data-answer-control]");
     control?.removeAttribute("aria-invalid");
-    control?.closest(".number-answer")?.classList.remove("is-invalid");
+    control?.closest(".answer-input-card")?.classList.remove("is-invalid");
     this.renderNavigation();
   }
 
@@ -667,7 +667,7 @@ class TrainerEngine {
     this.elements.questionStatus.setAttribute("role", "alert");
     const control = this.elements.answerContainer.querySelector("[data-answer-control]");
     control?.setAttribute("aria-invalid", "true");
-    control?.closest(".number-answer")?.classList.add("is-invalid");
+    control?.closest(".answer-input-card")?.classList.add("is-invalid");
     window.setTimeout(() => {
       this.elements.questionStatus.style.color = "";
       this.elements.questionStatus.removeAttribute("role");

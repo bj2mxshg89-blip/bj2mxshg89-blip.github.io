@@ -1,10 +1,11 @@
-import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=6";
+import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=7";
 
 const renderers = {
   single: renderSingleQuestion,
   multiple: renderMultipleQuestion,
   matching: renderMatchingQuestion,
-  number: renderNumberQuestion
+  number: renderNumberQuestion,
+  text: renderTextQuestion
 };
 
 export function renderQuestionContent(container, content, { append = false, review = false } = {}) {
@@ -66,7 +67,7 @@ function renderNumberQuestion({
   onEnter
 }) {
   const wrapper = document.createElement("div");
-  wrapper.className = "number-answer";
+  wrapper.className = "number-answer answer-input-card";
   if (revealCorrect) {
     wrapper.classList.add(evaluateAnswer(question, selected).isFullyCorrect ? "is-correct" : "is-wrong");
   }
@@ -117,6 +118,67 @@ function renderNumberQuestion({
   });
 
   wrapper.append(label, row);
+  container.appendChild(wrapper);
+}
+
+function renderTextQuestion({
+  container,
+  question,
+  selected,
+  locked,
+  revealCorrect,
+  onChange,
+  onEnter
+}) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "text-answer answer-input-card";
+  if (revealCorrect) {
+    wrapper.classList.add(evaluateAnswer(question, selected).isFullyCorrect ? "is-correct" : "is-wrong");
+  }
+
+  const inputId = `text-${question.id}`;
+  const helpId = `${inputId}-help`;
+  const label = document.createElement("label");
+  label.className = "text-answer-label";
+  label.htmlFor = inputId;
+  label.textContent = "Ваш ответ";
+
+  const input = document.createElement("input");
+  input.id = inputId;
+  input.type = "text";
+  input.className = "text-answer-input";
+  input.value = typeof selected === "string" ? selected : "";
+  input.placeholder = question.textAnswer.placeholder;
+  input.inputMode = question.textAnswer.inputMode;
+  input.maxLength = question.textAnswer.maxLength;
+  input.autocomplete = "off";
+  input.spellcheck = false;
+  input.readOnly = locked;
+  input.dataset.focusKey = "text-input";
+  input.dataset.answerControl = "true";
+  input.setAttribute("aria-describedby", `questionHint ${helpId} questionStatus`);
+
+  const help = document.createElement("div");
+  help.id = helpId;
+  help.className = "text-answer-help";
+  help.textContent = `Не более ${question.textAnswer.maxLength} символов.`;
+
+  input.addEventListener("input", () => onChange({
+    value: input.value,
+    focusKey: input.dataset.focusKey,
+    render: false
+  }));
+
+  let isComposing = false;
+  input.addEventListener("compositionstart", () => { isComposing = true; });
+  input.addEventListener("compositionend", () => { isComposing = false; });
+  input.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" || event.repeat || event.isComposing || isComposing || event.keyCode === 229) return;
+    event.preventDefault();
+    onEnter?.(input.dataset.focusKey);
+  });
+
+  wrapper.append(label, input, help);
   container.appendChild(wrapper);
 }
 
@@ -281,6 +343,9 @@ export function questionInstruction(question) {
     return question.number.integer
       ? "Введите одно целое число без единицы измерения."
       : "Введите одно число; допустимы десятичная запятая или точка.";
+  }
+  if (question.type === "text") {
+    return question.validationMessage || "Введите краткий текстовый ответ.";
   }
   return question.type === "multiple"
     ? "Выберите все правильные ответы."

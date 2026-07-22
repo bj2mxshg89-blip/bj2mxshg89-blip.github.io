@@ -22,6 +22,12 @@ const definition = {
   variants: [{ id: "all", questionIds: ["number-1"] }]
 };
 
+const textDefinition = {
+  id: "storage-text",
+  version: 1,
+  variants: [{ id: "all", questionIds: ["text-1"] }]
+};
+
 function progress(answer) {
   return {
     schemaVersion: 1,
@@ -37,6 +43,25 @@ function progress(answer) {
     checkedQuestionIds: [],
     mistakeQuestionIds: ["number-1"],
     startedAt: "2026-01-01T00:00:00.000Z"
+  };
+}
+
+function textProgress(answer) {
+  return {
+    schemaVersion: 1,
+    testId: textDefinition.id,
+    testVersion: textDefinition.version,
+    attemptId: "attempt-text",
+    variantId: "all",
+    mode: "training",
+    currentQuestionId: "text-1",
+    baseQuestionIds: ["text-1"],
+    questionOrder: ["text-1"],
+    selectedAnswers: { "text-1": answer },
+    checkedQuestionIds: [],
+    mistakeQuestionIds: ["text-1"],
+    startedAt: "2026-01-01T00:00:00.000Z",
+    retryOf: "attempt-original"
   };
 }
 
@@ -65,4 +90,26 @@ test("очистка удаляет числовой прогресс", () => {
   saveProgress(definition.id, progress("0"));
   clearProgress(definition.id);
   assert.deepEqual(loadProgress(definition), { status: "empty", data: null });
+});
+
+test("исходная text-строка сохраняется и восстанавливается без нормализации", () => {
+  saveProgress(textDefinition.id, textProgress("  Окислитель  "));
+  const restored = loadProgress(textDefinition);
+  assert.equal(restored.status, "compatible");
+  assert.equal(restored.data.selectedAnswers["text-1"], "  Окислитель  ");
+});
+
+test("пробелы и промежуточный text-ответ сохраняются без исключения", () => {
+  saveProgress(textDefinition.id, textProgress("  "));
+  assert.equal(loadProgress(textDefinition).data.selectedAnswers["text-1"], "  ");
+  saveProgress(textDefinition.id, textProgress("окисл"));
+  assert.equal(loadProgress(textDefinition).data.selectedAnswers["text-1"], "окисл");
+});
+
+test("работа над ошибкой сохраняет тот же ID текстового вопроса", () => {
+  saveProgress(textDefinition.id, textProgress("восстановитель"));
+  const restored = loadProgress(textDefinition).data;
+  assert.deepEqual(restored.questionOrder, ["text-1"]);
+  assert.deepEqual(restored.mistakeQuestionIds, ["text-1"]);
+  assert.equal(restored.retryOf, "attempt-original");
 });

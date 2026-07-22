@@ -191,7 +191,24 @@
     },
     {
       "id": "redox-trainer",
-      "title": "ОВР и степени окисления",
+      "title": "ОВР и степени окисления — новая версия",
+      "description": "Степени окисления, электронные процессы, окислители и восстановители.",
+      "section": "inorganic",
+      "kicker": "Новый движок",
+      "symbol": "e⁻",
+      "color": "#c0522b",
+      "softColor": "#fff0e9",
+      "questionCount": 60,
+      "modes": ["training", "test"],
+      "meta": "5 режимов · 10/15 заданий",
+      "url": "test.html?id=redox-trainer",
+      "linkLabel": "Открыть beta",
+      "status": "beta",
+      "order": 30
+    },
+    {
+      "id": "redox-trainer-legacy",
+      "title": "ОВР и степени окисления — старая версия",
       "description": "Короткая тренировка по степеням окисления, окислителям и восстановителям.",
       "section": "inorganic",
       "kicker": "Окислительно-восстановительные реакции",
@@ -204,7 +221,8 @@
       "url": "trainer.html",
       "linkLabel": "Открыть",
       "status": "active",
-      "order": 30
+      "badge": "Старая версия",
+      "order": 40
     },
     {
       "id": "seating",

@@ -122,6 +122,24 @@ test("results.html показывает понятные ошибки адрес
   await expect(page.locator("#historyError")).toContainText("Не удалось загрузить данные теста");
 });
 
+test("страницы истории всех универсальных тестов открываются без ошибок", async ({ page }) => {
+  const runtimeErrors = collectRuntimeErrors(page);
+  const testIds = [
+    "organic-review",
+    "inorg-nomenclature",
+    "organic-classification",
+    "hybridization-theory",
+    "redox-trainer"
+  ];
+  for (const testId of testIds) {
+    runtimeErrors.length = 0;
+    await page.goto(`/results.html?id=${testId}`);
+    await expect(page.locator("#historyPanel")).toBeVisible();
+    await expect(page.locator("#historyTestTitle")).not.toHaveText("");
+    await expectNoRuntimeErrors(runtimeErrors);
+  }
+});
+
 test("семь старых страниц загружаются без JavaScript-ошибок", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
   const pages = [

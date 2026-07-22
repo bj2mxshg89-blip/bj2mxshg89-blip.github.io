@@ -1,5 +1,7 @@
 const FORMATS = new Set(["text", "formula"]);
 const NUMBER_PATTERN = /^[+-]?\d+(?:[.,]\d+)?$/;
+const TEXT_INPUT_MODES = new Set(["none", "text", "decimal", "numeric", "tel", "search", "email", "url"]);
+const UNICODE_MINUS_PATTERN = /[\u2212\u2013\u2014]/g;
 
 function arraysEqual(left = [], right = []) {
   if (left.length !== right.length) return false;
@@ -205,6 +207,144 @@ function numberIncompleteMessage(question, rawAnswer) {
     : "Введите одно число. Допустимы десятичная запятая или точка.";
 }
 
+function normalizeStoredTextAnswer(_question, rawAnswer) {
+  return typeof rawAnswer === "string" ? rawAnswer : "";
+}
+
+export function normalizeTextForComparison(question, rawAnswer) {
+  const settings = question?.textAnswer || {};
+  let normalized = normalizeStoredTextAnswer(question, rawAnswer);
+  if (settings.normalizeUnicodeMinus !== false) normalized = normalized.replace(UNICODE_MINUS_PATTERN, "-");
+  if (settings.trim !== false) normalized = normalized.trim();
+  if (settings.collapseWhitespace !== false) normalized = normalized.replace(/\s+/gu, " ");
+  if (settings.caseSensitive !== true) normalized = normalized.toLocaleLowerCase("ru-RU");
+  return normalized;
+}
+
+function textLength(question, rawAnswer) {
+  return [...normalizeTextForComparison(question, rawAnswer)].length;
+}
+
+function textAnswerComplete(question, rawAnswer) {
+  const settings = question.textAnswer || {};
+  const length = textLength(question, rawAnswer);
+  const minLength = Number.isInteger(settings.minLength) ? settings.minLength : 1;
+  const maxLength = Number.isInteger(settings.maxLength) ? settings.maxLength : Number.POSITIVE_INFINITY;
+  return length >= minLength && length <= maxLength;
+}
+
+function evaluateText(question, rawAnswer) {
+  const enteredText = normalizeStoredTextAnswer(question, rawAnswer);
+  const normalizedEntered = normalizeTextForComparison(question, enteredText);
+  const correctAnswers = Array.isArray(question.correct) ? question.correct : [];
+  const correct = correctAnswers.some((answer) =>
+    normalizeTextForComparison(question, answer) === normalizedEntered
+  );
+  return {
+    earnedPoints: correct ? 1 : 0,
+    maxPoints: 1,
+    isFullyCorrect: correct,
+    details: [{
+      enteredText,
+      normalizedEntered,
+      correctText: correctAnswers[0] || "",
+      correct
+    }]
+  };
+}
+
+function formatText(question, rawAnswer) {
+  const enteredText = normalizeStoredTextAnswer(question, rawAnswer);
+  return enteredText.trim() ? enteredText : "Нет ответа";
+}
+
+function formatCorrectText(question) {
+  return Array.isArray(question.correct) && typeof question.correct[0] === "string"
+    ? question.correct[0]
+    : "Ответ не указан";
+}
+
+function textIncompleteMessage(question, rawAnswer) {
+  const settings = question.textAnswer || {};
+  const length = textLength(question, rawAnswer);
+  if (length === 0) return "Введите ответ.";
+  if (Number.isInteger(settings.maxLength) && length > settings.maxLength) {
+    return `Ответ слишком длинный. Допустимо не более ${settings.maxLength} символов.`;
+  }
+  if (Number.isInteger(settings.minLength) && length < settings.minLength) {
+    return question.validationMessage || `Ответ должен содержать не менее ${settings.minLength} символов.`;
+  }
+  return question.validationMessage || "Проверьте формат ответа.";
+}
+
+function validateText(question, errors) {
+  const id = question.id;
+  const settings = question.textAnswer;
+  if (!settings || typeof settings !== "object" || Array.isArray(settings)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «textAnswer» должно быть объектом.`);
+    return;
+  }
+
+  ["caseSensitive", "trim", "collapseWhitespace", "normalizeUnicodeMinus"].forEach((field) => {
+    if (typeof settings[field] !== "boolean") {
+      errors.push(`Ошибка в вопросе ${id}: поле «textAnswer.${field}» должно быть логическим значением.`);
+    }
+  });
+
+  ["minLength", "maxLength"].forEach((field) => {
+    if (!Number.isInteger(settings[field]) || settings[field] < 1) {
+      errors.push(`Ошибка в вопросе ${id}: поле «textAnswer.${field}» должно быть целым положительным числом.`);
+    }
+  });
+  if (Number.isInteger(settings.minLength) && Number.isInteger(settings.maxLength) &&
+      settings.minLength > settings.maxLength) {
+    errors.push(`Ошибка в вопросе ${id}: поле «textAnswer.minLength» не может превышать «textAnswer.maxLength».`);
+  }
+
+  if (typeof settings.placeholder !== "string" || !settings.placeholder.trim()) {
+    errors.push(`Ошибка в вопросе ${id}: поле «textAnswer.placeholder» должно быть непустой строкой.`);
+  }
+  if (typeof settings.inputMode !== "string" || !TEXT_INPUT_MODES.has(settings.inputMode)) {
+    errors.push(
+      `Ошибка в вопросе ${id}: поле «textAnswer.inputMode» должно иметь значение: ` +
+      `${[...TEXT_INPUT_MODES].join(", ")}.`
+    );
+  }
+  if (question.validationMessage !== undefined &&
+      (typeof question.validationMessage !== "string" || !question.validationMessage.trim())) {
+    errors.push(`Ошибка в вопросе ${id}: поле «validationMessage» должно быть непустой строкой.`);
+  }
+
+  if (!Array.isArray(question.correct) || question.correct.length === 0) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» должно быть непустым массивом строк.`);
+    return;
+  }
+
+  const normalizedAnswers = new Set();
+  question.correct.forEach((answer, index) => {
+    if (typeof answer !== "string" || !answer.trim()) {
+      errors.push(`Ошибка в вопросе ${id}: допустимый ответ correct[${index}] должен быть непустой строкой.`);
+      return;
+    }
+    const normalized = normalizeTextForComparison(question, answer);
+    if (!normalized) {
+      errors.push(`Ошибка в вопросе ${id}: допустимый ответ correct[${index}] пуст после нормализации.`);
+      return;
+    }
+    const length = [...normalized].length;
+    if (Number.isInteger(settings.minLength) && length < settings.minLength) {
+      errors.push(`Ошибка в вопросе ${id}: допустимый ответ correct[${index}] короче textAnswer.minLength.`);
+    }
+    if (Number.isInteger(settings.maxLength) && length > settings.maxLength) {
+      errors.push(`Ошибка в вопросе ${id}: допустимый ответ correct[${index}] длиннее textAnswer.maxLength.`);
+    }
+    if (normalizedAnswers.has(normalized)) {
+      errors.push(`Ошибка в вопросе ${id}: допустимый ответ «${answer}» дублируется после нормализации.`);
+    }
+    normalizedAnswers.add(normalized);
+  });
+}
+
 function normalizeMatchingAnswer(question, rawAnswer) {
   if (!rawAnswer || typeof rawAnswer !== "object" || Array.isArray(rawAnswer)) return {};
   const itemIds = new Set(question.items.map((item) => item.id));
@@ -371,7 +511,8 @@ const choiceType = {
       candidate.every((value) => Number.isInteger(value) && value >= 0 && value < question.options.length);
     return valid ? [...candidate] : question.options.map((_, index) => index);
   },
-  validate: validateChoice
+  validate: validateChoice,
+  getValidationAnswer: (question) => question.correct
 };
 
 const questionTypes = Object.freeze({
@@ -417,7 +558,8 @@ const questionTypes = Object.freeze({
         new Set(candidate).size === candidate.length && candidate.every((value) => ids.includes(value));
       return valid ? [...candidate] : ids;
     },
-    validate: validateMatching
+    validate: validateMatching,
+    getValidationAnswer: (question) => question.correct
   },
   number: {
     getEmptyAnswer: () => "",
@@ -445,7 +587,33 @@ const questionTypes = Object.freeze({
     },
     createOptionOrder: () => [],
     normalizeOptionOrder: () => [],
-    validate: validateNumber
+    validate: validateNumber,
+    getValidationAnswer: (question) => question.correct
+  },
+  text: {
+    getEmptyAnswer: () => "",
+    normalizeAnswer: normalizeStoredTextAnswer,
+    hasAnyAnswer: (_question, answer) => typeof answer === "string" && answer.trim().length > 0,
+    isAnswerComplete: textAnswerComplete,
+    evaluateAnswer: evaluateText,
+    formatAnswer: formatText,
+    formatCorrectAnswer: formatCorrectText,
+    getFeedbackDetails(question, answer, evaluation) {
+      const details = [{ label: "Ваш ответ", value: formatText(question, answer) }];
+      if (!evaluation.isFullyCorrect) {
+        details.push({ label: "Правильный ответ", value: formatCorrectText(question) });
+      }
+      return details;
+    },
+    getQuestionMaxPoints: () => 1,
+    incompleteAnswerMessage: textIncompleteMessage,
+    updateAnswer(_question, _current, change) {
+      return typeof change.value === "string" ? change.value : "";
+    },
+    createOptionOrder: () => [],
+    normalizeOptionOrder: () => [],
+    validate: validateText,
+    getValidationAnswer: (question) => question.correct?.[0]
   }
 });
 
@@ -467,6 +635,7 @@ export const formatCorrectAnswer = (question) => handler(question).formatCorrect
 export const getFeedbackDetails = (question, answer, evaluation) =>
   handler(question).getFeedbackDetails(question, answer, evaluation);
 export const getQuestionMaxPoints = (question) => handler(question).getQuestionMaxPoints(question);
+export const getQuestionValidationAnswer = (question) => handler(question).getValidationAnswer(question);
 export const updateQuestionAnswer = (question, answer, change) => handler(question).updateAnswer(question, answer, change);
 export const createQuestionOptionOrder = (question, shuffle) => handler(question).createOptionOrder(question, shuffle);
 export const normalizeQuestionOptionOrder = (question, order) => handler(question).normalizeOptionOrder(question, order);

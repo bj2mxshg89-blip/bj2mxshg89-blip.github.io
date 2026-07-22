@@ -51,8 +51,44 @@ function validDefinition() {
   };
 }
 
+function validTextDefinition() {
+  const definition = validDefinition();
+  definition.id = "unit-text-test";
+  definition.title = "Текстовый тест";
+  definition.description = "Проверка универсального текстового вопроса.";
+  definition.sections = [{ id: "text-answers", title: "Текстовые ответы" }];
+  definition.variants = [{
+    id: "all",
+    title: "Все задания",
+    questionIds: ["unit-text-question"],
+    selectionCount: { training: 1, test: 1 }
+  }];
+  definition.questions = [{
+    id: "unit-text-question",
+    section: "text-answers",
+    type: "text",
+    text: "Введите роль вещества.",
+    correct: ["окислитель"],
+    textAnswer: {
+      caseSensitive: false,
+      trim: true,
+      collapseWhitespace: true,
+      normalizeUnicodeMinus: true,
+      minLength: 1,
+      maxLength: 30,
+      placeholder: "Окислитель или восстановитель",
+      inputMode: "text"
+    },
+    validationMessage: "Введите «окислитель» или «восстановитель».",
+    explanation: "Вещество принимает электроны.",
+    difficulty: 1,
+    tags: ["text"]
+  }];
+  return definition;
+}
+
 test("реестр поддерживает number вместе с прежними типами", () => {
-  assert.deepEqual(SUPPORTED_QUESTION_TYPES, ["single", "multiple", "matching", "number"]);
+  assert.deepEqual(SUPPORTED_QUESTION_TYPES, ["single", "multiple", "matching", "number", "text"]);
 });
 
 test("валидные number и content проходят общую проверку", () => {
@@ -102,4 +138,46 @@ test("HTML-подобная строка остаётся допустимым �
   const definition = validDefinition();
   assert.equal(definition.questions[0].content.text, "<b>CH₂=CH₂</b>");
   assert.equal(validateTestDefinition(definition, definition.id).valid, true);
+});
+
+test("валидный text проходит общую проверку", () => {
+  assert.deepEqual(validateTestDefinition(validTextDefinition(), "unit-text-test"), {
+    valid: true,
+    errors: []
+  });
+});
+
+test("text проверяет объект и логические настройки", () => {
+  const definition = validTextDefinition();
+  definition.questions[0].textAnswer.caseSensitive = "нет";
+  definition.questions[0].textAnswer.trim = null;
+  const errors = validateTestDefinition(definition, definition.id).errors.join("\n");
+  assert.match(errors, /textAnswer\.caseSensitive/);
+  assert.match(errors, /textAnswer\.trim/);
+
+  definition.questions[0].textAnswer = null;
+  assert.match(validateTestDefinition(definition, definition.id).errors.join("\n"), /textAnswer.*объект/);
+});
+
+test("text проверяет длины, placeholder и inputMode", () => {
+  const definition = validTextDefinition();
+  const settings = definition.questions[0].textAnswer;
+  settings.minLength = 31;
+  settings.maxLength = 30;
+  settings.placeholder = "";
+  settings.inputMode = "formula";
+  const errors = validateTestDefinition(definition, definition.id).errors.join("\n");
+  assert.match(errors, /minLength.*maxLength/);
+  assert.match(errors, /placeholder/);
+  assert.match(errors, /inputMode/);
+});
+
+test("text отклоняет пустые, слишком длинные и повторные допустимые ответы", () => {
+  const definition = validTextDefinition();
+  const question = definition.questions[0];
+  question.correct = ["Окислитель", "  окислитель  ", " ", "а".repeat(31)];
+  const errors = validateTestDefinition(definition, definition.id).errors.join("\n");
+  assert.match(errors, /дублируется после нормализации/);
+  assert.match(errors, /непустой строкой/);
+  assert.match(errors, /длиннее textAnswer\.maxLength/);
 });

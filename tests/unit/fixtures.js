@@ -59,6 +59,29 @@ export const decimalNumberQuestion = {
   }
 };
 
+export const textQuestion = {
+  id: "unit-text",
+  type: "text",
+  correct: ["окислитель"],
+  textAnswer: {
+    caseSensitive: false,
+    trim: true,
+    collapseWhitespace: true,
+    normalizeUnicodeMinus: true,
+    minLength: 1,
+    maxLength: 30,
+    placeholder: "Введите ответ",
+    inputMode: "text"
+  }
+};
+
+export const oxidationStateTextQuestion = {
+  ...textQuestion,
+  id: "unit-oxidation-state-text",
+  correct: ["-3"],
+  validationMessage: "Используйте знак и число, например +6 или −3."
+};
+
 export const grading = {
   thresholds: { "3": 50, "4": 70, "5": 90 }
 };

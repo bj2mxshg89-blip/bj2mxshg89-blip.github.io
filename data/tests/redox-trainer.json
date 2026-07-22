@@ -1,0 +1,781 @@
+{
+  "schemaVersion": 1,
+  "id": "redox-trainer",
+  "version": 1,
+  "title": "ОВР и степени окисления",
+  "description": "Определение степеней окисления, процессов окисления и восстановления, окислителей и восстановителей.",
+  "subject": "chemistry",
+  "category": "inorganic",
+  "symbol": "e⁻",
+  "theme": { "accent": "#c0522b", "soft": "#fff0e9" },
+  "modes": {
+    "training": { "enabled": true, "instantFeedback": true, "showExplanation": true },
+    "test": { "enabled": true, "instantFeedback": false, "showExplanation": false }
+  },
+  "grading": { "thresholds": { "3": 50, "4": 70, "5": 90 } },
+  "settings": { "shuffleQuestions": true, "shuffleAnswers": true, "saveProgress": true, "allowBack": true },
+  "reference": {
+    "title": "Памятка по ОВР",
+    "items": [
+      "Степень окисления атомов в простом веществе равна 0.",
+      "Сумма степеней окисления в нейтральной частице равна 0.",
+      "Сумма степеней окисления в ионе равна заряду иона.",
+      "Повышение степени окисления — окисление.",
+      "Понижение степени окисления — восстановление.",
+      "Окислитель принимает электроны и восстанавливается.",
+      "Восстановитель отдаёт электроны и окисляется."
+    ]
+  },
+  "sections": [
+    { "id": "oxidation-states", "title": "Степени окисления" },
+    { "id": "processes", "title": "Окисление и восстановление" },
+    { "id": "agents", "title": "Окислители и восстановители" },
+    { "id": "analysis", "title": "Комплексный разбор ОВР" }
+  ],
+  "variants": [
+    {
+      "id": "mixed",
+      "title": "Смешанный вариант",
+      "questionIds": [
+        "redox-state-001", "redox-state-002", "redox-state-003", "redox-state-004", "redox-state-005",
+        "redox-state-006", "redox-state-007", "redox-state-008", "redox-state-009", "redox-state-010",
+        "redox-state-011", "redox-state-012", "redox-state-013", "redox-state-014", "redox-state-015",
+        "redox-process-001", "redox-process-002", "redox-process-003", "redox-process-004", "redox-process-005",
+        "redox-process-006", "redox-process-007", "redox-process-008", "redox-process-009", "redox-process-010",
+        "redox-process-011", "redox-process-012", "redox-process-013", "redox-process-014", "redox-process-015",
+        "redox-agent-001", "redox-agent-002", "redox-agent-003", "redox-agent-004", "redox-agent-005",
+        "redox-agent-006", "redox-agent-007", "redox-agent-008", "redox-agent-009", "redox-agent-010",
+        "redox-agent-011", "redox-agent-012", "redox-agent-013", "redox-agent-014", "redox-agent-015",
+        "redox-analysis-001", "redox-analysis-002", "redox-analysis-003", "redox-analysis-004", "redox-analysis-005",
+        "redox-analysis-006", "redox-analysis-007", "redox-analysis-008", "redox-analysis-009", "redox-analysis-010",
+        "redox-analysis-011", "redox-analysis-012", "redox-analysis-013", "redox-analysis-014", "redox-analysis-015"
+      ],
+      "selectionCount": { "training": 10, "test": 15 }
+    },
+    {
+      "id": "oxidation-states",
+      "title": "Степени окисления",
+      "questionIds": [
+        "redox-state-001", "redox-state-002", "redox-state-003", "redox-state-004", "redox-state-005",
+        "redox-state-006", "redox-state-007", "redox-state-008", "redox-state-009", "redox-state-010",
+        "redox-state-011", "redox-state-012", "redox-state-013", "redox-state-014", "redox-state-015"
+      ],
+      "selectionCount": { "training": 10, "test": 15 }
+    },
+    {
+      "id": "processes",
+      "title": "Электронные процессы",
+      "questionIds": [
+        "redox-process-001", "redox-process-002", "redox-process-003", "redox-process-004", "redox-process-005",
+        "redox-process-006", "redox-process-007", "redox-process-008", "redox-process-009", "redox-process-010",
+        "redox-process-011", "redox-process-012", "redox-process-013", "redox-process-014", "redox-process-015"
+      ],
+      "selectionCount": { "training": 10, "test": 15 }
+    },
+    {
+      "id": "agents",
+      "title": "Окислители и восстановители",
+      "questionIds": [
+        "redox-agent-001", "redox-agent-002", "redox-agent-003", "redox-agent-004", "redox-agent-005",
+        "redox-agent-006", "redox-agent-007", "redox-agent-008", "redox-agent-009", "redox-agent-010",
+        "redox-agent-011", "redox-agent-012", "redox-agent-013", "redox-agent-014", "redox-agent-015"
+      ],
+      "selectionCount": { "training": 10, "test": 15 }
+    },
+    {
+      "id": "analysis",
+      "title": "Комплексный разбор",
+      "questionIds": [
+        "redox-analysis-001", "redox-analysis-002", "redox-analysis-003", "redox-analysis-004", "redox-analysis-005",
+        "redox-analysis-006", "redox-analysis-007", "redox-analysis-008", "redox-analysis-009", "redox-analysis-010",
+        "redox-analysis-011", "redox-analysis-012", "redox-analysis-013", "redox-analysis-014", "redox-analysis-015"
+      ],
+      "selectionCount": { "training": 10, "test": 15 }
+    }
+  ],
+  "questions": [
+    {
+      "id": "redox-state-001", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления серы в серной кислоте.",
+      "content": { "text": "H₂SO₄", "format": "formula", "caption": "Формула серной кислоты" },
+      "correct": ["+6"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +6", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +6 или −3.",
+      "explanation": "В нейтральной молекуле 2·(+1) + x + 4·(−2) = 0, поэтому степень окисления серы равна +6.",
+      "difficulty": 1, "tags": ["oxidation-state", "sulfur"]
+    },
+    {
+      "id": "redox-state-002", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления азота в аммиаке.",
+      "content": { "text": "NH₃", "format": "formula", "caption": "Формула аммиака" },
+      "correct": ["-3"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: −3", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +6 или −3.",
+      "explanation": "В соединении с неметаллом водород имеет +1: x + 3·(+1) = 0, поэтому степень окисления азота равна −3.",
+      "difficulty": 1, "tags": ["oxidation-state", "nitrogen"]
+    },
+    {
+      "id": "redox-state-003", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления хлора в простом веществе.",
+      "content": { "text": "Cl₂", "format": "formula", "caption": "Молекула хлора" },
+      "correct": ["0"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: 0", "inputMode": "text" },
+      "validationMessage": "Введите 0 или степень окисления со знаком.",
+      "explanation": "Атомы любого элемента в простом веществе имеют степень окисления 0.",
+      "difficulty": 1, "tags": ["oxidation-state", "simple-substance"]
+    },
+    {
+      "id": "redox-state-004", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления натрия в хлориде натрия.",
+      "content": { "text": "NaCl", "format": "formula", "caption": "Хлорид натрия" },
+      "correct": ["+1"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +1", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +1.",
+      "explanation": "Хлор в хлориде имеет −1, а сумма степеней окисления в NaCl равна нулю, поэтому натрий имеет +1.",
+      "difficulty": 1, "tags": ["oxidation-state", "binary-compound"]
+    },
+    {
+      "id": "redox-state-005", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления кислорода в углекислом газе.",
+      "content": { "text": "CO₂", "format": "formula", "caption": "Углекислый газ" },
+      "correct": ["-2"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: −2", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например −2.",
+      "explanation": "В обычных оксидах кислород имеет степень окисления −2; CO₂ не относится к исключениям.",
+      "difficulty": 1, "tags": ["oxidation-state", "oxygen"]
+    },
+    {
+      "id": "redox-state-006", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления углерода в углекислом газе.",
+      "content": { "text": "CO₂", "format": "formula", "caption": "Углекислый газ" },
+      "correct": ["+4"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +4", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +4.",
+      "explanation": "x + 2·(−2) = 0, поэтому степень окисления углерода равна +4.",
+      "difficulty": 1, "tags": ["oxidation-state", "carbon"]
+    },
+    {
+      "id": "redox-state-007", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления азота в азотной кислоте.",
+      "content": { "text": "HNO₃", "format": "formula", "caption": "Азотная кислота" },
+      "correct": ["+5"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +5", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +5.",
+      "explanation": "+1 + x + 3·(−2) = 0, поэтому степень окисления азота равна +5.",
+      "difficulty": 1, "tags": ["oxidation-state", "acid"]
+    },
+    {
+      "id": "redox-state-008", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления серы в сероводороде.",
+      "content": { "text": "H₂S", "format": "formula", "caption": "Сероводород" },
+      "correct": ["-2"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: −2", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например −2.",
+      "explanation": "2·(+1) + x = 0, поэтому степень окисления серы равна −2.",
+      "difficulty": 1, "tags": ["oxidation-state", "sulfur"]
+    },
+    {
+      "id": "redox-state-009", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления железа в оксиде железа(III).",
+      "content": { "text": "Fe₂O₃", "format": "formula", "caption": "Оксид железа(III)" },
+      "correct": ["+3"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +3", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +3.",
+      "explanation": "2x + 3·(−2) = 0, поэтому степень окисления железа равна +3.",
+      "difficulty": 1, "tags": ["oxidation-state", "oxide"]
+    },
+    {
+      "id": "redox-state-010", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления меди в гидроксиде меди(II).",
+      "content": { "text": "Cu(OH)₂", "format": "formula", "caption": "Гидроксид меди(II)" },
+      "correct": ["+2"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +2", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +2.",
+      "explanation": "Каждая группа OH имеет заряд −1; две группы дают −2, поэтому медь имеет степень окисления +2.",
+      "difficulty": 1, "tags": ["oxidation-state", "base"]
+    },
+    {
+      "id": "redox-state-011", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления фосфора в ортофосфорной кислоте.",
+      "content": { "text": "H₃PO₄", "format": "formula", "caption": "Ортофосфорная кислота" },
+      "correct": ["+5"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +5", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +5.",
+      "explanation": "3·(+1) + x + 4·(−2) = 0, поэтому степень окисления фосфора равна +5.",
+      "difficulty": 1, "tags": ["oxidation-state", "phosphorus"]
+    },
+    {
+      "id": "redox-state-012", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления марганца в перманганате калия.",
+      "content": { "text": "KMnO₄", "format": "formula", "caption": "Перманганат калия" },
+      "correct": ["+7"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +7", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +7.",
+      "explanation": "+1 + x + 4·(−2) = 0, поэтому степень окисления марганца равна +7.",
+      "difficulty": 2, "tags": ["oxidation-state", "salt"]
+    },
+    {
+      "id": "redox-state-013", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления хрома в дихромате калия.",
+      "content": { "text": "K₂Cr₂O₇", "format": "formula", "caption": "Дихромат калия" },
+      "correct": ["+6"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +6", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +6.",
+      "explanation": "2·(+1) + 2x + 7·(−2) = 0; 2x = 12, поэтому степень окисления хрома равна +6.",
+      "difficulty": 2, "tags": ["oxidation-state", "salt"]
+    },
+    {
+      "id": "redox-state-014", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления серы в сульфат-ионе.",
+      "content": { "text": "SO₄²⁻", "format": "formula", "caption": "Сульфат-ион; заряд иона равен 2−" },
+      "correct": ["+6"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: +6", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например +6.",
+      "explanation": "Сумма степеней окисления равна заряду иона: x + 4·(−2) = −2, поэтому x = +6. Степень окисления серы и заряд всего иона — разные величины.",
+      "difficulty": 2, "tags": ["oxidation-state", "ion"]
+    },
+    {
+      "id": "redox-state-015", "section": "oxidation-states", "type": "text",
+      "text": "Укажите степень окисления азота в ионе аммония.",
+      "content": { "text": "NH₄⁺", "format": "formula", "caption": "Ион аммония; заряд иона равен 1+" },
+      "correct": ["-3"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Например: −3", "inputMode": "text" },
+      "validationMessage": "Используйте знак и число, например −3.",
+      "explanation": "Сумма степеней окисления равна заряду иона: x + 4·(+1) = +1, поэтому x = −3. Это степень окисления азота, а не заряд иона.",
+      "difficulty": 2, "tags": ["oxidation-state", "ion"]
+    },
+
+    {
+      "id": "redox-process-001", "section": "processes", "type": "single",
+      "text": "Какой процесс происходит с атомом железа?",
+      "content": { "text": "Fe⁰ − 2e⁻ → Fe²⁺", "format": "formula", "caption": "Электронная схема" },
+      "options": ["Окисление", "Восстановление", "Диссоциация", "Гидратация"], "correct": [0],
+      "explanation": "Железо отдаёт два электрона, а его степень окисления повышается от 0 до +2. Это окисление.",
+      "difficulty": 1, "tags": ["process", "electron-loss"]
+    },
+    {
+      "id": "redox-process-002", "section": "processes", "type": "single",
+      "text": "Какой процесс происходит с ионом меди(II)?",
+      "content": { "text": "Cu²⁺ + 2e⁻ → Cu⁰", "format": "formula", "caption": "Электронная схема" },
+      "options": ["Окисление", "Восстановление", "Диссоциация", "Нейтрализация"], "correct": [1],
+      "explanation": "Ион меди принимает два электрона, а степень окисления меди понижается от +2 до 0. Это восстановление.",
+      "difficulty": 1, "tags": ["process", "electron-gain"]
+    },
+    {
+      "id": "redox-process-003", "section": "processes", "type": "single",
+      "text": "Как называется процесс в электронной схеме?",
+      "content": { "text": "Cl₂⁰ + 2e⁻ → 2Cl⁻", "format": "formula", "caption": "Молекула хлора принимает два электрона" },
+      "options": ["Окисление", "Восстановление", "Электролиз", "Гидролиз"], "correct": [1],
+      "explanation": "Молекула хлора принимает два электрона; степень окисления каждого атома хлора понижается от 0 до −1. Это восстановление.",
+      "difficulty": 1, "tags": ["process", "chlorine"]
+    },
+    {
+      "id": "redox-process-004", "section": "processes", "type": "single",
+      "text": "Как называется процесс в электронной схеме?",
+      "content": { "text": "2I⁻ − 2e⁻ → I₂⁰", "format": "formula", "caption": "Два иодид-иона отдают два электрона" },
+      "options": ["Окисление", "Восстановление", "Гидролиз", "Нейтрализация"], "correct": [0],
+      "explanation": "Иодид-ионы отдают электроны; степень окисления иода повышается от −1 до 0. Это окисление.",
+      "difficulty": 1, "tags": ["process", "iodine"]
+    },
+    {
+      "id": "redox-process-005", "section": "processes", "type": "single",
+      "text": "Что обязательно происходит при окислении частицы?",
+      "options": ["Отдача электронов", "Принятие электронов", "Понижение степени окисления", "Сохранение степени окисления"], "correct": [0],
+      "explanation": "Окисление — это отдача электронов и повышение степени окисления.",
+      "difficulty": 1, "tags": ["process", "definition"]
+    },
+    {
+      "id": "redox-process-006", "section": "processes", "type": "single",
+      "text": "Что обязательно происходит при восстановлении частицы?",
+      "options": ["Отдача электронов", "Принятие электронов", "Повышение степени окисления", "Образование осадка"], "correct": [1],
+      "explanation": "Восстановление — это принятие электронов и понижение степени окисления.",
+      "difficulty": 1, "tags": ["process", "definition"]
+    },
+    {
+      "id": "redox-process-007", "section": "processes", "type": "single",
+      "text": "Какому процессу соответствует повышение степени окисления элемента?",
+      "options": ["Окислению", "Восстановлению", "Растворению", "Диссоциации"], "correct": [0],
+      "explanation": "При окислении частица отдаёт электроны, поэтому степень окисления элемента повышается.",
+      "difficulty": 1, "tags": ["process", "oxidation-state-change"]
+    },
+    {
+      "id": "redox-process-008", "section": "processes", "type": "single",
+      "text": "Какому процессу соответствует понижение степени окисления элемента?",
+      "options": ["Окислению", "Восстановлению", "Электролизу", "Диссоциации"], "correct": [1],
+      "explanation": "При восстановлении частица принимает электроны, поэтому степень окисления элемента понижается.",
+      "difficulty": 1, "tags": ["process", "oxidation-state-change"]
+    },
+    {
+      "id": "redox-process-009", "section": "processes", "type": "single",
+      "text": "Какой процесс происходит с атомами элемента, входящего в состав окислителя?",
+      "options": ["Окисление", "Восстановление", "Диссоциация", "Степень окисления не меняется"], "correct": [1],
+      "explanation": "Окислитель принимает электроны и сам восстанавливается; степень окисления соответствующего элемента понижается.",
+      "difficulty": 2, "tags": ["process", "oxidizing-agent"]
+    },
+    {
+      "id": "redox-process-010", "section": "processes", "type": "single",
+      "text": "Какой процесс происходит с атомами элемента, входящего в состав восстановителя?",
+      "options": ["Окисление", "Восстановление", "Гидратация", "Степень окисления не меняется"], "correct": [0],
+      "explanation": "Восстановитель отдаёт электроны и сам окисляется; степень окисления соответствующего элемента повышается.",
+      "difficulty": 2, "tags": ["process", "reducing-agent"]
+    },
+    {
+      "id": "redox-process-011", "section": "processes", "type": "single",
+      "text": "Какой процесс соответствует изменению степени окисления марганца?",
+      "content": { "text": "Mn: +7 → +2", "format": "formula", "caption": "Изменение степени окисления" },
+      "options": ["Окисление", "Восстановление", "Диссоциация", "Изменения степени окисления нет"], "correct": [1],
+      "explanation": "Степень окисления марганца понижается на пять единиц: марганец принимает пять электронов и восстанавливается.",
+      "difficulty": 1, "tags": ["process", "manganese"]
+    },
+    {
+      "id": "redox-process-012", "section": "processes", "type": "single",
+      "text": "Какой процесс соответствует изменению степени окисления серы?",
+      "content": { "text": "S: −2 → 0", "format": "formula", "caption": "Изменение степени окисления" },
+      "options": ["Окисление", "Восстановление", "Гидролиз", "Изменения степени окисления нет"], "correct": [0],
+      "explanation": "Степень окисления серы повышается от −2 до 0: атом серы отдаёт два электрона и окисляется.",
+      "difficulty": 1, "tags": ["process", "sulfur"]
+    },
+    {
+      "id": "redox-process-013", "section": "processes", "type": "single",
+      "text": "Какой процесс соответствует изменению степени окисления азота?",
+      "content": { "text": "N: +5 → +2", "format": "formula", "caption": "Изменение степени окисления" },
+      "options": ["Окисление", "Восстановление", "Нейтрализация", "Изменения степени окисления нет"], "correct": [1],
+      "explanation": "Степень окисления азота понижается на три единицы: атом азота принимает три электрона и восстанавливается.",
+      "difficulty": 1, "tags": ["process", "nitrogen"]
+    },
+    {
+      "id": "redox-process-014", "section": "processes", "type": "single",
+      "text": "Какой процесс показан в электронной схеме?",
+      "content": { "text": "Al⁰ − 3e⁻ → Al³⁺", "format": "formula", "caption": "Электронная схема" },
+      "options": ["Окисление", "Восстановление", "Гидратация", "Диссоциация"], "correct": [0],
+      "explanation": "Алюминий отдаёт три электрона, его степень окисления повышается от 0 до +3. Это окисление.",
+      "difficulty": 1, "tags": ["process", "aluminium"]
+    },
+    {
+      "id": "redox-process-015", "section": "processes", "type": "single",
+      "text": "Какой процесс показан в электронной схеме?",
+      "content": { "text": "Fe³⁺ + e⁻ → Fe²⁺", "format": "formula", "caption": "Электронная схема" },
+      "options": ["Окисление", "Восстановление", "Гидролиз", "Нейтрализация"], "correct": [1],
+      "explanation": "Ион железа(III) принимает один электрон, а степень окисления железа понижается от +3 до +2. Это восстановление.",
+      "difficulty": 1, "tags": ["process", "iron"]
+    },
+
+    {
+      "id": "redox-agent-001", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет перманганат калия?",
+      "content": { "text": "2KMnO₄ + 16HCl → 2KCl + 2MnCl₂ + 5Cl₂ + 8H₂O", "format": "formula", "caption": "Реакция перманганата калия с соляной кислотой" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Степень окисления марганца в KMnO₄ понижается от +7 до +2. Марганец принимает электроны, поэтому KMnO₄ является окислителем.",
+      "difficulty": 2, "tags": ["agent", "permanganate"]
+    },
+    {
+      "id": "redox-agent-002", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняют хлорид-ионы из соляной кислоты?",
+      "content": { "text": "2KMnO₄ + 16HCl → 2KCl + 2MnCl₂ + 5Cl₂ + 8H₂O", "format": "formula", "caption": "Хлорид-ионы превращаются в молекулярный хлор" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Степень окисления части атомов хлора повышается от −1 в Cl⁻ до 0 в Cl₂. Хлорид-ионы отдают электроны и выступают восстановителем.",
+      "difficulty": 2, "tags": ["agent", "chloride"]
+    },
+    {
+      "id": "redox-agent-003", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет цинк?",
+      "content": { "text": "Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "caption": "Взаимодействие цинка с сульфатом меди(II)" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Цинк отдаёт два электрона и окисляется: Zn⁰ → Zn²⁺. Поэтому цинк является восстановителем.",
+      "difficulty": 1, "tags": ["agent", "zinc"]
+    },
+    {
+      "id": "redox-agent-004", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет сульфат меди(II)?",
+      "content": { "text": "Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "caption": "Ионы Cu²⁺ принимают электроны" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Ионы Cu²⁺ принимают два электрона и восстанавливаются до Cu⁰. Поэтому CuSO₄ выступает окислителем.",
+      "difficulty": 1, "tags": ["agent", "copper"]
+    },
+    {
+      "id": "redox-agent-005", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет хлор?",
+      "content": { "text": "Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "caption": "Взаимодействие хлора с иодидом калия" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Хлор принимает электроны: Cl₂⁰ + 2e⁻ → 2Cl⁻. Он восстанавливается и является окислителем.",
+      "difficulty": 1, "tags": ["agent", "chlorine"]
+    },
+    {
+      "id": "redox-agent-006", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет иодид калия?",
+      "content": { "text": "Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "caption": "Иодид-ионы превращаются в молекулярный иод" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Иодид-ионы отдают электроны: 2I⁻ − 2e⁻ → I₂⁰. KI окисляется и является восстановителем.",
+      "difficulty": 1, "tags": ["agent", "iodide"]
+    },
+    {
+      "id": "redox-agent-007", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет водород?",
+      "content": { "text": "CuO + H₂ → Cu + H₂O", "format": "formula", "caption": "Восстановление оксида меди(II) водородом" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Степень окисления водорода повышается от 0 в H₂ до +1 в H₂O. Водород отдаёт электроны и является восстановителем.",
+      "difficulty": 1, "tags": ["agent", "hydrogen"]
+    },
+    {
+      "id": "redox-agent-008", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет оксид меди(II)?",
+      "content": { "text": "CuO + H₂ → Cu + H₂O", "format": "formula", "caption": "Восстановление оксида меди(II) водородом" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Медь в CuO понижает степень окисления от +2 до 0, принимая электроны. CuO является окислителем.",
+      "difficulty": 1, "tags": ["agent", "copper-oxide"]
+    },
+    {
+      "id": "redox-agent-009", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет оксид углерода(II)?",
+      "content": { "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "caption": "Восстановление железа оксидом углерода(II)" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Углерод в CO повышает степень окисления от +2 до +4 в CO₂. CO отдаёт электроны и является восстановителем.",
+      "difficulty": 2, "tags": ["agent", "carbon-monoxide"]
+    },
+    {
+      "id": "redox-agent-010", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет оксид железа(III)?",
+      "content": { "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "caption": "Восстановление железа оксидом углерода(II)" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Железо в Fe₂O₃ понижает степень окисления от +3 до 0, принимая электроны. Fe₂O₃ является окислителем.",
+      "difficulty": 2, "tags": ["agent", "iron-oxide"]
+    },
+    {
+      "id": "redox-agent-011", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет магний?",
+      "content": { "text": "2Mg + O₂ → 2MgO", "format": "formula", "caption": "Горение магния" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Магний повышает степень окисления от 0 до +2, отдавая электроны. Он является восстановителем.",
+      "difficulty": 1, "tags": ["agent", "magnesium"]
+    },
+    {
+      "id": "redox-agent-012", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет кислород?",
+      "content": { "text": "2Mg + O₂ → 2MgO", "format": "formula", "caption": "Горение магния" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Кислород понижает степень окисления от 0 в O₂ до −2 в MgO, принимая электроны. Он является окислителем.",
+      "difficulty": 1, "tags": ["agent", "oxygen"]
+    },
+    {
+      "id": "redox-agent-013", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет хлорид железа(II)?",
+      "content": { "text": "2FeCl₂ + Cl₂ → 2FeCl₃", "format": "formula", "caption": "Окисление железа(II) хлором" },
+      "correct": ["восстановитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Железо в FeCl₂ повышает степень окисления от +2 до +3, отдавая электрон. FeCl₂ является восстановителем.",
+      "difficulty": 2, "tags": ["agent", "iron-chloride"]
+    },
+    {
+      "id": "redox-agent-014", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет хлор?",
+      "content": { "text": "2FeCl₂ + Cl₂ → 2FeCl₃", "format": "formula", "caption": "Окисление железа(II) хлором" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Хлор понижает степень окисления от 0 в Cl₂ до −1 в FeCl₃, принимая электроны. Он является окислителем.",
+      "difficulty": 2, "tags": ["agent", "chlorine"]
+    },
+    {
+      "id": "redox-agent-015", "section": "agents", "type": "text",
+      "text": "Какую роль в ОВР выполняет оксид серы(IV)?",
+      "content": { "text": "2H₂S + SO₂ → 3S + 2H₂O", "format": "formula", "caption": "Взаимодействие сероводорода с оксидом серы(IV)" },
+      "correct": ["окислитель"],
+      "textAnswer": { "caseSensitive": false, "trim": true, "collapseWhitespace": true, "normalizeUnicodeMinus": true, "minLength": 1, "maxLength": 30, "placeholder": "Окислитель или восстановитель", "inputMode": "text" },
+      "validationMessage": "Введите «окислитель» или «восстановитель».",
+      "explanation": "Сера в SO₂ понижает степень окисления от +4 до 0, принимая электроны. Поэтому SO₂ является окислителем.",
+      "difficulty": 2, "tags": ["agent", "sulfur-dioxide"]
+    },
+
+    {
+      "id": "redox-analysis-001", "section": "analysis", "type": "single",
+      "text": "Как верно описаны изменения в реакции?",
+      "content": { "text": "Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "caption": "Реакция замещения" },
+      "options": [
+        "Zn⁰ окисляется до Zn²⁺, а Cu²⁺ восстанавливается до Cu⁰",
+        "Zn⁰ восстанавливается до Zn²⁺, а Cu²⁺ окисляется до Cu⁰",
+        "И цинк, и медь окисляются",
+        "Степени окисления цинка и меди не изменяются"
+      ],
+      "correct": [0],
+      "explanation": "Цинк отдаёт два электрона и окисляется; ион Cu²⁺ принимает эти электроны и восстанавливается до металлической меди.",
+      "difficulty": 2, "tags": ["analysis", "zinc-copper"]
+    },
+    {
+      "id": "redox-analysis-002", "section": "analysis", "type": "single",
+      "text": "Какое вещество является окислителем в реакции?",
+      "content": { "text": "2Mg + O₂ → 2MgO", "format": "formula", "caption": "Горение магния" },
+      "options": ["Mg", "O₂", "MgO", "Окислителя нет"],
+      "correct": [1],
+      "explanation": "Кислород принимает электроны и понижает степень окисления от 0 до −2, поэтому O₂ является окислителем.",
+      "difficulty": 1, "tags": ["analysis", "oxidizing-agent"]
+    },
+    {
+      "id": "redox-analysis-003", "section": "analysis", "type": "single",
+      "text": "Какое вещество является восстановителем в реакции?",
+      "content": { "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "caption": "Восстановление железа" },
+      "options": ["Fe₂O₃", "CO", "Fe", "CO₂"],
+      "correct": [1],
+      "explanation": "Углерод в CO повышает степень окисления от +2 до +4, поэтому CO отдаёт электроны и является восстановителем.",
+      "difficulty": 2, "tags": ["analysis", "reducing-agent"]
+    },
+    {
+      "id": "redox-analysis-004", "section": "analysis", "type": "single",
+      "text": "Сколько электронов отдаёт один атом алюминия?",
+      "content": { "text": "Al⁰ − ?e⁻ → Al³⁺", "format": "formula", "caption": "Дополните электронную схему" },
+      "options": ["1", "2", "3", "6"],
+      "correct": [2],
+      "explanation": "Степень окисления алюминия повышается от 0 до +3, поэтому один атом алюминия отдаёт три электрона.",
+      "difficulty": 1, "tags": ["analysis", "electron-balance"]
+    },
+    {
+      "id": "redox-analysis-005", "section": "analysis", "type": "single",
+      "text": "Как верно указаны процессы и роли веществ?",
+      "content": { "text": "2Na + Cl₂ → 2NaCl", "format": "formula", "caption": "Образование хлорида натрия" },
+      "options": [
+        "Na окисляется и является восстановителем; Cl₂ восстанавливается и является окислителем",
+        "Na восстанавливается и является окислителем; Cl₂ окисляется и является восстановителем",
+        "Na и Cl₂ одновременно являются окислителями",
+        "ОВР не происходит"
+      ],
+      "correct": [0],
+      "explanation": "Натрий отдаёт электроны и окисляется от 0 до +1; хлор принимает электроны и восстанавливается от 0 до −1.",
+      "difficulty": 2, "tags": ["analysis", "roles"]
+    },
+    {
+      "id": "redox-analysis-006", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте электронный переход с точным описанием процесса.",
+      "items": [
+        { "id": "q06-fe", "text": "Fe⁰ → Fe²⁺", "format": "formula", "explanation": "Один атом железа отдаёт два электрона; его степень окисления повышается." },
+        { "id": "q06-cu", "text": "Cu²⁺ → Cu⁰", "format": "formula", "explanation": "Один ион меди(II) принимает два электрона; степень окисления меди понижается." },
+        { "id": "q06-cl", "text": "2Cl⁻ → Cl₂⁰", "format": "formula", "explanation": "Два хлорид-иона суммарно отдают два электрона и образуют Cl₂." },
+        { "id": "q06-mn", "text": "Mn: +7 → +2", "format": "formula", "explanation": "Один атом марганца принимает пять электронов; его степень окисления понижается." }
+      ],
+      "options": [
+        { "id": "q06-ox-two", "text": "Окисление: отдача 2e⁻ одним атомом" },
+        { "id": "q06-red-two", "text": "Восстановление: принятие 2e⁻ одним ионом" },
+        { "id": "q06-ox-pair", "text": "Окисление: отдача 2e⁻ двумя ионами" },
+        { "id": "q06-red-five", "text": "Восстановление: принятие 5e⁻ одним атомом" },
+        { "id": "q06-extra", "text": "Окисление: отдача 5e⁻ одним атомом" }
+      ],
+      "correct": { "q06-fe": "q06-ox-two", "q06-cu": "q06-red-two", "q06-cl": "q06-ox-pair", "q06-mn": "q06-red-five" },
+      "allowOptionReuse": false,
+      "explanation": "Окисление сопровождается отдачей электронов, восстановление — их принятием; число электронов равно изменению степени окисления с учётом числа частиц.",
+      "difficulty": 2, "tags": ["analysis", "matching", "electron-transfer"]
+    },
+    {
+      "id": "redox-analysis-007", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте участника реакции с его ролью.",
+      "content": { "text": "1) Zn + CuSO₄ → ZnSO₄ + Cu; 2) Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "caption": "Две окислительно-восстановительные реакции" },
+      "items": [
+        { "id": "q07-zinc", "text": "Zn в реакции 1", "format": "formula", "explanation": "Цинк отдаёт электроны и окисляется, поэтому является восстановителем в реакции 1." },
+        { "id": "q07-copper", "text": "CuSO₄ в реакции 1", "format": "formula", "explanation": "Ионы Cu²⁺ принимают электроны, поэтому CuSO₄ является окислителем в реакции 1." },
+        { "id": "q07-chlorine", "text": "Cl₂ в реакции 2", "format": "formula", "explanation": "Хлор принимает электроны и является окислителем в реакции 2." },
+        { "id": "q07-iodide", "text": "KI в реакции 2", "format": "formula", "explanation": "Иодид-ионы отдают электроны, поэтому KI является восстановителем в реакции 2." }
+      ],
+      "options": [
+        { "id": "q07-red-one", "text": "Восстановитель в реакции 1" },
+        { "id": "q07-ox-one", "text": "Окислитель в реакции 1" },
+        { "id": "q07-ox-two", "text": "Окислитель в реакции 2" },
+        { "id": "q07-red-two", "text": "Восстановитель в реакции 2" },
+        { "id": "q07-extra", "text": "Ион-наблюдатель в реакции 1" }
+      ],
+      "correct": { "q07-zinc": "q07-red-one", "q07-copper": "q07-ox-one", "q07-chlorine": "q07-ox-two", "q07-iodide": "q07-red-two" },
+      "allowOptionReuse": false,
+      "explanation": "Восстановитель отдаёт электроны и окисляется, а окислитель принимает электроны и восстанавливается.",
+      "difficulty": 2, "tags": ["analysis", "matching", "agents"]
+    },
+    {
+      "id": "redox-analysis-008", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте изменение степени окисления с электронной схемой.",
+      "items": [
+        { "id": "q08-al", "text": "Al: 0 → +3", "format": "formula", "explanation": "Повышение на три единицы означает отдачу трёх электронов одним атомом Al." },
+        { "id": "q08-s", "text": "S: −2 → 0", "format": "formula", "explanation": "Повышение на две единицы означает отдачу двух электронов одним атомом S." },
+        { "id": "q08-n", "text": "N: +5 → +2", "format": "formula", "explanation": "Понижение на три единицы означает принятие трёх электронов одним атомом N." },
+        { "id": "q08-cl", "text": "Cl₂: 0 → −1 у каждого Cl", "format": "formula", "explanation": "Два атома хлора принимают по одному электрону, всего молекула Cl₂ принимает два электрона." }
+      ],
+      "options": [
+        { "id": "q08-al-scheme", "text": "Al⁰ − 3e⁻ → Al³⁺" },
+        { "id": "q08-s-scheme", "text": "S²⁻ − 2e⁻ → S⁰" },
+        { "id": "q08-n-scheme", "text": "N(+5) + 3e⁻ → N(+2)" },
+        { "id": "q08-cl-scheme", "text": "Cl₂⁰ + 2e⁻ → 2Cl⁻" },
+        { "id": "q08-extra", "text": "Cl₂⁰ − 2e⁻ → 2Cl⁻" }
+      ],
+      "correct": { "q08-al": "q08-al-scheme", "q08-s": "q08-s-scheme", "q08-n": "q08-n-scheme", "q08-cl": "q08-cl-scheme" },
+      "allowOptionReuse": false,
+      "explanation": "При повышении степени окисления электроны записывают слева как отдаваемые, при понижении — как принимаемые.",
+      "difficulty": 2, "tags": ["analysis", "matching", "electron-balance"]
+    },
+    {
+      "id": "redox-analysis-009", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте вещество в реакции с изменением степени окисления указанного элемента.",
+      "items": [
+        { "id": "q09-mn", "text": "Mn в KMnO₄: 2KMnO₄ + 16HCl → 2KCl + 2MnCl₂ + 5Cl₂ + 8H₂O", "format": "formula", "explanation": "Марганец переходит из +7 в +2 и восстанавливается." },
+        { "id": "q09-zinc", "text": "Zn: Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "explanation": "Цинк переходит из 0 в +2 и окисляется." },
+        { "id": "q09-carbon", "text": "C в CO: Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "explanation": "Углерод переходит из +2 в +4 и окисляется." },
+        { "id": "q09-oxygen", "text": "O в O₂: 2Mg + O₂ → 2MgO", "format": "formula", "explanation": "Кислород переходит из 0 в −2 и восстанавливается." }
+      ],
+      "options": [
+        { "id": "q09-mn-change", "text": "Mn: +7 → +2" },
+        { "id": "q09-zinc-change", "text": "Zn: 0 → +2" },
+        { "id": "q09-carbon-change", "text": "C: +2 → +4" },
+        { "id": "q09-oxygen-change", "text": "O: 0 → −2" },
+        { "id": "q09-extra", "text": "O: −2 → 0" }
+      ],
+      "correct": { "q09-mn": "q09-mn-change", "q09-zinc": "q09-zinc-change", "q09-carbon": "q09-carbon-change", "q09-oxygen": "q09-oxygen-change" },
+      "allowOptionReuse": false,
+      "explanation": "Изменение степени окисления определяют только для названного элемента, сопоставляя его состояние в реагенте и продукте.",
+      "difficulty": 3, "tags": ["analysis", "matching", "equations"]
+    },
+    {
+      "id": "redox-analysis-010", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте частицу с указанной степенью окисления элемента.",
+      "items": [
+        { "id": "q10-s", "text": "S в H₂SO₄", "format": "formula", "explanation": "2·(+1) + x + 4·(−2) = 0, поэтому x = +6." },
+        { "id": "q10-n", "text": "N в NH₃", "format": "formula", "explanation": "x + 3·(+1) = 0, поэтому x = −3." },
+        { "id": "q10-mn", "text": "Mn в KMnO₄", "format": "formula", "explanation": "+1 + x + 4·(−2) = 0, поэтому x = +7." },
+        { "id": "q10-fe", "text": "Fe в Fe₂O₃", "format": "formula", "explanation": "2x + 3·(−2) = 0, поэтому x = +3." }
+      ],
+      "options": [
+        { "id": "q10-plus-six", "text": "+6" },
+        { "id": "q10-minus-three", "text": "−3" },
+        { "id": "q10-plus-seven", "text": "+7" },
+        { "id": "q10-plus-three", "text": "+3" },
+        { "id": "q10-zero", "text": "0" }
+      ],
+      "correct": { "q10-s": "q10-plus-six", "q10-n": "q10-minus-three", "q10-mn": "q10-plus-seven", "q10-fe": "q10-plus-three" },
+      "allowOptionReuse": false,
+      "explanation": "Для нейтральной частицы сумма степеней окисления всех атомов равна нулю.",
+      "difficulty": 2, "tags": ["analysis", "matching", "oxidation-states"]
+    },
+    {
+      "id": "redox-analysis-011", "section": "analysis", "type": "matching",
+      "text": "Для каждой реакции выберите окислитель.",
+      "items": [
+        { "id": "q11-zinc-copper", "text": "Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "explanation": "Ионы Cu²⁺ принимают электроны, поэтому CuSO₄ является окислителем." },
+        { "id": "q11-magnesium", "text": "2Mg + O₂ → 2MgO", "format": "formula", "explanation": "Кислород принимает электроны, поэтому O₂ является окислителем." },
+        { "id": "q11-iron", "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "explanation": "Железо(+3) принимает электроны, поэтому Fe₂O₃ является окислителем." },
+        { "id": "q11-chlorine", "text": "Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "explanation": "Хлор принимает электроны, поэтому Cl₂ является окислителем." }
+      ],
+      "options": [
+        { "id": "q11-cuso4", "text": "CuSO₄" },
+        { "id": "q11-o2", "text": "O₂" },
+        { "id": "q11-fe2o3", "text": "Fe₂O₃" },
+        { "id": "q11-cl2", "text": "Cl₂" },
+        { "id": "q11-extra", "text": "Zn" }
+      ],
+      "correct": { "q11-zinc-copper": "q11-cuso4", "q11-magnesium": "q11-o2", "q11-iron": "q11-fe2o3", "q11-chlorine": "q11-cl2" },
+      "allowOptionReuse": false,
+      "explanation": "Окислитель — реагент, частицы которого принимают электроны и восстанавливаются.",
+      "difficulty": 2, "tags": ["analysis", "matching", "oxidizing-agents"]
+    },
+    {
+      "id": "redox-analysis-012", "section": "analysis", "type": "matching",
+      "text": "Для каждой реакции выберите восстановитель.",
+      "items": [
+        { "id": "q12-hydrogen", "text": "CuO + H₂ → Cu + H₂O", "format": "formula", "explanation": "Водород отдаёт электроны, переходя из 0 в +1, поэтому H₂ — восстановитель." },
+        { "id": "q12-carbon", "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "explanation": "Углерод в CO окисляется от +2 до +4, поэтому CO — восстановитель." },
+        { "id": "q12-iodide", "text": "Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "explanation": "Иодид-ионы отдают электроны, поэтому KI — восстановитель." },
+        { "id": "q12-iron", "text": "2FeCl₂ + Cl₂ → 2FeCl₃", "format": "formula", "explanation": "Железо(+2) отдаёт электрон и окисляется до +3, поэтому FeCl₂ — восстановитель." }
+      ],
+      "options": [
+        { "id": "q12-h2", "text": "H₂" },
+        { "id": "q12-co", "text": "CO" },
+        { "id": "q12-ki", "text": "KI" },
+        { "id": "q12-fecl2", "text": "FeCl₂" },
+        { "id": "q12-extra", "text": "CuO" }
+      ],
+      "correct": { "q12-hydrogen": "q12-h2", "q12-carbon": "q12-co", "q12-iodide": "q12-ki", "q12-iron": "q12-fecl2" },
+      "allowOptionReuse": false,
+      "explanation": "Восстановитель — реагент, частицы которого отдают электроны и окисляются.",
+      "difficulty": 2, "tags": ["analysis", "matching", "reducing-agents"]
+    },
+    {
+      "id": "redox-analysis-013", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте словесное описание с электронной схемой.",
+      "items": [
+        { "id": "q13-fe", "text": "Один атом Fe окисляется от 0 до +2", "explanation": "Повышение степени окисления на две единицы означает отдачу двух электронов." },
+        { "id": "q13-cu", "text": "Один ион Cu²⁺ восстанавливается до Cu⁰", "explanation": "Понижение степени окисления на две единицы означает принятие двух электронов." },
+        { "id": "q13-iodide", "text": "Два иона I⁻ окисляются до I₂", "explanation": "Два иодид-иона отдают суммарно два электрона." },
+        { "id": "q13-chlorine", "text": "Одна молекула Cl₂ восстанавливается до двух Cl⁻", "explanation": "Два атома хлора принимают по одному электрону, всего два электрона." }
+      ],
+      "options": [
+        { "id": "q13-fe-scheme", "text": "Fe⁰ − 2e⁻ → Fe²⁺" },
+        { "id": "q13-cu-scheme", "text": "Cu²⁺ + 2e⁻ → Cu⁰" },
+        { "id": "q13-i-scheme", "text": "2I⁻ − 2e⁻ → I₂⁰" },
+        { "id": "q13-cl-scheme", "text": "Cl₂⁰ + 2e⁻ → 2Cl⁻" },
+        { "id": "q13-extra", "text": "Cl₂⁰ − 2e⁻ → 2Cl⁻" }
+      ],
+      "correct": { "q13-fe": "q13-fe-scheme", "q13-cu": "q13-cu-scheme", "q13-iodide": "q13-i-scheme", "q13-chlorine": "q13-cl-scheme" },
+      "allowOptionReuse": false,
+      "explanation": "В электронной схеме отдаваемые электроны вычитают слева, а принимаемые прибавляют слева.",
+      "difficulty": 2, "tags": ["analysis", "matching", "schemes"]
+    },
+    {
+      "id": "redox-analysis-014", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте вещество с его ролью и изменением степени окисления.",
+      "items": [
+        { "id": "q14-kmno4", "text": "KMnO₄ в кислой среде: Mn(+7) → Mn(+2)", "format": "formula", "explanation": "Марганец принимает пять электронов; KMnO₄ восстанавливается и является окислителем." },
+        { "id": "q14-h2", "text": "H₂ в реакции CuO + H₂ → Cu + H₂O", "format": "formula", "explanation": "Водород отдаёт электроны и окисляется от 0 до +1; H₂ — восстановитель." },
+        { "id": "q14-co", "text": "CO в реакции Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "explanation": "Углерод отдаёт электроны и окисляется от +2 до +4; CO — восстановитель." },
+        { "id": "q14-mg", "text": "Mg в реакции 2Mg + O₂ → 2MgO", "format": "formula", "explanation": "Магний отдаёт электроны и окисляется от 0 до +2; Mg — восстановитель." }
+      ],
+      "options": [
+        { "id": "q14-ox-red-five", "text": "Окислитель; восстановление с принятием 5e⁻" },
+        { "id": "q14-red-ox-two-h", "text": "Восстановитель; окисление H от 0 до +1" },
+        { "id": "q14-red-ox-two-c", "text": "Восстановитель; окисление C от +2 до +4" },
+        { "id": "q14-red-ox-two-mg", "text": "Восстановитель; окисление Mg от 0 до +2" },
+        { "id": "q14-extra", "text": "Окислитель; окисление с отдачей 5e⁻" }
+      ],
+      "correct": { "q14-kmno4": "q14-ox-red-five", "q14-h2": "q14-red-ox-two-h", "q14-co": "q14-red-ox-two-c", "q14-mg": "q14-red-ox-two-mg" },
+      "allowOptionReuse": false,
+      "explanation": "Роль реагента определяют по направлению передачи электронов: окислитель принимает их, восстановитель отдаёт.",
+      "difficulty": 3, "tags": ["analysis", "matching", "roles"]
+    },
+    {
+      "id": "redox-analysis-015", "section": "analysis", "type": "matching",
+      "text": "Сопоставьте уравнение с парой «окислитель; восстановитель».",
+      "items": [
+        { "id": "q15-zinc", "text": "Zn + CuSO₄ → ZnSO₄ + Cu", "format": "formula", "explanation": "Cu²⁺ принимает электроны, а Zn отдаёт их." },
+        { "id": "q15-chlorine", "text": "Cl₂ + 2KI → 2KCl + I₂", "format": "formula", "explanation": "Cl₂ принимает электроны, а I⁻ из KI отдаёт их." },
+        { "id": "q15-hydrogen", "text": "CuO + H₂ → Cu + H₂O", "format": "formula", "explanation": "Cu(+2) в CuO принимает электроны, а H₂ отдаёт их." },
+        { "id": "q15-carbon", "text": "Fe₂O₃ + 3CO → 2Fe + 3CO₂", "format": "formula", "explanation": "Fe(+3) в Fe₂O₃ принимает электроны, а C(+2) в CO отдаёт их." }
+      ],
+      "options": [
+        { "id": "q15-cuso4-zinc", "text": "CuSO₄; Zn" },
+        { "id": "q15-cl2-ki", "text": "Cl₂; KI" },
+        { "id": "q15-cuo-h2", "text": "CuO; H₂" },
+        { "id": "q15-fe2o3-co", "text": "Fe₂O₃; CO" },
+        { "id": "q15-extra", "text": "Zn; CuSO₄" }
+      ],
+      "correct": { "q15-zinc": "q15-cuso4-zinc", "q15-chlorine": "q15-cl2-ki", "q15-hydrogen": "q15-cuo-h2", "q15-carbon": "q15-fe2o3-co" },
+      "allowOptionReuse": false,
+      "explanation": "В каждой паре первым указан окислитель, принимающий электроны, а вторым — восстановитель, отдающий электроны.",
+      "difficulty": 3, "tags": ["analysis", "matching", "equations"]
+    }
+  ]
+}

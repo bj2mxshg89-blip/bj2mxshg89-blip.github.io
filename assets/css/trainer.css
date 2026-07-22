@@ -558,6 +558,78 @@
   font-weight: 800;
 }
 
+.text-answer {
+  width: min(100%, 620px);
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.text-answer.is-correct {
+  border-color: #72bd92;
+  background: var(--good-bg);
+}
+
+.text-answer.is-wrong,
+.text-answer.is-invalid {
+  border-color: #df8f86;
+  background: var(--bad-bg);
+}
+
+.text-answer-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.text-answer-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #aeb9cf;
+  border-radius: 11px;
+  color: var(--text);
+  background: #fff;
+  font: inherit;
+  font-size: 17px;
+}
+
+.text-answer-input::placeholder {
+  color: #69758b;
+  opacity: 1;
+}
+
+.text-answer-input:focus-visible {
+  outline: 3px solid rgba(49, 87, 213, .34);
+  outline-offset: 2px;
+  border-color: var(--trainer-accent);
+}
+
+.text-answer-input[aria-invalid="true"] {
+  border-color: var(--bad);
+  box-shadow: 0 0 0 2px rgba(168, 42, 31, .12);
+}
+
+.text-answer-input:read-only,
+.text-answer-input:disabled {
+  opacity: 1;
+  color: var(--text);
+  background: rgba(255, 255, 255, .78);
+  cursor: default;
+}
+
+.text-answer-help {
+  margin-top: 7px;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .trainer-reference {
   margin-top: 18px;
   padding: 13px 15px;
@@ -701,6 +773,7 @@
 
 .trainer-feedback-answer {
   overflow-wrap: anywhere;
+  white-space: pre-wrap;
 }
 
 .trainer-feedback.is-correct {
@@ -834,6 +907,8 @@
   line-height: 1.5;
 }
 
+.trainer-review-line { white-space: pre-wrap; }
+
 .matching-review {
   display: grid;
   gap: 9px;
@@ -935,6 +1010,7 @@
   .trainer-result-head,
   .trainer-review { padding-inline: 17px; }
   .number-answer-input { flex-basis: 100%; }
+  .text-answer { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -959,4 +1035,6 @@
   .question-content { break-inside: avoid; }
   .matching-review-row { color: #000; background: #fff; }
   .question-content { color: #000; background: #fff; }
+  .trainer-feedback-answer,
+  .trainer-review-line { overflow-wrap: anywhere; }
 }
