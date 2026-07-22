@@ -2,6 +2,7 @@ import {
   evaluateAnswer,
   getEmptyAnswer,
   getQuestionMaxPoints,
+  getQuestionValidationAnswer,
   normalizeAnswer
 } from "../../assets/js/question-types.js";
 import { validateTestDefinition } from "../../assets/js/utils.js";
@@ -155,7 +156,7 @@ export function validateTestContent(test, expectedId) {
       if (!Number.isFinite(emptyResult.earnedPoints) || emptyResult.maxPoints !== maximum) {
         errors.push(`${label}: тип вопроса некорректно оценивает пустой ответ.`);
       }
-      const testAnswer = normalizeAnswer(question, question.correct);
+      const testAnswer = normalizeAnswer(question, getQuestionValidationAnswer(question));
       const testResult = evaluateAnswer(question, testAnswer);
       if (!testResult.isFullyCorrect || testResult.earnedPoints !== maximum || testResult.maxPoints !== maximum) {
         errors.push(`${label}: правильный тестовый ответ оценивается некорректно.`);

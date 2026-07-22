@@ -52,3 +52,13 @@ test("одинаковый order внутри раздела обнаружив�
   catalog.items[1].order = catalog.items[0].order;
   assert.match(validateCatalog(catalog).join("\n"), /одинаковый order/);
 });
+
+test("каталог показывает обе версии ОВР и 12 карточек", () => {
+  const items = visibleCatalogItems(clone());
+  assert.equal(items.length, 12);
+  assert.equal(items.filter((item) => item.section === "organic").length, 7);
+  assert.equal(items.filter((item) => item.section === "inorganic").length, 4);
+  assert.equal(items.filter((item) => item.section === "teacher-tools").length, 1);
+  assert.equal(items.find((item) => item.id === "redox-trainer").url, "test.html?id=redox-trainer");
+  assert.equal(items.find((item) => item.id === "redox-trainer-legacy").url, "trainer.html");
+});

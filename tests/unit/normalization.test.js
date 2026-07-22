@@ -5,6 +5,7 @@ import {
   incompleteAnswerMessage,
   isAnswerComplete,
   normalizeAnswer,
+  normalizeTextForComparison,
   parseNumberAnswer,
   updateQuestionAnswer
 } from "../../assets/js/question-types.js";
@@ -13,7 +14,9 @@ import {
   matchingQuestion,
   multipleQuestion,
   numberQuestion,
-  singleQuestion
+  oxidationStateTextQuestion,
+  singleQuestion,
+  textQuestion
 } from "./fixtures.js";
 
 test("повреждённый массив ответа нормализуется в пустой", () => {
@@ -105,4 +108,49 @@ test("повреждённый number безопасно нормализует�
   assert.equal(normalizeAnswer(numberQuestion, null), "");
   assert.equal(normalizeAnswer(numberQuestion, { value: 5 }), "");
   assert.equal(isAnswerComplete(numberQuestion, "-"), false);
+});
+
+test("text хранит исходную строку и безопасно отбрасывает неизвестный тип значения", () => {
+  assert.equal(normalizeAnswer(textQuestion, "  Окислитель  "), "  Окислитель  ");
+  assert.equal(normalizeAnswer(textQuestion, null), "");
+  assert.equal(normalizeAnswer(textQuestion, ["окислитель"]), "");
+  assert.equal(normalizeAnswer(textQuestion, { value: "окислитель" }), "");
+});
+
+test("text различает пустую строку и введённый ответ", () => {
+  assert.equal(normalizeTextForComparison(textQuestion, ""), "");
+  assert.equal(hasAnyAnswer(textQuestion, "   "), false);
+  assert.equal(hasAnyAnswer(textQuestion, "0"), true);
+  assert.equal(isAnswerComplete(textQuestion, "0"), true);
+});
+
+test("text обрезает края и сворачивает внутренние пробелы только для сравнения", () => {
+  assert.equal(normalizeTextForComparison(textQuestion, "  отдача   электронов  "), "отдача электронов");
+  assert.equal(normalizeAnswer(textQuestion, "  отдача   электронов  "), "  отдача   электронов  ");
+});
+
+test("text нормализует регистр, включая кириллицу", () => {
+  assert.equal(normalizeTextForComparison(textQuestion, "ОКИСЛИТЕЛЬ"), "окислитель");
+  const sensitive = {
+    ...textQuestion,
+    textAnswer: { ...textQuestion.textAnswer, caseSensitive: true }
+  };
+  assert.equal(normalizeTextForComparison(sensitive, "Окислитель"), "Окислитель");
+});
+
+test("text приводит Unicode minus к дефису, но сохраняет знак и порядок", () => {
+  ["−3", "–3", "—3", "-3"].forEach((value) => {
+    assert.equal(normalizeTextForComparison(oxidationStateTextQuestion, value), "-3");
+  });
+  assert.equal(normalizeTextForComparison(oxidationStateTextQuestion, "+6"), "+6");
+  assert.notEqual(normalizeTextForComparison(oxidationStateTextQuestion, "6+"), "+6");
+});
+
+test("text отклоняет строку длиннее maxLength", () => {
+  const value = "а".repeat(textQuestion.textAnswer.maxLength + 1);
+  assert.equal(isAnswerComplete(textQuestion, value), false);
+  assert.equal(
+    incompleteAnswerMessage(textQuestion, value),
+    "Ответ слишком длинный. Допустимо не более 30 символов."
+  );
 });

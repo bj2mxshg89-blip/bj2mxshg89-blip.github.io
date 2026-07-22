@@ -8,7 +8,9 @@ import {
   matchingQuestion,
   multipleQuestion,
   numberQuestion,
-  singleQuestion
+  oxidationStateTextQuestion,
+  singleQuestion,
+  textQuestion
 } from "./fixtures.js";
 
 test("single: правильный и неправильный ответы", () => {
@@ -91,6 +93,64 @@ test("number: ошибка целиком попадает в mistakes", () => {
     completedAt: new Date("2026-01-01T00:00:10.000Z")
   });
   assert.deepEqual(result.mistakes, [numberQuestion.id]);
+  assert.equal(result.maxPoints, 1);
+});
+
+test("text: правильный ответ даёт один балл и сохраняет исходную строку в деталях", () => {
+  const result = evaluateAnswer(textQuestion, "  ОКИСЛИТЕЛЬ  ");
+  assert.equal(result.earnedPoints, 1);
+  assert.equal(result.maxPoints, 1);
+  assert.equal(result.isFullyCorrect, true);
+  assert.deepEqual(result.details, [{
+    enteredText: "  ОКИСЛИТЕЛЬ  ",
+    normalizedEntered: "окислитель",
+    correctText: "окислитель",
+    correct: true
+  }]);
+  assert.equal(getQuestionMaxPoints(textQuestion), 1);
+});
+
+test("text: неправильный ответ не получает балл", () => {
+  const result = evaluateAnswer(textQuestion, "восстановитель");
+  assert.equal(result.earnedPoints, 0);
+  assert.equal(result.isFullyCorrect, false);
+});
+
+test("text: настройка caseSensitive соблюдается", () => {
+  const sensitive = {
+    ...textQuestion,
+    correct: ["Окислитель"],
+    textAnswer: { ...textQuestion.textAnswer, caseSensitive: true }
+  };
+  assert.equal(evaluateAnswer(textQuestion, "ОКИСЛИТЕЛЬ").isFullyCorrect, true);
+  assert.equal(evaluateAnswer(sensitive, "окислитель").isFullyCorrect, false);
+  assert.equal(evaluateAnswer(sensitive, "Окислитель").isFullyCorrect, true);
+});
+
+test("text: допускает только явно перечисленные равнозначные ответы", () => {
+  const aliases = { ...textQuestion, correct: ["окисление", "процесс окисления"] };
+  assert.equal(evaluateAnswer(aliases, "процесс   ОКИСЛЕНИЯ").isFullyCorrect, true);
+  assert.equal(evaluateAnswer(aliases, "отдача электронов").isFullyCorrect, false);
+});
+
+test("text: 6+ не равно +6, а обычный и Unicode minus равнозначны", () => {
+  const plus = { ...oxidationStateTextQuestion, correct: ["+6"] };
+  assert.equal(evaluateAnswer(plus, "+6").isFullyCorrect, true);
+  assert.equal(evaluateAnswer(plus, "6+").isFullyCorrect, false);
+  assert.equal(evaluateAnswer(oxidationStateTextQuestion, "−3").isFullyCorrect, true);
+  assert.equal(evaluateAnswer(oxidationStateTextQuestion, "-3").isFullyCorrect, true);
+});
+
+test("text: неверный вопрос целиком попадает в mistakes", () => {
+  const definition = { questions: [textQuestion], grading };
+  const result = calculateResult({
+    test: definition,
+    questionIds: [textQuestion.id],
+    answers: { [textQuestion.id]: "восстановитель" },
+    startedAt: "2026-01-01T00:00:00.000Z",
+    completedAt: new Date("2026-01-01T00:00:10.000Z")
+  });
+  assert.deepEqual(result.mistakes, [textQuestion.id]);
   assert.equal(result.maxPoints, 1);
 });
 
