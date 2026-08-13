@@ -88,7 +88,7 @@ function validTextDefinition() {
 }
 
 test("реестр поддерживает number вместе с прежними типами", () => {
-  assert.deepEqual(SUPPORTED_QUESTION_TYPES, ["single", "multiple", "matching", "number", "text"]);
+  assert.deepEqual(SUPPORTED_QUESTION_TYPES, ["single", "multiple", "matching", "number", "text", "sequence"]);
 });
 
 test("валидные number и content проходят общую проверку", () => {

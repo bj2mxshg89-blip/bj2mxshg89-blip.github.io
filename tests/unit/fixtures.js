@@ -32,6 +32,23 @@ export const matchingQuestion = {
   allowOptionReuse: false
 };
 
+export const sequenceQuestion = {
+  id: "unit-sequence",
+  type: "sequence",
+  text: "Расположите элементы по порядку.",
+  items: [
+    { id: "a", text: "A", explanation: "A занимает позицию 1." },
+    { id: "b", text: "B", explanation: "B занимает позицию 2." },
+    { id: "c", text: "C", explanation: "C занимает позицию 3." },
+    { id: "d", text: "D", explanation: "D занимает позицию 4." }
+  ],
+  correct: ["a", "b", "c", "d"],
+  sequence: {
+    shuffleInitial: true,
+    scoring: "position"
+  }
+};
+
 export const numberQuestion = {
   id: "unit-number",
   type: "number",

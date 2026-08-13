@@ -1,11 +1,12 @@
-import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=7";
+import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=8";
 
 const renderers = {
   single: renderSingleQuestion,
   multiple: renderMultipleQuestion,
   matching: renderMatchingQuestion,
   number: renderNumberQuestion,
-  text: renderTextQuestion
+  text: renderTextQuestion,
+  sequence: renderSequenceQuestion
 };
 
 export function renderQuestionContent(container, content, { append = false, review = false } = {}) {
@@ -336,9 +337,144 @@ function renderMatchingQuestion({
   container.appendChild(grid);
 }
 
+function renderSequenceQuestion({
+  container,
+  question,
+  selected,
+  locked,
+  revealCorrect,
+  onChange
+}) {
+  const itemMap = new Map(question.items.map((item) => [item.id, item]));
+  const order = Array.isArray(selected?.order) ? selected.order : [];
+  const evaluation = evaluateAnswer(question, selected);
+  const detailByItem = new Map(evaluation.details.map((detail) => [detail.itemId, detail]));
+  const list = document.createElement("div");
+  list.className = "sequence-list";
+  list.dataset.answerControl = "true";
+  list.setAttribute("role", "list");
+  list.setAttribute("aria-describedby", "questionHint questionStatus");
+  let draggedItemId = null;
+
+  order.forEach((itemId, index) => {
+    const item = itemMap.get(itemId);
+    if (!item) return;
+
+    const row = document.createElement("div");
+    row.className = "sequence-item";
+    row.dataset.itemId = itemId;
+    row.dataset.focusKey = `sequence-${itemId}-item`;
+    row.tabIndex = -1;
+    row.setAttribute("role", "listitem");
+    if (revealCorrect) {
+      row.classList.add(detailByItem.get(itemId)?.correct ? "is-correct" : "is-wrong");
+    }
+
+    const position = document.createElement("span");
+    position.className = "sequence-position";
+    position.setAttribute("aria-label", `Позиция ${index + 1}`);
+    position.textContent = String(index + 1);
+
+    const handle = document.createElement("span");
+    handle.className = "sequence-drag-handle";
+    handle.draggable = !locked;
+    handle.setAttribute("aria-hidden", "true");
+    handle.textContent = "⠿";
+    if (locked) handle.classList.add("is-disabled");
+
+    const value = document.createElement("span");
+    value.className = `sequence-text${item.format === "formula" ? " is-formula" : ""}`;
+    value.textContent = item.text;
+
+    const controls = document.createElement("span");
+    controls.className = "sequence-controls";
+    const move = (direction) => {
+      onChange({
+        action: "move",
+        itemId,
+        direction,
+        focusKey: row.dataset.focusKey
+      });
+    };
+    const up = sequenceMoveButton({
+      label: `Переместить ${item.text} выше`,
+      symbol: "↑",
+      disabled: locked || index === 0,
+      focusKey: `sequence-${itemId}-up`,
+      onClick: () => move("up")
+    });
+    const down = sequenceMoveButton({
+      label: `Переместить ${item.text} ниже`,
+      symbol: "↓",
+      disabled: locked || index === order.length - 1,
+      focusKey: `sequence-${itemId}-down`,
+      onClick: () => move("down")
+    });
+    controls.append(up, down);
+
+    handle.addEventListener("dragstart", (event) => {
+      draggedItemId = itemId;
+      row.classList.add("is-dragging");
+      event.dataTransfer?.setData("text/plain", itemId);
+      if (event.dataTransfer) event.dataTransfer.effectAllowed = "move";
+    });
+    handle.addEventListener("dragend", () => {
+      draggedItemId = null;
+      row.classList.remove("is-dragging");
+    });
+    row.addEventListener("dragover", (event) => {
+      if (!draggedItemId || locked) return;
+      event.preventDefault();
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+    });
+    row.addEventListener("drop", (event) => {
+      if (!draggedItemId || locked) return;
+      event.preventDefault();
+      const nextOrder = [...order];
+      const from = nextOrder.indexOf(draggedItemId);
+      const to = nextOrder.indexOf(itemId);
+      if (from < 0 || to < 0 || from === to) return;
+      nextOrder.splice(from, 1);
+      nextOrder.splice(to, 0, draggedItemId);
+      onChange({
+        action: "reorder",
+        order: nextOrder,
+        focusKey: `sequence-${draggedItemId}-item`
+      });
+    });
+
+    row.append(position, handle, value, controls);
+    if (revealCorrect) {
+      const status = document.createElement("span");
+      status.className = "sequence-position-status";
+      status.textContent = detailByItem.get(itemId)?.correct ? "✓ Верная позиция" : "✕ Неверная позиция";
+      row.appendChild(status);
+    }
+    list.appendChild(row);
+  });
+
+  container.appendChild(list);
+}
+
+function sequenceMoveButton({ label, symbol, disabled, focusKey, onClick }) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "sequence-move-button";
+  button.disabled = disabled;
+  button.dataset.focusKey = focusKey;
+  button.setAttribute("aria-label", label);
+  button.title = label;
+  button.textContent = symbol;
+  button.addEventListener("click", onClick);
+  return button;
+}
+
 export function questionInstruction(question) {
   if (question.hint) return question.hint;
   if (question.type === "matching") return "Для каждой строки выберите подходящий вариант.";
+  if (question.type === "sequence") {
+    return "Измените порядок кнопками со стрелками; перетаскивание мышью — дополнительный способ.";
+  }
   if (question.type === "number") {
     return question.number.integer
       ? "Введите одно целое число без единицы измерения."
@@ -354,6 +490,15 @@ export function questionInstruction(question) {
 
 export function appendReviewContent(container, question, answer, evaluation) {
   renderQuestionContent(container, question.content, { append: true, review: true });
+  if (question.type === "sequence") {
+    container.append(
+      reviewLine("Ваш порядок", formatAnswer(question, answer)),
+      reviewLine("Правильный порядок", formatCorrectAnswer(question)),
+      reviewLine("Результат", `${evaluation.earnedPoints} из ${evaluation.maxPoints} позиций`),
+      explanationBlock(question.explanation)
+    );
+    return;
+  }
   if (question.type !== "matching") {
     container.append(
       reviewLine("Ваш ответ", formatAnswer(question, answer)),

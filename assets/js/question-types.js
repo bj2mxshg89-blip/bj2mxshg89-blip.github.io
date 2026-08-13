@@ -483,6 +483,187 @@ function validateMatching(question, errors) {
   }
 }
 
+function checkedAnswerStatus(evaluation) {
+  return evaluation.isFullyCorrect
+    ? "✓ Ответ проверен: верно"
+    : "! Ответ проверен: требуется разбор";
+}
+
+function savedAnswerStatus(answered, mode) {
+  if (!answered) return "Ответ пока не выбран";
+  return mode === "test" ? "● Ответ сохранён" : "Ответ сохранён";
+}
+
+function sequenceItemIds(question) {
+  return Array.isArray(question.items)
+    ? question.items
+      .map((item) => item?.id)
+      .filter((itemId) => typeof itemId === "string" && itemId.trim())
+    : [];
+}
+
+function sequenceOrderCandidate(rawAnswer) {
+  if (Array.isArray(rawAnswer)) return rawAnswer;
+  if (rawAnswer && typeof rawAnswer === "object" && !Array.isArray(rawAnswer) &&
+      Array.isArray(rawAnswer.order)) {
+    return rawAnswer.order;
+  }
+  return [];
+}
+
+function normalizeSequenceOrder(question, rawOrder, fallbackOrder = null) {
+  const itemIds = sequenceItemIds(question);
+  const validIds = new Set(itemIds);
+  const normalized = [];
+  const seen = new Set();
+  const appendKnown = (values) => {
+    if (!Array.isArray(values)) return;
+    values.forEach((itemId) => {
+      if (typeof itemId !== "string" || !validIds.has(itemId) || seen.has(itemId)) return;
+      normalized.push(itemId);
+      seen.add(itemId);
+    });
+  };
+
+  appendKnown(rawOrder);
+  appendKnown(fallbackOrder);
+  appendKnown(itemIds);
+  return normalized;
+}
+
+function normalizeSequenceAnswer(question, rawAnswer, fallbackOrder = null) {
+  const touched = Array.isArray(rawAnswer) ||
+    Boolean(rawAnswer && typeof rawAnswer === "object" && !Array.isArray(rawAnswer) && rawAnswer.touched === true);
+  return {
+    order: normalizeSequenceOrder(question, sequenceOrderCandidate(rawAnswer), fallbackOrder),
+    touched
+  };
+}
+
+function sequenceComplete(question, rawAnswer) {
+  const itemIds = sequenceItemIds(question);
+  const answer = normalizeSequenceAnswer(question, rawAnswer);
+  return itemIds.length >= 2 &&
+    answer.order.length === itemIds.length &&
+    new Set(answer.order).size === itemIds.length &&
+    answer.order.every((itemId) => itemIds.includes(itemId));
+}
+
+function evaluateSequence(question, rawAnswer) {
+  const answer = normalizeSequenceAnswer(question, rawAnswer);
+  const itemMap = new Map(question.items.map((item) => [item.id, item]));
+  const correct = Array.isArray(question.correct) ? question.correct : [];
+  const details = correct.map((expectedItemId, index) => {
+    const itemId = answer.order[index] || null;
+    const item = itemMap.get(itemId);
+    const expectedItem = itemMap.get(expectedItemId);
+    return {
+      position: index + 1,
+      itemId,
+      itemText: item?.text || "Нет элемента",
+      itemFormat: item?.format || "text",
+      expectedItemId,
+      expectedItemText: expectedItem?.text || "Неизвестный элемент",
+      expectedPosition: itemId ? correct.indexOf(itemId) + 1 : null,
+      explanation: item?.explanation,
+      correct: itemId === expectedItemId
+    };
+  });
+  const earnedPoints = details.filter((detail) => detail.correct).length;
+  return {
+    earnedPoints,
+    maxPoints: question.items.length,
+    isFullyCorrect: earnedPoints === question.items.length,
+    details
+  };
+}
+
+function formatSequence(question, rawAnswer) {
+  const itemMap = new Map(question.items.map((item) => [item.id, item.text]));
+  const order = normalizeSequenceOrder(question, sequenceOrderCandidate(rawAnswer));
+  return order.length
+    ? order.map((itemId) => itemMap.get(itemId) || "Неизвестный элемент").join(" → ")
+    : "Нет ответа";
+}
+
+function validateSequence(question, errors) {
+  const id = question.id;
+  const itemIds = new Set();
+
+  if (!Array.isArray(question.items)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «items» должно быть массивом.`);
+  } else if (question.items.length < 2) {
+    errors.push(`Ошибка в вопросе ${id}: поле «items» должно содержать минимум два элемента.`);
+  }
+
+  if (Array.isArray(question.items)) {
+    question.items.forEach((item, index) => {
+      if (!item || typeof item !== "object" || Array.isArray(item)) {
+        errors.push(`Ошибка в вопросе ${id}: поле «items[${index}]» должно быть объектом.`);
+        return;
+      }
+      if (typeof item.id !== "string" || !item.id.trim()) {
+        errors.push(`Ошибка в вопросе ${id}: поле «items[${index}].id» должно быть непустой строкой.`);
+      } else if (itemIds.has(item.id)) {
+        errors.push(`Ошибка в вопросе ${id}: поле «items» содержит повторный itemId «${item.id}».`);
+      } else {
+        itemIds.add(item.id);
+      }
+      if (typeof item.text !== "string" || !item.text.trim()) {
+        errors.push(`Ошибка в вопросе ${id}: поле «items[${index}].text» должно быть непустой строкой.`);
+      }
+      if (item.format !== undefined && !FORMATS.has(item.format)) {
+        errors.push(
+          `Ошибка в вопросе ${id}: поле «items[${index}].format» должно иметь значение «text» или «formula».`
+        );
+      }
+      if (item.explanation !== undefined &&
+          (typeof item.explanation !== "string" || !item.explanation.trim())) {
+        errors.push(`Ошибка в вопросе ${id}: поле «items[${index}].explanation» должно быть непустой строкой.`);
+      }
+    });
+  }
+
+  if (!Array.isArray(question.correct)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «correct» должно быть массивом itemId.`);
+  } else {
+    if (Array.isArray(question.items) && question.correct.length !== question.items.length) {
+      errors.push(`Ошибка в вопросе ${id}: длина поля «correct» должна совпадать с длиной «items».`);
+    }
+    const correctIds = new Set();
+    question.correct.forEach((itemId, index) => {
+      if (typeof itemId !== "string" || !itemId.trim()) {
+        errors.push(`Ошибка в вопросе ${id}: поле «correct[${index}]» должно содержать непустой itemId.`);
+        return;
+      }
+      if (correctIds.has(itemId)) {
+        errors.push(`Ошибка в вопросе ${id}: поле «correct» содержит повторный itemId «${itemId}».`);
+      }
+      correctIds.add(itemId);
+      if (!itemIds.has(itemId)) {
+        errors.push(`Ошибка в вопросе ${id}: поле «correct» содержит неизвестный itemId «${itemId}».`);
+      }
+    });
+    itemIds.forEach((itemId) => {
+      if (!correctIds.has(itemId)) {
+        errors.push(`Ошибка в вопросе ${id}: поле «correct» не содержит itemId «${itemId}».`);
+      }
+    });
+  }
+
+  const settings = question.sequence;
+  if (!settings || typeof settings !== "object" || Array.isArray(settings)) {
+    errors.push(`Ошибка в вопросе ${id}: поле «sequence» должно быть объектом.`);
+    return;
+  }
+  if (typeof settings.shuffleInitial !== "boolean") {
+    errors.push(`Ошибка в вопросе ${id}: поле «sequence.shuffleInitial» должно быть логическим значением.`);
+  }
+  if (settings.scoring !== "position") {
+    errors.push(`Ошибка в вопросе ${id}: поле «sequence.scoring» поддерживает только значение «position».`);
+  }
+}
+
 const choiceType = {
   getEmptyAnswer: () => [],
   normalizeAnswer: normalizeChoiceAnswer,
@@ -512,7 +693,15 @@ const choiceType = {
     return valid ? [...candidate] : question.options.map((_, index) => index);
   },
   validate: validateChoice,
-  getValidationAnswer: (question) => question.correct
+  getValidationAnswer: (question) => question.correct,
+  getAnswerStatus(question, answer, context) {
+    if (context.isChecked) return checkedAnswerStatus(evaluateChoice(question, answer));
+    const normalized = normalizeChoiceAnswer(question, answer);
+    if (question.type === "multiple" && normalized.length) {
+      return `Выбрано вариантов: ${normalized.length}`;
+    }
+    return savedAnswerStatus(normalized.length > 0, context.mode);
+  }
 };
 
 const questionTypes = Object.freeze({
@@ -559,7 +748,11 @@ const questionTypes = Object.freeze({
       return valid ? [...candidate] : ids;
     },
     validate: validateMatching,
-    getValidationAnswer: (question) => question.correct
+    getValidationAnswer: (question) => question.correct,
+    getAnswerStatus(question, answer, context) {
+      if (context.isChecked) return checkedAnswerStatus(evaluateMatching(question, answer));
+      return savedAnswerStatus(Object.keys(normalizeMatchingAnswer(question, answer)).length > 0, context.mode);
+    }
   },
   number: {
     getEmptyAnswer: () => "",
@@ -588,7 +781,11 @@ const questionTypes = Object.freeze({
     createOptionOrder: () => [],
     normalizeOptionOrder: () => [],
     validate: validateNumber,
-    getValidationAnswer: (question) => question.correct
+    getValidationAnswer: (question) => question.correct,
+    getAnswerStatus(question, answer, context) {
+      if (context.isChecked) return checkedAnswerStatus(evaluateNumber(question, answer));
+      return savedAnswerStatus(normalizeNumberAnswer(question, answer).length > 0, context.mode);
+    }
   },
   text: {
     getEmptyAnswer: () => "",
@@ -613,7 +810,88 @@ const questionTypes = Object.freeze({
     createOptionOrder: () => [],
     normalizeOptionOrder: () => [],
     validate: validateText,
-    getValidationAnswer: (question) => question.correct?.[0]
+    getValidationAnswer: (question) => question.correct?.[0],
+    getAnswerStatus(question, answer, context) {
+      if (context.isChecked) return checkedAnswerStatus(evaluateText(question, answer));
+      return savedAnswerStatus(normalizeStoredTextAnswer(question, answer).trim().length > 0, context.mode);
+    }
+  },
+  sequence: {
+    getEmptyAnswer(question, optionOrder) {
+      return {
+        order: normalizeSequenceOrder(question, optionOrder),
+        touched: false
+      };
+    },
+    normalizeAnswer: normalizeSequenceAnswer,
+    hasAnyAnswer: (question, answer) => normalizeSequenceAnswer(question, answer).touched,
+    isAnswerComplete: sequenceComplete,
+    evaluateAnswer: evaluateSequence,
+    formatAnswer: formatSequence,
+    formatCorrectAnswer: formatSequence,
+    getFeedbackDetails(question, _answer, evaluation) {
+      const result = evaluation.isFullyCorrect
+        ? `Все ${evaluation.maxPoints} позиции расположены правильно.`
+        : `Правильно расположено: ${evaluation.earnedPoints} из ${evaluation.maxPoints}.`;
+      return [
+        { label: "Результат", value: result },
+        ...evaluation.details.map((detail) => ({
+          label: String(detail.position),
+          value: detail.correct
+            ? `${detail.itemText} — верная позиция.`
+            : `${detail.itemText} — должно находиться на позиции ${detail.expectedPosition}.`
+        }))
+      ];
+    },
+    getFeedbackHeading(_question, _answer, evaluation) {
+      return evaluation.isFullyCorrect ? "✓ Верно" : "! Есть ошибки";
+    },
+    getQuestionMaxPoints: (question) => question.items.length,
+    incompleteAnswerMessage: () => "Расположите все элементы в требуемом порядке.",
+    updateAnswer(question, current, change) {
+      const answer = normalizeSequenceAnswer(question, current);
+      const order = [...answer.order];
+      if (!change || typeof change !== "object") return { order, touched: answer.touched };
+
+      if (change.action === "reorder") {
+        return {
+          order: normalizeSequenceOrder(question, change.order, order),
+          touched: true
+        };
+      }
+
+      if (change.action !== "move" || typeof change.itemId !== "string" ||
+          !["up", "down"].includes(change.direction)) {
+        return { order, touched: answer.touched };
+      }
+
+      const index = order.indexOf(change.itemId);
+      const target = change.direction === "up" ? index - 1 : index + 1;
+      if (index < 0 || target < 0 || target >= order.length) {
+        return { order, touched: answer.touched };
+      }
+      [order[index], order[target]] = [order[target], order[index]];
+      return { order, touched: true };
+    },
+    createOptionOrder(question, shuffle) {
+      const itemIds = sequenceItemIds(question);
+      return question.sequence?.shuffleInitial ? shuffle(itemIds) : itemIds;
+    },
+    normalizeOptionOrder(question, candidate) {
+      return normalizeSequenceOrder(question, candidate);
+    },
+    validate: validateSequence,
+    getValidationAnswer: (question) => question.correct,
+    getAnswerStatus(question, answer, context) {
+      const normalized = normalizeSequenceAnswer(question, answer);
+      if (context.isChecked) {
+        const evaluation = evaluateSequence(question, normalized);
+        return evaluation.isFullyCorrect
+          ? `✓ Ответ проверен: ${evaluation.maxPoints} из ${evaluation.maxPoints} позиций`
+          : `! Ответ проверен: ${evaluation.earnedPoints} из ${evaluation.maxPoints} позиций`;
+      }
+      return normalized.touched ? "Порядок обновлён" : "Порядок сохранён";
+    }
   }
 });
 
@@ -625,8 +903,9 @@ function handler(question) {
   return value;
 }
 
-export const getEmptyAnswer = (question) => handler(question).getEmptyAnswer(question);
-export const normalizeAnswer = (question, answer) => handler(question).normalizeAnswer(question, answer);
+export const getEmptyAnswer = (question, optionOrder) => handler(question).getEmptyAnswer(question, optionOrder);
+export const normalizeAnswer = (question, answer, optionOrder) =>
+  handler(question).normalizeAnswer(question, answer, optionOrder);
 export const hasAnyAnswer = (question, answer) => handler(question).hasAnyAnswer(question, answer);
 export const isAnswerComplete = (question, answer) => handler(question).isAnswerComplete(question, answer);
 export const evaluateAnswer = (question, answer) => handler(question).evaluateAnswer(question, answer);
@@ -634,6 +913,11 @@ export const formatAnswer = (question, answer) => handler(question).formatAnswer
 export const formatCorrectAnswer = (question) => handler(question).formatCorrectAnswer(question, question.correct);
 export const getFeedbackDetails = (question, answer, evaluation) =>
   handler(question).getFeedbackDetails(question, answer, evaluation);
+export const getFeedbackHeading = (question, answer, evaluation) =>
+  handler(question).getFeedbackHeading?.(question, answer, evaluation) ??
+  (evaluation.maxPoints > 1
+    ? `${evaluation.isFullyCorrect ? "✓" : "!"} Верно: ${evaluation.earnedPoints} из ${evaluation.maxPoints}.`
+    : evaluation.isFullyCorrect ? "✓ Верно" : "! Есть ошибка");
 export const getQuestionMaxPoints = (question) => handler(question).getQuestionMaxPoints(question);
 export const getQuestionValidationAnswer = (question) => handler(question).getValidationAnswer(question);
 export const updateQuestionAnswer = (question, answer, change) => handler(question).updateAnswer(question, answer, change);
@@ -643,5 +927,7 @@ export const validateQuestionType = (question, errors) => handler(question).vali
 
 export const incompleteAnswerMessage = (question, rawAnswer) =>
   handler(question).incompleteAnswerMessage(question, rawAnswer);
+export const getAnswerStatus = (question, rawAnswer, context) =>
+  handler(question).getAnswerStatus(question, rawAnswer, context);
 
 export { questionTypes };

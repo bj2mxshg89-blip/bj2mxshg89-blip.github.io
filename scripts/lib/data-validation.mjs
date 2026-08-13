@@ -145,6 +145,16 @@ export function validateTestContent(test, expectedId) {
       }
     }
 
+    if (question?.type === "sequence") {
+      (question.items || []).forEach((item) => {
+        checkId(item?.id, `${label}, элемент ${item?.id ?? "—"}`, errors);
+      });
+      const duplicateItemText = duplicateStrings((question.items || []).map((item) => item?.text));
+      duplicateItemText.forEach((itemText) => {
+        errors.push(`${label}: подпись элемента sequence «${itemText}» повторяется.`);
+      });
+    }
+
     try {
       const maximum = getQuestionMaxPoints(question);
       if (!Number.isFinite(maximum) || maximum <= 0) {
