@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "id": "biology-matching",
+  "version": 1,
+  "title": "Биология: сопоставление",
+  "description": "Уровни организации жизни, общие свойства живого и строение растительной клетки.",
+  "subject": "biology",
+  "category": "general-biology",
+  "symbol": "DNA",
+  "theme": {
+    "accent": "#2563eb",
+    "soft": "#eaf1ff"
+  },
+  "modes": {
+    "training": {
+      "enabled": true,
+      "instantFeedback": true,
+      "showExplanation": true
+    },
+    "test": {
+      "enabled": true,
+      "instantFeedback": false,
+      "showExplanation": false
+    }
+  },
+  "grading": {
+    "thresholds": {
+      "3": 50,
+      "4": 70,
+      "5": 90
+    }
+  },
+  "settings": {
+    "shuffleQuestions": false,
+    "shuffleAnswers": true,
+    "saveProgress": true,
+    "allowBack": true
+  },
+  "sections": [
+    {
+      "id": "levels",
+      "title": "Уровни организации жизни"
+    },
+    {
+      "id": "properties",
+      "title": "Общие свойства живого"
+    },
+    {
+      "id": "plant-cell",
+      "title": "Растительная клетка"
+    }
+  ],
+  "variants": [
+    {
+      "id": "mixed",
+      "title": "Весь тест",
+      "questionIds": [
+        "biology-matching-levels-001",
+        "biology-matching-properties-001",
+        "biology-matching-plant-cell-001"
+      ],
+      "selectionCount": {
+        "training": 3,
+        "test": 3
+      }
+    },
+    {
+      "id": "levels",
+      "title": "Уровни организации жизни",
+      "questionIds": [
+        "biology-matching-levels-001"
+      ],
+      "selectionCount": {
+        "training": 1,
+        "test": 1
+      }
+    },
+    {
+      "id": "properties",
+      "title": "Общие свойства живого",
+      "questionIds": [
+        "biology-matching-properties-001"
+      ],
+      "selectionCount": {
+        "training": 1,
+        "test": 1
+      }
+    },
+    {
+      "id": "plant-cell",
+      "title": "Растительная клетка",
+      "questionIds": [
+        "biology-matching-plant-cell-001"
+      ],
+      "selectionCount": {
+        "training": 1,
+        "test": 1
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "biology-matching-levels-001",
+      "section": "levels",
+      "type": "matching",
+      "text": "Сопоставьте уровень организации жизни с его характеристикой.",
+      "hint": "Для каждого уровня выберите одно подходящее описание. Каждый вариант используется один раз.",
+      "items": [
+        {
+          "id": "molecular",
+          "text": "Молекулярный",
+          "format": "text",
+          "explanation": "На молекулярном уровне изучают биомолекулы и химические реакции, обеспечивающие процессы жизнедеятельности."
+        },
+        {
+          "id": "cellular",
+          "text": "Клеточный",
+          "format": "text",
+          "explanation": "Клетка является структурной и функциональной единицей живых организмов."
+        },
+        {
+          "id": "tissue",
+          "text": "Тканевый",
+          "format": "text",
+          "explanation": "Ткань образована сходными по строению и функциям клетками и межклеточным веществом."
+        },
+        {
+          "id": "organ",
+          "text": "Органный",
+          "format": "text",
+          "explanation": "Орган состоит из нескольких тканей и выполняет определённую функцию."
+        },
+        {
+          "id": "organ-system",
+          "text": "Система органов",
+          "format": "text",
+          "explanation": "Система органов объединяет функционально связанные органы, совместно выполняющие общую задачу."
+        },
+        {
+          "id": "organism",
+          "text": "Организм",
+          "format": "text",
+          "explanation": "Организм — отдельное живое существо, функционирующее как целостная биологическая система."
+        },
+        {
+          "id": "population",
+          "text": "Популяция",
+          "format": "text",
+          "explanation": "Популяция включает особей одного вида, длительно обитающих на общей территории."
+        },
+        {
+          "id": "biosphere",
+          "text": "Биосферный",
+          "format": "text",
+          "explanation": "Биосфера объединяет все экосистемы Земли и охватывает область распространения жизни."
+        }
+      ],
+      "options": [
+        {
+          "id": "molecules-reactions",
+          "text": "Молекулы и химические реакции, лежащие в основе процессов жизнедеятельности"
+        },
+        {
+          "id": "cell-unit",
+          "text": "Клетка как структурная и функциональная единица живого"
+        },
+        {
+          "id": "similar-cells",
+          "text": "Совокупность сходных по строению и функциям клеток и межклеточного вещества"
+        },
+        {
+          "id": "several-tissues",
+          "text": "Отдельный орган, образованный несколькими тканями и выполняющий определённую функцию"
+        },
+        {
+          "id": "several-organs",
+          "text": "Несколько органов, совместно выполняющих общую функцию"
+        },
+        {
+          "id": "individual-living-system",
+          "text": "Отдельное живое существо как целостная биологическая система"
+        },
+        {
+          "id": "same-species-territory",
+          "text": "Совокупность особей одного вида, длительно обитающих на общей территории"
+        },
+        {
+          "id": "all-earth-ecosystems",
+          "text": "Совокупность всех экосистем Земли и область распространения жизни"
+        }
+      ],
+      "correct": {
+        "molecular": "molecules-reactions",
+        "cellular": "cell-unit",
+        "tissue": "similar-cells",
+        "organ": "several-tissues",
+        "organ-system": "several-organs",
+        "organism": "individual-living-system",
+        "population": "same-species-territory",
+        "biosphere": "all-earth-ecosystems"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Уровни организации образуют иерархию: молекулы входят в состав клеток, клетки образуют ткани, ткани — органы, а организмы входят в состав надорганизменных систем.",
+      "difficulty": 1,
+      "tags": ["levels-of-organization", "general-biology"]
+    },
+    {
+      "id": "biology-matching-properties-001",
+      "section": "properties",
+      "type": "matching",
+      "text": "Сопоставьте свойство живого с его проявлением.",
+      "hint": "Для каждого свойства выберите одно подходящее проявление. Каждый вариант используется один раз.",
+      "items": [
+        {
+          "id": "nutrition",
+          "text": "Питание",
+          "format": "text",
+          "explanation": "Питание обеспечивает поступление веществ, необходимых для построения тела и поддержания жизнедеятельности."
+        },
+        {
+          "id": "respiration",
+          "text": "Дыхание",
+          "format": "text",
+          "explanation": "В ходе дыхания энергия высвобождается при превращении веществ и становится доступной клеткам."
+        },
+        {
+          "id": "growth-development",
+          "text": "Рост и развитие",
+          "format": "text",
+          "explanation": "Рост связан с увеличением размеров и массы, а развитие — с закономерными изменениями организма в течение жизни."
+        },
+        {
+          "id": "reproduction",
+          "text": "Размножение",
+          "format": "text",
+          "explanation": "Размножение обеспечивает появление новых особей и непрерывность существования вида."
+        },
+        {
+          "id": "metabolism",
+          "text": "Обмен веществ и энергией",
+          "format": "text",
+          "explanation": "Метаболизм включает поступление, превращение и удаление веществ и сопровождается преобразованием энергии."
+        },
+        {
+          "id": "responsiveness",
+          "text": "Раздражимость",
+          "format": "text",
+          "explanation": "Раздражимость проявляется в восприятии изменений внешней или внутренней среды и ответе на них."
+        },
+        {
+          "id": "cellular-organization",
+          "text": "Клеточное строение",
+          "format": "text",
+          "explanation": "Клетка — основная структурная единица живых организмов; организмы бывают одноклеточными и многоклеточными."
+        }
+      ],
+      "options": [
+        {
+          "id": "necessary-substances",
+          "text": "Получение организмом веществ, необходимых для построения тела и жизнедеятельности"
+        },
+        {
+          "id": "energy-from-transformations",
+          "text": "Процессы, при которых организм получает энергию за счёт превращения веществ"
+        },
+        {
+          "id": "size-and-life-changes",
+          "text": "Увеличение размеров и массы организма и закономерные изменения в течение жизни"
+        },
+        {
+          "id": "produce-offspring",
+          "text": "Способность организмов производить потомство"
+        },
+        {
+          "id": "matter-and-energy-transformations",
+          "text": "Поступление, превращение и удаление веществ с одновременным преобразованием энергии"
+        },
+        {
+          "id": "respond-to-environment",
+          "text": "Способность воспринимать изменения среды и отвечать на них"
+        },
+        {
+          "id": "one-or-many-cells",
+          "text": "Организмы состоят из одной или множества клеток"
+        }
+      ],
+      "correct": {
+        "nutrition": "necessary-substances",
+        "respiration": "energy-from-transformations",
+        "growth-development": "size-and-life-changes",
+        "reproduction": "produce-offspring",
+        "metabolism": "matter-and-energy-transformations",
+        "responsiveness": "respond-to-environment",
+        "cellular-organization": "one-or-many-cells"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Свойства живого проявляются совместно: организмы имеют клеточную организацию, обмениваются веществами и энергией, растут, развиваются, реагируют на среду и размножаются.",
+      "difficulty": 1,
+      "tags": ["properties-of-life", "general-biology"]
+    },
+    {
+      "id": "biology-matching-plant-cell-001",
+      "section": "plant-cell",
+      "type": "matching",
+      "text": "Сопоставьте органоид или структуру растительной клетки с основной функцией.",
+      "hint": "Для каждой структуры выберите одну основную функцию. Каждый вариант используется один раз.",
+      "items": [
+        {
+          "id": "nucleus",
+          "text": "Ядро",
+          "format": "text",
+          "explanation": "Ядро содержит основную часть наследственной информации эукариотической клетки и участвует в регуляции клеточных процессов."
+        },
+        {
+          "id": "cytoplasm",
+          "text": "Цитоплазма",
+          "format": "text",
+          "explanation": "В цитоплазме расположены органоиды и протекают многочисленные реакции обмена веществ."
+        },
+        {
+          "id": "cell-membrane",
+          "text": "Клеточная мембрана",
+          "format": "text",
+          "explanation": "Плазматическая мембрана отделяет содержимое клетки и избирательно регулирует перенос веществ."
+        },
+        {
+          "id": "cell-wall",
+          "text": "Клеточная стенка",
+          "format": "text",
+          "explanation": "Целлюлозная клеточная стенка поддерживает форму растительной клетки, придаёт ей прочность и защищает её."
+        },
+        {
+          "id": "vacuole",
+          "text": "Вакуоль",
+          "format": "text",
+          "explanation": "Центральная вакуоль содержит клеточный сок, участвует в запасании веществ и поддержании тургора."
+        },
+        {
+          "id": "chloroplasts",
+          "text": "Хлоропласты",
+          "format": "text",
+          "explanation": "Хлоропласты содержат хлорофилл и являются местом фотосинтеза."
+        },
+        {
+          "id": "chromoplasts",
+          "text": "Хромопласты",
+          "format": "text",
+          "explanation": "Хромопласты накапливают окрашенные пигменты, благодаря которым цветки и плоды приобретают характерную окраску."
+        },
+        {
+          "id": "leucoplasts",
+          "text": "Лейкопласты",
+          "format": "text",
+          "explanation": "Лейкопласты — бесцветные пластиды, многие из которых участвуют в синтезе и запасании питательных веществ."
+        },
+        {
+          "id": "mitochondria",
+          "text": "Митохондрии",
+          "format": "text",
+          "explanation": "В митохондриях протекают этапы клеточного дыхания и образуется основная часть АТФ эукариотической клетки."
+        },
+        {
+          "id": "ribosomes",
+          "text": "Рибосомы",
+          "format": "text",
+          "explanation": "Рибосомы осуществляют синтез белка по информации матричной РНК."
+        },
+        {
+          "id": "endoplasmic-reticulum",
+          "text": "Эндоплазматическая сеть",
+          "format": "text",
+          "explanation": "Эндоплазматическая сеть участвует в синтезе и внутриклеточном транспорте белков, липидов и других веществ."
+        },
+        {
+          "id": "golgi-apparatus",
+          "text": "Аппарат Гольджи",
+          "format": "text",
+          "explanation": "Аппарат Гольджи модифицирует, сортирует и упаковывает вещества в мембранные пузырьки."
+        }
+      ],
+      "options": [
+        {
+          "id": "stores-genetic-information",
+          "text": "Хранит наследственную информацию и управляет процессами жизнедеятельности клетки"
+        },
+        {
+          "id": "internal-medium",
+          "text": "Внутренняя среда клетки, в которой расположены органоиды и протекают многие реакции"
+        },
+        {
+          "id": "boundary-and-transport",
+          "text": "Отделяет содержимое клетки от внешней среды и регулирует транспорт веществ"
+        },
+        {
+          "id": "shape-strength-protection",
+          "text": "Придаёт клетке форму, обеспечивает прочность и защиту"
+        },
+        {
+          "id": "cell-sap-and-pressure",
+          "text": "Содержит клеточный сок, запасает воду и вещества, поддерживает внутреннее давление"
+        },
+        {
+          "id": "photosynthesis-chlorophyll",
+          "text": "Осуществляют фотосинтез и содержат хлорофилл"
+        },
+        {
+          "id": "colored-pigments",
+          "text": "Содержат цветные пигменты и обеспечивают окраску частей растения"
+        },
+        {
+          "id": "store-nutrients",
+          "text": "Бесцветные пластиды, участвующие в запасании питательных веществ"
+        },
+        {
+          "id": "respiration-atp",
+          "text": "Обеспечивают клеточное дыхание и образование энергии в форме АТФ"
+        },
+        {
+          "id": "protein-synthesis",
+          "text": "Осуществляют синтез белка"
+        },
+        {
+          "id": "synthesis-and-transport",
+          "text": "Участвует в синтезе и транспорте веществ внутри клетки"
+        },
+        {
+          "id": "modify-sort-package",
+          "text": "Изменяет, сортирует и упаковывает вещества, участвует в их выведении"
+        }
+      ],
+      "correct": {
+        "nucleus": "stores-genetic-information",
+        "cytoplasm": "internal-medium",
+        "cell-membrane": "boundary-and-transport",
+        "cell-wall": "shape-strength-protection",
+        "vacuole": "cell-sap-and-pressure",
+        "chloroplasts": "photosynthesis-chlorophyll",
+        "chromoplasts": "colored-pigments",
+        "leucoplasts": "store-nutrients",
+        "mitochondria": "respiration-atp",
+        "ribosomes": "protein-synthesis",
+        "endoplasmic-reticulum": "synthesis-and-transport",
+        "golgi-apparatus": "modify-sort-package"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Органоиды и структуры клетки выполняют взаимосвязанные функции: хранят и реализуют наследственную информацию, обеспечивают обмен веществ и энергии, синтез, транспорт, запасание и фотосинтез.",
+      "difficulty": 2,
+      "tags": ["plant-cell", "organelles", "cell-biology"]
+    }
+  ]
+}

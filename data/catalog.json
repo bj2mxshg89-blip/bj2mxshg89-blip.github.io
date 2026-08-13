@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-07-23",
+  "updatedAt": "2026-08-13",
   "sections": [
     {
       "id": "organic",
@@ -21,12 +21,21 @@
       "countWords": { "one": "тренажёр", "few": "тренажёра", "many": "тренажёров" }
     },
     {
+      "id": "biology",
+      "title": "Биология",
+      "kicker": "Учебные тренажёры",
+      "description": "Основы общей биологии, признаки живых систем и клеточное строение.",
+      "color": "#2f7d57",
+      "order": 30,
+      "countWords": { "one": "тренажёр", "few": "тренажёра", "many": "тренажёров" }
+    },
+    {
       "id": "teacher-tools",
       "title": "Инструменты учителя",
       "kicker": "Организация урока",
       "description": "Практические инструменты для подготовки и проведения урока.",
       "color": "#16815a",
-      "order": 30,
+      "order": 40,
       "countWords": { "one": "инструмент", "few": "инструмента", "many": "инструментов" }
     }
   ],
@@ -241,6 +250,23 @@
       "status": "active",
       "badge": "Старая версия",
       "order": 40
+    },
+    {
+      "id": "biology-matching",
+      "title": "Биология: сопоставление",
+      "description": "Уровни организации жизни, общие свойства живого и функции структур растительной клетки.",
+      "section": "biology",
+      "kicker": "Новый движок",
+      "symbol": "DNA",
+      "color": "#2563eb",
+      "softColor": "#eaf1ff",
+      "questionCount": 3,
+      "modes": ["training", "test"],
+      "meta": "3 раздела · 27 соответствий",
+      "url": "test.html?id=biology-matching",
+      "linkLabel": "Открыть beta",
+      "status": "beta",
+      "order": 10
     },
     {
       "id": "seating",

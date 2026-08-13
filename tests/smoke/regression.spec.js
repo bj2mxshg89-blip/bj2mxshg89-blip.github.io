@@ -130,7 +130,8 @@ test("страницы истории всех универсальных тес
     "organic-classification",
     "hybridization-theory",
     "redox-trainer",
-    "alkane-homology"
+    "alkane-homology",
+    "biology-matching"
   ];
   for (const testId of testIds) {
     runtimeErrors.length = 0;
