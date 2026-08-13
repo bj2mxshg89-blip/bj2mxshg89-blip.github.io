@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=8";
+} from "./utils.js?v=9";
 import {
   appendHistory,
   clearProgress,
@@ -20,14 +20,14 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=8";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=8";
+} from "./storage.js?v=9";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=9";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=8";
+} from "./question-renderers.js?v=9";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -43,8 +43,15 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=8";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=8";
+} from "./question-types.js?v=9";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=9";
+import { initAccountLinks } from "./account-widget.js?v=9";
+import {
+  prepareCloudProgress,
+  queueCloudProgress,
+  removeCloudProgress,
+  saveCompletedAttempt
+} from "./cloud-storage.js?v=9";
 
 class TrainerEngine {
   constructor() {
@@ -54,12 +61,13 @@ class TrainerEngine {
     this.savedProgress = { status: "empty", data: null };
     this.selection = { variantId: null, mode: null };
     this.state = null;
+    this.cloud = { signedIn: false, status: "local" };
 
     this.elements = Object.fromEntries([
       "loadingPanel", "errorPanel", "errorTitle", "errorMessage", "errorList",
       "trainerHero", "heroSymbol", "heroEyebrow", "heroTitle", "heroDescription", "heroChips",
       "setupPanel", "variantChoices", "modeChoices", "setupStatus", "startAttemptButton",
-      "referencePanel", "referenceTitle", "referenceList",
+      "referencePanel", "referenceTitle", "referenceList", "cloudStatus",
       "historyLink", "introTitle", "introDescription", "resumeCard", "resumeTitle", "resumeText",
       "resumeButton", "discardButton", "workPanel", "questionCounter", "answeredCounter",
       "correctCounter", "correctCounterLabel", "mistakeCounter", "questionNavigation", "backToSetupButton",
@@ -75,6 +83,7 @@ class TrainerEngine {
 
   async init() {
     this.bindStaticEvents();
+    void initAccountLinks();
 
     try {
       this.testId = getTestId();
@@ -88,6 +97,8 @@ class TrainerEngine {
       this.questionMap = new Map(test.questions.map((question) => [question.id, question]));
       this.applyTestMetadata();
       this.prepareSetup();
+      this.cloud = await prepareCloudProgress(test);
+      this.updateCloudStatus(this.cloud.status, this.cloud.message);
       this.savedProgress = loadProgress(test);
       this.renderResumeCard();
       this.showPanel("setup");
@@ -307,6 +318,7 @@ class TrainerEngine {
     }
 
     clearProgress(this.test.id);
+    void removeCloudProgress(this.test.id);
     const isRetry = Boolean(questionIds?.length);
     const order = createAttemptQuestionOrder({
       baseQuestionIds: variant.questionIds,
@@ -400,7 +412,7 @@ class TrainerEngine {
   persistProgress() {
     if (!this.test || !this.state || this.state.completed || !this.test.settings.saveProgress) return;
     const currentQuestionId = this.state.questionOrder[this.state.current] || null;
-    saveProgress(this.test.id, {
+    const progress = saveProgress(this.test.id, {
       schemaVersion: 1,
       testId: this.test.id,
       testVersion: this.test.version,
@@ -421,6 +433,19 @@ class TrainerEngine {
       durationMs: Math.max(0, Date.now() - new Date(this.state.startedAt).getTime()),
       retryOf: this.state.retryOf
     });
+    queueCloudProgress(this.test.id, this.test.version, progress, (status) => this.updateCloudStatus(status));
+  }
+
+  updateCloudStatus(status, customMessage = "") {
+    if (!this.elements.cloudStatus) return;
+    const messages = {
+      saving: "Сохраняем прогресс в облаке…",
+      synced: "Прогресс сохранён в аккаунте.",
+      offline: "Облако недоступно; прогресс сохранён на этом устройстве.",
+      local: "Без входа прогресс сохраняется только на этом устройстве."
+    };
+    this.elements.cloudStatus.textContent = customMessage || messages[status] || messages.local;
+    this.elements.cloudStatus.dataset.status = status || "local";
   }
 
   renderWork() {
@@ -752,6 +777,13 @@ class TrainerEngine {
 
     appendHistory(this.test.id, historyRecord);
     clearProgress(this.test.id);
+    this.updateCloudStatus(this.cloud.signedIn ? "saving" : "local", this.cloud.signedIn
+      ? "Сохраняем завершённый результат в аккаунте…"
+      : "Результат сохранён в этом браузере.");
+    void saveCompletedAttempt(historyRecord).then((outcome) => {
+      this.updateCloudStatus(outcome.synced ? "synced" : outcome.reason === "signed-out" ? "local" : "offline",
+        outcome.synced ? "Результат сохранён в аккаунте." : "Результат сохранён на этом устройстве.");
+    });
     this.savedProgress = { status: "empty", data: null };
     this.renderResult(result);
     this.showPanel("result");

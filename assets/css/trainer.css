@@ -202,6 +202,36 @@
   text-decoration: none;
 }
 
+.trainer-cloud-status {
+  margin: 10px 0 0;
+  padding: 10px 11px;
+  border: 1px solid #d8deeb;
+  border-radius: 11px;
+  color: var(--muted);
+  background: #f8f9fd;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.trainer-cloud-status[data-status="synced"] {
+  border-color: #9bd0b1;
+  color: #205b3a;
+  background: var(--good-bg);
+}
+
+.trainer-cloud-status[data-status="saving"] {
+  border-color: #aebbe8;
+  color: #2948b5;
+  background: #f1f4ff;
+}
+
+.trainer-cloud-status[data-status="offline"] {
+  border-color: #e1c675;
+  color: #6d5100;
+  background: var(--warn-bg);
+}
+
 .trainer-status-line {
   min-height: 24px;
   margin: 11px 0 0;

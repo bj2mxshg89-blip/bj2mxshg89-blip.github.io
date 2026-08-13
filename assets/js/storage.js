@@ -81,10 +81,12 @@ export function loadProgress(test) {
 }
 
 export function saveProgress(testId, progress) {
-  setItem(storageKeys.progress(testId), JSON.stringify({
+  const record = {
     ...progress,
-    updatedAt: new Date().toISOString()
-  }));
+    updatedAt: progress?.updatedAt || new Date().toISOString()
+  };
+  setItem(storageKeys.progress(testId), JSON.stringify(record));
+  return record;
 }
 
 export function clearProgress(testId) {

@@ -1,0 +1,7 @@
+project_id = "mzrdyygalvglftmieotj"
+
+[functions.bootstrap-teacher]
+verify_jwt = false
+
+[functions.create-student]
+verify_jwt = true
