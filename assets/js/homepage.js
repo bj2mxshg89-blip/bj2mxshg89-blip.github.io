@@ -1,5 +1,6 @@
-import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=8";
-import { formatCount } from "./utils.js?v=8";
+import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=9";
+import { formatCount } from "./utils.js?v=9";
+import { initAccountLinks } from "./account-widget.js?v=9";
 
 const navigation = document.querySelector("#categoryNavigation");
 const catalogRoot = document.querySelector("#toolCatalog");
@@ -110,6 +111,7 @@ function buildHomepage(catalog) {
 }
 
 async function initHomepage() {
+  void initAccountLinks();
   if (!navigation || !catalogRoot || !status) return;
 
   try {

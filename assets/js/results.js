@@ -7,8 +7,10 @@ import {
   modeTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=8";
-import { clearHistory, getHistory } from "./storage.js?v=8";
+} from "./utils.js?v=9";
+import { clearHistory } from "./storage.js?v=9";
+import { getCombinedHistory } from "./cloud-storage.js?v=9";
+import { initAccountLinks } from "./account-widget.js?v=9";
 
 const elements = Object.fromEntries([
   "historyTitle", "historyDescription", "historyLoading", "historyError", "historyErrorText",
@@ -17,8 +19,10 @@ const elements = Object.fromEntries([
 ].map((id) => [id, document.getElementById(id)]));
 
 let test = null;
+let historyState = { history: [], cloud: false, message: "" };
 
 async function initResults() {
+  void initAccountLinks();
   try {
     const testId = getTestId();
     test = await fetchJson(`data/tests/${encodeURIComponent(testId)}.json`);
@@ -27,11 +31,12 @@ async function initResults() {
 
     document.title = `История: ${test.title} — Кабинет учителя`;
     elements.historyTitle.textContent = "История результатов";
-    elements.historyDescription.textContent = `${test.title}. Данные остаются только в этом браузере.`;
+    historyState = await getCombinedHistory(test.id);
+    elements.historyDescription.textContent = `${test.title}. ${historyState.message}`;
     elements.historyTestTitle.textContent = test.title;
     elements.openTestLink.href = `test.html?id=${encodeURIComponent(test.id)}`;
     elements.clearHistoryButton.addEventListener("click", clearCurrentHistory);
-    renderHistory();
+    renderHistory(historyState.history);
     elements.historyLoading.hidden = true;
     elements.historyPanel.hidden = false;
   } catch (error) {
@@ -42,12 +47,13 @@ async function initResults() {
   }
 }
 
-function renderHistory() {
-  const history = getHistory(test.id).slice().reverse();
+function renderHistory(source = historyState.history) {
+  const history = source.slice().reverse();
   elements.historyList.replaceChildren();
   elements.historySummary.textContent = history.length
     ? `Сохранено попыток: ${history.length}. Сначала показаны последние.`
     : "Завершённых попыток пока нет.";
+  elements.clearHistoryButton.hidden = historyState.cloud;
   elements.clearHistoryButton.disabled = history.length === 0;
 
   if (!history.length) {
@@ -67,7 +73,8 @@ function renderHistory() {
     const heading = document.createElement("strong");
     heading.textContent = `${variantTitle(test, attempt.variantId)} · ${modeTitle(attempt.mode)}`;
     const date = document.createElement("small");
-    date.textContent = `${formatDateTime(attempt.completedAt)} · версия ${attempt.testVersion ?? "—"}`;
+    date.textContent = `${formatDateTime(attempt.completedAt)} · версия ${attempt.testVersion ?? "—"}` +
+      (attempt.cloud ? " · облако" : "");
     main.append(heading, date);
 
     const hasPointScore = Number.isFinite(attempt.earnedPoints) && Number.isFinite(attempt.maxPoints) &&
@@ -99,7 +106,8 @@ function clearCurrentHistory() {
   const confirmed = window.confirm("Удалить историю результатов этого теста на данном устройстве?");
   if (!confirmed) return;
   clearHistory(test.id);
-  renderHistory();
+  historyState = { ...historyState, history: [], cloud: false };
+  renderHistory([]);
 }
 
 initResults();

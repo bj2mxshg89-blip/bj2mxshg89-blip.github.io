@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Личный кабинет ученика или учителя.">
+  <title>Личный кабинет — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/account.css">
+</head>
+<body class="account-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия и биология · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">Все инструменты</a>
+      <a class="site-nav-link" href="account.html">Аккаунт</a>
+    </nav>
+  </header>
+
+  <main class="site-page account-shell">
+    <section class="site-hero account-hero">
+      <div class="site-hero-mark" aria-hidden="true">%</div>
+      <div class="site-eyebrow" id="dashboardRole">Личный кабинет</div>
+      <h1 id="dashboardTitle">Загрузка…</h1>
+      <p id="dashboardDescription">Получаем данные аккаунта и историю обучения.</p>
+    </section>
+
+    <section class="site-panel trainer-loading" id="dashboardLoading" aria-live="polite">
+      <span class="trainer-spinner" aria-hidden="true"></span>
+      <span>Загружаем кабинет…</span>
+    </section>
+
+    <section class="site-panel account-error" id="dashboardError" role="alert" hidden>
+      <h2>Не удалось открыть кабинет</h2>
+      <p id="dashboardErrorText"></p>
+      <a class="site-btn" href="account.html">Перейти ко входу</a>
+    </section>
+
+    <section id="studentPanel" hidden>
+      <div class="account-metrics" id="studentMetrics"></div>
+      <div class="account-dashboard-grid">
+        <section class="site-panel account-card">
+          <h2>Последние результаты</h2>
+          <div class="account-attempt-list" id="studentAttemptList"></div>
+        </section>
+        <aside class="site-panel account-card">
+          <h2>Мои классы</h2>
+          <div class="account-class-list" id="studentClassList"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="teacherPanel" hidden>
+      <div class="account-dashboard-grid teacher-controls">
+        <article class="site-panel account-card">
+          <div class="site-eyebrow">Шаг 1</div>
+          <h2>Создать класс</h2>
+          <form id="classroomForm" class="account-form account-form-compact">
+            <label for="classroomTitle">Название класса или группы</label>
+            <input id="classroomTitle" name="title" type="text" maxlength="80" required>
+            <button class="site-btn" type="submit">Создать класс</button>
+            <p class="account-form-status" id="classroomStatus" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="site-panel account-card">
+          <div class="site-eyebrow">Шаг 2</div>
+          <h2>Создать аккаунт ученика</h2>
+          <form id="studentForm" class="account-form account-form-compact">
+            <label for="studentClassroom">Класс</label>
+            <select id="studentClassroom" name="classroomId" required></select>
+            <label for="studentDisplayName">Имя, инициалы или псевдоним</label>
+            <input id="studentDisplayName" name="displayName" type="text" maxlength="80" required>
+            <label for="studentLogin">Логин</label>
+            <input id="studentLogin" name="login" type="text" minlength="3" maxlength="32"
+              autocapitalize="none" spellcheck="false" required>
+            <label for="studentPassword">Временный пароль</label>
+            <input id="studentPassword" name="password" type="text" minlength="10" maxlength="72"
+              autocomplete="off" required>
+            <button class="site-btn" type="submit">Создать и добавить в класс</button>
+            <p class="account-form-status" id="studentStatus" aria-live="polite"></p>
+          </form>
+        </article>
+      </div>
+
+      <section class="site-panel account-credentials" id="credentialsCard" role="status" hidden>
+        <div>
+          <strong>Аккаунт создан</strong>
+          <p>Передайте данные ученику. Пароль не сохраняется в кабинете и показывается только сейчас.</p>
+        </div>
+        <dl>
+          <div><dt>Логин</dt><dd id="createdLogin"></dd></div>
+          <div><dt>Пароль</dt><dd id="createdPassword"></dd></div>
+        </dl>
+      </section>
+
+      <section class="account-teacher-summary" aria-labelledby="classesTitle">
+        <div class="site-section-head">
+          <div><h2 id="classesTitle">Классы и динамика</h2></div>
+          <p>Показаны завершённые попытки учеников, связанных с вашими классами.</p>
+        </div>
+        <div id="teacherClassList" class="account-classroom-panels"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">Доступ к данным ограничен ролью и принадлежностью к классу</footer>
+  <script type="module" src="assets/js/dashboard.js?v=9"></script>
+</body>
+</html>

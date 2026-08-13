@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Вход в учебную платформу и настройка аккаунта.">
+  <title>Вход — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/account.css">
+</head>
+<body class="account-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия и биология · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="site-page account-shell">
+    <section class="site-hero account-hero">
+      <div class="site-hero-mark" aria-hidden="true">ID</div>
+      <div class="site-eyebrow">Личный учебный профиль</div>
+      <h1>Вход в аккаунт</h1>
+      <p>Аккаунт сохраняет прогресс и результаты между устройствами. Ученикам не требуется личная электронная почта.</p>
+    </section>
+
+    <p class="account-page-status" id="pageStatus" role="status" aria-live="polite">Проверяем состояние аккаунта…</p>
+
+    <section id="signedOutPanel" class="account-grid" hidden>
+      <article class="site-panel account-card">
+        <div class="site-eyebrow">Ученик или учитель</div>
+        <h2>Войти</h2>
+        <p>Используйте логин и пароль, выданные учителем.</p>
+        <form id="loginForm" class="account-form">
+          <label for="loginName">Логин</label>
+          <input id="loginName" name="login" type="text" inputmode="text" autocomplete="username"
+            autocapitalize="none" spellcheck="false" minlength="3" maxlength="32" required>
+          <label for="loginPassword">Пароль</label>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password"
+            minlength="10" maxlength="72" required>
+          <button class="site-btn" type="submit">Войти</button>
+          <p class="account-form-status" id="loginStatus" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="site-panel account-card">
+        <div class="site-eyebrow">Только при первом запуске</div>
+        <h2>Создать аккаунт владельца</h2>
+        <p>Одноразовый код превращает первый аккаунт в аккаунт учителя. После использования код блокируется.</p>
+        <details class="account-bootstrap">
+          <summary>Открыть форму первого запуска</summary>
+          <form id="bootstrapForm" class="account-form">
+            <label for="ownerDisplayName">Отображаемое имя</label>
+            <input id="ownerDisplayName" name="displayName" type="text" autocomplete="name" maxlength="80" required>
+            <label for="ownerLogin">Новый логин</label>
+            <input id="ownerLogin" name="login" type="text" autocomplete="username" autocapitalize="none"
+              spellcheck="false" minlength="3" maxlength="32" required>
+            <label for="ownerPassword">Новый пароль</label>
+            <input id="ownerPassword" name="password" type="password" autocomplete="new-password"
+              minlength="10" maxlength="72" required>
+            <label for="ownerCode">Одноразовый код владельца</label>
+            <input id="ownerCode" name="bootstrapCode" type="password" autocomplete="one-time-code" required>
+            <button class="site-btn" type="submit">Создать аккаунт учителя</button>
+            <p class="account-form-status" id="bootstrapStatus" aria-live="polite"></p>
+          </form>
+        </details>
+      </article>
+    </section>
+
+    <section id="signedInPanel" class="site-panel account-card account-signed-in" hidden>
+      <div>
+        <div class="site-eyebrow" id="accountRole">Аккаунт</div>
+        <h2 id="accountName">Пользователь</h2>
+        <p id="accountLogin"></p>
+      </div>
+      <div class="account-action-row">
+        <a class="site-btn" href="dashboard.html" id="dashboardLink">Открыть кабинет</a>
+        <button class="site-btn secondary" type="button" id="signOutButton">Выйти</button>
+      </div>
+
+      <details class="account-password-panel">
+        <summary>Изменить пароль</summary>
+        <form id="passwordForm" class="account-form account-form-compact">
+          <label for="newPassword">Новый пароль</label>
+          <input id="newPassword" name="password" type="password" autocomplete="new-password"
+            minlength="10" maxlength="72" required>
+          <label for="confirmPassword">Повторите пароль</label>
+          <input id="confirmPassword" name="confirmation" type="password" autocomplete="new-password"
+            minlength="10" maxlength="72" required>
+          <button class="site-btn secondary" type="submit">Сохранить новый пароль</button>
+          <p class="account-form-status" id="passwordStatus" aria-live="polite"></p>
+        </form>
+      </details>
+    </section>
+  </main>
+
+  <footer class="site-footer">Личные данные не входят в открытые файлы тестов</footer>
+  <script type="module" src="assets/js/account.js?v=9"></script>
+</body>
+</html>
