@@ -1,0 +1,6144 @@
+{
+  "schemaVersion": 1,
+  "id": "alkane-homology",
+  "version": 1,
+  "title": "Гомология алканов",
+  "description": "Общая формула алканов, гомологическая разность, названия, молекулярные формулы, последовательности и расчётные задания.",
+  "subject": "chemistry",
+  "category": "organic",
+  "symbol": "CH₂",
+  "theme": {
+    "accent": "#3157d5",
+    "soft": "#eef2ff"
+  },
+  "modes": {
+    "training": {
+      "enabled": true,
+      "instantFeedback": true,
+      "showExplanation": true
+    },
+    "test": {
+      "enabled": true,
+      "instantFeedback": false,
+      "showExplanation": false
+    }
+  },
+  "grading": {
+    "thresholds": {
+      "3": 50,
+      "4": 70,
+      "5": 90
+    }
+  },
+  "settings": {
+    "shuffleQuestions": true,
+    "shuffleAnswers": true,
+    "saveProgress": true,
+    "allowBack": true
+  },
+  "reference": {
+    "title": "Памятка по гомологии алканов",
+    "items": [
+      "Общая формула ациклических алканов: CₙH₂ₙ₊₂.",
+      "Соседние гомологи отличаются на одну группу CH₂.",
+      "Число атомов водорода в ациклическом алкане равно 2n + 2.",
+      "Относительная молекулярная масса алкана: Mr = 14n + 2 при Ar(C) = 12 и Ar(H) = 1.",
+      "Общее число атомов в молекуле алкана: 3n + 2.",
+      "Гомологи относятся к одному классу веществ, имеют сходное строение и сходные химические свойства."
+    ]
+  },
+  "sections": [
+    {
+      "id": "neighbor",
+      "title": "Соседний гомолог"
+    },
+    {
+      "id": "pair",
+      "title": "Пары гомологов"
+    },
+    {
+      "id": "steps",
+      "title": "Число гомологических переходов"
+    },
+    {
+      "id": "missing",
+      "title": "Пропущенный член ряда"
+    },
+    {
+      "id": "formula",
+      "title": "Формула по числу атомов углерода"
+    },
+    {
+      "id": "carbon",
+      "title": "Число атомов углерода"
+    },
+    {
+      "id": "name",
+      "title": "Название алкана"
+    },
+    {
+      "id": "matching",
+      "title": "Соответствие формул и названий"
+    },
+    {
+      "id": "sequence",
+      "title": "Последовательность гомологов"
+    },
+    {
+      "id": "odd",
+      "title": "Лишнее вещество"
+    },
+    {
+      "id": "truefalse",
+      "title": "Верные и неверные утверждения"
+    },
+    {
+      "id": "calculation",
+      "title": "Расчётные задания"
+    }
+  ],
+  "variants": [
+    {
+      "id": "mixed",
+      "title": "Смешанный вариант",
+      "questionIds": [
+        "alkane-neighbor-001",
+        "alkane-neighbor-002",
+        "alkane-neighbor-003",
+        "alkane-neighbor-004",
+        "alkane-neighbor-005",
+        "alkane-neighbor-006",
+        "alkane-neighbor-007",
+        "alkane-neighbor-008",
+        "alkane-neighbor-009",
+        "alkane-neighbor-010",
+        "alkane-neighbor-011",
+        "alkane-neighbor-012",
+        "alkane-neighbor-013",
+        "alkane-neighbor-014",
+        "alkane-neighbor-015",
+        "alkane-pair-001",
+        "alkane-pair-002",
+        "alkane-pair-003",
+        "alkane-pair-004",
+        "alkane-pair-005",
+        "alkane-pair-006",
+        "alkane-pair-007",
+        "alkane-pair-008",
+        "alkane-pair-009",
+        "alkane-pair-010",
+        "alkane-pair-011",
+        "alkane-pair-012",
+        "alkane-pair-013",
+        "alkane-pair-014",
+        "alkane-pair-015",
+        "alkane-steps-001",
+        "alkane-steps-002",
+        "alkane-steps-003",
+        "alkane-steps-004",
+        "alkane-steps-005",
+        "alkane-steps-006",
+        "alkane-steps-007",
+        "alkane-steps-008",
+        "alkane-steps-009",
+        "alkane-steps-010",
+        "alkane-steps-011",
+        "alkane-steps-012",
+        "alkane-steps-013",
+        "alkane-steps-014",
+        "alkane-steps-015",
+        "alkane-missing-001",
+        "alkane-missing-002",
+        "alkane-missing-003",
+        "alkane-missing-004",
+        "alkane-missing-005",
+        "alkane-missing-006",
+        "alkane-missing-007",
+        "alkane-missing-008",
+        "alkane-missing-009",
+        "alkane-missing-010",
+        "alkane-missing-011",
+        "alkane-missing-012",
+        "alkane-missing-013",
+        "alkane-missing-014",
+        "alkane-missing-015",
+        "alkane-formula-001",
+        "alkane-formula-002",
+        "alkane-formula-003",
+        "alkane-formula-004",
+        "alkane-formula-005",
+        "alkane-formula-006",
+        "alkane-formula-007",
+        "alkane-formula-008",
+        "alkane-formula-009",
+        "alkane-formula-010",
+        "alkane-formula-011",
+        "alkane-formula-012",
+        "alkane-formula-013",
+        "alkane-formula-014",
+        "alkane-formula-015",
+        "alkane-carbon-001",
+        "alkane-carbon-002",
+        "alkane-carbon-003",
+        "alkane-carbon-004",
+        "alkane-carbon-005",
+        "alkane-carbon-006",
+        "alkane-carbon-007",
+        "alkane-carbon-008",
+        "alkane-carbon-009",
+        "alkane-carbon-010",
+        "alkane-carbon-011",
+        "alkane-carbon-012",
+        "alkane-carbon-013",
+        "alkane-carbon-014",
+        "alkane-carbon-015",
+        "alkane-name-001",
+        "alkane-name-002",
+        "alkane-name-003",
+        "alkane-name-004",
+        "alkane-name-005",
+        "alkane-name-006",
+        "alkane-name-007",
+        "alkane-name-008",
+        "alkane-name-009",
+        "alkane-name-010",
+        "alkane-name-011",
+        "alkane-name-012",
+        "alkane-name-013",
+        "alkane-name-014",
+        "alkane-name-015",
+        "alkane-matching-001",
+        "alkane-matching-002",
+        "alkane-matching-003",
+        "alkane-matching-004",
+        "alkane-matching-005",
+        "alkane-matching-006",
+        "alkane-matching-007",
+        "alkane-matching-008",
+        "alkane-matching-009",
+        "alkane-matching-010",
+        "alkane-matching-011",
+        "alkane-matching-012",
+        "alkane-matching-013",
+        "alkane-matching-014",
+        "alkane-matching-015",
+        "alkane-sequence-001",
+        "alkane-sequence-002",
+        "alkane-sequence-003",
+        "alkane-sequence-004",
+        "alkane-sequence-005",
+        "alkane-sequence-006",
+        "alkane-sequence-007",
+        "alkane-sequence-008",
+        "alkane-sequence-009",
+        "alkane-sequence-010",
+        "alkane-sequence-011",
+        "alkane-sequence-012",
+        "alkane-sequence-013",
+        "alkane-sequence-014",
+        "alkane-sequence-015",
+        "alkane-odd-001",
+        "alkane-odd-002",
+        "alkane-odd-003",
+        "alkane-odd-004",
+        "alkane-odd-005",
+        "alkane-odd-006",
+        "alkane-odd-007",
+        "alkane-odd-008",
+        "alkane-odd-009",
+        "alkane-odd-010",
+        "alkane-odd-011",
+        "alkane-odd-012",
+        "alkane-odd-013",
+        "alkane-odd-014",
+        "alkane-odd-015",
+        "alkane-truefalse-001",
+        "alkane-truefalse-002",
+        "alkane-truefalse-003",
+        "alkane-truefalse-004",
+        "alkane-truefalse-005",
+        "alkane-truefalse-006",
+        "alkane-truefalse-007",
+        "alkane-truefalse-008",
+        "alkane-truefalse-009",
+        "alkane-truefalse-010",
+        "alkane-truefalse-011",
+        "alkane-truefalse-012",
+        "alkane-truefalse-013",
+        "alkane-truefalse-014",
+        "alkane-truefalse-015",
+        "alkane-calculation-001",
+        "alkane-calculation-002",
+        "alkane-calculation-003",
+        "alkane-calculation-004",
+        "alkane-calculation-005",
+        "alkane-calculation-006",
+        "alkane-calculation-007",
+        "alkane-calculation-008",
+        "alkane-calculation-009",
+        "alkane-calculation-010",
+        "alkane-calculation-011",
+        "alkane-calculation-012",
+        "alkane-calculation-013",
+        "alkane-calculation-014",
+        "alkane-calculation-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "neighbor",
+      "title": "Соседний гомолог",
+      "questionIds": [
+        "alkane-neighbor-001",
+        "alkane-neighbor-002",
+        "alkane-neighbor-003",
+        "alkane-neighbor-004",
+        "alkane-neighbor-005",
+        "alkane-neighbor-006",
+        "alkane-neighbor-007",
+        "alkane-neighbor-008",
+        "alkane-neighbor-009",
+        "alkane-neighbor-010",
+        "alkane-neighbor-011",
+        "alkane-neighbor-012",
+        "alkane-neighbor-013",
+        "alkane-neighbor-014",
+        "alkane-neighbor-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "pair",
+      "title": "Пары гомологов",
+      "questionIds": [
+        "alkane-pair-001",
+        "alkane-pair-002",
+        "alkane-pair-003",
+        "alkane-pair-004",
+        "alkane-pair-005",
+        "alkane-pair-006",
+        "alkane-pair-007",
+        "alkane-pair-008",
+        "alkane-pair-009",
+        "alkane-pair-010",
+        "alkane-pair-011",
+        "alkane-pair-012",
+        "alkane-pair-013",
+        "alkane-pair-014",
+        "alkane-pair-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "steps",
+      "title": "Число гомологических переходов",
+      "questionIds": [
+        "alkane-steps-001",
+        "alkane-steps-002",
+        "alkane-steps-003",
+        "alkane-steps-004",
+        "alkane-steps-005",
+        "alkane-steps-006",
+        "alkane-steps-007",
+        "alkane-steps-008",
+        "alkane-steps-009",
+        "alkane-steps-010",
+        "alkane-steps-011",
+        "alkane-steps-012",
+        "alkane-steps-013",
+        "alkane-steps-014",
+        "alkane-steps-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "missing",
+      "title": "Пропущенный член ряда",
+      "questionIds": [
+        "alkane-missing-001",
+        "alkane-missing-002",
+        "alkane-missing-003",
+        "alkane-missing-004",
+        "alkane-missing-005",
+        "alkane-missing-006",
+        "alkane-missing-007",
+        "alkane-missing-008",
+        "alkane-missing-009",
+        "alkane-missing-010",
+        "alkane-missing-011",
+        "alkane-missing-012",
+        "alkane-missing-013",
+        "alkane-missing-014",
+        "alkane-missing-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "formula",
+      "title": "Формула по числу атомов углерода",
+      "questionIds": [
+        "alkane-formula-001",
+        "alkane-formula-002",
+        "alkane-formula-003",
+        "alkane-formula-004",
+        "alkane-formula-005",
+        "alkane-formula-006",
+        "alkane-formula-007",
+        "alkane-formula-008",
+        "alkane-formula-009",
+        "alkane-formula-010",
+        "alkane-formula-011",
+        "alkane-formula-012",
+        "alkane-formula-013",
+        "alkane-formula-014",
+        "alkane-formula-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "carbon",
+      "title": "Число атомов углерода",
+      "questionIds": [
+        "alkane-carbon-001",
+        "alkane-carbon-002",
+        "alkane-carbon-003",
+        "alkane-carbon-004",
+        "alkane-carbon-005",
+        "alkane-carbon-006",
+        "alkane-carbon-007",
+        "alkane-carbon-008",
+        "alkane-carbon-009",
+        "alkane-carbon-010",
+        "alkane-carbon-011",
+        "alkane-carbon-012",
+        "alkane-carbon-013",
+        "alkane-carbon-014",
+        "alkane-carbon-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "name",
+      "title": "Название алкана",
+      "questionIds": [
+        "alkane-name-001",
+        "alkane-name-002",
+        "alkane-name-003",
+        "alkane-name-004",
+        "alkane-name-005",
+        "alkane-name-006",
+        "alkane-name-007",
+        "alkane-name-008",
+        "alkane-name-009",
+        "alkane-name-010",
+        "alkane-name-011",
+        "alkane-name-012",
+        "alkane-name-013",
+        "alkane-name-014",
+        "alkane-name-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "matching",
+      "title": "Соответствие формул и названий",
+      "questionIds": [
+        "alkane-matching-001",
+        "alkane-matching-002",
+        "alkane-matching-003",
+        "alkane-matching-004",
+        "alkane-matching-005",
+        "alkane-matching-006",
+        "alkane-matching-007",
+        "alkane-matching-008",
+        "alkane-matching-009",
+        "alkane-matching-010",
+        "alkane-matching-011",
+        "alkane-matching-012",
+        "alkane-matching-013",
+        "alkane-matching-014",
+        "alkane-matching-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "sequence",
+      "title": "Последовательность гомологов",
+      "questionIds": [
+        "alkane-sequence-001",
+        "alkane-sequence-002",
+        "alkane-sequence-003",
+        "alkane-sequence-004",
+        "alkane-sequence-005",
+        "alkane-sequence-006",
+        "alkane-sequence-007",
+        "alkane-sequence-008",
+        "alkane-sequence-009",
+        "alkane-sequence-010",
+        "alkane-sequence-011",
+        "alkane-sequence-012",
+        "alkane-sequence-013",
+        "alkane-sequence-014",
+        "alkane-sequence-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "odd",
+      "title": "Лишнее вещество",
+      "questionIds": [
+        "alkane-odd-001",
+        "alkane-odd-002",
+        "alkane-odd-003",
+        "alkane-odd-004",
+        "alkane-odd-005",
+        "alkane-odd-006",
+        "alkane-odd-007",
+        "alkane-odd-008",
+        "alkane-odd-009",
+        "alkane-odd-010",
+        "alkane-odd-011",
+        "alkane-odd-012",
+        "alkane-odd-013",
+        "alkane-odd-014",
+        "alkane-odd-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "truefalse",
+      "title": "Верные и неверные утверждения",
+      "questionIds": [
+        "alkane-truefalse-001",
+        "alkane-truefalse-002",
+        "alkane-truefalse-003",
+        "alkane-truefalse-004",
+        "alkane-truefalse-005",
+        "alkane-truefalse-006",
+        "alkane-truefalse-007",
+        "alkane-truefalse-008",
+        "alkane-truefalse-009",
+        "alkane-truefalse-010",
+        "alkane-truefalse-011",
+        "alkane-truefalse-012",
+        "alkane-truefalse-013",
+        "alkane-truefalse-014",
+        "alkane-truefalse-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    },
+    {
+      "id": "calculation",
+      "title": "Расчётные задания",
+      "questionIds": [
+        "alkane-calculation-001",
+        "alkane-calculation-002",
+        "alkane-calculation-003",
+        "alkane-calculation-004",
+        "alkane-calculation-005",
+        "alkane-calculation-006",
+        "alkane-calculation-007",
+        "alkane-calculation-008",
+        "alkane-calculation-009",
+        "alkane-calculation-010",
+        "alkane-calculation-011",
+        "alkane-calculation-012",
+        "alkane-calculation-013",
+        "alkane-calculation-014",
+        "alkane-calculation-015"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 15
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "alkane-neighbor-001",
+      "section": "neighbor",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₂H₆?",
+      "content": {
+        "text": "C₂H₆ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₄H₁₀",
+        "C₃H₈",
+        "CH₄",
+        "C₃H₆"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₂H₆ содержит 2 атома углерода. Следующий соседний гомолог содержит 3 атома углерода и имеет формулу C₃H₈."
+    },
+    {
+      "id": "alkane-neighbor-002",
+      "section": "neighbor",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₃H₈?",
+      "content": {
+        "text": "C₃H₈ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₅H₁₂",
+        "C₂H₆",
+        "C₄H₁₀",
+        "C₄H₈"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₃H₈ содержит 3 атома углерода. Следующий соседний гомолог содержит 4 атома углерода и имеет формулу C₄H₁₀."
+    },
+    {
+      "id": "alkane-neighbor-003",
+      "section": "neighbor",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₄H₁₀?",
+      "content": {
+        "text": "C₄H₁₀ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₆H₁₄",
+        "C₃H₈",
+        "C₅H₁₀",
+        "C₅H₁₂"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₄H₁₀ содержит 4 атома углерода. Следующий соседний гомолог содержит 5 атомов углерода и имеет формулу C₅H₁₂."
+    },
+    {
+      "id": "alkane-neighbor-004",
+      "section": "neighbor",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₅H₁₂?",
+      "content": {
+        "text": "C₅H₁₂ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₆H₁₄",
+        "C₇H₁₆",
+        "C₄H₁₀",
+        "C₆H₁₂"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₅H₁₂ содержит 5 атомов углерода. Следующий соседний гомолог содержит 6 атомов углерода и имеет формулу C₆H₁₄."
+    },
+    {
+      "id": "alkane-neighbor-005",
+      "section": "neighbor",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₆H₁₄?",
+      "content": {
+        "text": "C₆H₁₄ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₈H₁₈",
+        "C₇H₁₆",
+        "C₅H₁₂",
+        "C₇H₁₄"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₆H₁₄ содержит 6 атомов углерода. Следующий соседний гомолог содержит 7 атомов углерода и имеет формулу C₇H₁₆."
+    },
+    {
+      "id": "alkane-neighbor-006",
+      "section": "neighbor",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₇H₁₆?",
+      "content": {
+        "text": "C₇H₁₆ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₉H₂₀",
+        "C₆H₁₄",
+        "C₈H₁₈",
+        "C₈H₁₆"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₇H₁₆ содержит 7 атомов углерода. Следующий соседний гомолог содержит 8 атомов углерода и имеет формулу C₈H₁₈."
+    },
+    {
+      "id": "alkane-neighbor-007",
+      "section": "neighbor",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₈H₁₈?",
+      "content": {
+        "text": "C₈H₁₈ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₀H₂₂",
+        "C₇H₁₆",
+        "C₉H₁₈",
+        "C₉H₂₀"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₈H₁₈ содержит 8 атомов углерода. Следующий соседний гомолог содержит 9 атомов углерода и имеет формулу C₉H₂₀."
+    },
+    {
+      "id": "alkane-neighbor-008",
+      "section": "neighbor",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₉H₂₀?",
+      "content": {
+        "text": "C₉H₂₀ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₀H₂₂",
+        "C₁₁H₂₄",
+        "C₈H₁₈",
+        "C₁₀H₂₀"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₉H₂₀ содержит 9 атомов углерода. Следующий соседний гомолог содержит 10 атомов углерода и имеет формулу C₁₀H₂₂."
+    },
+    {
+      "id": "alkane-neighbor-009",
+      "section": "neighbor",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₀H₂₂?",
+      "content": {
+        "text": "C₁₀H₂₂ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₂H₂₆",
+        "C₁₁H₂₄",
+        "C₉H₂₀",
+        "C₁₁H₂₂"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₁₀H₂₂ содержит 10 атомов углерода. Следующий соседний гомолог содержит 11 атомов углерода и имеет формулу C₁₁H₂₄."
+    },
+    {
+      "id": "alkane-neighbor-010",
+      "section": "neighbor",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₁H₂₄?",
+      "content": {
+        "text": "C₁₁H₂₄ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₃H₂₈",
+        "C₁₀H₂₂",
+        "C₁₂H₂₆",
+        "C₁₂H₂₄"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₁₁H₂₄ содержит 11 атомов углерода. Следующий соседний гомолог содержит 12 атомов углерода и имеет формулу C₁₂H₂₆."
+    },
+    {
+      "id": "alkane-neighbor-011",
+      "section": "neighbor",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₂H₂₆?",
+      "content": {
+        "text": "C₁₂H₂₆ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₄H₃₀",
+        "C₁₁H₂₄",
+        "C₁₃H₂₆",
+        "C₁₃H₂₈"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₂H₂₆ содержит 12 атомов углерода. Следующий соседний гомолог содержит 13 атомов углерода и имеет формулу C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-neighbor-012",
+      "section": "neighbor",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₃H₂₈?",
+      "content": {
+        "text": "C₁₃H₂₈ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₄H₃₀",
+        "C₁₅H₃₂",
+        "C₁₂H₂₆",
+        "C₁₄H₂₈"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₃H₂₈ содержит 13 атомов углерода. Следующий соседний гомолог содержит 14 атомов углерода и имеет формулу C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-neighbor-013",
+      "section": "neighbor",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₄H₃₀?",
+      "content": {
+        "text": "C₁₄H₃₀ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₆H₃₄",
+        "C₁₅H₃₂",
+        "C₁₃H₂₈",
+        "C₁₅H₃₀"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₁₄H₃₀ содержит 14 атомов углерода. Следующий соседний гомолог содержит 15 атомов углерода и имеет формулу C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-neighbor-014",
+      "section": "neighbor",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₅H₃₂?",
+      "content": {
+        "text": "C₁₅H₃₂ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₇H₃₆",
+        "C₁₄H₃₀",
+        "C₁₆H₃₄",
+        "C₁₆H₃₂"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₁₅H₃₂ содержит 15 атомов углерода. Следующий соседний гомолог содержит 16 атомов углерода и имеет формулу C₁₆H₃₄."
+    },
+    {
+      "id": "alkane-neighbor-015",
+      "section": "neighbor",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "neighbor"
+      ],
+      "type": "single",
+      "text": "Какой нормальный алкан является следующим соседним гомологом после C₁₆H₃₄?",
+      "content": {
+        "text": "C₁₆H₃₄ → ?",
+        "format": "formula",
+        "caption": "Переход к следующему члену гомологического ряда"
+      },
+      "options": [
+        "C₁₈H₃₈",
+        "C₁₅H₃₂",
+        "C₁₇H₃₄",
+        "C₁₇H₃₆"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₆H₃₄ содержит 16 атомов углерода. Следующий соседний гомолог содержит 17 атомов углерода и имеет формулу C₁₇H₃₆."
+    },
+    {
+      "id": "alkane-pair-001",
+      "section": "pair",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "CH₄ и C₃H₈",
+        "CH₄ и C₂H₄",
+        "CH₄ и C₂H₆",
+        "C₂H₆ и C₄H₁₀"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "CH₄ и C₂H₆ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-002",
+      "section": "pair",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₂H₆ и C₄H₁₀",
+        "C₂H₆ и C₃H₆",
+        "C₃H₈ и C₅H₁₂",
+        "C₂H₆ и C₃H₈"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₂H₆ и C₃H₈ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-003",
+      "section": "pair",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₃H₈ и C₄H₁₀",
+        "C₃H₈ и C₅H₁₂",
+        "C₃H₈ и C₄H₈",
+        "C₄H₁₀ и C₆H₁₄"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₃H₈ и C₄H₁₀ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-004",
+      "section": "pair",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₄H₁₀ и C₆H₁₄",
+        "C₄H₁₀ и C₅H₁₂",
+        "C₄H₁₀ и C₅H₁₀",
+        "C₅H₁₂ и C₇H₁₆"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₄H₁₀ и C₅H₁₂ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-005",
+      "section": "pair",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₅H₁₂ и C₇H₁₆",
+        "C₅H₁₂ и C₆H₁₂",
+        "C₅H₁₂ и C₆H₁₄",
+        "C₆H₁₄ и C₈H₁₈"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₅H₁₂ и C₆H₁₄ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-006",
+      "section": "pair",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₆H₁₄ и C₈H₁₈",
+        "C₆H₁₄ и C₇H₁₄",
+        "C₇H₁₆ и C₉H₂₀",
+        "C₆H₁₄ и C₇H₁₆"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₆H₁₄ и C₇H₁₆ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-007",
+      "section": "pair",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₇H₁₆ и C₈H₁₈",
+        "C₇H₁₆ и C₉H₂₀",
+        "C₇H₁₆ и C₈H₁₆",
+        "C₈H₁₈ и C₁₀H₂₂"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₇H₁₆ и C₈H₁₈ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-008",
+      "section": "pair",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₈H₁₈ и C₁₀H₂₂",
+        "C₈H₁₈ и C₉H₂₀",
+        "C₈H₁₈ и C₉H₁₈",
+        "C₉H₂₀ и C₁₁H₂₄"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₈H₁₈ и C₉H₂₀ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-009",
+      "section": "pair",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₉H₂₀ и C₁₁H₂₄",
+        "C₉H₂₀ и C₁₀H₂₀",
+        "C₉H₂₀ и C₁₀H₂₂",
+        "C₁₀H₂₂ и C₁₂H₂₆"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₉H₂₀ и C₁₀H₂₂ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-010",
+      "section": "pair",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₀H₂₂ и C₁₂H₂₆",
+        "C₁₀H₂₂ и C₁₁H₂₂",
+        "C₁₁H₂₄ и C₁₃H₂₈",
+        "C₁₀H₂₂ и C₁₁H₂₄"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₀H₂₂ и C₁₁H₂₄ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-011",
+      "section": "pair",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₁H₂₄ и C₁₂H₂₆",
+        "C₁₁H₂₄ и C₁₃H₂₈",
+        "C₁₁H₂₄ и C₁₂H₂₄",
+        "C₁₂H₂₆ и C₁₄H₃₀"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₁H₂₄ и C₁₂H₂₆ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-012",
+      "section": "pair",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₂H₂₆ и C₁₄H₃₀",
+        "C₁₂H₂₆ и C₁₃H₂₈",
+        "C₁₂H₂₆ и C₁₃H₂₆",
+        "C₁₃H₂₈ и C₁₅H₃₂"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₁₂H₂₆ и C₁₃H₂₈ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-013",
+      "section": "pair",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₃H₂₈ и C₁₅H₃₂",
+        "C₁₃H₂₈ и C₁₄H₂₈",
+        "C₁₃H₂₈ и C₁₄H₃₀",
+        "C₁₄H₃₀ и C₁₆H₃₄"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₁₃H₂₈ и C₁₄H₃₀ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-014",
+      "section": "pair",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₄H₃₀ и C₁₆H₃₄",
+        "C₁₄H₃₀ и C₁₅H₃₀",
+        "C₁₅H₃₂ и C₁₇H₃₆",
+        "C₁₄H₃₀ и C₁₅H₃₂"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₄H₃₀ и C₁₅H₃₂ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-pair-015",
+      "section": "pair",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "pair"
+      ],
+      "type": "single",
+      "text": "Какая пара состоит из соседних гомологов ациклических алканов?",
+      "options": [
+        "C₁₅H₃₂ и C₁₆H₃₄",
+        "C₁₅H₃₂ и C₁₇H₃₆",
+        "C₁₅H₃₂ и C₁₆H₃₂",
+        "C₁₆H₃₄ и C₁₈H₃₈"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₅H₃₂ и C₁₆H₃₄ относятся к ациклическим алканам и отличаются по составу ровно на одну группу CH₂."
+    },
+    {
+      "id": "alkane-steps-001",
+      "section": "steps",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от CH₄ до C₃H₈?",
+      "content": {
+        "text": "CH₄ → C₃H₈",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 1 до 3. Разность 3 − 1 = 2, поэтому требуется 2 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-002",
+      "section": "steps",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₂H₆ до C₅H₁₂?",
+      "content": {
+        "text": "C₂H₆ → C₅H₁₂",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 2 до 5. Разность 5 − 2 = 3, поэтому требуется 3 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-003",
+      "section": "steps",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₃H₈ до C₇H₁₆?",
+      "content": {
+        "text": "C₃H₈ → C₇H₁₆",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 3 до 7. Разность 7 − 3 = 4, поэтому требуется 4 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-004",
+      "section": "steps",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₄H₁₀ до C₉H₂₀?",
+      "content": {
+        "text": "C₄H₁₀ → C₉H₂₀",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 5,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "переходов",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 4 до 9. Разность 9 − 4 = 5, поэтому требуется 5 переходов между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-005",
+      "section": "steps",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₅H₁₂ до C₇H₁₆?",
+      "content": {
+        "text": "C₅H₁₂ → C₇H₁₆",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 5 до 7. Разность 7 − 5 = 2, поэтому требуется 2 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-006",
+      "section": "steps",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₆H₁₄ до C₉H₂₀?",
+      "content": {
+        "text": "C₆H₁₄ → C₉H₂₀",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 6 до 9. Разность 9 − 6 = 3, поэтому требуется 3 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-007",
+      "section": "steps",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₇H₁₆ до C₁₁H₂₄?",
+      "content": {
+        "text": "C₇H₁₆ → C₁₁H₂₄",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 7 до 11. Разность 11 − 7 = 4, поэтому требуется 4 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-008",
+      "section": "steps",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₈H₁₈ до C₁₃H₂₈?",
+      "content": {
+        "text": "C₈H₁₈ → C₁₃H₂₈",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 5,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "переходов",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 8 до 13. Разность 13 − 8 = 5, поэтому требуется 5 переходов между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-009",
+      "section": "steps",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₉H₂₀ до C₁₁H₂₄?",
+      "content": {
+        "text": "C₉H₂₀ → C₁₁H₂₄",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 9 до 11. Разность 11 − 9 = 2, поэтому требуется 2 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-010",
+      "section": "steps",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₀H₂₂ до C₁₃H₂₈?",
+      "content": {
+        "text": "C₁₀H₂₂ → C₁₃H₂₈",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 10 до 13. Разность 13 − 10 = 3, поэтому требуется 3 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-011",
+      "section": "steps",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₁H₂₄ до C₁₅H₃₂?",
+      "content": {
+        "text": "C₁₁H₂₄ → C₁₅H₃₂",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 11 до 15. Разность 15 − 11 = 4, поэтому требуется 4 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-012",
+      "section": "steps",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₂H₂₆ до C₁₇H₃₆?",
+      "content": {
+        "text": "C₁₂H₂₆ → C₁₇H₃₆",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 5,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "переходов",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 12 до 17. Разность 17 − 12 = 5, поэтому требуется 5 переходов между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-013",
+      "section": "steps",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₃H₂₈ до C₁₅H₃₂?",
+      "content": {
+        "text": "C₁₃H₂₈ → C₁₅H₃₂",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 13 до 15. Разность 15 − 13 = 2, поэтому требуется 2 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-014",
+      "section": "steps",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₄H₃₀ до C₁₇H₃₆?",
+      "content": {
+        "text": "C₁₄H₃₀ → C₁₇H₃₆",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 14 до 17. Разность 17 − 14 = 3, поэтому требуется 3 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-steps-015",
+      "section": "steps",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "steps"
+      ],
+      "type": "number",
+      "text": "Сколько переходов между соседними гомологами нужно сделать от C₁₅H₃₂ до C₁₉H₄₀?",
+      "content": {
+        "text": "C₁₅H₃₂ → C₁₉H₄₀",
+        "format": "formula",
+        "caption": "Фрагмент гомологического ряда"
+      },
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 19,
+        "tolerance": 0,
+        "unit": "перехода",
+        "placeholder": "Введите число переходов"
+      },
+      "explanation": "Число атомов углерода увеличивается с 15 до 19. Разность 19 − 15 = 4, поэтому требуется 4 перехода между соседними гомологами."
+    },
+    {
+      "id": "alkane-missing-001",
+      "section": "missing",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "CH₄ → ? → C₃H₈",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "CH₄",
+        "C₃H₈",
+        "C₄H₁₀",
+        "C₂H₆"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Между алканами с числом атомов углерода 1 и 3 находится алкан, содержащий 2 атома углерода: C₂H₆."
+    },
+    {
+      "id": "alkane-missing-002",
+      "section": "missing",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₂H₆ → ? → C₄H₁₀",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₃H₈",
+        "C₂H₆",
+        "C₄H₁₀",
+        "C₅H₁₂"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Между алканами с числом атомов углерода 2 и 4 находится алкан, содержащий 3 атома углерода: C₃H₈."
+    },
+    {
+      "id": "alkane-missing-003",
+      "section": "missing",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₃H₈ → ? → C₅H₁₂",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₃H₈",
+        "C₄H₁₀",
+        "C₅H₁₂",
+        "C₆H₁₄"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Между алканами с числом атомов углерода 3 и 5 находится алкан, содержащий 4 атома углерода: C₄H₁₀."
+    },
+    {
+      "id": "alkane-missing-004",
+      "section": "missing",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₄H₁₀ → ? → C₆H₁₄",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₄H₁₀",
+        "C₆H₁₄",
+        "C₅H₁₂",
+        "C₇H₁₆"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Между алканами с числом атомов углерода 4 и 6 находится алкан, содержащий 5 атомов углерода: C₅H₁₂."
+    },
+    {
+      "id": "alkane-missing-005",
+      "section": "missing",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₅H₁₂ → ? → C₇H₁₆",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₅H₁₂",
+        "C₇H₁₆",
+        "C₈H₁₈",
+        "C₆H₁₄"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Между алканами с числом атомов углерода 5 и 7 находится алкан, содержащий 6 атомов углерода: C₆H₁₄."
+    },
+    {
+      "id": "alkane-missing-006",
+      "section": "missing",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₆H₁₄ → ? → C₈H₁₈",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₇H₁₆",
+        "C₆H₁₄",
+        "C₈H₁₈",
+        "C₉H₂₀"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Между алканами с числом атомов углерода 6 и 8 находится алкан, содержащий 7 атомов углерода: C₇H₁₆."
+    },
+    {
+      "id": "alkane-missing-007",
+      "section": "missing",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₇H₁₆ → ? → C₉H₂₀",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₇H₁₆",
+        "C₈H₁₈",
+        "C₉H₂₀",
+        "C₁₀H₂₂"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Между алканами с числом атомов углерода 7 и 9 находится алкан, содержащий 8 атомов углерода: C₈H₁₈."
+    },
+    {
+      "id": "alkane-missing-008",
+      "section": "missing",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₈H₁₈ → ? → C₁₀H₂₂",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₈H₁₈",
+        "C₁₀H₂₂",
+        "C₉H₂₀",
+        "C₁₁H₂₄"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Между алканами с числом атомов углерода 8 и 10 находится алкан, содержащий 9 атомов углерода: C₉H₂₀."
+    },
+    {
+      "id": "alkane-missing-009",
+      "section": "missing",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₉H₂₀ → ? → C₁₁H₂₄",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₉H₂₀",
+        "C₁₁H₂₄",
+        "C₁₂H₂₆",
+        "C₁₀H₂₂"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Между алканами с числом атомов углерода 9 и 11 находится алкан, содержащий 10 атомов углерода: C₁₀H₂₂."
+    },
+    {
+      "id": "alkane-missing-010",
+      "section": "missing",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₀H₂₂ → ? → C₁₂H₂₆",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₁H₂₄",
+        "C₁₀H₂₂",
+        "C₁₂H₂₆",
+        "C₁₃H₂₈"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Между алканами с числом атомов углерода 10 и 12 находится алкан, содержащий 11 атомов углерода: C₁₁H₂₄."
+    },
+    {
+      "id": "alkane-missing-011",
+      "section": "missing",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₁H₂₄ → ? → C₁₃H₂₈",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₁H₂₄",
+        "C₁₂H₂₆",
+        "C₁₃H₂₈",
+        "C₁₄H₃₀"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Между алканами с числом атомов углерода 11 и 13 находится алкан, содержащий 12 атомов углерода: C₁₂H₂₆."
+    },
+    {
+      "id": "alkane-missing-012",
+      "section": "missing",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₂H₂₆ → ? → C₁₄H₃₀",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₂H₂₆",
+        "C₁₄H₃₀",
+        "C₁₃H₂₈",
+        "C₁₅H₃₂"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Между алканами с числом атомов углерода 12 и 14 находится алкан, содержащий 13 атомов углерода: C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-missing-013",
+      "section": "missing",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₃H₂₈ → ? → C₁₅H₃₂",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₃H₂₈",
+        "C₁₅H₃₂",
+        "C₁₆H₃₄",
+        "C₁₄H₃₀"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Между алканами с числом атомов углерода 13 и 15 находится алкан, содержащий 14 атомов углерода: C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-missing-014",
+      "section": "missing",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₄H₃₀ → ? → C₁₆H₃₄",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₅H₃₂",
+        "C₁₄H₃₀",
+        "C₁₆H₃₄",
+        "C₁₇H₃₆"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Между алканами с числом атомов углерода 14 и 16 находится алкан, содержащий 15 атомов углерода: C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-missing-015",
+      "section": "missing",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "missing"
+      ],
+      "type": "single",
+      "text": "Какой член гомологического ряда пропущен?",
+      "content": {
+        "text": "C₁₅H₃₂ → ? → C₁₇H₃₆",
+        "format": "formula",
+        "caption": "Последовательные члены ряда ациклических алканов"
+      },
+      "options": [
+        "C₁₅H₃₂",
+        "C₁₆H₃₄",
+        "C₁₇H₃₆",
+        "C₁₈H₃₈"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Между алканами с числом атомов углерода 15 и 17 находится алкан, содержащий 16 атомов углерода: C₁₆H₃₄."
+    },
+    {
+      "id": "alkane-formula-001",
+      "section": "formula",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с одним атомом углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "CH₄",
+        "CH₂",
+        "CH₆",
+        "C₂H₆"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 1: H = 2 · 1 + 2 = 4. Получаем CH₄."
+    },
+    {
+      "id": "alkane-formula-002",
+      "section": "formula",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 2 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₂H₄",
+        "C₂H₆",
+        "C₂H₈",
+        "C₃H₈"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 2: H = 2 · 2 + 2 = 6. Получаем C₂H₆."
+    },
+    {
+      "id": "alkane-formula-003",
+      "section": "formula",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 3 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₃H₆",
+        "C₃H₁₀",
+        "C₃H₈",
+        "C₄H₁₀"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 3: H = 2 · 3 + 2 = 8. Получаем C₃H₈."
+    },
+    {
+      "id": "alkane-formula-004",
+      "section": "formula",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 4 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₄H₈",
+        "C₄H₁₂",
+        "C₅H₁₂",
+        "C₄H₁₀"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 4: H = 2 · 4 + 2 = 10. Получаем C₄H₁₀."
+    },
+    {
+      "id": "alkane-formula-005",
+      "section": "formula",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 5 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₅H₁₂",
+        "C₅H₁₀",
+        "C₅H₁₄",
+        "C₆H₁₄"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 5: H = 2 · 5 + 2 = 12. Получаем C₅H₁₂."
+    },
+    {
+      "id": "alkane-formula-006",
+      "section": "formula",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 6 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₆H₁₂",
+        "C₆H₁₄",
+        "C₆H₁₆",
+        "C₇H₁₆"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 6: H = 2 · 6 + 2 = 14. Получаем C₆H₁₄."
+    },
+    {
+      "id": "alkane-formula-007",
+      "section": "formula",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 7 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₇H₁₄",
+        "C₇H₁₈",
+        "C₇H₁₆",
+        "C₈H₁₈"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 7: H = 2 · 7 + 2 = 16. Получаем C₇H₁₆."
+    },
+    {
+      "id": "alkane-formula-008",
+      "section": "formula",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 8 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₈H₁₆",
+        "C₈H₂₀",
+        "C₉H₂₀",
+        "C₈H₁₈"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 8: H = 2 · 8 + 2 = 18. Получаем C₈H₁₈."
+    },
+    {
+      "id": "alkane-formula-009",
+      "section": "formula",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 9 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₉H₂₀",
+        "C₉H₁₈",
+        "C₉H₂₂",
+        "C₁₀H₂₂"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 9: H = 2 · 9 + 2 = 20. Получаем C₉H₂₀."
+    },
+    {
+      "id": "alkane-formula-010",
+      "section": "formula",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 10 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₀H₂₀",
+        "C₁₀H₂₂",
+        "C₁₀H₂₄",
+        "C₁₁H₂₄"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 10: H = 2 · 10 + 2 = 22. Получаем C₁₀H₂₂."
+    },
+    {
+      "id": "alkane-formula-011",
+      "section": "formula",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 11 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₁H₂₂",
+        "C₁₁H₂₆",
+        "C₁₁H₂₄",
+        "C₁₂H₂₆"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 11: H = 2 · 11 + 2 = 24. Получаем C₁₁H₂₄."
+    },
+    {
+      "id": "alkane-formula-012",
+      "section": "formula",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 12 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₂H₂₄",
+        "C₁₂H₂₈",
+        "C₁₃H₂₈",
+        "C₁₂H₂₆"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 12: H = 2 · 12 + 2 = 26. Получаем C₁₂H₂₆."
+    },
+    {
+      "id": "alkane-formula-013",
+      "section": "formula",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 13 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₃H₂₈",
+        "C₁₃H₂₆",
+        "C₁₃H₃₀",
+        "C₁₄H₃₀"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 13: H = 2 · 13 + 2 = 28. Получаем C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-formula-014",
+      "section": "formula",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 14 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₄H₂₈",
+        "C₁₄H₃₀",
+        "C₁₄H₃₂",
+        "C₁₅H₃₂"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 14: H = 2 · 14 + 2 = 30. Получаем C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-formula-015",
+      "section": "formula",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "formula"
+      ],
+      "type": "single",
+      "text": "Какая молекулярная формула соответствует ациклическому алкану с 15 атомами углерода?",
+      "content": {
+        "text": "CₙH₂ₙ₊₂",
+        "format": "formula",
+        "caption": "Общая формула ациклических алканов"
+      },
+      "options": [
+        "C₁₅H₃₀",
+        "C₁₅H₃₄",
+        "C₁₅H₃₂",
+        "C₁₆H₃₄"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Для ациклического алкана CₙH₂ₙ₊₂ при n = 15: H = 2 · 15 + 2 = 32. Получаем C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-carbon-001",
+      "section": "carbon",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 4 атома водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "4 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 1,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 4 = 2n + 2 получаем n = (4 − 2) / 2 = 1."
+    },
+    {
+      "id": "alkane-carbon-002",
+      "section": "carbon",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 6 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "6 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 2,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 6 = 2n + 2 получаем n = (6 − 2) / 2 = 2."
+    },
+    {
+      "id": "alkane-carbon-003",
+      "section": "carbon",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 8 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "8 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 3,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 8 = 2n + 2 получаем n = (8 − 2) / 2 = 3."
+    },
+    {
+      "id": "alkane-carbon-004",
+      "section": "carbon",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 10 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "10 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 4,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 10 = 2n + 2 получаем n = (10 − 2) / 2 = 4."
+    },
+    {
+      "id": "alkane-carbon-005",
+      "section": "carbon",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 12 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "12 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 5,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 12 = 2n + 2 получаем n = (12 − 2) / 2 = 5."
+    },
+    {
+      "id": "alkane-carbon-006",
+      "section": "carbon",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 14 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "14 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 6,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 14 = 2n + 2 получаем n = (14 − 2) / 2 = 6."
+    },
+    {
+      "id": "alkane-carbon-007",
+      "section": "carbon",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 16 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "16 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 7,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 16 = 2n + 2 получаем n = (16 − 2) / 2 = 7."
+    },
+    {
+      "id": "alkane-carbon-008",
+      "section": "carbon",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 18 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "18 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 8,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 18 = 2n + 2 получаем n = (18 − 2) / 2 = 8."
+    },
+    {
+      "id": "alkane-carbon-009",
+      "section": "carbon",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 20 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "20 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 9,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 20 = 2n + 2 получаем n = (20 − 2) / 2 = 9."
+    },
+    {
+      "id": "alkane-carbon-010",
+      "section": "carbon",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 22 атома водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "22 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 10,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 22 = 2n + 2 получаем n = (22 − 2) / 2 = 10."
+    },
+    {
+      "id": "alkane-carbon-011",
+      "section": "carbon",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 24 атома водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "24 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 11,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 24 = 2n + 2 получаем n = (24 − 2) / 2 = 11."
+    },
+    {
+      "id": "alkane-carbon-012",
+      "section": "carbon",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 26 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "26 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 12,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 26 = 2n + 2 получаем n = (26 − 2) / 2 = 12."
+    },
+    {
+      "id": "alkane-carbon-013",
+      "section": "carbon",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 28 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "28 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 13,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 28 = 2n + 2 получаем n = (28 − 2) / 2 = 13."
+    },
+    {
+      "id": "alkane-carbon-014",
+      "section": "carbon",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 30 атомов водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "30 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 14,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 30 = 2n + 2 получаем n = (30 − 2) / 2 = 14."
+    },
+    {
+      "id": "alkane-carbon-015",
+      "section": "carbon",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "carbon"
+      ],
+      "type": "number",
+      "text": "В молекуле ациклического алкана 32 атома водорода. Сколько в ней атомов углерода?",
+      "content": {
+        "text": "32 = 2n + 2",
+        "format": "formula",
+        "caption": "Связь числа атомов водорода с числом атомов углерода"
+      },
+      "correct": 15,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из равенства 32 = 2n + 2 получаем n = (32 − 2) / 2 = 15."
+    },
+    {
+      "id": "alkane-name-001",
+      "section": "name",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется алкан состава CH₄?",
+      "content": {
+        "text": "CH₄",
+        "format": "formula",
+        "caption": "Молекулярная формула алкана"
+      },
+      "options": [
+        "этан",
+        "метан",
+        "пропан",
+        "бутан"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Нормальный алкан, который содержит 1 атом углерода, называется «метан» и имеет формулу CH₄."
+    },
+    {
+      "id": "alkane-name-002",
+      "section": "name",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется алкан состава C₂H₆?",
+      "content": {
+        "text": "C₂H₆",
+        "format": "formula",
+        "caption": "Молекулярная формула алкана"
+      },
+      "options": [
+        "метан",
+        "пропан",
+        "этан",
+        "бутан"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Нормальный алкан, который содержит 2 атома углерода, называется «этан» и имеет формулу C₂H₆."
+    },
+    {
+      "id": "alkane-name-003",
+      "section": "name",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется алкан состава C₃H₈?",
+      "content": {
+        "text": "C₃H₈",
+        "format": "formula",
+        "caption": "Молекулярная формула алкана"
+      },
+      "options": [
+        "этан",
+        "бутан",
+        "пентан",
+        "пропан"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Нормальный алкан, который содержит 3 атома углерода, называется «пропан» и имеет формулу C₃H₈."
+    },
+    {
+      "id": "alkane-name-004",
+      "section": "name",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₄H₁₀?",
+      "content": {
+        "text": "C₄H₁₀",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "бутан",
+        "пропан",
+        "пентан",
+        "гексан"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Нормальный алкан, который содержит 4 атома углерода, называется «бутан» и имеет формулу C₄H₁₀."
+    },
+    {
+      "id": "alkane-name-005",
+      "section": "name",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₅H₁₂?",
+      "content": {
+        "text": "C₅H₁₂",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "бутан",
+        "пентан",
+        "гексан",
+        "гептан"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Нормальный алкан, который содержит 5 атомов углерода, называется «пентан» и имеет формулу C₅H₁₂."
+    },
+    {
+      "id": "alkane-name-006",
+      "section": "name",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₆H₁₄?",
+      "content": {
+        "text": "C₆H₁₄",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "пентан",
+        "гептан",
+        "гексан",
+        "октан"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Нормальный алкан, который содержит 6 атомов углерода, называется «гексан» и имеет формулу C₆H₁₄."
+    },
+    {
+      "id": "alkane-name-007",
+      "section": "name",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₇H₁₆?",
+      "content": {
+        "text": "C₇H₁₆",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "гексан",
+        "октан",
+        "нонан",
+        "гептан"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Нормальный алкан, который содержит 7 атомов углерода, называется «гептан» и имеет формулу C₇H₁₆."
+    },
+    {
+      "id": "alkane-name-008",
+      "section": "name",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₈H₁₈?",
+      "content": {
+        "text": "C₈H₁₈",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "октан",
+        "гептан",
+        "нонан",
+        "декан"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Нормальный алкан, который содержит 8 атомов углерода, называется «октан» и имеет формулу C₈H₁₈."
+    },
+    {
+      "id": "alkane-name-009",
+      "section": "name",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₉H₂₀?",
+      "content": {
+        "text": "C₉H₂₀",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "октан",
+        "нонан",
+        "декан",
+        "ундекан"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Нормальный алкан, который содержит 9 атомов углерода, называется «нонан» и имеет формулу C₉H₂₀."
+    },
+    {
+      "id": "alkane-name-010",
+      "section": "name",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₀H₂₂?",
+      "content": {
+        "text": "C₁₀H₂₂",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "нонан",
+        "ундекан",
+        "декан",
+        "додекан"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Нормальный алкан, который содержит 10 атомов углерода, называется «декан» и имеет формулу C₁₀H₂₂."
+    },
+    {
+      "id": "alkane-name-011",
+      "section": "name",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₁H₂₄?",
+      "content": {
+        "text": "C₁₁H₂₄",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "декан",
+        "додекан",
+        "тридекан",
+        "ундекан"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Нормальный алкан, который содержит 11 атомов углерода, называется «ундекан» и имеет формулу C₁₁H₂₄."
+    },
+    {
+      "id": "alkane-name-012",
+      "section": "name",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₂H₂₆?",
+      "content": {
+        "text": "C₁₂H₂₆",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "додекан",
+        "ундекан",
+        "тридекан",
+        "тетрадекан"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Нормальный алкан, который содержит 12 атомов углерода, называется «додекан» и имеет формулу C₁₂H₂₆."
+    },
+    {
+      "id": "alkane-name-013",
+      "section": "name",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₃H₂₈?",
+      "content": {
+        "text": "C₁₃H₂₈",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "додекан",
+        "тридекан",
+        "тетрадекан",
+        "пентадекан"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Нормальный алкан, который содержит 13 атомов углерода, называется «тридекан» и имеет формулу C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-name-014",
+      "section": "name",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₄H₃₀?",
+      "content": {
+        "text": "C₁₄H₃₀",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "тридекан",
+        "пентадекан",
+        "тетрадекан",
+        "гексадекан"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Нормальный алкан, который содержит 14 атомов углерода, называется «тетрадекан» и имеет формулу C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-name-015",
+      "section": "name",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "name"
+      ],
+      "type": "single",
+      "text": "Как называется член гомологического ряда нормальных алканов состава C₁₅H₃₂?",
+      "content": {
+        "text": "C₁₅H₃₂",
+        "format": "formula",
+        "caption": "Молекулярная формула нормального алкана"
+      },
+      "options": [
+        "тетрадекан",
+        "гексадекан",
+        "гептадекан",
+        "пентадекан"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Нормальный алкан, который содержит 15 атомов углерода, называется «пентадекан» и имеет формулу C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-matching-001",
+      "section": "matching",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-001-c1",
+          "text": "метан",
+          "format": "text",
+          "explanation": "Метан — нормальный алкан, который содержит 1 атом углерода; его формула CH₄."
+        },
+        {
+          "id": "alkane-matching-001-c2",
+          "text": "этан",
+          "format": "text",
+          "explanation": "Этан — нормальный алкан, который содержит 2 атома углерода; его формула C₂H₆."
+        },
+        {
+          "id": "alkane-matching-001-c3",
+          "text": "пропан",
+          "format": "text",
+          "explanation": "Пропан — нормальный алкан, который содержит 3 атома углерода; его формула C₃H₈."
+        },
+        {
+          "id": "alkane-matching-001-c4",
+          "text": "бутан",
+          "format": "text",
+          "explanation": "Бутан — нормальный алкан, который содержит 4 атома углерода; его формула C₄H₁₀."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-001-formula-c1",
+          "text": "CH₄"
+        },
+        {
+          "id": "alkane-matching-001-formula-c2",
+          "text": "C₂H₆"
+        },
+        {
+          "id": "alkane-matching-001-formula-c3",
+          "text": "C₃H₈"
+        },
+        {
+          "id": "alkane-matching-001-formula-c4",
+          "text": "C₄H₁₀"
+        },
+        {
+          "id": "alkane-matching-001-formula-c5",
+          "text": "C₅H₁₂"
+        }
+      ],
+      "correct": {
+        "alkane-matching-001-c1": "alkane-matching-001-formula-c1",
+        "alkane-matching-001-c2": "alkane-matching-001-formula-c2",
+        "alkane-matching-001-c3": "alkane-matching-001-formula-c3",
+        "alkane-matching-001-c4": "alkane-matching-001-formula-c4"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₅H₁₂ является лишним."
+    },
+    {
+      "id": "alkane-matching-002",
+      "section": "matching",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-002-c2",
+          "text": "этан",
+          "format": "text",
+          "explanation": "Этан — нормальный алкан, который содержит 2 атома углерода; его формула C₂H₆."
+        },
+        {
+          "id": "alkane-matching-002-c3",
+          "text": "пропан",
+          "format": "text",
+          "explanation": "Пропан — нормальный алкан, который содержит 3 атома углерода; его формула C₃H₈."
+        },
+        {
+          "id": "alkane-matching-002-c4",
+          "text": "бутан",
+          "format": "text",
+          "explanation": "Бутан — нормальный алкан, который содержит 4 атома углерода; его формула C₄H₁₀."
+        },
+        {
+          "id": "alkane-matching-002-c5",
+          "text": "пентан",
+          "format": "text",
+          "explanation": "Пентан — нормальный алкан, который содержит 5 атомов углерода; его формула C₅H₁₂."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-002-formula-c2",
+          "text": "C₂H₆"
+        },
+        {
+          "id": "alkane-matching-002-formula-c3",
+          "text": "C₃H₈"
+        },
+        {
+          "id": "alkane-matching-002-formula-c4",
+          "text": "C₄H₁₀"
+        },
+        {
+          "id": "alkane-matching-002-formula-c5",
+          "text": "C₅H₁₂"
+        },
+        {
+          "id": "alkane-matching-002-formula-c6",
+          "text": "C₆H₁₄"
+        }
+      ],
+      "correct": {
+        "alkane-matching-002-c2": "alkane-matching-002-formula-c2",
+        "alkane-matching-002-c3": "alkane-matching-002-formula-c3",
+        "alkane-matching-002-c4": "alkane-matching-002-formula-c4",
+        "alkane-matching-002-c5": "alkane-matching-002-formula-c5"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₆H₁₄ является лишним."
+    },
+    {
+      "id": "alkane-matching-003",
+      "section": "matching",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-003-c3",
+          "text": "пропан",
+          "format": "text",
+          "explanation": "Пропан — нормальный алкан, который содержит 3 атома углерода; его формула C₃H₈."
+        },
+        {
+          "id": "alkane-matching-003-c4",
+          "text": "бутан",
+          "format": "text",
+          "explanation": "Бутан — нормальный алкан, который содержит 4 атома углерода; его формула C₄H₁₀."
+        },
+        {
+          "id": "alkane-matching-003-c5",
+          "text": "пентан",
+          "format": "text",
+          "explanation": "Пентан — нормальный алкан, который содержит 5 атомов углерода; его формула C₅H₁₂."
+        },
+        {
+          "id": "alkane-matching-003-c6",
+          "text": "гексан",
+          "format": "text",
+          "explanation": "Гексан — нормальный алкан, который содержит 6 атомов углерода; его формула C₆H₁₄."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-003-formula-c3",
+          "text": "C₃H₈"
+        },
+        {
+          "id": "alkane-matching-003-formula-c4",
+          "text": "C₄H₁₀"
+        },
+        {
+          "id": "alkane-matching-003-formula-c5",
+          "text": "C₅H₁₂"
+        },
+        {
+          "id": "alkane-matching-003-formula-c6",
+          "text": "C₆H₁₄"
+        },
+        {
+          "id": "alkane-matching-003-formula-c7",
+          "text": "C₇H₁₆"
+        }
+      ],
+      "correct": {
+        "alkane-matching-003-c3": "alkane-matching-003-formula-c3",
+        "alkane-matching-003-c4": "alkane-matching-003-formula-c4",
+        "alkane-matching-003-c5": "alkane-matching-003-formula-c5",
+        "alkane-matching-003-c6": "alkane-matching-003-formula-c6"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₇H₁₆ является лишним."
+    },
+    {
+      "id": "alkane-matching-004",
+      "section": "matching",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-004-c4",
+          "text": "бутан",
+          "format": "text",
+          "explanation": "Бутан — нормальный алкан, который содержит 4 атома углерода; его формула C₄H₁₀."
+        },
+        {
+          "id": "alkane-matching-004-c5",
+          "text": "пентан",
+          "format": "text",
+          "explanation": "Пентан — нормальный алкан, который содержит 5 атомов углерода; его формула C₅H₁₂."
+        },
+        {
+          "id": "alkane-matching-004-c6",
+          "text": "гексан",
+          "format": "text",
+          "explanation": "Гексан — нормальный алкан, который содержит 6 атомов углерода; его формула C₆H₁₄."
+        },
+        {
+          "id": "alkane-matching-004-c7",
+          "text": "гептан",
+          "format": "text",
+          "explanation": "Гептан — нормальный алкан, который содержит 7 атомов углерода; его формула C₇H₁₆."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-004-formula-c4",
+          "text": "C₄H₁₀"
+        },
+        {
+          "id": "alkane-matching-004-formula-c5",
+          "text": "C₅H₁₂"
+        },
+        {
+          "id": "alkane-matching-004-formula-c6",
+          "text": "C₆H₁₄"
+        },
+        {
+          "id": "alkane-matching-004-formula-c7",
+          "text": "C₇H₁₆"
+        },
+        {
+          "id": "alkane-matching-004-formula-c8",
+          "text": "C₈H₁₈"
+        }
+      ],
+      "correct": {
+        "alkane-matching-004-c4": "alkane-matching-004-formula-c4",
+        "alkane-matching-004-c5": "alkane-matching-004-formula-c5",
+        "alkane-matching-004-c6": "alkane-matching-004-formula-c6",
+        "alkane-matching-004-c7": "alkane-matching-004-formula-c7"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₈H₁₈ является лишним."
+    },
+    {
+      "id": "alkane-matching-005",
+      "section": "matching",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-005-c5",
+          "text": "пентан",
+          "format": "text",
+          "explanation": "Пентан — нормальный алкан, который содержит 5 атомов углерода; его формула C₅H₁₂."
+        },
+        {
+          "id": "alkane-matching-005-c6",
+          "text": "гексан",
+          "format": "text",
+          "explanation": "Гексан — нормальный алкан, который содержит 6 атомов углерода; его формула C₆H₁₄."
+        },
+        {
+          "id": "alkane-matching-005-c7",
+          "text": "гептан",
+          "format": "text",
+          "explanation": "Гептан — нормальный алкан, который содержит 7 атомов углерода; его формула C₇H₁₆."
+        },
+        {
+          "id": "alkane-matching-005-c8",
+          "text": "октан",
+          "format": "text",
+          "explanation": "Октан — нормальный алкан, который содержит 8 атомов углерода; его формула C₈H₁₈."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-005-formula-c5",
+          "text": "C₅H₁₂"
+        },
+        {
+          "id": "alkane-matching-005-formula-c6",
+          "text": "C₆H₁₄"
+        },
+        {
+          "id": "alkane-matching-005-formula-c7",
+          "text": "C₇H₁₆"
+        },
+        {
+          "id": "alkane-matching-005-formula-c8",
+          "text": "C₈H₁₈"
+        },
+        {
+          "id": "alkane-matching-005-formula-c9",
+          "text": "C₉H₂₀"
+        }
+      ],
+      "correct": {
+        "alkane-matching-005-c5": "alkane-matching-005-formula-c5",
+        "alkane-matching-005-c6": "alkane-matching-005-formula-c6",
+        "alkane-matching-005-c7": "alkane-matching-005-formula-c7",
+        "alkane-matching-005-c8": "alkane-matching-005-formula-c8"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₉H₂₀ является лишним."
+    },
+    {
+      "id": "alkane-matching-006",
+      "section": "matching",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-006-c6",
+          "text": "гексан",
+          "format": "text",
+          "explanation": "Гексан — нормальный алкан, который содержит 6 атомов углерода; его формула C₆H₁₄."
+        },
+        {
+          "id": "alkane-matching-006-c7",
+          "text": "гептан",
+          "format": "text",
+          "explanation": "Гептан — нормальный алкан, который содержит 7 атомов углерода; его формула C₇H₁₆."
+        },
+        {
+          "id": "alkane-matching-006-c8",
+          "text": "октан",
+          "format": "text",
+          "explanation": "Октан — нормальный алкан, который содержит 8 атомов углерода; его формула C₈H₁₈."
+        },
+        {
+          "id": "alkane-matching-006-c9",
+          "text": "нонан",
+          "format": "text",
+          "explanation": "Нонан — нормальный алкан, который содержит 9 атомов углерода; его формула C₉H₂₀."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-006-formula-c6",
+          "text": "C₆H₁₄"
+        },
+        {
+          "id": "alkane-matching-006-formula-c7",
+          "text": "C₇H₁₆"
+        },
+        {
+          "id": "alkane-matching-006-formula-c8",
+          "text": "C₈H₁₈"
+        },
+        {
+          "id": "alkane-matching-006-formula-c9",
+          "text": "C₉H₂₀"
+        },
+        {
+          "id": "alkane-matching-006-formula-c10",
+          "text": "C₁₀H₂₂"
+        }
+      ],
+      "correct": {
+        "alkane-matching-006-c6": "alkane-matching-006-formula-c6",
+        "alkane-matching-006-c7": "alkane-matching-006-formula-c7",
+        "alkane-matching-006-c8": "alkane-matching-006-formula-c8",
+        "alkane-matching-006-c9": "alkane-matching-006-formula-c9"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₀H₂₂ является лишним."
+    },
+    {
+      "id": "alkane-matching-007",
+      "section": "matching",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-007-c7",
+          "text": "гептан",
+          "format": "text",
+          "explanation": "Гептан — нормальный алкан, который содержит 7 атомов углерода; его формула C₇H₁₆."
+        },
+        {
+          "id": "alkane-matching-007-c8",
+          "text": "октан",
+          "format": "text",
+          "explanation": "Октан — нормальный алкан, который содержит 8 атомов углерода; его формула C₈H₁₈."
+        },
+        {
+          "id": "alkane-matching-007-c9",
+          "text": "нонан",
+          "format": "text",
+          "explanation": "Нонан — нормальный алкан, который содержит 9 атомов углерода; его формула C₉H₂₀."
+        },
+        {
+          "id": "alkane-matching-007-c10",
+          "text": "декан",
+          "format": "text",
+          "explanation": "Декан — нормальный алкан, который содержит 10 атомов углерода; его формула C₁₀H₂₂."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-007-formula-c7",
+          "text": "C₇H₁₆"
+        },
+        {
+          "id": "alkane-matching-007-formula-c8",
+          "text": "C₈H₁₈"
+        },
+        {
+          "id": "alkane-matching-007-formula-c9",
+          "text": "C₉H₂₀"
+        },
+        {
+          "id": "alkane-matching-007-formula-c10",
+          "text": "C₁₀H₂₂"
+        },
+        {
+          "id": "alkane-matching-007-formula-c11",
+          "text": "C₁₁H₂₄"
+        }
+      ],
+      "correct": {
+        "alkane-matching-007-c7": "alkane-matching-007-formula-c7",
+        "alkane-matching-007-c8": "alkane-matching-007-formula-c8",
+        "alkane-matching-007-c9": "alkane-matching-007-formula-c9",
+        "alkane-matching-007-c10": "alkane-matching-007-formula-c10"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₁H₂₄ является лишним."
+    },
+    {
+      "id": "alkane-matching-008",
+      "section": "matching",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-008-c8",
+          "text": "октан",
+          "format": "text",
+          "explanation": "Октан — нормальный алкан, который содержит 8 атомов углерода; его формула C₈H₁₈."
+        },
+        {
+          "id": "alkane-matching-008-c9",
+          "text": "нонан",
+          "format": "text",
+          "explanation": "Нонан — нормальный алкан, который содержит 9 атомов углерода; его формула C₉H₂₀."
+        },
+        {
+          "id": "alkane-matching-008-c10",
+          "text": "декан",
+          "format": "text",
+          "explanation": "Декан — нормальный алкан, который содержит 10 атомов углерода; его формула C₁₀H₂₂."
+        },
+        {
+          "id": "alkane-matching-008-c11",
+          "text": "ундекан",
+          "format": "text",
+          "explanation": "Ундекан — нормальный алкан, который содержит 11 атомов углерода; его формула C₁₁H₂₄."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-008-formula-c8",
+          "text": "C₈H₁₈"
+        },
+        {
+          "id": "alkane-matching-008-formula-c9",
+          "text": "C₉H₂₀"
+        },
+        {
+          "id": "alkane-matching-008-formula-c10",
+          "text": "C₁₀H₂₂"
+        },
+        {
+          "id": "alkane-matching-008-formula-c11",
+          "text": "C₁₁H₂₄"
+        },
+        {
+          "id": "alkane-matching-008-formula-c12",
+          "text": "C₁₂H₂₆"
+        }
+      ],
+      "correct": {
+        "alkane-matching-008-c8": "alkane-matching-008-formula-c8",
+        "alkane-matching-008-c9": "alkane-matching-008-formula-c9",
+        "alkane-matching-008-c10": "alkane-matching-008-formula-c10",
+        "alkane-matching-008-c11": "alkane-matching-008-formula-c11"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₂H₂₆ является лишним."
+    },
+    {
+      "id": "alkane-matching-009",
+      "section": "matching",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-009-c9",
+          "text": "нонан",
+          "format": "text",
+          "explanation": "Нонан — нормальный алкан, который содержит 9 атомов углерода; его формула C₉H₂₀."
+        },
+        {
+          "id": "alkane-matching-009-c10",
+          "text": "декан",
+          "format": "text",
+          "explanation": "Декан — нормальный алкан, который содержит 10 атомов углерода; его формула C₁₀H₂₂."
+        },
+        {
+          "id": "alkane-matching-009-c11",
+          "text": "ундекан",
+          "format": "text",
+          "explanation": "Ундекан — нормальный алкан, который содержит 11 атомов углерода; его формула C₁₁H₂₄."
+        },
+        {
+          "id": "alkane-matching-009-c12",
+          "text": "додекан",
+          "format": "text",
+          "explanation": "Додекан — нормальный алкан, который содержит 12 атомов углерода; его формула C₁₂H₂₆."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-009-formula-c9",
+          "text": "C₉H₂₀"
+        },
+        {
+          "id": "alkane-matching-009-formula-c10",
+          "text": "C₁₀H₂₂"
+        },
+        {
+          "id": "alkane-matching-009-formula-c11",
+          "text": "C₁₁H₂₄"
+        },
+        {
+          "id": "alkane-matching-009-formula-c12",
+          "text": "C₁₂H₂₆"
+        },
+        {
+          "id": "alkane-matching-009-formula-c13",
+          "text": "C₁₃H₂₈"
+        }
+      ],
+      "correct": {
+        "alkane-matching-009-c9": "alkane-matching-009-formula-c9",
+        "alkane-matching-009-c10": "alkane-matching-009-formula-c10",
+        "alkane-matching-009-c11": "alkane-matching-009-formula-c11",
+        "alkane-matching-009-c12": "alkane-matching-009-formula-c12"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₃H₂₈ является лишним."
+    },
+    {
+      "id": "alkane-matching-010",
+      "section": "matching",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-010-c10",
+          "text": "декан",
+          "format": "text",
+          "explanation": "Декан — нормальный алкан, который содержит 10 атомов углерода; его формула C₁₀H₂₂."
+        },
+        {
+          "id": "alkane-matching-010-c11",
+          "text": "ундекан",
+          "format": "text",
+          "explanation": "Ундекан — нормальный алкан, который содержит 11 атомов углерода; его формула C₁₁H₂₄."
+        },
+        {
+          "id": "alkane-matching-010-c12",
+          "text": "додекан",
+          "format": "text",
+          "explanation": "Додекан — нормальный алкан, который содержит 12 атомов углерода; его формула C₁₂H₂₆."
+        },
+        {
+          "id": "alkane-matching-010-c13",
+          "text": "тридекан",
+          "format": "text",
+          "explanation": "Тридекан — нормальный алкан, который содержит 13 атомов углерода; его формула C₁₃H₂₈."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-010-formula-c10",
+          "text": "C₁₀H₂₂"
+        },
+        {
+          "id": "alkane-matching-010-formula-c11",
+          "text": "C₁₁H₂₄"
+        },
+        {
+          "id": "alkane-matching-010-formula-c12",
+          "text": "C₁₂H₂₆"
+        },
+        {
+          "id": "alkane-matching-010-formula-c13",
+          "text": "C₁₃H₂₈"
+        },
+        {
+          "id": "alkane-matching-010-formula-c14",
+          "text": "C₁₄H₃₀"
+        }
+      ],
+      "correct": {
+        "alkane-matching-010-c10": "alkane-matching-010-formula-c10",
+        "alkane-matching-010-c11": "alkane-matching-010-formula-c11",
+        "alkane-matching-010-c12": "alkane-matching-010-formula-c12",
+        "alkane-matching-010-c13": "alkane-matching-010-formula-c13"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₄H₃₀ является лишним."
+    },
+    {
+      "id": "alkane-matching-011",
+      "section": "matching",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-011-c11",
+          "text": "ундекан",
+          "format": "text",
+          "explanation": "Ундекан — нормальный алкан, который содержит 11 атомов углерода; его формула C₁₁H₂₄."
+        },
+        {
+          "id": "alkane-matching-011-c12",
+          "text": "додекан",
+          "format": "text",
+          "explanation": "Додекан — нормальный алкан, который содержит 12 атомов углерода; его формула C₁₂H₂₆."
+        },
+        {
+          "id": "alkane-matching-011-c13",
+          "text": "тридекан",
+          "format": "text",
+          "explanation": "Тридекан — нормальный алкан, который содержит 13 атомов углерода; его формула C₁₃H₂₈."
+        },
+        {
+          "id": "alkane-matching-011-c14",
+          "text": "тетрадекан",
+          "format": "text",
+          "explanation": "Тетрадекан — нормальный алкан, который содержит 14 атомов углерода; его формула C₁₄H₃₀."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-011-formula-c11",
+          "text": "C₁₁H₂₄"
+        },
+        {
+          "id": "alkane-matching-011-formula-c12",
+          "text": "C₁₂H₂₆"
+        },
+        {
+          "id": "alkane-matching-011-formula-c13",
+          "text": "C₁₃H₂₈"
+        },
+        {
+          "id": "alkane-matching-011-formula-c14",
+          "text": "C₁₄H₃₀"
+        },
+        {
+          "id": "alkane-matching-011-formula-c15",
+          "text": "C₁₅H₃₂"
+        }
+      ],
+      "correct": {
+        "alkane-matching-011-c11": "alkane-matching-011-formula-c11",
+        "alkane-matching-011-c12": "alkane-matching-011-formula-c12",
+        "alkane-matching-011-c13": "alkane-matching-011-formula-c13",
+        "alkane-matching-011-c14": "alkane-matching-011-formula-c14"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₅H₃₂ является лишним."
+    },
+    {
+      "id": "alkane-matching-012",
+      "section": "matching",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-012-c12",
+          "text": "додекан",
+          "format": "text",
+          "explanation": "Додекан — нормальный алкан, который содержит 12 атомов углерода; его формула C₁₂H₂₆."
+        },
+        {
+          "id": "alkane-matching-012-c13",
+          "text": "тридекан",
+          "format": "text",
+          "explanation": "Тридекан — нормальный алкан, который содержит 13 атомов углерода; его формула C₁₃H₂₈."
+        },
+        {
+          "id": "alkane-matching-012-c14",
+          "text": "тетрадекан",
+          "format": "text",
+          "explanation": "Тетрадекан — нормальный алкан, который содержит 14 атомов углерода; его формула C₁₄H₃₀."
+        },
+        {
+          "id": "alkane-matching-012-c15",
+          "text": "пентадекан",
+          "format": "text",
+          "explanation": "Пентадекан — нормальный алкан, который содержит 15 атомов углерода; его формула C₁₅H₃₂."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-012-formula-c12",
+          "text": "C₁₂H₂₆"
+        },
+        {
+          "id": "alkane-matching-012-formula-c13",
+          "text": "C₁₃H₂₈"
+        },
+        {
+          "id": "alkane-matching-012-formula-c14",
+          "text": "C₁₄H₃₀"
+        },
+        {
+          "id": "alkane-matching-012-formula-c15",
+          "text": "C₁₅H₃₂"
+        },
+        {
+          "id": "alkane-matching-012-formula-c16",
+          "text": "C₁₆H₃₄"
+        }
+      ],
+      "correct": {
+        "alkane-matching-012-c12": "alkane-matching-012-formula-c12",
+        "alkane-matching-012-c13": "alkane-matching-012-formula-c13",
+        "alkane-matching-012-c14": "alkane-matching-012-formula-c14",
+        "alkane-matching-012-c15": "alkane-matching-012-formula-c15"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₆H₃₄ является лишним."
+    },
+    {
+      "id": "alkane-matching-013",
+      "section": "matching",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-013-c13",
+          "text": "тридекан",
+          "format": "text",
+          "explanation": "Тридекан — нормальный алкан, который содержит 13 атомов углерода; его формула C₁₃H₂₈."
+        },
+        {
+          "id": "alkane-matching-013-c14",
+          "text": "тетрадекан",
+          "format": "text",
+          "explanation": "Тетрадекан — нормальный алкан, который содержит 14 атомов углерода; его формула C₁₄H₃₀."
+        },
+        {
+          "id": "alkane-matching-013-c15",
+          "text": "пентадекан",
+          "format": "text",
+          "explanation": "Пентадекан — нормальный алкан, который содержит 15 атомов углерода; его формула C₁₅H₃₂."
+        },
+        {
+          "id": "alkane-matching-013-c16",
+          "text": "гексадекан",
+          "format": "text",
+          "explanation": "Гексадекан — нормальный алкан, который содержит 16 атомов углерода; его формула C₁₆H₃₄."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-013-formula-c13",
+          "text": "C₁₃H₂₈"
+        },
+        {
+          "id": "alkane-matching-013-formula-c14",
+          "text": "C₁₄H₃₀"
+        },
+        {
+          "id": "alkane-matching-013-formula-c15",
+          "text": "C₁₅H₃₂"
+        },
+        {
+          "id": "alkane-matching-013-formula-c16",
+          "text": "C₁₆H₃₄"
+        },
+        {
+          "id": "alkane-matching-013-formula-c17",
+          "text": "C₁₇H₃₆"
+        }
+      ],
+      "correct": {
+        "alkane-matching-013-c13": "alkane-matching-013-formula-c13",
+        "alkane-matching-013-c14": "alkane-matching-013-formula-c14",
+        "alkane-matching-013-c15": "alkane-matching-013-formula-c15",
+        "alkane-matching-013-c16": "alkane-matching-013-formula-c16"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₇H₃₆ является лишним."
+    },
+    {
+      "id": "alkane-matching-014",
+      "section": "matching",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-014-c14",
+          "text": "тетрадекан",
+          "format": "text",
+          "explanation": "Тетрадекан — нормальный алкан, который содержит 14 атомов углерода; его формула C₁₄H₃₀."
+        },
+        {
+          "id": "alkane-matching-014-c15",
+          "text": "пентадекан",
+          "format": "text",
+          "explanation": "Пентадекан — нормальный алкан, который содержит 15 атомов углерода; его формула C₁₅H₃₂."
+        },
+        {
+          "id": "alkane-matching-014-c16",
+          "text": "гексадекан",
+          "format": "text",
+          "explanation": "Гексадекан — нормальный алкан, который содержит 16 атомов углерода; его формула C₁₆H₃₄."
+        },
+        {
+          "id": "alkane-matching-014-c17",
+          "text": "гептадекан",
+          "format": "text",
+          "explanation": "Гептадекан — нормальный алкан, который содержит 17 атомов углерода; его формула C₁₇H₃₆."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-014-formula-c14",
+          "text": "C₁₄H₃₀"
+        },
+        {
+          "id": "alkane-matching-014-formula-c15",
+          "text": "C₁₅H₃₂"
+        },
+        {
+          "id": "alkane-matching-014-formula-c16",
+          "text": "C₁₆H₃₄"
+        },
+        {
+          "id": "alkane-matching-014-formula-c17",
+          "text": "C₁₇H₃₆"
+        },
+        {
+          "id": "alkane-matching-014-formula-c18",
+          "text": "C₁₈H₃₈"
+        }
+      ],
+      "correct": {
+        "alkane-matching-014-c14": "alkane-matching-014-formula-c14",
+        "alkane-matching-014-c15": "alkane-matching-014-formula-c15",
+        "alkane-matching-014-c16": "alkane-matching-014-formula-c16",
+        "alkane-matching-014-c17": "alkane-matching-014-formula-c17"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₈H₃₈ является лишним."
+    },
+    {
+      "id": "alkane-matching-015",
+      "section": "matching",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "matching"
+      ],
+      "type": "matching",
+      "text": "Установите соответствие между названиями членов ряда нормальных алканов и их молекулярными формулами.",
+      "items": [
+        {
+          "id": "alkane-matching-015-c15",
+          "text": "пентадекан",
+          "format": "text",
+          "explanation": "Пентадекан — нормальный алкан, который содержит 15 атомов углерода; его формула C₁₅H₃₂."
+        },
+        {
+          "id": "alkane-matching-015-c16",
+          "text": "гексадекан",
+          "format": "text",
+          "explanation": "Гексадекан — нормальный алкан, который содержит 16 атомов углерода; его формула C₁₆H₃₄."
+        },
+        {
+          "id": "alkane-matching-015-c17",
+          "text": "гептадекан",
+          "format": "text",
+          "explanation": "Гептадекан — нормальный алкан, который содержит 17 атомов углерода; его формула C₁₇H₃₆."
+        },
+        {
+          "id": "alkane-matching-015-c18",
+          "text": "октадекан",
+          "format": "text",
+          "explanation": "Октадекан — нормальный алкан, который содержит 18 атомов углерода; его формула C₁₈H₃₈."
+        }
+      ],
+      "options": [
+        {
+          "id": "alkane-matching-015-formula-c15",
+          "text": "C₁₅H₃₂"
+        },
+        {
+          "id": "alkane-matching-015-formula-c16",
+          "text": "C₁₆H₃₄"
+        },
+        {
+          "id": "alkane-matching-015-formula-c17",
+          "text": "C₁₇H₃₆"
+        },
+        {
+          "id": "alkane-matching-015-formula-c18",
+          "text": "C₁₈H₃₈"
+        },
+        {
+          "id": "alkane-matching-015-formula-c19",
+          "text": "C₁₉H₄₀"
+        }
+      ],
+      "correct": {
+        "alkane-matching-015-c15": "alkane-matching-015-formula-c15",
+        "alkane-matching-015-c16": "alkane-matching-015-formula-c16",
+        "alkane-matching-015-c17": "alkane-matching-015-formula-c17",
+        "alkane-matching-015-c18": "alkane-matching-015-formula-c18"
+      },
+      "allowOptionReuse": false,
+      "explanation": "В названии нормального алкана зафиксировано число атомов углерода, а число атомов водорода определяется формулой H = 2n + 2. Вариант C₁₉H₄₀ является лишним."
+    },
+    {
+      "id": "alkane-sequence-001",
+      "section": "sequence",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения числа атомов углерода.",
+      "items": [
+        {
+          "id": "alkane-sequence-001-c3",
+          "text": "C₃H₈",
+          "format": "formula",
+          "explanation": "C₃H₈ содержит 3 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-001-c1",
+          "text": "CH₄",
+          "format": "formula",
+          "explanation": "CH₄ содержит 1 атом углерода."
+        },
+        {
+          "id": "alkane-sequence-001-c4",
+          "text": "C₄H₁₀",
+          "format": "formula",
+          "explanation": "C₄H₁₀ содержит 4 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-001-c2",
+          "text": "C₂H₆",
+          "format": "formula",
+          "explanation": "C₂H₆ содержит 2 атома углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-001-c1",
+        "alkane-sequence-001-c2",
+        "alkane-sequence-001-c3",
+        "alkane-sequence-001-c4"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: CH₄ → C₂H₆ → C₃H₈ → C₄H₁₀. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-002",
+      "section": "sequence",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения относительной молекулярной массы.",
+      "items": [
+        {
+          "id": "alkane-sequence-002-c4",
+          "text": "C₄H₁₀",
+          "format": "formula",
+          "explanation": "C₄H₁₀ содержит 4 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-002-c2",
+          "text": "C₂H₆",
+          "format": "formula",
+          "explanation": "C₂H₆ содержит 2 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-002-c5",
+          "text": "C₅H₁₂",
+          "format": "formula",
+          "explanation": "C₅H₁₂ содержит 5 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-002-c3",
+          "text": "C₃H₈",
+          "format": "formula",
+          "explanation": "C₃H₈ содержит 3 атома углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-002-c2",
+        "alkane-sequence-002-c3",
+        "alkane-sequence-002-c4",
+        "alkane-sequence-002-c5"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₂H₆ → C₃H₈ → C₄H₁₀ → C₅H₁₂. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-003",
+      "section": "sequence",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы от низшего гомолога к высшему.",
+      "items": [
+        {
+          "id": "alkane-sequence-003-c5",
+          "text": "C₅H₁₂",
+          "format": "formula",
+          "explanation": "C₅H₁₂ содержит 5 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-003-c3",
+          "text": "C₃H₈",
+          "format": "formula",
+          "explanation": "C₃H₈ содержит 3 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-003-c6",
+          "text": "C₆H₁₄",
+          "format": "formula",
+          "explanation": "C₆H₁₄ содержит 6 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-003-c4",
+          "text": "C₄H₁₀",
+          "format": "formula",
+          "explanation": "C₄H₁₀ содержит 4 атома углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-003-c3",
+        "alkane-sequence-003-c4",
+        "alkane-sequence-003-c5",
+        "alkane-sequence-003-c6"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₃H₈ → C₄H₁₀ → C₅H₁₂ → C₆H₁₄. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-004",
+      "section": "sequence",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения числа атомов углерода.",
+      "items": [
+        {
+          "id": "alkane-sequence-004-c6",
+          "text": "C₆H₁₄",
+          "format": "formula",
+          "explanation": "C₆H₁₄ содержит 6 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-004-c4",
+          "text": "C₄H₁₀",
+          "format": "formula",
+          "explanation": "C₄H₁₀ содержит 4 атома углерода."
+        },
+        {
+          "id": "alkane-sequence-004-c7",
+          "text": "C₇H₁₆",
+          "format": "formula",
+          "explanation": "C₇H₁₆ содержит 7 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-004-c5",
+          "text": "C₅H₁₂",
+          "format": "formula",
+          "explanation": "C₅H₁₂ содержит 5 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-004-c4",
+        "alkane-sequence-004-c5",
+        "alkane-sequence-004-c6",
+        "alkane-sequence-004-c7"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₄H₁₀ → C₅H₁₂ → C₆H₁₄ → C₇H₁₆. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-005",
+      "section": "sequence",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения относительной молекулярной массы.",
+      "items": [
+        {
+          "id": "alkane-sequence-005-c7",
+          "text": "C₇H₁₆",
+          "format": "formula",
+          "explanation": "C₇H₁₆ содержит 7 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-005-c5",
+          "text": "C₅H₁₂",
+          "format": "formula",
+          "explanation": "C₅H₁₂ содержит 5 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-005-c8",
+          "text": "C₈H₁₈",
+          "format": "formula",
+          "explanation": "C₈H₁₈ содержит 8 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-005-c6",
+          "text": "C₆H₁₄",
+          "format": "formula",
+          "explanation": "C₆H₁₄ содержит 6 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-005-c5",
+        "alkane-sequence-005-c6",
+        "alkane-sequence-005-c7",
+        "alkane-sequence-005-c8"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₅H₁₂ → C₆H₁₄ → C₇H₁₆ → C₈H₁₈. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-006",
+      "section": "sequence",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы от низшего гомолога к высшему.",
+      "items": [
+        {
+          "id": "alkane-sequence-006-c8",
+          "text": "C₈H₁₈",
+          "format": "formula",
+          "explanation": "C₈H₁₈ содержит 8 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-006-c6",
+          "text": "C₆H₁₄",
+          "format": "formula",
+          "explanation": "C₆H₁₄ содержит 6 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-006-c9",
+          "text": "C₉H₂₀",
+          "format": "formula",
+          "explanation": "C₉H₂₀ содержит 9 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-006-c7",
+          "text": "C₇H₁₆",
+          "format": "formula",
+          "explanation": "C₇H₁₆ содержит 7 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-006-c6",
+        "alkane-sequence-006-c7",
+        "alkane-sequence-006-c8",
+        "alkane-sequence-006-c9"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₆H₁₄ → C₇H₁₆ → C₈H₁₈ → C₉H₂₀. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-007",
+      "section": "sequence",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения числа атомов углерода.",
+      "items": [
+        {
+          "id": "alkane-sequence-007-c9",
+          "text": "C₉H₂₀",
+          "format": "formula",
+          "explanation": "C₉H₂₀ содержит 9 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-007-c7",
+          "text": "C₇H₁₆",
+          "format": "formula",
+          "explanation": "C₇H₁₆ содержит 7 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-007-c10",
+          "text": "C₁₀H₂₂",
+          "format": "formula",
+          "explanation": "C₁₀H₂₂ содержит 10 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-007-c8",
+          "text": "C₈H₁₈",
+          "format": "formula",
+          "explanation": "C₈H₁₈ содержит 8 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-007-c7",
+        "alkane-sequence-007-c8",
+        "alkane-sequence-007-c9",
+        "alkane-sequence-007-c10"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₇H₁₆ → C₈H₁₈ → C₉H₂₀ → C₁₀H₂₂. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-008",
+      "section": "sequence",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения относительной молекулярной массы.",
+      "items": [
+        {
+          "id": "alkane-sequence-008-c10",
+          "text": "C₁₀H₂₂",
+          "format": "formula",
+          "explanation": "C₁₀H₂₂ содержит 10 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-008-c8",
+          "text": "C₈H₁₈",
+          "format": "formula",
+          "explanation": "C₈H₁₈ содержит 8 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-008-c11",
+          "text": "C₁₁H₂₄",
+          "format": "formula",
+          "explanation": "C₁₁H₂₄ содержит 11 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-008-c9",
+          "text": "C₉H₂₀",
+          "format": "formula",
+          "explanation": "C₉H₂₀ содержит 9 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-008-c8",
+        "alkane-sequence-008-c9",
+        "alkane-sequence-008-c10",
+        "alkane-sequence-008-c11"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₈H₁₈ → C₉H₂₀ → C₁₀H₂₂ → C₁₁H₂₄. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-009",
+      "section": "sequence",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы от низшего гомолога к высшему.",
+      "items": [
+        {
+          "id": "alkane-sequence-009-c11",
+          "text": "C₁₁H₂₄",
+          "format": "formula",
+          "explanation": "C₁₁H₂₄ содержит 11 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-009-c9",
+          "text": "C₉H₂₀",
+          "format": "formula",
+          "explanation": "C₉H₂₀ содержит 9 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-009-c12",
+          "text": "C₁₂H₂₆",
+          "format": "formula",
+          "explanation": "C₁₂H₂₆ содержит 12 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-009-c10",
+          "text": "C₁₀H₂₂",
+          "format": "formula",
+          "explanation": "C₁₀H₂₂ содержит 10 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-009-c9",
+        "alkane-sequence-009-c10",
+        "alkane-sequence-009-c11",
+        "alkane-sequence-009-c12"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₉H₂₀ → C₁₀H₂₂ → C₁₁H₂₄ → C₁₂H₂₆. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-010",
+      "section": "sequence",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения числа атомов углерода.",
+      "items": [
+        {
+          "id": "alkane-sequence-010-c12",
+          "text": "C₁₂H₂₆",
+          "format": "formula",
+          "explanation": "C₁₂H₂₆ содержит 12 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-010-c10",
+          "text": "C₁₀H₂₂",
+          "format": "formula",
+          "explanation": "C₁₀H₂₂ содержит 10 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-010-c13",
+          "text": "C₁₃H₂₈",
+          "format": "formula",
+          "explanation": "C₁₃H₂₈ содержит 13 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-010-c11",
+          "text": "C₁₁H₂₄",
+          "format": "formula",
+          "explanation": "C₁₁H₂₄ содержит 11 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-010-c10",
+        "alkane-sequence-010-c11",
+        "alkane-sequence-010-c12",
+        "alkane-sequence-010-c13"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₀H₂₂ → C₁₁H₂₄ → C₁₂H₂₆ → C₁₃H₂₈. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-011",
+      "section": "sequence",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения относительной молекулярной массы.",
+      "items": [
+        {
+          "id": "alkane-sequence-011-c13",
+          "text": "C₁₃H₂₈",
+          "format": "formula",
+          "explanation": "C₁₃H₂₈ содержит 13 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-011-c11",
+          "text": "C₁₁H₂₄",
+          "format": "formula",
+          "explanation": "C₁₁H₂₄ содержит 11 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-011-c14",
+          "text": "C₁₄H₃₀",
+          "format": "formula",
+          "explanation": "C₁₄H₃₀ содержит 14 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-011-c12",
+          "text": "C₁₂H₂₆",
+          "format": "formula",
+          "explanation": "C₁₂H₂₆ содержит 12 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-011-c11",
+        "alkane-sequence-011-c12",
+        "alkane-sequence-011-c13",
+        "alkane-sequence-011-c14"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₁H₂₄ → C₁₂H₂₆ → C₁₃H₂₈ → C₁₄H₃₀. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-012",
+      "section": "sequence",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы от низшего гомолога к высшему.",
+      "items": [
+        {
+          "id": "alkane-sequence-012-c14",
+          "text": "C₁₄H₃₀",
+          "format": "formula",
+          "explanation": "C₁₄H₃₀ содержит 14 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-012-c12",
+          "text": "C₁₂H₂₆",
+          "format": "formula",
+          "explanation": "C₁₂H₂₆ содержит 12 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-012-c15",
+          "text": "C₁₅H₃₂",
+          "format": "formula",
+          "explanation": "C₁₅H₃₂ содержит 15 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-012-c13",
+          "text": "C₁₃H₂₈",
+          "format": "formula",
+          "explanation": "C₁₃H₂₈ содержит 13 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-012-c12",
+        "alkane-sequence-012-c13",
+        "alkane-sequence-012-c14",
+        "alkane-sequence-012-c15"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₂H₂₆ → C₁₃H₂₈ → C₁₄H₃₀ → C₁₅H₃₂. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-013",
+      "section": "sequence",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения числа атомов углерода.",
+      "items": [
+        {
+          "id": "alkane-sequence-013-c15",
+          "text": "C₁₅H₃₂",
+          "format": "formula",
+          "explanation": "C₁₅H₃₂ содержит 15 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-013-c13",
+          "text": "C₁₃H₂₈",
+          "format": "formula",
+          "explanation": "C₁₃H₂₈ содержит 13 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-013-c16",
+          "text": "C₁₆H₃₄",
+          "format": "formula",
+          "explanation": "C₁₆H₃₄ содержит 16 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-013-c14",
+          "text": "C₁₄H₃₀",
+          "format": "formula",
+          "explanation": "C₁₄H₃₀ содержит 14 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-013-c13",
+        "alkane-sequence-013-c14",
+        "alkane-sequence-013-c15",
+        "alkane-sequence-013-c16"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₃H₂₈ → C₁₄H₃₀ → C₁₅H₃₂ → C₁₆H₃₄. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-014",
+      "section": "sequence",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы в порядке увеличения относительной молекулярной массы.",
+      "items": [
+        {
+          "id": "alkane-sequence-014-c16",
+          "text": "C₁₆H₃₄",
+          "format": "formula",
+          "explanation": "C₁₆H₃₄ содержит 16 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-014-c14",
+          "text": "C₁₄H₃₀",
+          "format": "formula",
+          "explanation": "C₁₄H₃₀ содержит 14 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-014-c17",
+          "text": "C₁₇H₃₆",
+          "format": "formula",
+          "explanation": "C₁₇H₃₆ содержит 17 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-014-c15",
+          "text": "C₁₅H₃₂",
+          "format": "formula",
+          "explanation": "C₁₅H₃₂ содержит 15 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-014-c14",
+        "alkane-sequence-014-c15",
+        "alkane-sequence-014-c16",
+        "alkane-sequence-014-c17"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₄H₃₀ → C₁₅H₃₂ → C₁₆H₃₄ → C₁₇H₃₆. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-sequence-015",
+      "section": "sequence",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "sequence"
+      ],
+      "type": "sequence",
+      "text": "Расположите ациклические алканы от низшего гомолога к высшему.",
+      "items": [
+        {
+          "id": "alkane-sequence-015-c17",
+          "text": "C₁₇H₃₆",
+          "format": "formula",
+          "explanation": "C₁₇H₃₆ содержит 17 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-015-c15",
+          "text": "C₁₅H₃₂",
+          "format": "formula",
+          "explanation": "C₁₅H₃₂ содержит 15 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-015-c18",
+          "text": "C₁₈H₃₈",
+          "format": "formula",
+          "explanation": "C₁₈H₃₈ содержит 18 атомов углерода."
+        },
+        {
+          "id": "alkane-sequence-015-c16",
+          "text": "C₁₆H₃₄",
+          "format": "formula",
+          "explanation": "C₁₆H₃₄ содержит 16 атомов углерода."
+        }
+      ],
+      "correct": [
+        "alkane-sequence-015-c15",
+        "alkane-sequence-015-c16",
+        "alkane-sequence-015-c17",
+        "alkane-sequence-015-c18"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Правильный порядок: C₁₅H₃₂ → C₁₆H₃₄ → C₁₇H₃₆ → C₁₈H₃₈. Каждый следующий член ряда содержит на один атом углерода и на два атома водорода больше."
+    },
+    {
+      "id": "alkane-odd-001",
+      "section": "odd",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "CH₄",
+        "C₂H₆",
+        "C₄H₈",
+        "C₃H₈"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₄H₈ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 4 должно быть 10 атомов водорода, то есть C₄H₁₀."
+    },
+    {
+      "id": "alkane-odd-002",
+      "section": "odd",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₂H₆",
+        "C₃H₈",
+        "C₄H₁₀",
+        "C₅H₁₀"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₅H₁₀ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 5 должно быть 12 атомов водорода, то есть C₅H₁₂."
+    },
+    {
+      "id": "alkane-odd-003",
+      "section": "odd",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₆H₁₂",
+        "C₃H₈",
+        "C₄H₁₀",
+        "C₅H₁₂"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₆H₁₂ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 6 должно быть 14 атомов водорода, то есть C₆H₁₄."
+    },
+    {
+      "id": "alkane-odd-004",
+      "section": "odd",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₄H₁₀",
+        "C₇H₁₄",
+        "C₅H₁₂",
+        "C₆H₁₄"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₇H₁₄ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 7 должно быть 16 атомов водорода, то есть C₇H₁₆."
+    },
+    {
+      "id": "alkane-odd-005",
+      "section": "odd",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₅H₁₂",
+        "C₆H₁₄",
+        "C₈H₁₆",
+        "C₇H₁₆"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₈H₁₆ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 8 должно быть 18 атомов водорода, то есть C₈H₁₈."
+    },
+    {
+      "id": "alkane-odd-006",
+      "section": "odd",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₆H₁₄",
+        "C₇H₁₆",
+        "C₈H₁₈",
+        "C₉H₁₈"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₉H₁₈ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 9 должно быть 20 атомов водорода, то есть C₉H₂₀."
+    },
+    {
+      "id": "alkane-odd-007",
+      "section": "odd",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₀H₂₀",
+        "C₇H₁₆",
+        "C₈H₁₈",
+        "C₉H₂₀"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₀H₂₀ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 10 должно быть 22 атомов водорода, то есть C₁₀H₂₂."
+    },
+    {
+      "id": "alkane-odd-008",
+      "section": "odd",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₈H₁₈",
+        "C₁₁H₂₂",
+        "C₉H₂₀",
+        "C₁₀H₂₂"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₁₁H₂₂ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 11 должно быть 24 атомов водорода, то есть C₁₁H₂₄."
+    },
+    {
+      "id": "alkane-odd-009",
+      "section": "odd",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₉H₂₀",
+        "C₁₀H₂₂",
+        "C₁₂H₂₄",
+        "C₁₁H₂₄"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₁₂H₂₄ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 12 должно быть 26 атомов водорода, то есть C₁₂H₂₆."
+    },
+    {
+      "id": "alkane-odd-010",
+      "section": "odd",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₀H₂₂",
+        "C₁₁H₂₄",
+        "C₁₂H₂₆",
+        "C₁₃H₂₆"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₃H₂₆ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 13 должно быть 28 атомов водорода, то есть C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-odd-011",
+      "section": "odd",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₄H₂₈",
+        "C₁₁H₂₄",
+        "C₁₂H₂₆",
+        "C₁₃H₂₈"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₄H₂₈ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 14 должно быть 30 атомов водорода, то есть C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-odd-012",
+      "section": "odd",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₂H₂₆",
+        "C₁₅H₃₀",
+        "C₁₃H₂₈",
+        "C₁₄H₃₀"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "C₁₅H₃₀ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 15 должно быть 32 атомов водорода, то есть C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-odd-013",
+      "section": "odd",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₃H₂₈",
+        "C₁₄H₃₀",
+        "C₁₆H₃₂",
+        "C₁₅H₃₂"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "C₁₆H₃₂ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 16 должно быть 34 атомов водорода, то есть C₁₆H₃₄."
+    },
+    {
+      "id": "alkane-odd-014",
+      "section": "odd",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₄H₃₀",
+        "C₁₅H₃₂",
+        "C₁₆H₃₄",
+        "C₁₇H₃₄"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "C₁₇H₃₄ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 17 должно быть 36 атомов водорода, то есть C₁₇H₃₆."
+    },
+    {
+      "id": "alkane-odd-015",
+      "section": "odd",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "odd"
+      ],
+      "type": "single",
+      "text": "Какая формула не соответствует ациклическому алкану?",
+      "options": [
+        "C₁₈H₃₆",
+        "C₁₅H₃₂",
+        "C₁₆H₃₄",
+        "C₁₇H₃₆"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "C₁₈H₃₆ не удовлетворяет общей формуле ациклических алканов CₙH₂ₙ₊₂: при n = 18 должно быть 38 атомов водорода, то есть C₁₈H₃₈."
+    },
+    {
+      "id": "alkane-truefalse-001",
+      "section": "truefalse",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Общая формула ациклических алканов — CₙH₂ₙ₊₂.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Это общая формула ациклических предельных углеводородов."
+    },
+    {
+      "id": "alkane-truefalse-002",
+      "section": "truefalse",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Соседние гомологи алканов отличаются по составу на одну группу CH₂.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "При переходе к следующему члену ряда добавляются один атом углерода и два атома водорода."
+    },
+    {
+      "id": "alkane-truefalse-003",
+      "section": "truefalse",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Алканы, отличающиеся по составу на несколько групп CH₂, не являются гомологами.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Они являются гомологами одного ряда, но не соседними гомологами."
+    },
+    {
+      "id": "alkane-truefalse-004",
+      "section": "truefalse",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Метан CH₄ и пропан C₃H₈ — соседние гомологи.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Метан и пропан — гомологи, но между ними находится этан C₂H₆, поэтому они не соседние."
+    },
+    {
+      "id": "alkane-truefalse-005",
+      "section": "truefalse",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Этан C₂H₆ и бутан C₄H₁₀ относятся к одному гомологическому ряду алканов.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Оба вещества — ациклические алканы; их состав отличается на две группы CH₂."
+    },
+    {
+      "id": "alkane-truefalse-006",
+      "section": "truefalse",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Ациклический алкан с пятью атомами углерода имеет формулу C₅H₁₂.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "При n = 5 число атомов водорода равно 2 · 5 + 2 = 12."
+    },
+    {
+      "id": "alkane-truefalse-007",
+      "section": "truefalse",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Формула C₆H₁₂ соответствует ациклическому алкану.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для ациклического алкана с шестью атомами углерода требуется 2 · 6 + 2 = 14 атомов водорода: C₆H₁₄."
+    },
+    {
+      "id": "alkane-truefalse-008",
+      "section": "truefalse",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Относительная молекулярная масса ациклического алкана вычисляется по формуле Mr = 14n + 2.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Mr = 12n + (2n + 2) = 14n + 2 при Ar(C) = 12 и Ar(H) = 1."
+    },
+    {
+      "id": "alkane-truefalse-009",
+      "section": "truefalse",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Общее число атомов в молекуле ациклического алкана равно 3n + 2.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "В молекуле n атомов углерода и 2n + 2 атомов водорода; всего 3n + 2."
+    },
+    {
+      "id": "alkane-truefalse-010",
+      "section": "truefalse",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Декан имеет молекулярную формулу C₁₀H₂₂.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "В декане n = 10, поэтому H = 2 · 10 + 2 = 22."
+    },
+    {
+      "id": "alkane-truefalse-011",
+      "section": "truefalse",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Эйкозан содержит двадцать атомов углерода и имеет формулу C₂₀H₄₂.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для n = 20 число атомов водорода равно 2 · 20 + 2 = 42."
+    },
+    {
+      "id": "alkane-truefalse-012",
+      "section": "truefalse",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "При переходе к следующему соседнему гомологу число атомов углерода увеличивается на один, а водорода — на два.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Именно такое изменение состава соответствует добавлению группы CH₂."
+    },
+    {
+      "id": "alkane-truefalse-013",
+      "section": "truefalse",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Относительная молекулярная масса каждого следующего соседнего гомолога алканов больше на 14.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Масса добавленной группы CH₂ равна 12 + 2 · 1 = 14."
+    },
+    {
+      "id": "alkane-truefalse-014",
+      "section": "truefalse",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Пентан C₅H₁₂ и гексан C₆H₁₄ отличаются по составу на группу C₂H₂.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Разность их составов равна CH₂, поэтому это соседние гомологи."
+    },
+    {
+      "id": "alkane-truefalse-015",
+      "section": "truefalse",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "truefalse"
+      ],
+      "type": "single",
+      "text": "Если в ациклическом алкане 18 атомов водорода, то атомов углерода в нём восемь.",
+      "options": [
+        "Неверно",
+        "Верно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Из 18 = 2n + 2 следует n = (18 − 2) / 2 = 8."
+    },
+    {
+      "id": "alkane-calculation-001",
+      "section": "calculation",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Вычислите относительную молекулярную массу ациклического алкана C₃H₈. Используйте Ar(C) = 12, Ar(H) = 1.",
+      "content": {
+        "text": "Mr(C₃H₈) = 12 · 3 + 1 · 8",
+        "format": "formula",
+        "caption": "Расчёт относительной молекулярной массы"
+      },
+      "correct": 44,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 500,
+        "tolerance": 0,
+        "unit": "Mr",
+        "placeholder": "Введите значение Mr"
+      },
+      "explanation": "Mr = 12 · 3 + 8 = 36 + 8 = 44. Это соответствует зависимости Mr = 14n + 2."
+    },
+    {
+      "id": "alkane-calculation-002",
+      "section": "calculation",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Вычислите относительную молекулярную массу ациклического алкана C₄H₁₀. Используйте Ar(C) = 12, Ar(H) = 1.",
+      "content": {
+        "text": "Mr(C₄H₁₀) = 12 · 4 + 1 · 10",
+        "format": "formula",
+        "caption": "Расчёт относительной молекулярной массы"
+      },
+      "correct": 58,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 500,
+        "tolerance": 0,
+        "unit": "Mr",
+        "placeholder": "Введите значение Mr"
+      },
+      "explanation": "Mr = 12 · 4 + 10 = 48 + 10 = 58. Это соответствует зависимости Mr = 14n + 2."
+    },
+    {
+      "id": "alkane-calculation-003",
+      "section": "calculation",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Вычислите относительную молекулярную массу ациклического алкана C₅H₁₂. Используйте Ar(C) = 12, Ar(H) = 1.",
+      "content": {
+        "text": "Mr(C₅H₁₂) = 12 · 5 + 1 · 12",
+        "format": "formula",
+        "caption": "Расчёт относительной молекулярной массы"
+      },
+      "correct": 72,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 500,
+        "tolerance": 0,
+        "unit": "Mr",
+        "placeholder": "Введите значение Mr"
+      },
+      "explanation": "Mr = 12 · 5 + 12 = 60 + 12 = 72. Это соответствует зависимости Mr = 14n + 2."
+    },
+    {
+      "id": "alkane-calculation-004",
+      "section": "calculation",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Вычислите относительную молекулярную массу ациклического алкана C₆H₁₄. Используйте Ar(C) = 12, Ar(H) = 1.",
+      "content": {
+        "text": "Mr(C₆H₁₄) = 12 · 6 + 1 · 14",
+        "format": "formula",
+        "caption": "Расчёт относительной молекулярной массы"
+      },
+      "correct": 86,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 500,
+        "tolerance": 0,
+        "unit": "Mr",
+        "placeholder": "Введите значение Mr"
+      },
+      "explanation": "Mr = 12 · 6 + 14 = 72 + 14 = 86. Это соответствует зависимости Mr = 14n + 2."
+    },
+    {
+      "id": "alkane-calculation-005",
+      "section": "calculation",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Вычислите относительную молекулярную массу ациклического алкана C₇H₁₆. Используйте Ar(C) = 12, Ar(H) = 1.",
+      "content": {
+        "text": "Mr(C₇H₁₆) = 12 · 7 + 1 · 16",
+        "format": "formula",
+        "caption": "Расчёт относительной молекулярной массы"
+      },
+      "correct": 100,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 500,
+        "tolerance": 0,
+        "unit": "Mr",
+        "placeholder": "Введите значение Mr"
+      },
+      "explanation": "Mr = 12 · 7 + 16 = 84 + 16 = 100. Это соответствует зависимости Mr = 14n + 2."
+    },
+    {
+      "id": "alkane-calculation-006",
+      "section": "calculation",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Сколько всего атомов содержит одна молекула ациклического алкана C₈H₁₈?",
+      "content": {
+        "text": "8 + 18 = ?",
+        "format": "formula",
+        "caption": "Число атомов углерода и водорода"
+      },
+      "correct": 26,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 100,
+        "tolerance": 0,
+        "unit": "атомов",
+        "placeholder": "Введите общее число атомов"
+      },
+      "explanation": "В молекуле 8 атомов C и 18 атомов H. Всего 8 + 18 = 26, что совпадает с формулой 3n + 2."
+    },
+    {
+      "id": "alkane-calculation-007",
+      "section": "calculation",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Сколько всего атомов содержит одна молекула ациклического алкана C₉H₂₀?",
+      "content": {
+        "text": "9 + 20 = ?",
+        "format": "formula",
+        "caption": "Число атомов углерода и водорода"
+      },
+      "correct": 29,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 100,
+        "tolerance": 0,
+        "unit": "атомов",
+        "placeholder": "Введите общее число атомов"
+      },
+      "explanation": "В молекуле 9 атомов C и 20 атомов H. Всего 9 + 20 = 29, что совпадает с формулой 3n + 2."
+    },
+    {
+      "id": "alkane-calculation-008",
+      "section": "calculation",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Сколько всего атомов содержит одна молекула ациклического алкана C₁₀H₂₂?",
+      "content": {
+        "text": "10 + 22 = ?",
+        "format": "formula",
+        "caption": "Число атомов углерода и водорода"
+      },
+      "correct": 32,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 100,
+        "tolerance": 0,
+        "unit": "атомов",
+        "placeholder": "Введите общее число атомов"
+      },
+      "explanation": "В молекуле 10 атомов C и 22 атомов H. Всего 10 + 22 = 32, что совпадает с формулой 3n + 2."
+    },
+    {
+      "id": "alkane-calculation-009",
+      "section": "calculation",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Сколько всего атомов содержит одна молекула ациклического алкана C₁₁H₂₄?",
+      "content": {
+        "text": "11 + 24 = ?",
+        "format": "formula",
+        "caption": "Число атомов углерода и водорода"
+      },
+      "correct": 35,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 100,
+        "tolerance": 0,
+        "unit": "атомов",
+        "placeholder": "Введите общее число атомов"
+      },
+      "explanation": "В молекуле 11 атомов C и 24 атомов H. Всего 11 + 24 = 35, что совпадает с формулой 3n + 2."
+    },
+    {
+      "id": "alkane-calculation-010",
+      "section": "calculation",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Сколько всего атомов содержит одна молекула ациклического алкана C₁₂H₂₆?",
+      "content": {
+        "text": "12 + 26 = ?",
+        "format": "formula",
+        "caption": "Число атомов углерода и водорода"
+      },
+      "correct": 38,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 100,
+        "tolerance": 0,
+        "unit": "атомов",
+        "placeholder": "Введите общее число атомов"
+      },
+      "explanation": "В молекуле 12 атомов C и 26 атомов H. Всего 12 + 26 = 38, что совпадает с формулой 3n + 2."
+    },
+    {
+      "id": "alkane-calculation-011",
+      "section": "calculation",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Относительная молекулярная масса ациклического алкана равна 184. Сколько атомов углерода в его молекуле?",
+      "content": {
+        "text": "184 = 14n + 2",
+        "format": "formula",
+        "caption": "Определение числа атомов углерода по Mr"
+      },
+      "correct": 13,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из 184 = 14n + 2 получаем n = (184 − 2) / 14 = 13. Формула алкана: C₁₃H₂₈."
+    },
+    {
+      "id": "alkane-calculation-012",
+      "section": "calculation",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Относительная молекулярная масса ациклического алкана равна 198. Сколько атомов углерода в его молекуле?",
+      "content": {
+        "text": "198 = 14n + 2",
+        "format": "formula",
+        "caption": "Определение числа атомов углерода по Mr"
+      },
+      "correct": 14,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из 198 = 14n + 2 получаем n = (198 − 2) / 14 = 14. Формула алкана: C₁₄H₃₀."
+    },
+    {
+      "id": "alkane-calculation-013",
+      "section": "calculation",
+      "difficulty": 1,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Относительная молекулярная масса ациклического алкана равна 212. Сколько атомов углерода в его молекуле?",
+      "content": {
+        "text": "212 = 14n + 2",
+        "format": "formula",
+        "caption": "Определение числа атомов углерода по Mr"
+      },
+      "correct": 15,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из 212 = 14n + 2 получаем n = (212 − 2) / 14 = 15. Формула алкана: C₁₅H₃₂."
+    },
+    {
+      "id": "alkane-calculation-014",
+      "section": "calculation",
+      "difficulty": 2,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Относительная молекулярная масса ациклического алкана равна 226. Сколько атомов углерода в его молекуле?",
+      "content": {
+        "text": "226 = 14n + 2",
+        "format": "formula",
+        "caption": "Определение числа атомов углерода по Mr"
+      },
+      "correct": 16,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из 226 = 14n + 2 получаем n = (226 − 2) / 14 = 16. Формула алкана: C₁₆H₃₄."
+    },
+    {
+      "id": "alkane-calculation-015",
+      "section": "calculation",
+      "difficulty": 3,
+      "tags": [
+        "alkanes",
+        "homologous-series",
+        "calculation"
+      ],
+      "type": "number",
+      "text": "Относительная молекулярная масса ациклического алкана равна 240. Сколько атомов углерода в его молекуле?",
+      "content": {
+        "text": "240 = 14n + 2",
+        "format": "formula",
+        "caption": "Определение числа атомов углерода по Mr"
+      },
+      "correct": 17,
+      "number": {
+        "integer": true,
+        "min": 1,
+        "max": 20,
+        "tolerance": 0,
+        "unit": "атомов C",
+        "placeholder": "Введите число атомов углерода"
+      },
+      "explanation": "Из 240 = 14n + 2 получаем n = (240 − 2) / 14 = 17. Формула алкана: C₁₇H₃₆."
+    }
+  ]
+}

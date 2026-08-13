@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-07-22",
+  "updatedAt": "2026-07-23",
   "sections": [
     {
       "id": "organic",
@@ -103,7 +103,24 @@
     },
     {
       "id": "alkane-homology",
-      "title": "Гомология алканов",
+      "title": "Гомология алканов — новая версия",
+      "description": "Общая формула, гомологическая разность, названия, последовательности и расчётные задания.",
+      "section": "organic",
+      "kicker": "Новый движок",
+      "symbol": "CH₂",
+      "color": "#3157d5",
+      "softColor": "#eef2ff",
+      "questionCount": 180,
+      "modes": ["training", "test"],
+      "meta": "13 режимов · 10/15 заданий",
+      "url": "test.html?id=alkane-homology",
+      "linkLabel": "Открыть beta",
+      "status": "beta",
+      "order": 50
+    },
+    {
+      "id": "alkane-homology-legacy",
+      "title": "Гомология алканов — старая версия",
       "description": "Общая формула, соседние гомологи, названия, последовательности и расчётные задания.",
       "section": "organic",
       "kicker": "Гомологические ряды",
@@ -116,7 +133,8 @@
       "url": "alkane-homology.html",
       "linkLabel": "Открыть",
       "status": "active",
-      "order": 50
+      "badge": "Старая версия",
+      "order": 60
     },
     {
       "id": "organic-classification",
@@ -133,7 +151,7 @@
       "url": "test.html?id=organic-classification",
       "linkLabel": "Открыть beta",
       "status": "beta",
-      "order": 60,
+      "order": 70,
       "wide": false
     },
     {
@@ -152,7 +170,7 @@
       "linkLabel": "Открыть",
       "status": "active",
       "badge": "Старая версия",
-      "order": 70
+      "order": 80
     },
     {
       "id": "inorg-nomenclature",

@@ -12,7 +12,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=7";
+} from "./utils.js?v=8";
 import {
   appendHistory,
   clearProgress,
@@ -20,19 +20,21 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=7";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=7";
+} from "./storage.js?v=8";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=8";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=7";
+} from "./question-renderers.js?v=8";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
   formatCorrectAnswer,
+  getAnswerStatus,
   getFeedbackDetails,
+  getFeedbackHeading,
   getEmptyAnswer,
   getQuestionMaxPoints,
   hasAnyAnswer,
@@ -41,8 +43,8 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=7";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=7";
+} from "./question-types.js?v=8";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=8";
 
 class TrainerEngine {
   constructor() {
@@ -317,6 +319,10 @@ class TrainerEngine {
       const shuffle = (values) => this.test.settings.shuffleAnswers ? shuffledCopy(values) : [...values];
       return [questionId, createQuestionOptionOrder(question, shuffle)];
     }));
+    const answers = Object.fromEntries(order.map((questionId) => {
+      const question = this.questionMap.get(questionId);
+      return [questionId, getEmptyAnswer(question, optionOrder[questionId])];
+    }));
 
     this.selection = { variantId, mode };
     this.rememberSelection();
@@ -328,7 +334,7 @@ class TrainerEngine {
       questionOrder: order,
       optionOrder,
       current: 0,
-      answers: {},
+      answers,
       checked: new Set(),
       mistakes: new Set(),
       startedAt: new Date().toISOString(),
@@ -348,18 +354,20 @@ class TrainerEngine {
     const variant = this.test.variants.find((item) => item.id === saved.variantId);
     const questionOrder = restoreQuestionOrder(saved.questionOrder, variant.questionIds)
       .filter((id) => this.questionMap.has(id));
-    const answers = {};
-
-    questionOrder.forEach((questionId) => {
-      const question = this.questionMap.get(questionId);
-      answers[questionId] = normalizeAnswer(question, saved.selectedAnswers?.[questionId]);
-    });
-
     const optionOrder = {};
     questionOrder.forEach((questionId) => {
       const question = this.questionMap.get(questionId);
       const candidate = saved.optionOrder?.[questionId];
       optionOrder[questionId] = normalizeQuestionOptionOrder(question, candidate);
+    });
+    const answers = {};
+    questionOrder.forEach((questionId) => {
+      const question = this.questionMap.get(questionId);
+      answers[questionId] = normalizeAnswer(
+        question,
+        saved.selectedAnswers?.[questionId],
+        optionOrder[questionId]
+      );
     });
 
     const current = Math.max(0, questionOrder.indexOf(saved.currentQuestionId));
@@ -424,13 +432,15 @@ class TrainerEngine {
       return;
     }
 
-    const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+    const selected = this.state.answers[questionId] ??
+      getEmptyAnswer(question, this.state.optionOrder[questionId]);
     const isChecked = this.state.checked.has(questionId);
     const correct = isChecked && isAnswerCorrect(question, selected);
     const isTraining = this.state.mode === "training";
     const answeredCount = this.state.questionOrder.filter((id) => {
       const item = this.questionMap.get(id);
-      return isAnswerComplete(item, this.state.answers[id]);
+      return hasAnyAnswer(item, this.state.answers[id]) &&
+        isAnswerComplete(item, this.state.answers[id]);
     }).length;
     const checkedQuestions = this.state.questionOrder.filter((id) => this.state.checked.has(id));
     const checkedScore = checkedQuestions.reduce((score, id) => {
@@ -482,22 +492,25 @@ class TrainerEngine {
         : this.state.current === this.state.questionOrder.length - 1
           ? "Показать результат"
           : "Следующий вопрос";
-      this.elements.questionStatus.textContent = isChecked
-        ? (correct ? "✓ Ответ проверен: верно" : "! Ответ проверен: требуется разбор")
-        : hasAnyAnswer(question, selected)
-          ? (question.type === "multiple" ? `Выбрано вариантов: ${selected.length}` : "Ответ сохранён")
-          : "Ответ пока не выбран";
+      this.elements.questionStatus.textContent = getAnswerStatus(question, selected, {
+        mode: this.state.mode,
+        isChecked
+      });
     } else {
       this.elements.primaryButton.textContent = this.state.current === this.state.questionOrder.length - 1
         ? "Завершить тест"
         : "Сохранить и продолжить";
-      this.elements.questionStatus.textContent = hasAnyAnswer(question, selected) ? "● Ответ сохранён" : "Ответ пока не выбран";
+      this.elements.questionStatus.textContent = getAnswerStatus(question, selected, {
+        mode: this.state.mode,
+        isChecked: false
+      });
     }
   }
 
   updateAnswer(question, change) {
     if (!this.state || (this.state.mode === "training" && this.state.checked.has(question.id))) return;
-    const selected = this.state.answers[question.id] ?? getEmptyAnswer(question);
+    const selected = this.state.answers[question.id] ??
+      getEmptyAnswer(question, this.state.optionOrder[question.id]);
     this.state.answers[question.id] = updateQuestionAnswer(question, selected, change);
 
     this.persistProgress();
@@ -520,12 +533,14 @@ class TrainerEngine {
   updateLiveAnswerState(question, selected) {
     const answeredCount = this.state.questionOrder.filter((id) => {
       const item = this.questionMap.get(id);
-      return isAnswerComplete(item, this.state.answers[id]);
+      return hasAnyAnswer(item, this.state.answers[id]) &&
+        isAnswerComplete(item, this.state.answers[id]);
     }).length;
     this.elements.answeredCounter.textContent = String(answeredCount);
-    this.elements.questionStatus.textContent = hasAnyAnswer(question, selected)
-      ? "Ответ сохранён"
-      : "Ответ пока не выбран";
+    this.elements.questionStatus.textContent = getAnswerStatus(question, selected, {
+      mode: this.state.mode,
+      isChecked: false
+    });
     this.elements.questionStatus.style.color = "";
     this.elements.questionStatus.removeAttribute("role");
     const control = this.elements.answerContainer.querySelector("[data-answer-control]");
@@ -549,9 +564,7 @@ class TrainerEngine {
     const evaluation = evaluateAnswer(question, selected);
     const feedbackDetails = getFeedbackDetails(question, selected, evaluation);
     const heading = document.createElement("h3");
-    heading.textContent = evaluation.maxPoints > 1
-      ? `${correct ? "✓" : "!"} Верно: ${evaluation.earnedPoints} из ${evaluation.maxPoints}.`
-      : correct ? "✓ Верно" : "! Есть ошибка";
+    heading.textContent = getFeedbackHeading(question, selected, evaluation);
     const explanation = document.createElement("p");
     explanation.textContent = question.explanation;
     const discussion = document.createElement("p");
@@ -561,7 +574,7 @@ class TrainerEngine {
       discussion.textContent = "Можно кратко сформулировать правило своими словами и переходить дальше.";
     } else {
       discussion.textContent = evaluation.maxPoints > 1
-        ? "Разберите каждую ошибочную пару и только затем переходите дальше."
+        ? "Разберите каждую ошибочную часть ответа и только затем переходите дальше."
         : feedbackDetails.some((item) => item.label === "Правильный ответ")
           ? "Разберите пояснение и только затем переходите дальше."
           : `Правильный ответ: ${formatCorrectAnswer(question)}. ` +
@@ -595,7 +608,8 @@ class TrainerEngine {
       }
 
       const question = this.questionMap.get(questionId);
-      const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+      const selected = this.state.answers[questionId] ??
+        getEmptyAnswer(question, this.state.optionOrder[questionId]);
       if (hasAnyAnswer(question, selected)) button.classList.add("is-answered");
       if (isTraining && this.state.checked.has(questionId)) {
         button.classList.add(isAnswerCorrect(question, selected) ? "is-correct" : "is-wrong");
@@ -620,7 +634,8 @@ class TrainerEngine {
     if (!this.state) return;
     const questionId = this.state.questionOrder[this.state.current];
     const question = this.questionMap.get(questionId);
-    const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+    const selected = this.state.answers[questionId] ??
+      getEmptyAnswer(question, this.state.optionOrder[questionId]);
 
     if (this.state.mode === "training") {
       if (!this.state.checked.has(questionId)) {
@@ -769,7 +784,8 @@ class TrainerEngine {
 
     this.state.questionOrder.forEach((questionId, index) => {
       const question = this.questionMap.get(questionId);
-      const selected = this.state.answers[questionId] ?? getEmptyAnswer(question);
+      const selected = this.state.answers[questionId] ??
+        getEmptyAnswer(question, this.state.optionOrder[questionId]);
       const evaluation = evaluateAnswer(question, selected);
       const correct = evaluation.isFullyCorrect;
       const item = document.createElement("article");
