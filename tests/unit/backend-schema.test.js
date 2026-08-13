@@ -10,6 +10,10 @@ const hardeningMigration = readFileSync(new URL(
   "../../supabase/migrations/20260813143000_harden_learning_platform_accounts.sql",
   import.meta.url
 ), "utf8");
+const assignmentsMigration = readFileSync(new URL(
+  "../../supabase/migrations/20260813193000_class_assignments.sql",
+  import.meta.url
+), "utf8");
 
 const expectedTables = [
   "profiles",
@@ -56,4 +60,36 @@ test("репозиторий не содержит service-role или secret ke
   assert.doesNotMatch(migration, /sb_secret_[a-z0-9_-]+/i);
   assert.doesNotMatch(migration, /service_role_key\s*=\s*['"][^'"]+/i);
   assert.match(migration, /token_hash ~ '\^\[0-9a-f\]\{64\}\$'/);
+});
+
+test("назначения связаны с классом и доступны только связанным ролям", () => {
+  assert.match(assignmentsMigration, /create table public\.assignments \(/);
+  assert.match(assignmentsMigration, /classroom_id bigint not null references public\.classrooms\(id\) on delete cascade/);
+  assert.match(assignmentsMigration, /alter table public\.assignments enable row level security/);
+  assert.match(assignmentsMigration, /assignments_select_related[\s\S]+is_classroom_teacher\(classroom_id\)[\s\S]+is_classroom_member\(classroom_id\)/);
+  assert.match(assignmentsMigration, /assignments_insert_teacher[\s\S]+is_classroom_teacher\(classroom_id\)/);
+  assert.doesNotMatch(assignmentsMigration, /grant\s+[^;]+\s+to\s+anon\s*;/i);
+  assert.doesNotMatch(assignmentsMigration, /grant\s+(?:[^;]*,\s*)?(?:update|delete)[^;]*on table public\.assignments to authenticated/i);
+});
+
+test("сервер связывает результат с параметрами выданной работы", () => {
+  assert.match(assignmentsMigration, /create or replace function private\.can_submit_assignment/);
+  for (const field of ["test_id", "test_version", "variant_id", "mode"]) {
+    assert.match(assignmentsMigration, new RegExp(`assignment\\.${field} = p_${field}`));
+  }
+  assert.match(assignmentsMigration, /join public\.classroom_members[\s\S]+member\.student_id = p_user_id/);
+  assert.match(assignmentsMigration, /attempts_insert_self[\s\S]+can_submit_assignment/);
+});
+
+test("личный и назначенный прогресс разделены составным ключом", () => {
+  assert.match(assignmentsMigration, /add column scope_key text not null default 'personal'/);
+  assert.match(assignmentsMigration, /primary key \(user_id, test_id, scope_key\)/);
+  assert.match(assignmentsMigration, /scope_key = 'assignment-' \|\| assignment_id::text/);
+  assert.match(assignmentsMigration, /attempt_progress_insert_self[\s\S]+payload ->> 'variantId'[\s\S]+payload ->> 'mode'/);
+});
+
+test("внешние ключи назначений индексированы", () => {
+  assert.match(assignmentsMigration, /on public\.assignments \(classroom_id, due_at, created_at desc\)/);
+  assert.match(assignmentsMigration, /on public\.attempt_progress \(assignment_id, user_id\)/);
+  assert.match(assignmentsMigration, /on public\.attempts \(assignment_id, user_id, completed_at desc\)/);
 });

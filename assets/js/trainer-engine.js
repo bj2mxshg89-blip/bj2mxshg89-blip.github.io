@@ -4,6 +4,7 @@ import {
   createAttemptId,
   fetchJson,
   formatCount,
+  formatDateTime,
   formatDuration,
   getSectionTitle,
   getTestId,
@@ -12,7 +13,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=9";
+} from "./utils.js?v=10";
 import {
   appendHistory,
   clearProgress,
@@ -20,14 +21,14 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=9";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=9";
+} from "./storage.js?v=10";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=10";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=9";
+} from "./question-renderers.js?v=10";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -43,15 +44,17 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=9";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=9";
-import { initAccountLinks } from "./account-widget.js?v=9";
+} from "./question-types.js?v=10";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=10";
+import { initAccountLinks } from "./account-widget.js?v=10";
 import {
   prepareCloudProgress,
   queueCloudProgress,
   removeCloudProgress,
   saveCompletedAttempt
-} from "./cloud-storage.js?v=9";
+} from "./cloud-storage.js?v=10";
+import { assignmentScope } from "./assignment-records.js?v=10";
+import { loadAssignmentContext } from "./assignments.js?v=10";
 
 class TrainerEngine {
   constructor() {
@@ -62,11 +65,14 @@ class TrainerEngine {
     this.selection = { variantId: null, mode: null };
     this.state = null;
     this.cloud = { signedIn: false, status: "local" };
+    this.assignment = null;
+    this.progressScope = assignmentScope();
 
     this.elements = Object.fromEntries([
       "loadingPanel", "errorPanel", "errorTitle", "errorMessage", "errorList",
       "trainerHero", "heroSymbol", "heroEyebrow", "heroTitle", "heroDescription", "heroChips",
       "setupPanel", "variantChoices", "modeChoices", "setupStatus", "startAttemptButton",
+      "assignmentPanel", "assignmentClass", "assignmentDeadline", "assignmentConfiguration",
       "referencePanel", "referenceTitle", "referenceList", "cloudStatus",
       "historyLink", "introTitle", "introDescription", "resumeCard", "resumeTitle", "resumeText",
       "resumeButton", "discardButton", "workPanel", "questionCounter", "answeredCounter",
@@ -96,15 +102,35 @@ class TrainerEngine {
       this.test = test;
       this.questionMap = new Map(test.questions.map((question) => [question.id, question]));
       this.applyTestMetadata();
+      this.assignment = await loadAssignmentContext(test);
+      this.progressScope = this.assignment?.scope || assignmentScope();
+      this.applyAssignmentContext();
       this.prepareSetup();
-      this.cloud = await prepareCloudProgress(test);
+      this.cloud = await prepareCloudProgress(test, this.progressScope);
       this.updateCloudStatus(this.cloud.status, this.cloud.message);
-      this.savedProgress = loadProgress(test);
+      this.savedProgress = loadProgress(test, this.progressScope.scopeKey);
       this.renderResumeCard();
       this.showPanel("setup");
     } catch (error) {
       this.showFatalError(error);
     }
+  }
+
+  applyAssignmentContext() {
+    if (!this.elements.assignmentPanel) return;
+    if (!this.assignment) {
+      this.elements.assignmentPanel.hidden = true;
+      return;
+    }
+
+    const variant = this.test.variants.find((item) => item.id === this.assignment.variantId);
+    this.elements.assignmentClass.textContent = this.assignment.classroomTitle;
+    this.elements.assignmentDeadline.textContent = this.assignment.dueAt
+      ? formatDateTime(this.assignment.dueAt)
+      : "без срока";
+    this.elements.assignmentConfiguration.textContent =
+      `${variant?.title || this.assignment.variantId} · ${modeTitle(this.assignment.mode)}`;
+    this.elements.assignmentPanel.hidden = false;
   }
 
   bindStaticEvents() {
@@ -166,6 +192,17 @@ class TrainerEngine {
   }
 
   prepareSetup() {
+    if (this.assignment) {
+      this.selection = {
+        variantId: this.assignment.variantId,
+        mode: this.assignment.mode
+      };
+      this.renderVariantChoices();
+      this.renderModeChoices();
+      this.updateSetupStatus();
+      return;
+    }
+
     const settings = getSettings();
     const lastSelection = settings.lastSelection?.[this.test.id] || {};
     const defaultVariant = this.test.variants.some((item) => item.id === lastSelection.variantId)
@@ -182,7 +219,10 @@ class TrainerEngine {
 
   renderVariantChoices() {
     this.elements.variantChoices.replaceChildren();
-    this.test.variants.forEach((variant) => {
+    const variants = this.assignment
+      ? this.test.variants.filter((variant) => variant.id === this.assignment.variantId)
+      : this.test.variants;
+    variants.forEach((variant) => {
       const label = document.createElement("label");
       label.className = "trainer-choice";
 
@@ -191,6 +231,7 @@ class TrainerEngine {
       input.name = "test-variant";
       input.value = variant.id;
       input.checked = this.selection.variantId === variant.id;
+      input.disabled = Boolean(this.assignment);
       input.addEventListener("change", () => {
         this.selection.variantId = variant.id;
         this.rememberSelection();
@@ -208,6 +249,7 @@ class TrainerEngine {
         : `${trainingCount} в тренировке · ${testCount} в тесте`;
       body.appendChild(count);
       label.append(input, body);
+      label.classList.toggle("is-locked", Boolean(this.assignment));
       this.elements.variantChoices.appendChild(label);
     });
   }
@@ -221,6 +263,7 @@ class TrainerEngine {
 
     ["training", "test"].forEach((mode) => {
       if (!this.test.modes[mode].enabled) return;
+      if (this.assignment && mode !== this.assignment.mode) return;
       const label = document.createElement("label");
       label.className = "trainer-choice";
 
@@ -229,6 +272,7 @@ class TrainerEngine {
       input.name = "test-mode";
       input.value = mode;
       input.checked = this.selection.mode === mode;
+      input.disabled = Boolean(this.assignment);
       input.addEventListener("change", () => {
         this.selection.mode = mode;
         this.rememberSelection();
@@ -242,6 +286,7 @@ class TrainerEngine {
       description.textContent = descriptions[mode];
       body.appendChild(description);
       label.append(input, body);
+      label.classList.toggle("is-locked", Boolean(this.assignment));
       this.elements.modeChoices.appendChild(label);
     });
   }
@@ -250,7 +295,7 @@ class TrainerEngine {
     const variant = this.test.variants.find((item) => item.id === this.selection.variantId);
     const count = variant ? this.variantQuestionCount(variant, this.selection.mode) : 0;
     this.elements.setupStatus.textContent = variant
-      ? `${variant.title} · ${modeTitle(this.selection.mode)} · ${formatCount(count, "задание", "задания", "заданий")}`
+      ? `${this.assignment ? "Назначено учителем · " : ""}${variant.title} · ${modeTitle(this.selection.mode)} · ${formatCount(count, "задание", "задания", "заданий")}`
       : "Выберите вариант и режим.";
   }
 
@@ -259,6 +304,7 @@ class TrainerEngine {
   }
 
   rememberSelection() {
+    if (this.assignment) return;
     const settings = getSettings();
     updateSettings({
       lastSelection: {
@@ -305,20 +351,20 @@ class TrainerEngine {
   }
 
   discardAndStart() {
-    clearProgress(this.test.id);
+    clearProgress(this.test.id, this.progressScope.scopeKey);
     this.savedProgress = { status: "empty", data: null };
     this.startSelectedAttempt();
   }
 
-  startAttempt({ variantId, mode, questionIds = null, retryOf = null }) {
+  startAttempt({ variantId, mode, questionIds = null, retryOf = null, assignmentId = this.assignment?.id || null }) {
     const variant = this.test.variants.find((item) => item.id === variantId);
     if (!variant || !this.test.modes[mode]?.enabled) {
       this.elements.setupStatus.textContent = "Не удалось определить вариант или режим.";
       return;
     }
 
-    clearProgress(this.test.id);
-    void removeCloudProgress(this.test.id);
+    clearProgress(this.test.id, this.progressScope.scopeKey);
+    void removeCloudProgress(this.test.id, this.progressScope);
     const isRetry = Boolean(questionIds?.length);
     const order = createAttemptQuestionOrder({
       baseQuestionIds: variant.questionIds,
@@ -351,6 +397,7 @@ class TrainerEngine {
       mistakes: new Set(),
       startedAt: new Date().toISOString(),
       retryOf,
+      assignmentId,
       completed: false
     };
 
@@ -401,6 +448,7 @@ class TrainerEngine {
       mistakes: new Set(Array.isArray(saved.mistakeQuestionIds) ? saved.mistakeQuestionIds : []),
       startedAt,
       retryOf: saved.retryOf || null,
+      assignmentId: saved.assignmentId || null,
       completed: false
     };
 
@@ -431,9 +479,16 @@ class TrainerEngine {
       startedAt: this.state.startedAt,
       completedAt: null,
       durationMs: Math.max(0, Date.now() - new Date(this.state.startedAt).getTime()),
-      retryOf: this.state.retryOf
-    });
-    queueCloudProgress(this.test.id, this.test.version, progress, (status) => this.updateCloudStatus(status));
+      retryOf: this.state.retryOf,
+      assignmentId: this.state.assignmentId
+    }, this.progressScope.scopeKey);
+    queueCloudProgress(
+      this.test.id,
+      this.test.version,
+      progress,
+      this.progressScope,
+      (status) => this.updateCloudStatus(status)
+    );
   }
 
   updateCloudStatus(status, customMessage = "") {
@@ -772,11 +827,12 @@ class TrainerEngine {
       percent: result.percent,
       grade: result.grade,
       mistakeQuestionIds: [...result.mistakes],
-      retryOf: this.state.retryOf
+      retryOf: this.state.retryOf,
+      assignmentId: this.state.assignmentId
     };
 
     appendHistory(this.test.id, historyRecord);
-    clearProgress(this.test.id);
+    clearProgress(this.test.id, this.progressScope.scopeKey);
     this.updateCloudStatus(this.cloud.signedIn ? "saving" : "local", this.cloud.signedIn
       ? "Сохраняем завершённый результат в аккаунте…"
       : "Результат сохранён в этом браузере.");
@@ -845,17 +901,21 @@ class TrainerEngine {
       ?.split(",")
       .filter((id) => this.questionMap.has(id)) || [];
     if (!questionIds.length) return;
+    this.assignment = null;
+    this.progressScope = assignmentScope();
+    this.applyAssignmentContext();
     this.startAttempt({
       variantId: this.state.variantId,
       mode: "training",
       questionIds,
-      retryOf: this.state.attemptId
+      retryOf: this.state.attemptId,
+      assignmentId: null
     });
   }
 
   returnToSetup() {
     this.persistProgress();
-    this.savedProgress = loadProgress(this.test);
+    this.savedProgress = loadProgress(this.test, this.progressScope.scopeKey);
     this.renderResumeCard();
     this.showPanel("setup");
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -870,7 +930,7 @@ class TrainerEngine {
 
   showFreshSetup() {
     this.state = null;
-    this.savedProgress = loadProgress(this.test);
+    this.savedProgress = loadProgress(this.test, this.progressScope.scopeKey);
     this.renderResumeCard();
     this.showPanel("setup");
     window.scrollTo({ top: 0, behavior: "smooth" });

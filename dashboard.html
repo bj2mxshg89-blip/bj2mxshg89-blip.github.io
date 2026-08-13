@@ -43,6 +43,14 @@
     </section>
 
     <section id="studentPanel" hidden>
+      <section class="account-assignment-section" aria-labelledby="studentAssignmentsTitle">
+        <div class="site-section-head">
+          <div><h2 id="studentAssignmentsTitle">Назначенные работы</h2></div>
+          <p>Здесь появляются тесты, которые учитель выдал вашему классу.</p>
+        </div>
+        <div class="account-assignment-list" id="studentAssignmentList"></div>
+      </section>
+
       <div class="account-metrics" id="studentMetrics"></div>
       <div class="account-dashboard-grid">
         <section class="site-panel account-card">
@@ -92,6 +100,36 @@
         </article>
       </div>
 
+      <article class="site-panel account-card account-assignment-builder">
+        <div class="site-eyebrow">Шаг 3</div>
+        <h2>Выдать работу классу</h2>
+        <p>Выберите готовый тест, вариант, режим и срок сдачи. Ученики увидят работу в своих кабинетах.</p>
+        <form id="assignmentForm" class="account-form account-assignment-form">
+          <div class="account-field">
+            <label for="assignmentClassroom">Класс</label>
+            <select id="assignmentClassroom" name="classroomId" required></select>
+          </div>
+          <div class="account-field">
+            <label for="assignmentTest">Тест</label>
+            <select id="assignmentTest" name="testId" required></select>
+          </div>
+          <div class="account-field">
+            <label for="assignmentVariant">Вариант</label>
+            <select id="assignmentVariant" name="variantId" required></select>
+          </div>
+          <div class="account-field">
+            <label for="assignmentMode">Режим</label>
+            <select id="assignmentMode" name="mode" required></select>
+          </div>
+          <div class="account-field account-field-wide">
+            <label for="assignmentDueAt">Срок сдачи</label>
+            <input id="assignmentDueAt" name="dueAt" type="datetime-local" required>
+          </div>
+          <button class="site-btn" type="submit">Выдать работу</button>
+          <p class="account-form-status account-field-wide" id="assignmentStatus" aria-live="polite"></p>
+        </form>
+      </article>
+
       <section class="site-panel account-credentials" id="credentialsCard" role="status" hidden>
         <div>
           <strong>Аккаунт создан</strong>
@@ -101,6 +139,14 @@
           <div><dt>Логин</dt><dd id="createdLogin"></dd></div>
           <div><dt>Пароль</dt><dd id="createdPassword"></dd></div>
         </dl>
+      </section>
+
+      <section class="account-teacher-summary" aria-labelledby="assignmentsTitle">
+        <div class="site-section-head">
+          <div><h2 id="assignmentsTitle">Выданные работы</h2></div>
+          <p>Статус считается по завершённым попыткам, связанным с конкретным заданием.</p>
+        </div>
+        <div id="teacherAssignmentList" class="account-assignment-list"></div>
       </section>
 
       <section class="account-teacher-summary" aria-labelledby="classesTitle">
@@ -114,6 +160,6 @@
   </main>
 
   <footer class="site-footer">Доступ к данным ограничен ролью и принадлежностью к классу</footer>
-  <script type="module" src="assets/js/dashboard.js?v=9"></script>
+  <script type="module" src="assets/js/dashboard.js?v=10"></script>
 </body>
 </html>

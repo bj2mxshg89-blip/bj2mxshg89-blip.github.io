@@ -1,4 +1,4 @@
-import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=9";
+import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=10";
 
 const renderers = {
   single: renderSingleQuestion,

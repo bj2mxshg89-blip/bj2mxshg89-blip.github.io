@@ -170,6 +170,60 @@
   outline-offset: 3px;
 }
 
+.trainer-choice.is-locked .trainer-choice-body {
+  cursor: default;
+}
+
+.trainer-assignment-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 1.15fr);
+  gap: 16px 24px;
+  margin-bottom: 24px;
+  padding: 18px;
+  border: 1px solid #aebbea;
+  border-left: 5px solid var(--trainer-accent);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f8faff, var(--trainer-soft));
+}
+
+.trainer-assignment-card .site-eyebrow { margin-bottom: 8px; }
+
+.trainer-assignment-card h2 {
+  margin: 0;
+  font-size: clamp(21px, 2.5vw, 27px);
+}
+
+.trainer-assignment-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.trainer-assignment-card dl div {
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.trainer-assignment-card dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.trainer-assignment-card dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-weight: 800;
+}
+
+.trainer-assignment-card .trainer-history-link {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
 .trainer-resume-card {
   margin-top: 18px;
   padding: 15px;
@@ -1143,6 +1197,8 @@
 }
 
 @media (max-width: 680px) {
+  .trainer-assignment-card { grid-template-columns: 1fr; }
+  .trainer-assignment-card .trainer-history-link { grid-column: auto; }
   .answer-fieldset { grid-template-columns: 1fr; }
   .matching-row { grid-template-columns: 1fr; }
   .trainer-feature-grid { grid-template-columns: 1fr; }
@@ -1156,6 +1212,8 @@
 }
 
 @media (max-width: 440px) {
+  .trainer-assignment-card { padding: 15px; }
+  .trainer-assignment-card dl div { grid-template-columns: 1fr; gap: 2px; }
   .trainer-question-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .trainer-sidebar-actions { grid-template-columns: 1fr; }
   .trainer-action-row { grid-template-columns: 1fr; }
