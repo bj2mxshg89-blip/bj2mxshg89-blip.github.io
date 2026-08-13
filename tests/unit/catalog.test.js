@@ -53,12 +53,15 @@ test("одинаковый order внутри раздела обнаружив�
   assert.match(validateCatalog(catalog).join("\n"), /одинаковый order/);
 });
 
-test("каталог показывает обе версии гомологии и 13 карточек", () => {
+test("каталог показывает биологию, обе версии гомологии и 14 карточек", () => {
   const items = visibleCatalogItems(clone());
-  assert.equal(items.length, 13);
+  assert.equal(items.length, 14);
   assert.equal(items.filter((item) => item.section === "organic").length, 8);
   assert.equal(items.filter((item) => item.section === "inorganic").length, 4);
+  assert.equal(items.filter((item) => item.section === "biology").length, 1);
   assert.equal(items.filter((item) => item.section === "teacher-tools").length, 1);
+  assert.equal(items.find((item) => item.id === "biology-matching").url, "test.html?id=biology-matching");
+  assert.equal(items.find((item) => item.id === "biology-matching").questionCount, 3);
   assert.equal(items.find((item) => item.id === "alkane-homology").url, "test.html?id=alkane-homology");
   assert.equal(items.find((item) => item.id === "alkane-homology").questionCount, 180);
   assert.equal(items.find((item) => item.id === "alkane-homology-legacy").url, "alkane-homology.html");
