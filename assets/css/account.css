@@ -28,57 +28,97 @@
 .account-dashboard-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  align-items: start;
+  gap: 22px;
 }
 
-.account-card { min-width: 0; }
+.account-card {
+  min-width: 0;
+  padding: clamp(22px, 2.4vw, 28px);
+}
+
+#studentPanel,
+#teacherPanel { margin-top: 18px; }
+
+.account-card .site-eyebrow {
+  margin-bottom: 13px;
+  border-color: #d4ddf7;
+  color: #2948b5;
+  background: #f1f4ff;
+}
 
 .account-card h2 {
-  margin: 3px 0 8px;
+  margin: 0 0 10px;
   font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.12;
 }
 
 .account-card > p {
-  margin: 0 0 18px;
+  margin: 0 0 22px;
   color: var(--muted);
 }
 
+.account-card h2 + .account-form { margin-top: 18px; }
+
 .account-form {
   display: grid;
-  gap: 9px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
 }
 
 .account-form label {
-  margin-top: 3px;
+  margin: 0 0 7px;
   color: #25314d;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 850;
+  line-height: 1.3;
 }
+
+.account-form input + label,
+.account-form select + label { margin-top: 18px; }
 
 .account-form input,
 .account-form select {
   width: 100%;
   min-width: 0;
-  min-height: 48px;
-  padding: 11px 12px;
+  min-height: 50px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 13px;
+  outline: none;
   color: var(--text);
   background: #fff;
   font: inherit;
+  transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease;
 }
 
+.account-form input:hover,
+.account-form select:hover { border-color: #bdc9e5; }
+
 .account-form input:focus,
-.account-form select:focus { border-color: #3157d5; }
+.account-form select:focus {
+  border-color: #3157d5;
+  box-shadow: 0 0 0 4px rgba(49, 87, 213, .12);
+}
+
+.account-form input::placeholder { color: #8a93a8; }
+
+.account-form input:disabled,
+.account-form select:disabled {
+  color: #7b8498;
+  background: #f4f6fa;
+  cursor: not-allowed;
+}
 
 .account-form .site-btn {
   width: fit-content;
-  margin-top: 7px;
+  min-height: 46px;
+  margin-top: 20px;
 }
 
 .account-form-status {
   min-height: 22px;
-  margin: 1px 0 0;
+  margin: 9px 0 0;
   font-size: 13px;
   font-weight: 750;
 }
@@ -116,7 +156,12 @@
   gap: 9px;
 }
 
-.account-error { margin-top: 18px; }
+.account-error {
+  margin-top: 18px;
+  padding: clamp(22px, 2.4vw, 28px);
+}
+
+.account-error h2 { margin-top: 0; }
 
 .account-metrics {
   display: grid;
@@ -171,13 +216,17 @@
   font-weight: 900;
 }
 
-.teacher-controls { align-items: start; }
+.teacher-controls {
+  grid-template-columns: minmax(280px, .85fr) minmax(420px, 1.15fr);
+  align-items: start;
+}
 
 .account-credentials {
   display: flex;
   justify-content: space-between;
   gap: 20px;
   margin-top: 18px;
+  padding: clamp(22px, 2.4vw, 28px);
   border-color: #8ccbab;
   background: var(--good-bg);
 }
@@ -190,7 +239,10 @@
 
 .account-teacher-summary { margin-top: 26px; }
 
-.account-classroom-panel { min-width: 0; }
+.account-classroom-panel {
+  min-width: 0;
+  padding: clamp(22px, 2.4vw, 28px);
+}
 .account-classroom-panel h3 { margin: 0; font-size: 24px; }
 .account-classroom-meta { margin: 5px 0 15px; color: var(--muted); }
 
@@ -226,6 +278,14 @@
   .account-grid,
   .account-dashboard-grid,
   .account-signed-in { grid-template-columns: 1fr; }
+  .account-grid,
+  .account-dashboard-grid { gap: 14px; }
+  .account-card,
+  .account-error,
+  .account-credentials,
+  .account-classroom-panel { padding: 18px; }
+  #studentPanel,
+  #teacherPanel { margin-top: 14px; }
   .account-signed-in > .account-password-panel { grid-column: auto; }
   .account-action-row { justify-content: flex-start; }
   .account-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -244,6 +304,21 @@
     font-size: 11px;
     font-weight: 850;
     text-transform: uppercase;
+  }
+}
+
+@media (max-width: 520px) {
+  .account-page .site-header { gap: 8px; }
+  .account-page .site-brand-copy { display: none; }
+  .account-page .site-nav {
+    min-width: 0;
+    margin-left: auto;
+    gap: 6px;
+  }
+  .account-page .site-nav-link {
+    padding-inline: 10px;
+    font-size: 13px;
+    white-space: nowrap;
   }
 }
 

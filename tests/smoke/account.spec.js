@@ -22,6 +22,28 @@ test("страница входа доступна без аккаунта и п
   await expectNoRuntimeErrors(runtimeErrors);
 });
 
+test("карточки форм имеют аккуратные отступы и удобные поля", async ({ page }) => {
+  await page.goto("/account.html");
+  const geometry = await page.locator("#signedOutPanel .account-card").first().evaluate((card) => {
+    const field = card.querySelector("input");
+    const cardBox = card.getBoundingClientRect();
+    const fieldBox = field.getBoundingClientRect();
+    const cardStyle = getComputedStyle(card);
+    return {
+      paddingLeft: Number.parseFloat(cardStyle.paddingLeft),
+      fieldHeight: fieldBox.height,
+      leftInset: fieldBox.left - cardBox.left,
+      rightInset: cardBox.right - fieldBox.right
+    };
+  });
+
+  expect(geometry.paddingLeft).toBeGreaterThanOrEqual(22);
+  expect(geometry.fieldHeight).toBeGreaterThanOrEqual(50);
+  expect(geometry.leftInset).toBeGreaterThanOrEqual(22);
+  expect(geometry.rightInset).toBeGreaterThanOrEqual(22);
+  await expect(page.locator("#loginName")).toHaveAttribute("placeholder", /anton\.efremov/);
+});
+
 test("кабинет без сессии предлагает перейти ко входу", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
   await page.goto("/dashboard.html");
@@ -47,7 +69,15 @@ test("страницы аккаунта не создают горизонтал
   await page.setViewportSize({ width: 360, height: 800 });
   for (const path of ["/account.html", "/dashboard.html"]) {
     await page.goto(path);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-    expect(overflow, path).toBeLessThanOrEqual(1);
+    const layout = await page.evaluate(() => {
+      const brandBox = document.querySelector(".site-brand").getBoundingClientRect();
+      const navBox = document.querySelector(".site-nav").getBoundingClientRect();
+      return {
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+        headerGap: navBox.left - brandBox.right
+      };
+    });
+    expect(layout.overflow, path).toBeLessThanOrEqual(1);
+    expect(layout.headerGap, path).toBeGreaterThanOrEqual(0);
   }
 });
