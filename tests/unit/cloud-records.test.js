@@ -55,12 +55,15 @@ test("завершённая попытка преобразуется в стр
     questionIds: ["q1", "q2"],
     mistakeQuestionIds: ["q2"],
     selectedAnswers: { q1: [0], q2: [1] },
-    retryOf: null
+    retryOf: null,
+    assignmentId: 23
   };
   const row = attemptToCloudRow("user-1", attempt);
   assert.equal(row.user_id, "user-1");
   assert.equal(row.total_questions, 10);
+  assert.equal(row.assignment_id, 23);
   assert.deepEqual(cloudRowToAttempt(row).mistakeQuestionIds, ["q2"]);
+  assert.equal(cloudRowToAttempt(row).assignmentId, 23);
 });
 
 test("слияние истории удаляет дубликаты по attemptId и сохраняет порядок", () => {

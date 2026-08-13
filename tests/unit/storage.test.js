@@ -113,3 +113,26 @@ test("работа над ошибкой сохраняет тот же ID те�
   assert.deepEqual(restored.mistakeQuestionIds, ["text-1"]);
   assert.equal(restored.retryOf, "attempt-original");
 });
+
+test("назначенная работа не затирает личный прогресс того же теста", () => {
+  const personal = progress("1");
+  const assigned = { ...progress("2"), attemptId: "assignment-attempt", assignmentId: 7 };
+  saveProgress(definition.id, personal);
+  saveProgress(definition.id, assigned, "assignment-7");
+
+  assert.equal(loadProgress(definition).data.attemptId, "attempt-number");
+  assert.equal(loadProgress(definition, "assignment-7").data.attemptId, "assignment-attempt");
+  assert.notEqual(
+    storageKeys.progress(definition.id),
+    storageKeys.progress(definition.id, "assignment-7")
+  );
+
+  clearProgress(definition.id, "assignment-7");
+  assert.equal(loadProgress(definition, "assignment-7").status, "empty");
+  assert.equal(loadProgress(definition).status, "compatible");
+});
+
+test("прогресс другого назначения считается несовместимым", () => {
+  saveProgress(definition.id, { ...progress("2"), assignmentId: 8 }, "assignment-7");
+  assert.equal(loadProgress(definition, "assignment-7").status, "incompatible");
+});

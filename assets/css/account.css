@@ -239,6 +239,100 @@
 
 .account-teacher-summary { margin-top: 26px; }
 
+.account-assignment-section { margin-bottom: 20px; }
+
+.account-assignment-builder {
+  margin-top: 22px;
+}
+
+.account-assignment-form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.account-field {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+}
+
+.account-field-wide { grid-column: 1 / -1; }
+
+.account-field label { margin-bottom: 7px; }
+
+.account-assignment-form .site-btn {
+  align-self: end;
+  min-height: 50px;
+  margin-top: 0;
+}
+
+.account-assignment-list {
+  display: grid;
+  gap: 12px;
+}
+
+.account-assignment {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  min-width: 0;
+  padding: 20px;
+  border-left: 5px solid #3157d5;
+}
+
+.account-assignment.is-completed,
+.account-assignment.is-completed-late { border-left-color: var(--good); }
+
+.account-assignment.is-overdue { border-left-color: var(--bad); }
+
+.account-assignment-copy { min-width: 0; }
+
+.account-assignment h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: clamp(19px, 2.4vw, 24px);
+}
+
+.account-assignment p {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.account-assignment-actions {
+  display: grid;
+  justify-items: end;
+  gap: 9px;
+  min-width: 170px;
+}
+
+.account-assignment-status {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: #2948b5;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.is-completed .account-assignment-status,
+.is-completed-late .account-assignment-status {
+  color: var(--good);
+  background: var(--good-bg);
+}
+
+.is-overdue .account-assignment-status {
+  color: var(--bad);
+  background: var(--bad-bg);
+}
+
+.account-assignment-progress { font-size: 18px; }
+
 .account-classroom-panel {
   min-width: 0;
   padding: clamp(22px, 2.4vw, 28px);
@@ -291,6 +385,16 @@
   .account-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .account-credentials { display: block; }
   .account-credentials dl { margin-top: 14px; }
+  .account-assignment-form { grid-template-columns: 1fr; }
+  .account-field-wide { grid-column: auto; }
+  .account-assignment {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+  .account-assignment-actions {
+    justify-items: start;
+    min-width: 0;
+  }
   .account-student-table,
   .account-student-table tbody,
   .account-student-table tr,

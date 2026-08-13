@@ -38,7 +38,8 @@ export function attemptToCloudRow(userId, attempt) {
     question_ids: attempt.questionIds,
     mistake_question_ids: attempt.mistakeQuestionIds || [],
     selected_answers: attempt.selectedAnswers || {},
-    retry_of: attempt.retryOf || null
+    retry_of: attempt.retryOf || null,
+    assignment_id: attempt.assignmentId || null
   };
 }
 
@@ -66,6 +67,7 @@ export function cloudRowToAttempt(row) {
     grade: row.grade,
     mistakeQuestionIds: Array.isArray(row.mistake_question_ids) ? row.mistake_question_ids : [],
     retryOf: row.retry_of || null,
+    assignmentId: row.assignment_id || null,
     cloud: true
   };
 }

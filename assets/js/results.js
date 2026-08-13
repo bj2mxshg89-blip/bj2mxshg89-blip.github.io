@@ -7,10 +7,10 @@ import {
   modeTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=9";
-import { clearHistory } from "./storage.js?v=9";
-import { getCombinedHistory } from "./cloud-storage.js?v=9";
-import { initAccountLinks } from "./account-widget.js?v=9";
+} from "./utils.js?v=10";
+import { clearHistory } from "./storage.js?v=10";
+import { getCombinedHistory } from "./cloud-storage.js?v=10";
+import { initAccountLinks } from "./account-widget.js?v=10";
 
 const elements = Object.fromEntries([
   "historyTitle", "historyDescription", "historyLoading", "historyError", "historyErrorText",

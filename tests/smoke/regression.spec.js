@@ -142,22 +142,26 @@ test("страницы истории всех универсальных тес
   }
 });
 
-test("семь старых страниц загружаются без JavaScript-ошибок", async ({ page }) => {
+test("шесть старых адресов ведут на канонические тесты, а рассадка открывается", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
-  const pages = [
-    "organic-review.html",
-    "inorg-nomenclature.html",
-    "organic-classification.html",
-    "hybridization-theory.html",
-    "alkane-homology.html",
-    "trainer.html",
-    "seating-v2.html"
+  const redirects = [
+    ["organic-review.html", "organic-review"],
+    ["inorg-nomenclature.html", "inorg-nomenclature"],
+    ["organic-classification.html", "organic-classification"],
+    ["hybridization-theory.html", "hybridization-theory"],
+    ["alkane-homology.html", "alkane-homology"],
+    ["trainer.html", "redox-trainer"]
   ];
-  for (const path of pages) {
+  for (const [path, testId] of redirects) {
     runtimeErrors.length = 0;
     const response = await page.goto(`/${path}`);
     expect(response.ok(), path).toBe(true);
-    await expect(page.locator("h1").first()).toBeVisible();
+    await expect(page).toHaveURL(new RegExp(`/test\\.html\\?id=${testId}$`));
+    await expect(page.locator("#setupPanel")).toBeVisible();
     await expectNoRuntimeErrors(runtimeErrors);
   }
+  const seatingResponse = await page.goto("/seating-v2.html");
+  expect(seatingResponse.ok()).toBe(true);
+  await expect(page.locator("h1").first()).toBeVisible();
+  await expectNoRuntimeErrors(runtimeErrors);
 });

@@ -3,7 +3,9 @@ const HISTORY_LIMIT = 50;
 const memoryStorage = new Map();
 
 export const storageKeys = Object.freeze({
-  progress: (testId) => `${PREFIX}:progress:${testId}`,
+  progress: (testId, scopeKey = "personal") => scopeKey === "personal"
+    ? `${PREFIX}:progress:${testId}`
+    : `${PREFIX}:progress:${testId}:${scopeKey}`,
   history: (testId) => `${PREFIX}:history:${testId}`,
   settings: `${PREFIX}:settings`
 });
@@ -41,8 +43,8 @@ function parseJson(raw, fallback) {
   }
 }
 
-export function loadProgress(test) {
-  const raw = getItem(storageKeys.progress(test.id));
+export function loadProgress(test, scopeKey = "personal") {
+  const raw = getItem(storageKeys.progress(test.id, scopeKey));
   if (!raw) return { status: "empty", data: null };
 
   const data = parseJson(raw, null);
@@ -55,6 +57,16 @@ export function loadProgress(test) {
       status: "incompatible",
       data,
       reason: "Сохранение создано для другой версии теста."
+    };
+  }
+
+  const expectedAssignmentId = /^assignment-([1-9][0-9]*)$/.exec(scopeKey)?.[1] || null;
+  const savedAssignmentId = data.assignmentId == null ? null : String(data.assignmentId);
+  if (savedAssignmentId !== expectedAssignmentId) {
+    return {
+      status: "incompatible",
+      data,
+      reason: "Сохранение относится к другой назначенной работе."
     };
   }
 
@@ -80,17 +92,17 @@ export function loadProgress(test) {
   return { status: "compatible", data };
 }
 
-export function saveProgress(testId, progress) {
+export function saveProgress(testId, progress, scopeKey = "personal") {
   const record = {
     ...progress,
     updatedAt: progress?.updatedAt || new Date().toISOString()
   };
-  setItem(storageKeys.progress(testId), JSON.stringify(record));
+  setItem(storageKeys.progress(testId, scopeKey), JSON.stringify(record));
   return record;
 }
 
-export function clearProgress(testId) {
-  removeItem(storageKeys.progress(testId));
+export function clearProgress(testId, scopeKey = "personal") {
+  removeItem(storageKeys.progress(testId, scopeKey));
 }
 
 export function getHistory(testId) {

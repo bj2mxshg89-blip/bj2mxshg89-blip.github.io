@@ -1,4 +1,4 @@
-import { evaluateAnswer } from "./question-types.js?v=9";
+import { evaluateAnswer } from "./question-types.js?v=10";
 
 export function isAnswerCorrect(question, selected) {
   return evaluateAnswer(question, selected).isFullyCorrect;

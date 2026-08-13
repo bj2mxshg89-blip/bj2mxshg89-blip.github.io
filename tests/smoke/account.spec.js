@@ -6,7 +6,7 @@ test("главная показывает необязательный вход"
   await page.goto("/index.html");
   await expect(page.locator("[data-account-link]")).toBeVisible();
   await expect(page.locator("[data-account-link]")).toHaveText("Войти");
-  await expect(page.locator(".site-hero")).toContainText("аккаунт добавляет синхронизацию");
+  await expect(page.locator(".site-hero")).toContainText("аккаунт добавляет задания");
   await expectNoRuntimeErrors(runtimeErrors);
 });
 
@@ -53,6 +53,17 @@ test("кабинет без сессии предлагает перейти к�
   await expectNoRuntimeErrors(runtimeErrors);
 });
 
+test("кабинет содержит интерфейс выдачи и получения работ", async ({ page }) => {
+  await page.goto("/dashboard.html");
+  await expect(page.locator("#assignmentForm")).toHaveCount(1);
+  await expect(page.locator("#assignmentClassroom")).toHaveCount(1);
+  await expect(page.locator("#assignmentTest")).toHaveCount(1);
+  await expect(page.locator("#assignmentVariant")).toHaveCount(1);
+  await expect(page.locator("#assignmentMode")).toHaveCount(1);
+  await expect(page.locator("#assignmentDueAt")).toHaveAttribute("type", "datetime-local");
+  await expect(page.locator("#studentAssignmentList")).toHaveCount(1);
+});
+
 test("тренажёр без входа сохраняет локальный режим", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
   await page.goto("/test.html?id=biology-matching");
@@ -63,6 +74,14 @@ test("тренажёр без входа сохраняет локальный �
   const stored = await page.evaluate(() => localStorage.getItem("chem-cabinet:progress:biology-matching"));
   expect(stored).not.toBeNull();
   await expectNoRuntimeErrors(runtimeErrors);
+});
+
+test("назначенная работа проверяет параметр и требует аккаунт ученика", async ({ page }) => {
+  await page.goto("/test.html?id=organic-review&assignment=broken");
+  await expect(page.locator("#errorPanel")).toContainText("положительным целым числом");
+
+  await page.goto("/test.html?id=organic-review&assignment=1");
+  await expect(page.locator("#errorPanel")).toContainText("нужен аккаунт ученика");
 });
 
 test("страницы аккаунта не создают горизонтальную прокрутку на 360 px", async ({ page }) => {

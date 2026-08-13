@@ -6,7 +6,7 @@
   <meta name="description" content="Учебные тренажёры по химии и биологии, инструменты для организации класса.">
   <title>Кабинет учителя</title>
   <link rel="stylesheet" href="site.css">
-  <script type="module" src="assets/js/homepage.js?v=9"></script>
+  <script type="module" src="assets/js/homepage.js?v=10"></script>
 </head>
 <body>
   <header class="site-header">
@@ -28,19 +28,17 @@
       <div class="site-hero-mark" aria-hidden="true">H₂O</div>
       <div class="site-eyebrow">Учебная лаборатория в браузере</div>
       <h1>Кабинет учителя</h1>
-      <p>Тренажёры по химии и биологии, а также рабочие инструменты для урока. Без входа всё работает локально; аккаунт добавляет синхронизацию и личную историю.</p>
+      <p>Тренажёры по химии и биологии, а также рабочие инструменты для урока. Без входа всё работает локально; аккаунт добавляет задания, синхронизацию и личную историю.</p>
       <div class="site-hero-chips" aria-label="Преимущества">
         <span class="site-hero-chip">Работает на телефоне</span>
         <span class="site-hero-chip">Мгновенная проверка</span>
-        <span class="site-hero-chip">Облачный прогресс по желанию</span>
+        <span class="site-hero-chip">Задания для классов</span>
       </div>
     </section>
 
     <section aria-labelledby="catalogTitle">
       <div class="site-section-head">
-        <div>
-          <h2 id="catalogTitle">Разделы кабинета</h2>
-        </div>
+        <div><h2 id="catalogTitle">Разделы кабинета</h2></div>
         <p>Инструменты сгруппированы по направлениям, чтобы список оставался понятным по мере расширения сайта.</p>
       </div>
 
@@ -50,11 +48,11 @@
       <nav id="categoryNavigation" class="tool-category-nav" aria-label="Разделы инструментов">
         <a class="tool-category-link" href="#organic" style="--category-accent:#3157d5">
           <span class="tool-category-dot" aria-hidden="true"></span>
-          <span><strong>Органическая химия</strong><small>8 тренажёров</small></span>
+          <span><strong>Органическая химия</strong><small>4 тренажёра</small></span>
         </a>
         <a class="tool-category-link" href="#inorganic" style="--category-accent:#7a43c4">
           <span class="tool-category-dot" aria-hidden="true"></span>
-          <span><strong>Неорганическая химия</strong><small>4 тренажёра</small></span>
+          <span><strong>Неорганическая химия</strong><small>2 тренажёра</small></span>
         </a>
         <a class="tool-category-link" href="#biology" style="--category-accent:#2f7d57">
           <span class="tool-category-dot" aria-hidden="true"></span>
@@ -69,258 +67,76 @@
       <div id="toolCatalog" class="tool-catalog">
         <section class="tool-group" id="organic" aria-labelledby="organicTitle">
           <div class="tool-group-head">
-            <div>
-              <div class="tool-group-kicker">Учебные тренажёры</div>
-              <h2 id="organicTitle">Органическая химия</h2>
-            </div>
+            <div><div class="tool-group-kicker">Учебные тренажёры</div><h2 id="organicTitle">Органическая химия</h2></div>
             <p>Обобщение курса, строение молекул, закономерности гомологических рядов и классификация веществ.</p>
           </div>
-
           <div class="tool-grid">
             <article class="tool-card" style="--tool-accent:#c0522b;--tool-soft:#fff0e9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Обобщающий тренажёр — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">5×20</div>
-              </div>
-              <p>Все пять вариантов на общей платформе: режимы тренировки и теста, единое сохранение прогресса, история и разбор ответов.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">5 вариантов · тренировка и тест</span>
-                <a class="tool-link" href="test.html?id=organic-review">Открыть beta</a>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Закрепление курса</div><h3>Обобщающий тренажёр по органической химии</h3></div><div class="tool-symbol" aria-hidden="true">5×20</div></div>
+              <p>Классификация, номенклатура, изомерия и гибридизация в пяти учебных вариантах.</p>
+              <div class="tool-card-bottom"><span class="tool-meta">5 вариантов · тренировка и тест</span><a class="tool-link" href="test.html?id=organic-review">Открыть</a></div>
             </article>
-
-            <article class="tool-card" style="--tool-accent:#c0522b;--tool-soft:#fff0e9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Закрепление курса</div>
-                  <h3>Обобщающий тренажёр</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">5×20</div>
-              </div>
-              <p>Классы веществ, номенклатура, изомерия и гибридизация с проверкой и пояснением после каждого ответа.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">5 вариантов · по 20 заданий</span>
-                <a class="tool-link" href="organic-review.html">Открыть</a>
-              </div>
-            </article>
-
             <article class="tool-card" style="--tool-accent:#5b4bc4;--tool-soft:#f0edff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Теория гибридизации — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">sp³</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Строение молекул</div><h3>Теория гибридизации</h3></div><div class="tool-symbol" aria-hidden="true">sp³</div></div>
               <p>Гибридные орбитали, геометрия, валентные углы, структурные формулы и подсчёт σ- и π-связей.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">8 режимов · 10/15 заданий</span>
-                <a class="tool-link" href="test.html?id=hybridization-theory">Открыть beta</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">8 вариантов · 10/15 заданий</span><a class="tool-link" href="test.html?id=hybridization-theory">Открыть</a></div>
             </article>
-
-            <article class="tool-card" style="--tool-accent:#5b4bc4;--tool-soft:#f0edff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Строение органических молекул · старая версия</div>
-                  <h3>Теория гибридизации — старая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">sp³</div>
-              </div>
-              <p>Гибридные и негибридные орбитали, геометрия, валентные углы, определение гибридизации и образование σ- и π-связей.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">8 разделов · 10/15 заданий</span>
-                <a class="tool-link" href="hybridization-theory.html">Открыть</a>
-              </div>
-            </article>
-
             <article class="tool-card" style="--tool-accent:#3157d5;--tool-soft:#eef2ff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Гомология алканов — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">CH₂</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Гомологические ряды</div><h3>Гомология алканов</h3></div><div class="tool-symbol" aria-hidden="true">CH₂</div></div>
               <p>Общая формула, гомологическая разность, названия, последовательности и расчётные задания.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">13 режимов · 10/15 заданий</span>
-                <a class="tool-link" href="test.html?id=alkane-homology">Открыть beta</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">13 вариантов · 10/15 заданий</span><a class="tool-link" href="test.html?id=alkane-homology">Открыть</a></div>
             </article>
-
-            <article class="tool-card" style="--tool-accent:#3157d5;--tool-soft:#eef2ff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Гомологические ряды · старая версия</div>
-                  <h3>Гомология алканов — старая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">CH₂</div>
-              </div>
-              <p>Общая формула, соседние гомологи, названия, последовательности и расчётные задания.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">12 типов · тренировка и тест</span>
-                <a class="tool-link" href="alkane-homology.html">Открыть</a>
-              </div>
-            </article>
-
             <article class="tool-card" style="--tool-accent:#2d718f;--tool-soft:#eaf5f9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Классификация веществ — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">R–X</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Классы веществ</div><h3>Классификация органических веществ</h3></div><div class="tool-symbol" aria-hidden="true">R–X</div></div>
               <p>Формулы, названия, признаки строения и функциональные группы в заданиях на соответствие.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">6 режимов · по 4 соответствия</span>
-                <a class="tool-link" href="test.html?id=organic-classification">Открыть beta</a>
-              </div>
-            </article>
-
-            <article class="tool-card" style="--tool-accent:#2d718f;--tool-soft:#eaf5f9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Классы органических веществ · старая версия</div>
-                  <h3>Классификация веществ — старая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">R–X</div>
-              </div>
-              <p>Соответствия между формулами, названиями, признаками строения, функциональными группами и классами веществ.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">5 типов соответствий · тренировка и тест</span>
-                <a class="tool-link" href="organic-classification.html">Открыть</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">6 вариантов · по 4 соответствия</span><a class="tool-link" href="test.html?id=organic-classification">Открыть</a></div>
             </article>
           </div>
         </section>
 
         <section class="tool-group" id="inorganic" aria-labelledby="inorganicTitle">
           <div class="tool-group-head">
-            <div>
-              <div class="tool-group-kicker">Учебные тренажёры</div>
-              <h2 id="inorganicTitle">Неорганическая химия</h2>
-            </div>
+            <div><div class="tool-group-kicker">Учебные тренажёры</div><h2 id="inorganicTitle">Неорганическая химия</h2></div>
             <p>Номенклатура веществ, степени окисления и окислительно-восстановительные реакции.</p>
           </div>
-
           <div class="tool-grid">
             <article class="tool-card" style="--tool-accent:#7a43c4;--tool-soft:#f3edff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Номенклатура веществ — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">Fe₂O₃</div>
-              </div>
-              <p>Названия оксидов, кислот, оснований и солей: фиксированные учебные варианты, тренировка, тест и история результатов.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">32 задания · тренировка и тест</span>
-                <a class="tool-link" href="test.html?id=inorg-nomenclature">Открыть beta</a>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Номенклатура</div><h3>Номенклатура неорганических веществ</h3></div><div class="tool-symbol" aria-hidden="true">Fe₂O₃</div></div>
+              <p>Названия оксидов, кислот, оснований и солей по их формулам.</p>
+              <div class="tool-card-bottom"><span class="tool-meta">32 задания · тренировка и тест</span><a class="tool-link" href="test.html?id=inorg-nomenclature">Открыть</a></div>
             </article>
-
-            <article class="tool-card" style="--tool-accent:#7a43c4;--tool-soft:#f3edff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Номенклатура</div>
-                  <h3>Номенклатура веществ</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">Fe₂O₃</div>
-              </div>
-              <p>Определение названий оксидов, кислот, оснований и солей по их формулам.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">32 задания · работа над ошибками</span>
-                <a class="tool-link" href="inorg-nomenclature.html">Открыть</a>
-              </div>
-            </article>
-
             <article class="tool-card" style="--tool-accent:#c0522b;--tool-soft:#fff0e9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>ОВР и степени окисления — новая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">e⁻</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Окислительно-восстановительные реакции</div><h3>ОВР и степени окисления</h3></div><div class="tool-symbol" aria-hidden="true">e⁻</div></div>
               <p>Степени окисления, электронные процессы, окислители и восстановители.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">5 режимов · 10/15 заданий</span>
-                <a class="tool-link" href="test.html?id=redox-trainer">Открыть beta</a>
-              </div>
-            </article>
-
-            <article class="tool-card" style="--tool-accent:#c0522b;--tool-soft:#fff0e9">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Окислительно-восстановительные реакции · старая версия</div>
-                  <h3>ОВР и степени окисления — старая версия</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">e⁻</div>
-              </div>
-              <p>Короткая тренировка по степеням окисления, окислителям и восстановителям.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">Ввод ответа · мгновенная проверка</span>
-                <a class="tool-link" href="trainer.html">Открыть</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">5 вариантов · 10/15 заданий</span><a class="tool-link" href="test.html?id=redox-trainer">Открыть</a></div>
             </article>
           </div>
         </section>
 
         <section class="tool-group" id="biology" aria-labelledby="biologyTitle">
           <div class="tool-group-head">
-            <div>
-              <div class="tool-group-kicker">Учебные тренажёры</div>
-              <h2 id="biologyTitle">Биология</h2>
-            </div>
+            <div><div class="tool-group-kicker">Учебные тренажёры</div><h2 id="biologyTitle">Биология</h2></div>
             <p>Основы общей биологии, признаки живых систем и клеточное строение.</p>
           </div>
-
           <div class="tool-grid">
             <article class="tool-card" style="--tool-accent:#2563eb;--tool-soft:#eaf1ff">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Новый движок · beta</div>
-                  <h3>Биология: сопоставление</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">DNA</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Общая биология</div><h3>Биология: сопоставление</h3></div><div class="tool-symbol" aria-hidden="true">DNA</div></div>
               <p>Уровни организации жизни, общие свойства живого и функции структур растительной клетки.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">3 раздела · 27 соответствий</span>
-                <a class="tool-link" href="test.html?id=biology-matching">Открыть beta</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">4 варианта · 27 соответствий</span><a class="tool-link" href="test.html?id=biology-matching">Открыть</a></div>
             </article>
           </div>
         </section>
 
         <section class="tool-group" id="teacher-tools" aria-labelledby="teacherToolsTitle">
           <div class="tool-group-head">
-            <div>
-              <div class="tool-group-kicker">Организация урока</div>
-              <h2 id="teacherToolsTitle">Инструменты учителя</h2>
-            </div>
+            <div><div class="tool-group-kicker">Организация урока</div><h2 id="teacherToolsTitle">Инструменты учителя</h2></div>
             <p>Практические инструменты для подготовки и проведения урока.</p>
           </div>
-
           <div class="tool-grid">
             <article class="tool-card tool-card-wide" style="--tool-accent:#16815a;--tool-soft:#e9f8f1">
-              <div class="tool-card-top">
-                <div>
-                  <div class="tool-kicker">Организация класса</div>
-                  <h3>Рассадка учеников</h3>
-                </div>
-                <div class="tool-symbol" aria-hidden="true">18×2</div>
-              </div>
+              <div class="tool-card-top"><div><div class="tool-kicker">Организация класса</div><h3>Рассадка учеников</h3></div><div class="tool-symbol" aria-hidden="true">18×2</div></div>
               <p>Распределение учеников по партам, ручное перемещение, сохранение, импорт и печать.</p>
-              <div class="tool-card-bottom">
-                <span class="tool-meta">18 парт · сохранение в браузере</span>
-                <a class="tool-link" href="seating-v2.html">Открыть</a>
-              </div>
+              <div class="tool-card-bottom"><span class="tool-meta">18 парт · сохранение в браузере</span><a class="tool-link" href="seating-v2.html">Открыть</a></div>
             </article>
           </div>
         </section>

@@ -64,6 +64,19 @@
         </aside>
 
         <section class="site-panel site-main-panel">
+          <section class="trainer-assignment-card" id="assignmentPanel" aria-labelledby="assignmentTitle" hidden>
+            <div>
+              <div class="site-eyebrow">Назначено учителем</div>
+              <h2 id="assignmentTitle">Работа для вашего класса</h2>
+            </div>
+            <dl>
+              <div><dt>Класс</dt><dd id="assignmentClass"></dd></div>
+              <div><dt>Срок</dt><dd id="assignmentDeadline"></dd></div>
+              <div><dt>Параметры</dt><dd id="assignmentConfiguration"></dd></div>
+            </dl>
+            <a class="trainer-history-link" href="dashboard.html">Вернуться в личный кабинет →</a>
+          </section>
+
           <h2 class="trainer-intro-title" id="introTitle">О тесте</h2>
           <p class="trainer-intro-text" id="introDescription"></p>
 
@@ -171,6 +184,6 @@
   </main>
 
   <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
-  <script type="module" src="assets/js/trainer-engine.js?v=9"></script>
+  <script type="module" src="assets/js/trainer-engine.js?v=10"></script>
 </body>
 </html>
