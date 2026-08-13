@@ -63,7 +63,8 @@
           <h2>Создать класс</h2>
           <form id="classroomForm" class="account-form account-form-compact">
             <label for="classroomTitle">Название класса или группы</label>
-            <input id="classroomTitle" name="title" type="text" maxlength="80" required>
+            <input id="classroomTitle" name="title" type="text" maxlength="80"
+              placeholder="Например: 8А или группа" required>
             <button class="site-btn" type="submit">Создать класс</button>
             <p class="account-form-status" id="classroomStatus" aria-live="polite"></p>
           </form>
@@ -76,13 +77,15 @@
             <label for="studentClassroom">Класс</label>
             <select id="studentClassroom" name="classroomId" required></select>
             <label for="studentDisplayName">Имя, инициалы или псевдоним</label>
-            <input id="studentDisplayName" name="displayName" type="text" maxlength="80" required>
-            <label for="studentLogin">Логин</label>
+            <input id="studentDisplayName" name="displayName" type="text" maxlength="80"
+              placeholder="Например: Анна П." required>
+            <label for="studentLogin">Логин ученика (не e-mail)</label>
             <input id="studentLogin" name="login" type="text" minlength="3" maxlength="32"
-              autocapitalize="none" spellcheck="false" required>
+              autocapitalize="none" autocomplete="off" spellcheck="false"
+              placeholder="Например: anna.ivanova" required>
             <label for="studentPassword">Временный пароль</label>
             <input id="studentPassword" name="password" type="text" minlength="10" maxlength="72"
-              autocomplete="off" required>
+              autocomplete="off" placeholder="Не менее 10 символов" required>
             <button class="site-btn" type="submit">Создать и добавить в класс</button>
             <p class="account-form-status" id="studentStatus" aria-live="polite"></p>
           </form>
