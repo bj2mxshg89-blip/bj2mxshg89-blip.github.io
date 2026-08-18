@@ -53,15 +53,17 @@ test("одинаковый order внутри раздела обнаружив�
   assert.match(validateCatalog(catalog).join("\n"), /одинаковый order/);
 });
 
-test("каталог показывает только канонические версии и 8 карточек", () => {
+test("каталог показывает только канонические версии и 9 карточек", () => {
   const items = visibleCatalogItems(clone());
-  assert.equal(items.length, 8);
+  assert.equal(items.length, 9);
   assert.equal(items.filter((item) => item.section === "organic").length, 4);
   assert.equal(items.filter((item) => item.section === "inorganic").length, 2);
-  assert.equal(items.filter((item) => item.section === "biology").length, 1);
+  assert.equal(items.filter((item) => item.section === "biology").length, 2);
   assert.equal(items.filter((item) => item.section === "teacher-tools").length, 1);
   assert.equal(items.find((item) => item.id === "biology-matching").url, "test.html?id=biology-matching");
   assert.equal(items.find((item) => item.id === "biology-matching").questionCount, 3);
+  assert.equal(items.find((item) => item.id === "biology-foundations").url, "test.html?id=biology-foundations");
+  assert.equal(items.find((item) => item.id === "biology-foundations").questionCount, 100);
   assert.equal(items.find((item) => item.id === "alkane-homology").url, "test.html?id=alkane-homology");
   assert.equal(items.find((item) => item.id === "alkane-homology").questionCount, 180);
   assert.equal(items.find((item) => item.id === "redox-trainer").url, "test.html?id=redox-trainer");

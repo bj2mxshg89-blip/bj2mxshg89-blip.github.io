@@ -1,0 +1,2881 @@
+{
+  "schemaVersion": 1,
+  "id": "biology-foundations",
+  "version": 1,
+  "title": "Большая диагностика по биологии: клетка, ткани и органы растения",
+  "description": "100 заданий по пройденному материалу: уровни организации, свойства живого, растительная клетка, ткани, органы растения, корень и корневые системы.",
+  "subject": "biology",
+  "category": "general-biology",
+  "symbol": "100",
+  "theme": {
+    "accent": "#2f7d57",
+    "soft": "#eaf7f0"
+  },
+  "modes": {
+    "training": {
+      "enabled": true,
+      "instantFeedback": true,
+      "showExplanation": true
+    },
+    "test": {
+      "enabled": true,
+      "instantFeedback": false,
+      "showExplanation": false
+    }
+  },
+  "grading": {
+    "thresholds": {
+      "3": 50,
+      "4": 70,
+      "5": 90
+    }
+  },
+  "settings": {
+    "shuffleQuestions": false,
+    "shuffleAnswers": true,
+    "saveProgress": true,
+    "allowBack": true
+  },
+  "sections": [
+    {
+      "id": "organization",
+      "title": "Уровни организации"
+    },
+    {
+      "id": "properties",
+      "title": "Свойства живого"
+    },
+    {
+      "id": "cell",
+      "title": "Растительная клетка"
+    },
+    {
+      "id": "tissues",
+      "title": "Растительные ткани"
+    },
+    {
+      "id": "organs",
+      "title": "Органы растения"
+    },
+    {
+      "id": "roots",
+      "title": "Корень и корневые системы"
+    },
+    {
+      "id": "integration",
+      "title": "Связи и применение знаний"
+    }
+  ],
+  "variants": [
+    {
+      "id": "full",
+      "title": "Полная диагностика — 100 заданий",
+      "questionIds": [
+        "biology-foundations-q001",
+        "biology-foundations-q002",
+        "biology-foundations-q003",
+        "biology-foundations-q004",
+        "biology-foundations-q005",
+        "biology-foundations-q006",
+        "biology-foundations-q007",
+        "biology-foundations-q008",
+        "biology-foundations-q009",
+        "biology-foundations-q010",
+        "biology-foundations-q011",
+        "biology-foundations-q012",
+        "biology-foundations-q013",
+        "biology-foundations-q014",
+        "biology-foundations-q015",
+        "biology-foundations-q016",
+        "biology-foundations-q017",
+        "biology-foundations-q018",
+        "biology-foundations-q019",
+        "biology-foundations-q020",
+        "biology-foundations-q021",
+        "biology-foundations-q022",
+        "biology-foundations-q023",
+        "biology-foundations-q024",
+        "biology-foundations-q025",
+        "biology-foundations-q026",
+        "biology-foundations-q027",
+        "biology-foundations-q028",
+        "biology-foundations-q029",
+        "biology-foundations-q030",
+        "biology-foundations-q031",
+        "biology-foundations-q032",
+        "biology-foundations-q033",
+        "biology-foundations-q034",
+        "biology-foundations-q035",
+        "biology-foundations-q036",
+        "biology-foundations-q037",
+        "biology-foundations-q038",
+        "biology-foundations-q039",
+        "biology-foundations-q040",
+        "biology-foundations-q041",
+        "biology-foundations-q042",
+        "biology-foundations-q043",
+        "biology-foundations-q044",
+        "biology-foundations-q045",
+        "biology-foundations-q046",
+        "biology-foundations-q047",
+        "biology-foundations-q048",
+        "biology-foundations-q049",
+        "biology-foundations-q050",
+        "biology-foundations-q051",
+        "biology-foundations-q052",
+        "biology-foundations-q053",
+        "biology-foundations-q054",
+        "biology-foundations-q055",
+        "biology-foundations-q056",
+        "biology-foundations-q057",
+        "biology-foundations-q058",
+        "biology-foundations-q059",
+        "biology-foundations-q060",
+        "biology-foundations-q061",
+        "biology-foundations-q062",
+        "biology-foundations-q063",
+        "biology-foundations-q064",
+        "biology-foundations-q065",
+        "biology-foundations-q066",
+        "biology-foundations-q067",
+        "biology-foundations-q068",
+        "biology-foundations-q069",
+        "biology-foundations-q070",
+        "biology-foundations-q071",
+        "biology-foundations-q072",
+        "biology-foundations-q073",
+        "biology-foundations-q074",
+        "biology-foundations-q075",
+        "biology-foundations-q076",
+        "biology-foundations-q077",
+        "biology-foundations-q078",
+        "biology-foundations-q079",
+        "biology-foundations-q080",
+        "biology-foundations-q081",
+        "biology-foundations-q082",
+        "biology-foundations-q083",
+        "biology-foundations-q084",
+        "biology-foundations-q085",
+        "biology-foundations-q086",
+        "biology-foundations-q087",
+        "biology-foundations-q088",
+        "biology-foundations-q089",
+        "biology-foundations-q090",
+        "biology-foundations-q091",
+        "biology-foundations-q092",
+        "biology-foundations-q093",
+        "biology-foundations-q094",
+        "biology-foundations-q095",
+        "biology-foundations-q096",
+        "biology-foundations-q097",
+        "biology-foundations-q098",
+        "biology-foundations-q099",
+        "biology-foundations-q100"
+      ],
+      "selectionCount": {
+        "training": 100,
+        "test": 100
+      }
+    },
+    {
+      "id": "quick",
+      "title": "Экспресс-проверка — 30 заданий",
+      "questionIds": [
+        "biology-foundations-q001",
+        "biology-foundations-q002",
+        "biology-foundations-q005",
+        "biology-foundations-q007",
+        "biology-foundations-q008",
+        "biology-foundations-q011",
+        "biology-foundations-q012",
+        "biology-foundations-q013",
+        "biology-foundations-q014",
+        "biology-foundations-q015",
+        "biology-foundations-q016",
+        "biology-foundations-q017",
+        "biology-foundations-q018",
+        "biology-foundations-q021",
+        "biology-foundations-q022",
+        "biology-foundations-q023",
+        "biology-foundations-q024",
+        "biology-foundations-q025",
+        "biology-foundations-q028",
+        "biology-foundations-q029",
+        "biology-foundations-q030",
+        "biology-foundations-q031",
+        "biology-foundations-q032",
+        "biology-foundations-q036",
+        "biology-foundations-q040",
+        "biology-foundations-q061",
+        "biology-foundations-q065",
+        "biology-foundations-q066",
+        "biology-foundations-q071",
+        "biology-foundations-q073"
+      ],
+      "selectionCount": {
+        "training": 30,
+        "test": 30
+      }
+    },
+    {
+      "id": "organization",
+      "title": "Уровни организации",
+      "questionIds": [
+        "biology-foundations-q001",
+        "biology-foundations-q002",
+        "biology-foundations-q003",
+        "biology-foundations-q004",
+        "biology-foundations-q005",
+        "biology-foundations-q006",
+        "biology-foundations-q041",
+        "biology-foundations-q042",
+        "biology-foundations-q043",
+        "biology-foundations-q044",
+        "biology-foundations-q076",
+        "biology-foundations-q077",
+        "biology-foundations-q079",
+        "biology-foundations-q080",
+        "biology-foundations-q086"
+      ],
+      "selectionCount": {
+        "training": 15,
+        "test": 15
+      }
+    },
+    {
+      "id": "properties",
+      "title": "Свойства живого",
+      "questionIds": [
+        "biology-foundations-q007",
+        "biology-foundations-q008",
+        "biology-foundations-q009",
+        "biology-foundations-q010",
+        "biology-foundations-q011",
+        "biology-foundations-q031"
+      ],
+      "selectionCount": {
+        "training": 6,
+        "test": 6
+      }
+    },
+    {
+      "id": "cell",
+      "title": "Растительная клетка",
+      "questionIds": [
+        "biology-foundations-q012",
+        "biology-foundations-q013",
+        "biology-foundations-q014",
+        "biology-foundations-q015",
+        "biology-foundations-q016",
+        "biology-foundations-q017",
+        "biology-foundations-q018",
+        "biology-foundations-q019",
+        "biology-foundations-q020",
+        "biology-foundations-q032",
+        "biology-foundations-q033",
+        "biology-foundations-q034",
+        "biology-foundations-q035",
+        "biology-foundations-q045",
+        "biology-foundations-q046",
+        "biology-foundations-q047",
+        "biology-foundations-q048",
+        "biology-foundations-q049",
+        "biology-foundations-q050",
+        "biology-foundations-q071",
+        "biology-foundations-q072",
+        "biology-foundations-q078",
+        "biology-foundations-q087",
+        "biology-foundations-q088",
+        "biology-foundations-q089"
+      ],
+      "selectionCount": {
+        "training": 25,
+        "test": 25
+      }
+    },
+    {
+      "id": "tissues",
+      "title": "Растительные ткани",
+      "questionIds": [
+        "biology-foundations-q021",
+        "biology-foundations-q022",
+        "biology-foundations-q023",
+        "biology-foundations-q024",
+        "biology-foundations-q025",
+        "biology-foundations-q026",
+        "biology-foundations-q027",
+        "biology-foundations-q036",
+        "biology-foundations-q037",
+        "biology-foundations-q051",
+        "biology-foundations-q052",
+        "biology-foundations-q053",
+        "biology-foundations-q054",
+        "biology-foundations-q055",
+        "biology-foundations-q073",
+        "biology-foundations-q090",
+        "biology-foundations-q091"
+      ],
+      "selectionCount": {
+        "training": 17,
+        "test": 17
+      }
+    },
+    {
+      "id": "organs",
+      "title": "Органы растения",
+      "questionIds": [
+        "biology-foundations-q028",
+        "biology-foundations-q029",
+        "biology-foundations-q030",
+        "biology-foundations-q038",
+        "biology-foundations-q039",
+        "biology-foundations-q056",
+        "biology-foundations-q057",
+        "biology-foundations-q058",
+        "biology-foundations-q059",
+        "biology-foundations-q074"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 10
+      }
+    },
+    {
+      "id": "roots",
+      "title": "Корень и корневые системы",
+      "questionIds": [
+        "biology-foundations-q040",
+        "biology-foundations-q060",
+        "biology-foundations-q061",
+        "biology-foundations-q062",
+        "biology-foundations-q063",
+        "biology-foundations-q064",
+        "biology-foundations-q065",
+        "biology-foundations-q066",
+        "biology-foundations-q067",
+        "biology-foundations-q068",
+        "biology-foundations-q069",
+        "biology-foundations-q070",
+        "biology-foundations-q075",
+        "biology-foundations-q092",
+        "biology-foundations-q093",
+        "biology-foundations-q094",
+        "biology-foundations-q095"
+      ],
+      "selectionCount": {
+        "training": 17,
+        "test": 17
+      }
+    },
+    {
+      "id": "integration",
+      "title": "Связи и применение знаний",
+      "questionIds": [
+        "biology-foundations-q081",
+        "biology-foundations-q082",
+        "biology-foundations-q083",
+        "biology-foundations-q084",
+        "biology-foundations-q085",
+        "biology-foundations-q096",
+        "biology-foundations-q097",
+        "biology-foundations-q098",
+        "biology-foundations-q099",
+        "biology-foundations-q100"
+      ],
+      "selectionCount": {
+        "training": 10,
+        "test": 10
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "biology-foundations-q001",
+      "section": "organization",
+      "type": "single",
+      "text": "Какая последовательность расположена от меньшего к большему?",
+      "options": [
+        "ткань → клетка → орган → организм",
+        "органоид → клетка → ткань → орган",
+        "клетка → органоид → орган → ткань",
+        "орган → ткань → клетка → организм"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Органоиды входят в состав клетки, клетки образуют ткани, а ткани — органы.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q002",
+      "section": "organization",
+      "type": "single",
+      "text": "Группа клеток, сходных по строению и выполняющих общую функцию, называется:",
+      "options": [
+        "организмом",
+        "органом",
+        "тканью",
+        "органоидом"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Такая группа клеток образует ткань.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q003",
+      "section": "organization",
+      "type": "single",
+      "text": "Часть организма, имеющая определённое строение и выполняющая определённые функции, — это:",
+      "options": [
+        "орган",
+        "клетка",
+        "ткань",
+        "органоид"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Орган образован несколькими тканями и выполняет определённые функции.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q004",
+      "section": "organization",
+      "type": "single",
+      "text": "Какой уровень организации следует после клеточного?",
+      "options": [
+        "молекулярный",
+        "тканевый",
+        "организменный",
+        "биосферный"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Клетки объединяются в ткани, поэтому после клеточного уровня следует тканевый.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q005",
+      "section": "organization",
+      "type": "single",
+      "text": "Корень растения относится к уровню:",
+      "options": [
+        "клеточному",
+        "тканевому",
+        "органному",
+        "молекулярному"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Корень — орган растения.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q006",
+      "section": "organization",
+      "type": "single",
+      "text": "Лист растения состоит прежде всего из:",
+      "options": [
+        "только одинаковых клеток",
+        "нескольких тканей",
+        "нескольких организмов",
+        "только органоидов"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "В состав листа входят покровная, основная, проводящая, механическая и другие ткани.",
+      "difficulty": 1,
+      "tags": [
+        "organization"
+      ]
+    },
+    {
+      "id": "biology-foundations-q007",
+      "section": "properties",
+      "type": "single",
+      "text": "Какой признак живого проявляется при увеличении размеров растения?",
+      "options": [
+        "раздражимость",
+        "размножение",
+        "рост",
+        "питание"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Увеличение размеров и массы организма — проявление роста.",
+      "difficulty": 1,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q008",
+      "section": "properties",
+      "type": "single",
+      "text": "Поворот побега к источнику света является примером:",
+      "options": [
+        "размножения",
+        "раздражимости",
+        "питания",
+        "клеточного строения"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Растение реагирует на внешний раздражитель — направление света.",
+      "difficulty": 1,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q009",
+      "section": "properties",
+      "type": "single",
+      "text": "Образование новых организмов — это:",
+      "options": [
+        "дыхание",
+        "рост",
+        "размножение",
+        "раздражимость"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Размножение обеспечивает появление новых особей.",
+      "difficulty": 1,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q010",
+      "section": "properties",
+      "type": "single",
+      "text": "Получение веществ, необходимых организму, относится к:",
+      "options": [
+        "питанию",
+        "раздражимости",
+        "росту",
+        "размножению"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Питание обеспечивает поступление веществ, необходимых для жизнедеятельности.",
+      "difficulty": 1,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q011",
+      "section": "properties",
+      "type": "single",
+      "text": "Какое утверждение относится ко всем растениям?",
+      "options": [
+        "Они способны активно перемещаться с места на место",
+        "Их организм имеет клеточное строение",
+        "У них обязательно есть цветки",
+        "У них обязательно есть плоды"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Растения имеют клеточное строение. Цветки и плоды характерны не для всех групп растений.",
+      "difficulty": 1,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q012",
+      "section": "cell",
+      "type": "single",
+      "text": "Какой органоид содержит наследственную информацию и управляет процессами клетки?",
+      "options": [
+        "вакуоль",
+        "ядро",
+        "рибосома",
+        "хлоропласт"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Ядро содержит основную часть наследственной информации и участвует в регуляции процессов клетки.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q013",
+      "section": "cell",
+      "type": "single",
+      "text": "В каком органоиде происходит фотосинтез?",
+      "options": [
+        "митохондрии",
+        "вакуоли",
+        "хлоропласте",
+        "ядре"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Фотосинтез происходит в хлоропластах.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q014",
+      "section": "cell",
+      "type": "single",
+      "text": "Основная функция рибосом:",
+      "options": [
+        "синтез белка",
+        "хранение клеточного сока",
+        "фотосинтез",
+        "защита клетки"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "На рибосомах происходит синтез белка.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q015",
+      "section": "cell",
+      "type": "single",
+      "text": "Какой органоид участвует в клеточном дыхании и обеспечении клетки энергией?",
+      "options": [
+        "митохондрия",
+        "ядро",
+        "вакуоль",
+        "хлоропласт"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Митохондрии связаны с клеточным дыханием и энергетическим обменом.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q016",
+      "section": "cell",
+      "type": "single",
+      "text": "Клеточный сок находится преимущественно в:",
+      "options": [
+        "ядре",
+        "вакуоли",
+        "митохондрии",
+        "рибосоме"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Вакуоль растительной клетки заполнена клеточным соком.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q017",
+      "section": "cell",
+      "type": "single",
+      "text": "Что придаёт растительной клетке дополнительную прочность и относительно постоянную форму?",
+      "options": [
+        "клеточная стенка",
+        "ядро",
+        "рибосома",
+        "цитоплазма"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Жёсткая клеточная стенка выполняет опорную и защитную функции.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q018",
+      "section": "cell",
+      "type": "single",
+      "text": "Что регулирует поступление веществ в клетку и выход веществ из неё?",
+      "options": [
+        "клеточная мембрана",
+        "ядрышко",
+        "клеточная стенка",
+        "хлоропласт"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Клеточная мембрана обладает избирательной проницаемостью и регулирует обмен клетки со средой.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q019",
+      "section": "cell",
+      "type": "single",
+      "text": "Полужидкая внутренняя среда клетки, в которой расположены органоиды:",
+      "options": [
+        "клеточный сок",
+        "цитоплазма",
+        "клеточная стенка",
+        "оболочка ядра"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Цитоплазма — внутренняя среда клетки, в которой расположены органоиды.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q020",
+      "section": "cell",
+      "type": "single",
+      "text": "Какой признак особенно характерен для клеток зелёных частей растения?",
+      "options": [
+        "наличие хлоропластов",
+        "отсутствие ядра",
+        "отсутствие мембраны",
+        "отсутствие цитоплазмы"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Зелёные клетки обычно содержат хлоропласты с хлорофиллом.",
+      "difficulty": 1,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q021",
+      "section": "tissues",
+      "type": "single",
+      "text": "Какая ткань обеспечивает рост растения?",
+      "options": [
+        "механическая",
+        "образовательная",
+        "покровная",
+        "проводящая"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Клетки образовательной ткани способны активно делиться.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q022",
+      "section": "tissues",
+      "type": "single",
+      "text": "Основная функция покровной ткани:",
+      "options": [
+        "защита растения",
+        "образование семян",
+        "проведение воды",
+        "рост в длину"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Покровная ткань располагается на поверхности органов и защищает их.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q023",
+      "section": "tissues",
+      "type": "single",
+      "text": "Какая ткань придаёт органам растения прочность?",
+      "options": [
+        "образовательная",
+        "механическая",
+        "проводящая",
+        "основная"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Механическая ткань выполняет опорную функцию.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q024",
+      "section": "tissues",
+      "type": "single",
+      "text": "Какая ткань осуществляет транспорт веществ по растению?",
+      "options": [
+        "покровная",
+        "образовательная",
+        "проводящая",
+        "механическая"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Проводящая ткань обеспечивает транспорт веществ между органами растения.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q025",
+      "section": "tissues",
+      "type": "single",
+      "text": "Клетки образовательной ткани способны активно:",
+      "options": [
+        "делиться",
+        "высыхать",
+        "разрушаться",
+        "превращаться в клеточный сок"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Рост растения связан с делением клеток образовательной ткани.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q026",
+      "section": "tissues",
+      "type": "single",
+      "text": "Какая ткань часто содержит клетки с большим количеством хлоропластов?",
+      "options": [
+        "основная",
+        "механическая",
+        "покровная",
+        "образовательная"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Фотосинтезирующая основная ткань листа содержит много хлоропластов.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q027",
+      "section": "tissues",
+      "type": "single",
+      "text": "Сосуды растения относятся к:",
+      "options": [
+        "проводящей ткани",
+        "покровной ткани",
+        "механической ткани",
+        "образовательной ткани"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Сосуды входят в состав проводящей ткани.",
+      "difficulty": 1,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q028",
+      "section": "organs",
+      "type": "single",
+      "text": "Какой орган относится к вегетативным?",
+      "options": [
+        "цветок",
+        "плод",
+        "корень",
+        "семя"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Корень обеспечивает жизнедеятельность и рост растения и относится к вегетативным органам.",
+      "difficulty": 1,
+      "tags": [
+        "organs"
+      ]
+    },
+    {
+      "id": "biology-foundations-q029",
+      "section": "organs",
+      "type": "single",
+      "text": "Какой орган относится к генеративным?",
+      "options": [
+        "корень",
+        "стебель",
+        "лист",
+        "цветок"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Цветок связан с размножением и относится к генеративным органам.",
+      "difficulty": 1,
+      "tags": [
+        "organs"
+      ]
+    },
+    {
+      "id": "biology-foundations-q030",
+      "section": "organs",
+      "type": "single",
+      "text": "Побег растения включает:",
+      "options": [
+        "только листья",
+        "стебель, листья и почки",
+        "корень и стебель",
+        "цветок и плод"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Побег — это стебель с расположенными на нём листьями и почками.",
+      "difficulty": 1,
+      "tags": [
+        "organs"
+      ]
+    },
+    {
+      "id": "biology-foundations-q031",
+      "section": "properties",
+      "type": "multiple",
+      "text": "Какие признаки относятся к свойствам живых организмов?",
+      "options": [
+        "питание",
+        "дыхание",
+        "размножение",
+        "постоянная неизменность",
+        "раздражимость",
+        "рост и развитие"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        4,
+        5
+      ],
+      "explanation": "К свойствам живого относятся питание, дыхание, размножение, раздражимость, рост и развитие. Живые организмы не остаются неизменными.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "properties"
+      ]
+    },
+    {
+      "id": "biology-foundations-q032",
+      "section": "cell",
+      "type": "multiple",
+      "text": "Что характерно для типичной растительной клетки?",
+      "options": [
+        "клеточная мембрана",
+        "цитоплазма",
+        "клеточная стенка",
+        "крупная вакуоль",
+        "хлоропласты в зелёных клетках",
+        "полное отсутствие ядра"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Растительная клетка имеет мембрану, цитоплазму, клеточную стенку и вакуоль; зелёные клетки содержат хлоропласты. Эукариотическая растительная клетка имеет ядро.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q033",
+      "section": "cell",
+      "type": "multiple",
+      "text": "Какие клеточные структуры непосредственно связаны соответственно с синтезом белка, фотосинтезом или клеточным дыханием?",
+      "options": [
+        "рибосомы",
+        "хлоропласты",
+        "митохондрии",
+        "клеточная стенка",
+        "вакуоль"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Рибосомы синтезируют белок, хлоропласты обеспечивают фотосинтез, митохондрии участвуют в клеточном дыхании.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q034",
+      "section": "cell",
+      "type": "multiple",
+      "text": "Какие функции выполняет клеточная мембрана?",
+      "options": [
+        "отделяет содержимое клетки от окружающей среды",
+        "регулирует транспорт веществ",
+        "синтезирует белки",
+        "участвует в обмене клетки с окружающей средой"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Мембрана отделяет клетку от среды и избирательно регулирует перенос веществ. Белки синтезируются на рибосомах.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q035",
+      "section": "cell",
+      "type": "multiple",
+      "text": "Какие утверждения о вакуоли растительной клетки верны?",
+      "options": [
+        "содержит клеточный сок",
+        "участвует в поддержании внутреннего давления клетки",
+        "может накапливать различные вещества",
+        "хранит всю наследственную информацию клетки"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Вакуоль содержит клеточный сок, участвует в поддержании тургора и накоплении веществ. Наследственная информация главным образом находится в ядре.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "cell"
+      ]
+    },
+    {
+      "id": "biology-foundations-q036",
+      "section": "tissues",
+      "type": "multiple",
+      "text": "Какие ткани встречаются у растений?",
+      "options": [
+        "образовательная",
+        "покровная",
+        "механическая",
+        "проводящая",
+        "основная",
+        "нервная"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "К основным типам растительных тканей относят образовательную, покровную, механическую, проводящую и основную. Нервной ткани у растений нет.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q037",
+      "section": "tissues",
+      "type": "multiple",
+      "text": "Какие функции может выполнять основная ткань?",
+      "options": [
+        "фотосинтез",
+        "запасание веществ",
+        "проведение нервных импульсов",
+        "заполнение пространства между другими тканями"
+      ],
+      "correct": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Основная ткань может участвовать в фотосинтезе, запасании веществ и заполнять пространство между другими тканями.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "tissues"
+      ]
+    },
+    {
+      "id": "biology-foundations-q038",
+      "section": "organs",
+      "type": "multiple",
+      "text": "Что относится к вегетативным органам или их частям?",
+      "options": [
+        "корень",
+        "побег",
+        "цветок",
+        "плод",
+        "лист",
+        "стебель"
+      ],
+      "correct": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "explanation": "К вегетативным органам относят корень и побег; стебель и листья являются частями побега.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "organs"
+      ]
+    },
+    {
+      "id": "biology-foundations-q039",
+      "section": "organs",
+      "type": "multiple",
+      "text": "Что относится к генеративным органам или структурам растения?",
+      "options": [
+        "цветок",
+        "плод",
+        "семя",
+        "корень",
+        "стебель"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Цветок, плод и семя связаны с размножением растения.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "organs"
+      ]
+    },
+    {
+      "id": "biology-foundations-q040",
+      "section": "roots",
+      "type": "multiple",
+      "text": "Какие функции может выполнять корень?",
+      "options": [
+        "закрепление растения в почве",
+        "поглощение воды",
+        "поглощение минеральных веществ",
+        "проведение веществ",
+        "запасание питательных веществ у некоторых растений",
+        "образование листьев",
+        "улавливание света для фотосинтеза"
+      ],
+      "correct": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Корень закрепляет растение, поглощает воду и минеральные вещества, проводит вещества и у некоторых растений служит запасающим органом.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 2,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q041",
+      "section": "organization",
+      "type": "single",
+      "text": "Все клетки растительного организма имеют одинаковое строение.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Клетки разных тканей специализируются и могут заметно различаться по строению.",
+      "difficulty": 1,
+      "tags": [
+        "organization",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q042",
+      "section": "organization",
+      "type": "single",
+      "text": "Ткани образуются из клеток.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Ткань представляет собой совокупность клеток и межклеточного вещества.",
+      "difficulty": 1,
+      "tags": [
+        "organization",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q043",
+      "section": "organization",
+      "type": "single",
+      "text": "Несколько тканей могут входить в состав одного органа.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Орган обычно образован несколькими типами тканей.",
+      "difficulty": 1,
+      "tags": [
+        "organization",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q044",
+      "section": "organization",
+      "type": "single",
+      "text": "Корень является тканью.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Корень — орган, в состав которого входят разные ткани.",
+      "difficulty": 1,
+      "tags": [
+        "organization",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q045",
+      "section": "cell",
+      "type": "single",
+      "text": "Ядро относится к клеточным структурам.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Ядро является важной структурой эукариотической клетки.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q046",
+      "section": "cell",
+      "type": "single",
+      "text": "Хлоропласты содержатся абсолютно во всех клетках растения.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Хлоропласты характерны прежде всего для зелёных фотосинтезирующих клеток.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q047",
+      "section": "cell",
+      "type": "single",
+      "text": "Вакуоль растительной клетки содержит клеточный сок.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Полость вакуоли заполнена клеточным соком.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q048",
+      "section": "cell",
+      "type": "single",
+      "text": "Рибосомы участвуют в синтезе белков.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Синтез белка происходит на рибосомах.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q049",
+      "section": "cell",
+      "type": "single",
+      "text": "Митохондрии связаны с энергетическими процессами клетки.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Митохондрии участвуют в клеточном дыхании и преобразовании энергии.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q050",
+      "section": "cell",
+      "type": "single",
+      "text": "Клеточная стенка у растения расположена снаружи от клеточной мембраны.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Клеточная стенка окружает мембрану снаружи.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q051",
+      "section": "tissues",
+      "type": "single",
+      "text": "Основная задача покровной ткани — защита.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Покровная ткань защищает внутренние ткани органов.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q052",
+      "section": "tissues",
+      "type": "single",
+      "text": "Механическая ткань способствует прочности растения.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Механическая ткань выполняет опорную функцию.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q053",
+      "section": "tissues",
+      "type": "single",
+      "text": "Проводящая ткань нужна только для защиты растения.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Проводящая ткань обеспечивает транспорт веществ.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q054",
+      "section": "tissues",
+      "type": "single",
+      "text": "Образовательная ткань состоит из клеток, способных делиться.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Способность клеток к делению обеспечивает рост растения.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q055",
+      "section": "tissues",
+      "type": "single",
+      "text": "В одном органе растения обычно имеется только один тип ткани.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Органы растений состоят из нескольких типов тканей.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q056",
+      "section": "organs",
+      "type": "single",
+      "text": "Стебель относится к вегетативной части растения.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Стебель — осевая часть побега и относится к вегетативной части растения.",
+      "difficulty": 1,
+      "tags": [
+        "organs",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q057",
+      "section": "organs",
+      "type": "single",
+      "text": "Цветок относится к генеративным органам.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Цветок связан с размножением растения.",
+      "difficulty": 1,
+      "tags": [
+        "organs",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q058",
+      "section": "organs",
+      "type": "single",
+      "text": "Плод является частью корневой системы.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Плод относится к генеративным органам и не входит в корневую систему.",
+      "difficulty": 1,
+      "tags": [
+        "organs",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q059",
+      "section": "organs",
+      "type": "single",
+      "text": "Побег включает стебель, листья и почки.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Это основные части побега.",
+      "difficulty": 1,
+      "tags": [
+        "organs",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q060",
+      "section": "roots",
+      "type": "single",
+      "text": "Корневая система состоит из всех корней одного растения.",
+      "options": [
+        "Верно",
+        "Неверно"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Все корни растения в совокупности образуют корневую систему.",
+      "difficulty": 1,
+      "tags": [
+        "roots",
+        "true-false"
+      ]
+    },
+    {
+      "id": "biology-foundations-q061",
+      "section": "roots",
+      "type": "single",
+      "text": "Как называется совокупность всех корней растения?",
+      "options": [
+        "побег",
+        "корневая система",
+        "ткань",
+        "главный корень"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Все корни одного растения образуют корневую систему.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q062",
+      "section": "roots",
+      "type": "single",
+      "text": "Какой корень развивается из зародышевого корешка семени?",
+      "options": [
+        "боковой",
+        "придаточный",
+        "главный",
+        "воздушный"
+      ],
+      "correct": [
+        2
+      ],
+      "explanation": "Из зародышевого корешка развивается главный корень.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q063",
+      "section": "roots",
+      "type": "single",
+      "text": "Корни, отходящие от главного или других корней, называют:",
+      "options": [
+        "боковыми",
+        "придаточными",
+        "генеративными",
+        "образовательными"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Корни, возникающие на других корнях, называются боковыми.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q064",
+      "section": "roots",
+      "type": "single",
+      "text": "Корни, возникающие на стебле или других частях побега, называют:",
+      "options": [
+        "главными",
+        "придаточными",
+        "боковыми",
+        "зародышевыми"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Придаточные корни возникают на стеблях и других органах побега.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q065",
+      "section": "roots",
+      "type": "single",
+      "text": "При стержневой корневой системе хорошо выражен:",
+      "options": [
+        "главный корень",
+        "только один боковой корень",
+        "лист",
+        "стебель"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Стержневая система характеризуется хорошо развитым главным корнем.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q066",
+      "section": "roots",
+      "type": "single",
+      "text": "Для мочковатой корневой системы характерно:",
+      "options": [
+        "хорошо заметный главный корень значительно крупнее остальных",
+        "множество корней примерно одинаковой толщины",
+        "полное отсутствие корней",
+        "наличие только одного корня"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "В мочковатой системе главный корень не выделяется, а многочисленные корни сходны по толщине.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q067",
+      "section": "roots",
+      "type": "single",
+      "text": "Какая корневая система характерна для пшеницы?",
+      "options": [
+        "стержневая",
+        "мочковатая"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Для злаков, включая пшеницу, характерна мочковатая корневая система.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q068",
+      "section": "roots",
+      "type": "single",
+      "text": "Какая корневая система характерна для фасоли?",
+      "options": [
+        "стержневая",
+        "мочковатая"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "У фасоли хорошо выражен главный корень, поэтому система стержневая.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q069",
+      "section": "roots",
+      "type": "single",
+      "text": "Если главный корень хорошо развит, а от него отходят многочисленные боковые корни, это система:",
+      "options": [
+        "мочковатая",
+        "стержневая"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Хорошо выраженный главный корень — главный признак стержневой корневой системы.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q070",
+      "section": "roots",
+      "type": "single",
+      "text": "Если главный корень почти не выделяется среди множества придаточных корней, это система:",
+      "options": [
+        "стержневая",
+        "мочковатая"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Такое строение характерно для мочковатой корневой системы.",
+      "difficulty": 1,
+      "tags": [
+        "roots"
+      ]
+    },
+    {
+      "id": "biology-foundations-q071",
+      "section": "cell",
+      "type": "matching",
+      "text": "Сопоставьте органоид с основной функцией.",
+      "items": [
+        {
+          "id": "nucleus",
+          "text": "Ядро",
+          "format": "text",
+          "explanation": "Содержит наследственную информацию и участвует в управлении клеткой."
+        },
+        {
+          "id": "chloroplast",
+          "text": "Хлоропласт",
+          "format": "text",
+          "explanation": "Органоид фотосинтеза."
+        },
+        {
+          "id": "mitochondrion",
+          "text": "Митохондрия",
+          "format": "text",
+          "explanation": "Связана с клеточным дыханием и энергетическим обменом."
+        },
+        {
+          "id": "ribosome",
+          "text": "Рибосома",
+          "format": "text",
+          "explanation": "Участвует в синтезе белка."
+        },
+        {
+          "id": "vacuole",
+          "text": "Вакуоль",
+          "format": "text",
+          "explanation": "Содержит клеточный сок."
+        }
+      ],
+      "options": [
+        {
+          "id": "protein",
+          "text": "Синтез белка"
+        },
+        {
+          "id": "energy",
+          "text": "Клеточное дыхание и энергетический обмен"
+        },
+        {
+          "id": "sap",
+          "text": "Хранение клеточного сока"
+        },
+        {
+          "id": "heredity",
+          "text": "Хранение наследственной информации и регуляция процессов"
+        },
+        {
+          "id": "photo",
+          "text": "Фотосинтез"
+        }
+      ],
+      "correct": {
+        "nucleus": "heredity",
+        "chloroplast": "photo",
+        "mitochondrion": "energy",
+        "ribosome": "protein",
+        "vacuole": "sap"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Каждый органоид имеет специализированные функции.",
+      "difficulty": 2,
+      "tags": [
+        "cell",
+        "matching"
+      ],
+      "hint": "Каждый вариант используется один раз."
+    },
+    {
+      "id": "biology-foundations-q072",
+      "section": "cell",
+      "type": "matching",
+      "text": "Сопоставьте клеточную структуру с её функцией.",
+      "items": [
+        {
+          "id": "wall",
+          "text": "Клеточная стенка",
+          "format": "text",
+          "explanation": "Придаёт прочность и поддерживает форму."
+        },
+        {
+          "id": "membrane",
+          "text": "Клеточная мембрана",
+          "format": "text",
+          "explanation": "Регулирует обмен клетки со средой."
+        },
+        {
+          "id": "cytoplasm",
+          "text": "Цитоплазма",
+          "format": "text",
+          "explanation": "Внутренняя среда клетки."
+        },
+        {
+          "id": "nucleus",
+          "text": "Ядро",
+          "format": "text",
+          "explanation": "Содержит основную наследственную информацию."
+        }
+      ],
+      "options": [
+        {
+          "id": "transport",
+          "text": "Регулирует поступление и выход веществ"
+        },
+        {
+          "id": "medium",
+          "text": "Внутренняя среда клетки, где находятся органоиды"
+        },
+        {
+          "id": "strength",
+          "text": "Придаёт клетке форму и дополнительную прочность"
+        },
+        {
+          "id": "dna",
+          "text": "Содержит основную наследственную информацию"
+        }
+      ],
+      "correct": {
+        "wall": "strength",
+        "membrane": "transport",
+        "cytoplasm": "medium",
+        "nucleus": "dna"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Структуры клетки различаются по функциям.",
+      "difficulty": 2,
+      "tags": [
+        "cell",
+        "matching"
+      ]
+    },
+    {
+      "id": "biology-foundations-q073",
+      "section": "tissues",
+      "type": "matching",
+      "text": "Сопоставьте ткань с её основной функцией.",
+      "items": [
+        {
+          "id": "meristem",
+          "text": "Образовательная",
+          "format": "text",
+          "explanation": "Её клетки активно делятся."
+        },
+        {
+          "id": "cover",
+          "text": "Покровная",
+          "format": "text",
+          "explanation": "Защищает поверхность органов."
+        },
+        {
+          "id": "mechanical",
+          "text": "Механическая",
+          "format": "text",
+          "explanation": "Обеспечивает опору и прочность."
+        },
+        {
+          "id": "conducting",
+          "text": "Проводящая",
+          "format": "text",
+          "explanation": "Перемещает вещества."
+        },
+        {
+          "id": "ground",
+          "text": "Основная",
+          "format": "text",
+          "explanation": "Может фотосинтезировать или запасать вещества."
+        }
+      ],
+      "options": [
+        {
+          "id": "transport",
+          "text": "Транспорт веществ"
+        },
+        {
+          "id": "growth",
+          "text": "Рост за счёт деления клеток"
+        },
+        {
+          "id": "protection",
+          "text": "Защита"
+        },
+        {
+          "id": "strength",
+          "text": "Прочность и опора"
+        },
+        {
+          "id": "photo-storage",
+          "text": "Фотосинтез или запасание веществ"
+        }
+      ],
+      "correct": {
+        "meristem": "growth",
+        "cover": "protection",
+        "mechanical": "strength",
+        "conducting": "transport",
+        "ground": "photo-storage"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Строение каждой ткани связано с выполняемой функцией.",
+      "difficulty": 2,
+      "tags": [
+        "tissues",
+        "matching"
+      ]
+    },
+    {
+      "id": "biology-foundations-q074",
+      "section": "organs",
+      "type": "matching",
+      "text": "Сопоставьте орган или структуру с его группой.",
+      "items": [
+        {
+          "id": "root",
+          "text": "Корень",
+          "format": "text",
+          "explanation": "Корень относится к вегетативным органам растения."
+        },
+        {
+          "id": "leaf",
+          "text": "Лист",
+          "format": "text",
+          "explanation": "Лист — боковая часть побега и относится к вегетативной части растения."
+        },
+        {
+          "id": "stem",
+          "text": "Стебель",
+          "format": "text",
+          "explanation": "Стебель — осевая часть побега и относится к вегетативной части растения."
+        },
+        {
+          "id": "flower",
+          "text": "Цветок",
+          "format": "text",
+          "explanation": "Цветок — генеративный орган растения."
+        },
+        {
+          "id": "fruit",
+          "text": "Плод",
+          "format": "text",
+          "explanation": "Плод развивается из цветка и относится к генеративной части растения."
+        },
+        {
+          "id": "seed",
+          "text": "Семя",
+          "format": "text",
+          "explanation": "Семя обеспечивает размножение и расселение растений."
+        }
+      ],
+      "options": [
+        {
+          "id": "vegetative",
+          "text": "Вегетативный орган или часть побега"
+        },
+        {
+          "id": "generative",
+          "text": "Генеративный орган или структура"
+        }
+      ],
+      "correct": {
+        "root": "vegetative",
+        "leaf": "vegetative",
+        "stem": "vegetative",
+        "flower": "generative",
+        "fruit": "generative",
+        "seed": "generative"
+      },
+      "allowOptionReuse": true,
+      "explanation": "Корень и побег относятся к вегетативной части растения; цветок, плод и семя — к генеративной.",
+      "difficulty": 2,
+      "tags": [
+        "organs",
+        "matching"
+      ]
+    },
+    {
+      "id": "biology-foundations-q075",
+      "section": "roots",
+      "type": "matching",
+      "text": "Сопоставьте тип корня с его происхождением.",
+      "items": [
+        {
+          "id": "main",
+          "text": "Главный корень",
+          "format": "text",
+          "explanation": "Главный корень развивается из зародышевого корешка."
+        },
+        {
+          "id": "lateral",
+          "text": "Боковой корень",
+          "format": "text",
+          "explanation": "Боковой корень возникает на другом корне."
+        },
+        {
+          "id": "adventitious",
+          "text": "Придаточный корень",
+          "format": "text",
+          "explanation": "Придаточный корень возникает на стебле или другой части побега."
+        }
+      ],
+      "options": [
+        {
+          "id": "shoot",
+          "text": "Возникает на стебле или другой части побега"
+        },
+        {
+          "id": "embryo",
+          "text": "Развивается из зародышевого корешка"
+        },
+        {
+          "id": "root",
+          "text": "Отходит от другого корня"
+        }
+      ],
+      "correct": {
+        "main": "embryo",
+        "lateral": "root",
+        "adventitious": "shoot"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Типы корней различают по происхождению.",
+      "difficulty": 2,
+      "tags": [
+        "roots",
+        "matching"
+      ]
+    },
+    {
+      "id": "biology-foundations-q076",
+      "section": "organization",
+      "type": "sequence",
+      "text": "Расположите уровни от меньшего к большему.",
+      "items": [
+        {
+          "id": "biology-foundations-q076-i1",
+          "text": "орган",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q076-i2",
+          "text": "клетка",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q076-i3",
+          "text": "организм",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q076-i4",
+          "text": "ткань",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q076-i5",
+          "text": "органоид",
+          "format": "text"
+        }
+      ],
+      "correct": [
+        "biology-foundations-q076-i5",
+        "biology-foundations-q076-i2",
+        "biology-foundations-q076-i4",
+        "biology-foundations-q076-i1",
+        "biology-foundations-q076-i3"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Органоиды входят в клетки, клетки образуют ткани, ткани — органы, органы формируют организм.",
+      "difficulty": 2,
+      "tags": [
+        "organization",
+        "sequence"
+      ]
+    },
+    {
+      "id": "biology-foundations-q077",
+      "section": "organization",
+      "type": "sequence",
+      "text": "Расположите уровни от клетки до организма.",
+      "items": [
+        {
+          "id": "biology-foundations-q077-i1",
+          "text": "организм",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q077-i2",
+          "text": "ткань",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q077-i3",
+          "text": "клетка",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q077-i4",
+          "text": "орган",
+          "format": "text"
+        }
+      ],
+      "correct": [
+        "biology-foundations-q077-i3",
+        "biology-foundations-q077-i2",
+        "biology-foundations-q077-i4",
+        "biology-foundations-q077-i1"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Последовательность усложнения: клетка → ткань → орган → организм.",
+      "difficulty": 2,
+      "tags": [
+        "organization",
+        "sequence"
+      ]
+    },
+    {
+      "id": "biology-foundations-q078",
+      "section": "cell",
+      "type": "sequence",
+      "text": "Расположите структуры типичной растительной клетки от внешней к внутренней.",
+      "items": [
+        {
+          "id": "biology-foundations-q078-i1",
+          "text": "цитоплазма",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q078-i2",
+          "text": "клеточная стенка",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q078-i3",
+          "text": "клеточная мембрана",
+          "format": "text"
+        }
+      ],
+      "correct": [
+        "biology-foundations-q078-i2",
+        "biology-foundations-q078-i3",
+        "biology-foundations-q078-i1"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Клеточная стенка располагается снаружи мембраны, а за мембраной находится цитоплазма.",
+      "difficulty": 2,
+      "tags": [
+        "cell",
+        "sequence"
+      ]
+    },
+    {
+      "id": "biology-foundations-q079",
+      "section": "organization",
+      "type": "sequence",
+      "text": "Расположите этапы образования более высокого уровня организации.",
+      "items": [
+        {
+          "id": "biology-foundations-q079-i1",
+          "text": "орган",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q079-i2",
+          "text": "клетки",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q079-i3",
+          "text": "организм",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q079-i4",
+          "text": "ткань",
+          "format": "text"
+        }
+      ],
+      "correct": [
+        "biology-foundations-q079-i2",
+        "biology-foundations-q079-i4",
+        "biology-foundations-q079-i1",
+        "biology-foundations-q079-i3"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Клетки образуют ткани, ткани — органы, органы входят в состав организма.",
+      "difficulty": 2,
+      "tags": [
+        "organization",
+        "sequence"
+      ]
+    },
+    {
+      "id": "biology-foundations-q080",
+      "section": "organization",
+      "type": "sequence",
+      "text": "Расположите примеры по принципу «часть входит в состав следующего».",
+      "items": [
+        {
+          "id": "biology-foundations-q080-i1",
+          "text": "растение",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q080-i2",
+          "text": "клетка основной ткани",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q080-i3",
+          "text": "лист",
+          "format": "text"
+        },
+        {
+          "id": "biology-foundations-q080-i4",
+          "text": "основная ткань листа",
+          "format": "text"
+        }
+      ],
+      "correct": [
+        "biology-foundations-q080-i2",
+        "biology-foundations-q080-i4",
+        "biology-foundations-q080-i3",
+        "biology-foundations-q080-i1"
+      ],
+      "sequence": {
+        "shuffleInitial": true,
+        "scoring": "position"
+      },
+      "explanation": "Клетка входит в ткань, ткань — в орган, орган — в организм.",
+      "difficulty": 2,
+      "tags": [
+        "organization",
+        "sequence"
+      ]
+    },
+    {
+      "id": "biology-foundations-q081",
+      "section": "integration",
+      "type": "single",
+      "text": "Найдите лишнее понятие.",
+      "options": [
+        "ядро",
+        "митохондрия",
+        "хлоропласт",
+        "корень"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Первые три — клеточные структуры или органоиды, а корень — орган растения.",
+      "difficulty": 2,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q082",
+      "section": "integration",
+      "type": "single",
+      "text": "Найдите лишнее понятие.",
+      "options": [
+        "покровная",
+        "механическая",
+        "проводящая",
+        "клеточная"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Первые три — типы растительных тканей. «Клеточная» не является названием типа растительной ткани.",
+      "difficulty": 2,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q083",
+      "section": "integration",
+      "type": "single",
+      "text": "Найдите лишнее понятие.",
+      "options": [
+        "корень",
+        "стебель",
+        "лист",
+        "плод"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Корень, стебель и лист относятся к вегетативным органам или частям побега, плод — к генеративным.",
+      "difficulty": 2,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q084",
+      "section": "integration",
+      "type": "single",
+      "text": "Найдите лишнее понятие.",
+      "options": [
+        "цветок",
+        "плод",
+        "семя",
+        "корень"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Цветок, плод и семя относятся к генеративной части растения, корень — вегетативный орган.",
+      "difficulty": 2,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q085",
+      "section": "integration",
+      "type": "single",
+      "text": "Найдите лишнее понятие.",
+      "options": [
+        "главный",
+        "боковой",
+        "придаточный",
+        "механический"
+      ],
+      "correct": [
+        3
+      ],
+      "explanation": "Главный, боковой и придаточный — типы корней по происхождению.",
+      "difficulty": 2,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q086",
+      "section": "organization",
+      "type": "text",
+      "text": "Введите термин: группа сходных клеток, выполняющих общую функцию.",
+      "correct": [
+        "ткань",
+        "тканью"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Такая группа клеток называется тканью.",
+      "difficulty": 1,
+      "tags": [
+        "organization",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q087",
+      "section": "cell",
+      "type": "text",
+      "text": "Введите название органоида, в котором происходит фотосинтез.",
+      "correct": [
+        "хлоропласт",
+        "хлоропласты",
+        "хлоропласте"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Фотосинтез происходит в хлоропластах.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q088",
+      "section": "cell",
+      "type": "text",
+      "text": "Введите название органоида, содержащего клеточный сок.",
+      "correct": [
+        "вакуоль",
+        "вакуоли"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Клеточный сок находится в вакуоли.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q089",
+      "section": "cell",
+      "type": "text",
+      "text": "Введите название структуры, на которой происходит синтез белка.",
+      "correct": [
+        "рибосома",
+        "рибосомы",
+        "рибосомах"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Синтез белка происходит на рибосомах.",
+      "difficulty": 1,
+      "tags": [
+        "cell",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q090",
+      "section": "tissues",
+      "type": "text",
+      "text": "Введите название ткани, клетки которой способны активно делиться.",
+      "correct": [
+        "образовательная",
+        "образовательная ткань"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Образовательная ткань обеспечивает рост растения.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q091",
+      "section": "tissues",
+      "type": "text",
+      "text": "Введите название ткани, обеспечивающей транспорт веществ по растению.",
+      "correct": [
+        "проводящая",
+        "проводящая ткань"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Проводящая ткань обеспечивает перемещение веществ.",
+      "difficulty": 1,
+      "tags": [
+        "tissues",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q092",
+      "section": "roots",
+      "type": "text",
+      "text": "Введите термин для совокупности всех корней одного растения.",
+      "correct": [
+        "корневая система",
+        "корневой системой"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Все корни одного растения образуют корневую систему.",
+      "difficulty": 1,
+      "tags": [
+        "roots",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q093",
+      "section": "roots",
+      "type": "text",
+      "text": "Введите название корня, развивающегося из зародышевого корешка.",
+      "correct": [
+        "главный",
+        "главный корень"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Из зародышевого корешка развивается главный корень.",
+      "difficulty": 1,
+      "tags": [
+        "roots",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q094",
+      "section": "roots",
+      "type": "text",
+      "text": "Введите название корней, возникающих на стебле.",
+      "correct": [
+        "придаточные",
+        "придаточные корни"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 40,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "На стебле и других органах побега возникают придаточные корни.",
+      "difficulty": 1,
+      "tags": [
+        "roots",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q095",
+      "section": "roots",
+      "type": "text",
+      "text": "Введите название корневой системы с хорошо выраженным главным корнем.",
+      "correct": [
+        "стержневая",
+        "стержневая корневая система"
+      ],
+      "textAnswer": {
+        "caseSensitive": false,
+        "trim": true,
+        "collapseWhitespace": true,
+        "normalizeUnicodeMinus": true,
+        "minLength": 1,
+        "maxLength": 50,
+        "placeholder": "Введите термин",
+        "inputMode": "text"
+      },
+      "explanation": "Хорошо выраженный главный корень характерен для стержневой системы.",
+      "difficulty": 1,
+      "tags": [
+        "roots",
+        "term"
+      ]
+    },
+    {
+      "id": "biology-foundations-q096",
+      "section": "integration",
+      "type": "single",
+      "text": "Молодой побег активно растёт в длину. Какая ткань должна особенно активно работать в зоне роста?",
+      "options": [
+        "покровная",
+        "образовательная",
+        "механическая",
+        "проводящая"
+      ],
+      "correct": [
+        1
+      ],
+      "explanation": "Рост обеспечивается делением клеток образовательной ткани.",
+      "difficulty": 3,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q097",
+      "section": "integration",
+      "type": "multiple",
+      "text": "У растения сильно повреждены корни, а затем начали увядать листья. Какие звенья правильно объясняют эту связь?",
+      "options": [
+        "повреждённые корни хуже поглощают воду",
+        "к листьям поступает меньше воды",
+        "клетки листа теряют тургор и листья увядают",
+        "корни перестают вырабатывать хлорофилл для листьев",
+        "листья перестают получать солнечный свет из-за повреждения корней"
+      ],
+      "correct": [
+        0,
+        1,
+        2
+      ],
+      "explanation": "Повреждение корней снижает поглощение воды; её меньше поступает к листьям, клетки теряют тургор и листья увядают.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 3,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q098",
+      "section": "integration",
+      "type": "single",
+      "text": "Почему клетки зелёного листа обычно содержат больше хлоропластов, чем клетки корня?",
+      "options": [
+        "лист обычно получает свет и активно участвует в фотосинтезе",
+        "корень состоит только из мёртвых клеток",
+        "хлоропласты нужны только для поглощения воды",
+        "клетки корня не имеют цитоплазмы"
+      ],
+      "correct": [
+        0
+      ],
+      "explanation": "Хлоропласты необходимы для фотосинтеза, а зелёные листья обычно хорошо освещены.",
+      "difficulty": 3,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q099",
+      "section": "integration",
+      "type": "multiple",
+      "text": "Стебель высокого растения должен одновременно быть прочным и переносить вещества между корнями и листьями. Какие ткани особенно важны для этих функций?",
+      "options": [
+        "механическая",
+        "проводящая",
+        "образовательная",
+        "покровная"
+      ],
+      "correct": [
+        0,
+        1
+      ],
+      "explanation": "Механическая ткань обеспечивает прочность, а проводящая — транспорт веществ.",
+      "hint": "Правильных ответов несколько.",
+      "difficulty": 3,
+      "tags": [
+        "integration"
+      ]
+    },
+    {
+      "id": "biology-foundations-q100",
+      "section": "integration",
+      "type": "matching",
+      "text": "Сопоставьте уровень организации с примером, чтобы получить цепочку «клетка → ткань → орган → организм».",
+      "items": [
+        {
+          "id": "cell",
+          "text": "Клеточный уровень",
+          "format": "text",
+          "explanation": "Клетка основной ткани листа представляет клеточный уровень."
+        },
+        {
+          "id": "tissue",
+          "text": "Тканевый уровень",
+          "format": "text",
+          "explanation": "Основная ткань листа представляет тканевый уровень."
+        },
+        {
+          "id": "organ",
+          "text": "Органный уровень",
+          "format": "text",
+          "explanation": "Лист является органом растения."
+        },
+        {
+          "id": "organism",
+          "text": "Организменный уровень",
+          "format": "text",
+          "explanation": "Целое растение представляет организменный уровень."
+        }
+      ],
+      "options": [
+        {
+          "id": "leaf-cell",
+          "text": "Клетка основной ткани листа"
+        },
+        {
+          "id": "ground-tissue",
+          "text": "Основная ткань листа"
+        },
+        {
+          "id": "leaf",
+          "text": "Лист"
+        },
+        {
+          "id": "plant",
+          "text": "Целое растение"
+        }
+      ],
+      "correct": {
+        "cell": "leaf-cell",
+        "tissue": "ground-tissue",
+        "organ": "leaf",
+        "organism": "plant"
+      },
+      "allowOptionReuse": false,
+      "explanation": "Клетка основной ткани входит в состав основной ткани листа, ткань — в лист, а лист — в целое растение.",
+      "difficulty": 3,
+      "tags": [
+        "integration",
+        "matching"
+      ]
+    }
+  ]
+}

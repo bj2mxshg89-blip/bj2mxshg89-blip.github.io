@@ -131,7 +131,8 @@ test("страницы истории всех универсальных тес
     "hybridization-theory",
     "redox-trainer",
     "alkane-homology",
-    "biology-matching"
+    "biology-matching",
+    "biology-foundations"
   ];
   for (const testId of testIds) {
     runtimeErrors.length = 0;
