@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-08-13",
+  "updatedAt": "2026-08-18",
   "sections": [
     {
       "id": "organic",
@@ -159,6 +159,23 @@
       "linkLabel": "Открыть",
       "status": "active",
       "order": 10
+    },
+    {
+      "id": "biology-foundations",
+      "title": "Большая диагностика по биологии",
+      "description": "Уровни организации, свойства живого, растительная клетка, ткани, органы растения, корень и корневые системы.",
+      "section": "biology",
+      "kicker": "Итоговое повторение",
+      "symbol": "100",
+      "color": "#2f7d57",
+      "softColor": "#eaf7f0",
+      "questionCount": 100,
+      "modes": ["training", "test"],
+      "meta": "9 вариантов · полная диагностика и темы",
+      "url": "test.html?id=biology-foundations",
+      "linkLabel": "Открыть",
+      "status": "active",
+      "order": 20
     },
     {
       "id": "seating",
