@@ -143,24 +143,29 @@ test("страницы истории всех универсальных тес
   }
 });
 
-test("шесть старых адресов ведут на канонические тесты, а рассадка открывается", async ({ page }) => {
+test("устаревшие HTML-страницы удалены, а канонические страницы открываются", async ({ page }) => {
   const runtimeErrors = collectRuntimeErrors(page);
-  const redirects = [
-    ["organic-review.html", "organic-review"],
-    ["inorg-nomenclature.html", "inorg-nomenclature"],
-    ["organic-classification.html", "organic-classification"],
-    ["hybridization-theory.html", "hybridization-theory"],
-    ["alkane-homology.html", "alkane-homology"],
-    ["trainer.html", "redox-trainer"]
+  const removedPages = [
+    "organic-review.html",
+    "inorg-nomenclature.html",
+    "organic-classification.html",
+    "hybridization-theory.html",
+    "alkane-homology.html",
+    "trainer.html",
+    "seating.html"
   ];
-  for (const [path, testId] of redirects) {
-    runtimeErrors.length = 0;
+  for (const path of removedPages) {
     const response = await page.goto(`/${path}`);
-    expect(response.ok(), path).toBe(true);
-    await expect(page).toHaveURL(new RegExp(`/test\\.html\\?id=${testId}$`));
-    await expect(page.locator("#setupPanel")).toBeVisible();
-    await expectNoRuntimeErrors(runtimeErrors);
+    expect(response.status(), path).toBe(404);
   }
+
+  runtimeErrors.length = 0;
+  const testResponse = await page.goto("/test.html?id=organic-review");
+  expect(testResponse.ok()).toBe(true);
+  await expect(page.locator("#setupPanel")).toBeVisible();
+  await expectNoRuntimeErrors(runtimeErrors);
+
+  runtimeErrors.length = 0;
   const seatingResponse = await page.goto("/seating-v2.html");
   expect(seatingResponse.ok()).toBe(true);
   await expect(page.locator("h1").first()).toBeVisible();
