@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Закрытый реестр учебников для учителя.">
+  <title>Реестр учебников — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/account.css">
+  <link rel="stylesheet" href="assets/css/textbooks.css">
+</head>
+<body class="account-page textbooks-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия и биология · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="dashboard.html">Кабинет учителя</a>
+      <a class="site-nav-link" href="account.html">Аккаунт</a>
+    </nav>
+  </header>
+
+  <main class="site-page account-shell">
+    <section class="site-hero textbooks-hero">
+      <div class="site-hero-mark" aria-hidden="true">№</div>
+      <div class="site-eyebrow">Закрытый инструмент учителя</div>
+      <h1>Реестр учебников</h1>
+      <p>Учёт учебников, выданных ученикам. В реестре хранится только текущее состояние выдачи.</p>
+    </section>
+
+    <section class="site-panel trainer-loading" id="registryLoading" aria-live="polite">
+      <span class="trainer-spinner" aria-hidden="true"></span>
+      <span>Проверяем доступ и загружаем реестр…</span>
+    </section>
+
+    <section class="site-panel account-error" id="registryError" role="alert" hidden>
+      <h2>Не удалось открыть реестр</h2>
+      <p id="registryErrorText"></p>
+      <button class="site-btn" id="registryRetry" type="button">Повторить</button>
+    </section>
+
+    <section id="registryApp" hidden>
+      <article class="site-panel textbooks-quick-panel" aria-labelledby="quickLoanTitle">
+        <div>
+          <div class="site-eyebrow">Быстрое действие</div>
+          <h2 id="quickLoanTitle">Выдать учебник</h2>
+        </div>
+        <form class="textbooks-quick-form" id="quickLoanForm">
+          <div class="textbooks-field">
+            <label for="quickStudent">Ученик</label>
+            <select id="quickStudent" name="studentId" required></select>
+          </div>
+          <div class="textbooks-field">
+            <label for="quickTextbook">Учебник</label>
+            <select id="quickTextbook" name="textbookId" required></select>
+          </div>
+          <button class="site-btn" type="submit">Выдать</button>
+          <p class="textbooks-status" id="quickLoanStatus" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <div class="textbooks-tabs" role="tablist" aria-label="Разделы реестра">
+        <button class="textbooks-tab is-active" id="registryTab" type="button" role="tab"
+          aria-selected="true" aria-controls="registryPanel" data-tab="registry">Реестр</button>
+        <button class="textbooks-tab" id="studentsTab" type="button" role="tab"
+          aria-selected="false" aria-controls="studentsPanel" data-tab="students" tabindex="-1">Ученики</button>
+        <button class="textbooks-tab" id="textbooksTab" type="button" role="tab"
+          aria-selected="false" aria-controls="textbooksPanel" data-tab="textbooks" tabindex="-1">Учебники</button>
+      </div>
+
+      <section id="registryPanel" role="tabpanel" aria-labelledby="registryTab">
+        <div class="site-section-head textbooks-section-head">
+          <div>
+            <h2>Текущая выдача</h2>
+            <p>Список учеников и учебников, которые сейчас находятся у них.</p>
+          </div>
+          <div class="textbooks-search">
+            <label for="registrySearch">Поиск ученика</label>
+            <input class="site-input" id="registrySearch" type="search" autocomplete="off"
+              placeholder="Фамилия или имя">
+          </div>
+        </div>
+        <div class="textbooks-list" id="registryList"></div>
+      </section>
+
+      <section id="studentsPanel" role="tabpanel" aria-labelledby="studentsTab" hidden>
+        <div class="textbooks-editor-grid">
+          <article class="site-panel account-card">
+            <div class="site-eyebrow">Один ученик</div>
+            <h2 id="studentFormTitle">Добавить ученика</h2>
+            <form class="account-form" id="registryStudentForm">
+              <input id="registryStudentId" name="id" type="hidden">
+              <label for="registryLastName">Фамилия</label>
+              <input id="registryLastName" name="lastName" type="text" maxlength="80" autocomplete="family-name" required>
+              <label for="registryFirstName">Имя</label>
+              <input id="registryFirstName" name="firstName" type="text" maxlength="80" autocomplete="given-name" required>
+              <div class="textbooks-form-actions">
+                <button class="site-btn" type="submit">Сохранить</button>
+                <button class="site-btn ghost" id="studentFormCancel" type="button" hidden>Отменить</button>
+              </div>
+              <p class="textbooks-status" id="studentFormStatus" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <article class="site-panel account-card">
+            <div class="site-eyebrow">Массовое добавление</div>
+            <h2>Вставить список</h2>
+            <p>По одному ученику в строке: только фамилия и имя.</p>
+            <form class="account-form" id="bulkStudentsForm">
+              <label for="bulkStudents">Список учеников</label>
+              <textarea id="bulkStudents" name="students" rows="7"
+                placeholder="Иванов Максим&#10;Петрова Анна&#10;Сидоров Алексей" required></textarea>
+              <button class="site-btn" type="submit">Добавить список</button>
+              <p class="textbooks-status" id="bulkStudentsStatus" aria-live="polite"></p>
+            </form>
+          </article>
+        </div>
+
+        <div class="site-section-head"><div><h2>Ученики</h2></div><p id="studentCount"></p></div>
+        <div class="textbooks-list" id="studentsList"></div>
+      </section>
+
+      <section id="textbooksPanel" role="tabpanel" aria-labelledby="textbooksTab" hidden>
+        <article class="site-panel account-card textbooks-single-editor">
+          <div class="site-eyebrow">Фонд учебников</div>
+          <h2 id="textbookFormTitle">Добавить учебник</h2>
+          <form class="account-form textbooks-book-form" id="registryTextbookForm">
+            <input id="registryTextbookId" name="id" type="hidden">
+            <div class="textbooks-field">
+              <label for="registryTextbookTitle">Название</label>
+              <input id="registryTextbookTitle" name="title" type="text" maxlength="160"
+                placeholder="Биология, 8 класс" required>
+            </div>
+            <div class="textbooks-field">
+              <label for="registryTextbookQuantity">Количество</label>
+              <input id="registryTextbookQuantity" name="quantity" type="number" min="0" max="10000" step="1" required>
+            </div>
+            <div class="textbooks-form-actions">
+              <button class="site-btn" type="submit">Сохранить</button>
+              <button class="site-btn ghost" id="textbookFormCancel" type="button" hidden>Отменить</button>
+            </div>
+            <p class="textbooks-status" id="textbookFormStatus" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <div class="site-section-head"><div><h2>Учебники</h2></div><p id="textbookCount"></p></div>
+        <div class="textbooks-list" id="textbooksList"></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog class="textbooks-dialog" id="loanDialog" aria-labelledby="loanDialogTitle">
+    <form method="dialog" class="textbooks-dialog-frame">
+      <div class="textbooks-dialog-head">
+        <div>
+          <div class="site-eyebrow" id="loanDialogKicker">Текущая выдача</div>
+          <h2 id="loanDialogTitle">Изменить выдачу</h2>
+          <p id="loanDialogDescription"></p>
+        </div>
+        <button class="site-btn ghost" value="close" type="submit">Закрыть</button>
+      </div>
+      <div class="textbooks-check-list" id="loanDialogList"></div>
+      <p class="textbooks-status" id="loanDialogStatus" aria-live="polite"></p>
+    </form>
+  </dialog>
+
+  <footer class="site-footer">Доступ к реестру ограничен аккаунтом учителя и политиками Supabase RLS</footer>
+  <script type="module" src="assets/js/textbooks.js?v=10"></script>
+</body>
+</html>
