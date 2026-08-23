@@ -16,7 +16,7 @@ test("логин нормализуется и преобразуется во �
 });
 
 test("логин принимает только безопасный ограниченный алфавит", () => {
-  assert.equal(isValidLogin("anton_teacher"), true);
+  assert.equal(isValidLogin("teacher_demo"), true);
   assert.equal(isValidLogin("a-b.c_7"), true);
   assert.equal(isValidLogin("абв"), false);
   assert.equal(isValidLogin("-student"), false);
