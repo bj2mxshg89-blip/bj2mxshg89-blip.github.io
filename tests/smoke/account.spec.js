@@ -62,6 +62,8 @@ test("кабинет содержит интерфейс выдачи и пол�
   await expect(page.locator("#assignmentMode")).toHaveCount(1);
   await expect(page.locator("#assignmentDueAt")).toHaveAttribute("type", "datetime-local");
   await expect(page.locator("#studentAssignmentList")).toHaveCount(1);
+  await expect(page.locator("#teacherPanel a[href='textbooks.html']")).toHaveText("Открыть реестр");
+  await expect(page.locator("#studentPanel a[href='textbooks.html']")).toHaveCount(0);
 });
 
 test("тренажёр без входа сохраняет локальный режим", async ({ page }) => {

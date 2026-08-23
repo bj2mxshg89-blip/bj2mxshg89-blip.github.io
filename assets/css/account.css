@@ -221,6 +221,21 @@
   align-items: start;
 }
 
+.account-tool-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-bottom: 22px;
+  border-color: #cdd8f8;
+  background: linear-gradient(120deg, #fff 0%, #f2f5ff 100%);
+}
+
+.account-tool-card .site-eyebrow { margin-bottom: 10px; }
+.account-tool-card h2 { margin-bottom: 5px; }
+.account-tool-card p { margin: 0; }
+.account-tool-card .site-btn { flex: 0 0 auto; }
+
 .account-credentials {
   display: flex;
   justify-content: space-between;
@@ -382,6 +397,8 @@
   #teacherPanel { margin-top: 14px; }
   .account-signed-in > .account-password-panel { grid-column: auto; }
   .account-action-row { justify-content: flex-start; }
+  .account-tool-card { align-items: stretch; flex-direction: column; }
+  .account-tool-card .site-btn { width: 100%; }
   .account-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .account-credentials { display: block; }
   .account-credentials dl { margin-top: 14px; }

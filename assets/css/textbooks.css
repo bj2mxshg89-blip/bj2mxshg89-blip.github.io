@@ -1,0 +1,376 @@
+.textbooks-page { overflow-x: hidden; }
+.textbooks-page .site-btn { min-height: 44px; }
+
+.textbooks-page :focus-visible {
+  outline: 3px solid rgba(49, 87, 213, .36);
+  outline-offset: 3px;
+}
+
+.textbooks-hero.site-hero {
+  background: linear-gradient(135deg, #173e43 0%, #16705f 55%, #45a37f 100%);
+}
+
+.textbooks-hero .site-hero-mark {
+  right: 34px;
+  bottom: -4px;
+  font-family: inherit;
+  font-size: clamp(78px, 12vw, 118px);
+  letter-spacing: 0;
+}
+
+#registryLoading { margin-top: 18px; }
+
+.textbooks-quick-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, .55fr) minmax(0, 1.45fr);
+  gap: 24px;
+  align-items: end;
+  margin-top: 18px;
+  padding: clamp(20px, 2.4vw, 28px);
+}
+
+.textbooks-quick-panel h2,
+.textbooks-dialog h2 { margin: 0; }
+
+.textbooks-quick-panel .site-eyebrow,
+.textbooks-dialog .site-eyebrow {
+  margin-bottom: 10px;
+  border-color: #bfe4d7;
+  color: #146353;
+  background: #ecfaf5;
+}
+
+.textbooks-quick-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+}
+
+.textbooks-field {
+  display: grid;
+  min-width: 0;
+  gap: 7px;
+}
+
+.textbooks-field label,
+.textbooks-search label {
+  color: #25314d;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.textbooks-field input,
+.textbooks-field select,
+.textbooks-quick-form select,
+.account-form textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  outline: none;
+  color: var(--text);
+  background: #fff;
+  font: inherit;
+}
+
+.account-form textarea {
+  min-height: 164px;
+  resize: vertical;
+}
+
+.textbooks-field input:focus,
+.textbooks-field select:focus,
+.textbooks-quick-form select:focus,
+.account-form textarea:focus {
+  border-color: #3157d5;
+  box-shadow: 0 0 0 4px rgba(49, 87, 213, .12);
+}
+
+.textbooks-quick-form .site-btn { min-height: 50px; }
+
+.textbooks-status {
+  min-height: 21px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.textbooks-quick-form .textbooks-status { grid-column: 1 / -1; margin: 0; }
+.textbooks-status.is-error { color: var(--bad); }
+.textbooks-status.is-good { color: var(--good); }
+
+.textbooks-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .78);
+  box-shadow: var(--shadow-soft);
+}
+
+.textbooks-tab {
+  min-width: 0;
+  min-height: 46px;
+  padding: 10px 13px;
+  border: 0;
+  border-radius: 11px;
+  color: #41506e;
+  background: transparent;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+.textbooks-tab:hover { background: #f0f3fa; }
+.textbooks-tab.is-active { color: #fff; background: var(--primary); }
+
+.textbooks-section-head { align-items: end; }
+.textbooks-section-head p { margin-top: 4px; }
+
+.textbooks-search {
+  display: grid;
+  width: min(100%, 340px);
+  gap: 6px;
+}
+
+.textbooks-list { display: grid; gap: 12px; }
+
+.textbooks-person,
+.textbooks-book,
+.textbooks-student-row {
+  min-width: 0;
+  padding: 20px;
+}
+
+.textbooks-person,
+.textbooks-student-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+}
+
+.textbooks-person h3,
+.textbooks-book h3,
+.textbooks-student-row h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: clamp(18px, 2.4vw, 22px);
+}
+
+.textbooks-meta {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.textbooks-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.textbooks-chip {
+  max-width: 100%;
+  padding: 6px 9px;
+  border: 1px solid #cbd6f4;
+  border-radius: 999px;
+  overflow-wrap: anywhere;
+  color: #2948b5;
+  background: #f1f4ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.textbooks-empty {
+  padding: 18px;
+  border: 1px dashed #b8c3df;
+  border-radius: 14px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, .7);
+}
+
+.textbooks-row-actions,
+.textbooks-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.textbooks-row-actions { justify-content: flex-end; }
+.textbooks-form-actions { margin-top: 20px; }
+.textbooks-form-actions .site-btn { margin-top: 0; }
+
+.textbooks-small-btn {
+  min-height: 44px;
+  padding: 9px 12px;
+}
+
+.textbooks-editor-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.textbooks-single-editor { margin-top: 30px; }
+
+.textbooks-book-form {
+  grid-template-columns: minmax(0, 1.7fr) minmax(120px, .3fr) auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.textbooks-book-form .textbooks-form-actions { margin: 0; }
+.textbooks-book-form .textbooks-status { grid-column: 1 / -1; }
+
+.textbooks-book-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.textbooks-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.textbooks-stat {
+  min-width: 0;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #f7f9fd;
+}
+
+.textbooks-stat span,
+.textbooks-stat strong { display: block; }
+.textbooks-stat span { color: var(--muted); font-size: 11px; font-weight: 750; }
+.textbooks-stat strong { margin-top: 2px; font-size: 21px; }
+
+.textbooks-dialog {
+  width: min(680px, calc(100% - 24px));
+  max-height: min(760px, calc(100dvh - 24px));
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  color: var(--text);
+  background: #fff;
+  box-shadow: 0 24px 80px rgba(20, 33, 65, .28);
+}
+
+.textbooks-dialog::backdrop { background: rgba(18, 29, 52, .48); }
+
+.textbooks-dialog-frame {
+  display: grid;
+  max-height: min(760px, calc(100dvh - 24px));
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  margin: 0;
+  padding: 22px;
+}
+
+.textbooks-dialog-head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.textbooks-dialog-head p { margin: 6px 0 0; color: var(--muted); }
+
+.textbooks-check-list {
+  display: grid;
+  gap: 8px;
+  padding: 14px 2px;
+  overflow-y: auto;
+}
+
+.textbooks-check-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 54px;
+  padding: 5px 10px 5px 5px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.textbooks-check-row:hover { border-color: #b8c5e8; background: #f9faff; }
+.textbooks-check-row input { width: 22px; height: 22px; margin: auto; accent-color: var(--primary); }
+.textbooks-check-row strong { min-width: 0; overflow-wrap: anywhere; }
+.textbooks-check-row small { color: var(--muted); }
+.textbooks-check-row.is-disabled { opacity: .6; cursor: not-allowed; }
+
+@media (max-width: 820px) {
+  .textbooks-quick-panel { grid-template-columns: 1fr; align-items: stretch; }
+  .textbooks-quick-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .textbooks-quick-form .site-btn { grid-column: 1 / -1; width: 100%; }
+  .textbooks-editor-grid { grid-template-columns: 1fr; }
+  .textbooks-book-form { grid-template-columns: 1fr 160px; }
+  .textbooks-book-form .textbooks-form-actions,
+  .textbooks-book-form .textbooks-status { grid-column: 1 / -1; }
+  .textbooks-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .textbooks-section-head { align-items: stretch; flex-direction: column; }
+  .textbooks-search { width: 100%; }
+  .textbooks-person,
+  .textbooks-student-row { grid-template-columns: 1fr; }
+  .textbooks-row-actions { justify-content: flex-start; }
+  .textbooks-book-head { display: grid; }
+  .textbooks-book-head .textbooks-row-actions { order: 2; }
+}
+
+@media (max-width: 520px) {
+  .textbooks-page .site-nav-link:first-child { font-size: 0; }
+  .textbooks-page .site-nav-link:first-child::after { content: "Назад"; font-size: 13px; }
+  .textbooks-quick-form,
+  .textbooks-book-form { grid-template-columns: 1fr; }
+  .textbooks-book-form .textbooks-form-actions,
+  .textbooks-book-form .textbooks-status { grid-column: auto; }
+  .textbooks-tabs { gap: 4px; padding: 5px; }
+  .textbooks-tab { padding-inline: 7px; font-size: 13px; }
+  .textbooks-row-actions .site-btn { flex: 1 1 130px; }
+  .textbooks-dialog-frame { padding: 16px; }
+  .textbooks-dialog-head { display: grid; }
+  .textbooks-dialog-head .site-btn { width: 100%; }
+  .textbooks-check-row { grid-template-columns: 44px minmax(0, 1fr); }
+  .textbooks-check-row small { grid-column: 2; }
+}
+
+@media (max-width: 360px) {
+  .textbooks-person,
+  .textbooks-book,
+  .textbooks-student-row { padding: 16px; }
+  .textbooks-stats { grid-template-columns: 1fr 1fr; }
+  .textbooks-form-actions .site-btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .textbooks-page * { scroll-behavior: auto !important; transition: none !important; }
+}
+
+@media print {
+  .textbooks-tabs,
+  .textbooks-quick-panel,
+  .textbooks-row-actions,
+  .textbooks-dialog,
+  .site-nav { display: none !important; }
+}
