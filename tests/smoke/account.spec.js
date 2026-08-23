@@ -41,7 +41,11 @@ test("карточки форм имеют аккуратные отступы �
   expect(geometry.fieldHeight).toBeGreaterThanOrEqual(50);
   expect(geometry.leftInset).toBeGreaterThanOrEqual(22);
   expect(geometry.rightInset).toBeGreaterThanOrEqual(22);
-  await expect(page.locator("#loginName")).toHaveAttribute("placeholder", /anton\.efremov/);
+  for (const selector of ["#loginName", "#ownerDisplayName", "#ownerLogin"]) {
+    await expect(page.locator(selector)).not.toHaveAttribute("placeholder");
+    await expect(page.locator(selector)).not.toHaveAttribute("value");
+    await expect(page.locator(selector)).toHaveValue("");
+  }
 });
 
 test("кабинет без сессии предлагает перейти ко входу", async ({ page }) => {
