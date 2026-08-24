@@ -7,7 +7,7 @@
   <title>Заставка для доски — Кабинет учителя</title>
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="assets/css/account.css">
-  <link rel="stylesheet" href="assets/css/screensaver.css">
+  <link rel="stylesheet" href="assets/css/screensaver.css?v=13">
 </head>
 <body class="account-page screensaver-page">
   <section class="screensaver-gate" id="accessGate" aria-live="polite">
@@ -21,7 +21,7 @@
       <div>
         <div class="site-eyebrow">Закрытый инструмент учителя</div>
         <h1>Заставка для доски</h1>
-        <p>В наборе 36 пар «вопрос — ответ»: 16 по биологии, 8 по химии и 12 по географии. Пары перемешиваются целиком.</p>
+        <p>В наборе 120 пар «вопрос — ответ»: 48 по биологии, 36 по химии и 36 по географии. Пары перемешиваются целиком.</p>
       </div>
     </header>
 
@@ -40,15 +40,15 @@
           <legend>Предметы</legend>
           <label class="subject-option subject-biology">
             <input type="checkbox" name="subject" value="biology" checked>
-            <span><b></b><strong>Биология</strong><small>зелёные карточки · 16 пар</small></span>
+            <span><b></b><strong>Биология</strong><small>зелёные карточки · 48 пар</small></span>
           </label>
           <label class="subject-option subject-chemistry">
             <input type="checkbox" name="subject" value="chemistry" checked>
-            <span><b></b><strong>Химия</strong><small>синие карточки · 8 пар</small></span>
+            <span><b></b><strong>Химия</strong><small>синие карточки · 36 пар</small></span>
           </label>
           <label class="subject-option subject-geography">
             <input type="checkbox" name="subject" value="geography" checked>
-            <span><b></b><strong>География</strong><small>коричневые карточки · 12 пар</small></span>
+            <span><b></b><strong>География</strong><small>коричневые карточки · 36 пар</small></span>
           </label>
         </fieldset>
 
@@ -63,7 +63,7 @@
         </label>
 
         <p class="screensaver-form-error" id="settingsError" role="alert"></p>
-        <button class="site-btn screensaver-start" type="submit">Запустить заставку</button>
+        <button class="site-btn screensaver-start" id="startButton" type="submit">Запустить заставку</button>
       </form>
     </section>
   </main>
@@ -72,9 +72,9 @@
     <div class="screensaver-stage" id="stage">
       <article class="screensaver-slide theme-biology" id="slide" aria-live="polite">
         <div class="screensaver-image-frame">
-          <img id="slideImage" alt="" decoding="async">
+          <img id="slideImage" alt="" loading="eager" decoding="sync" fetchpriority="high">
         </div>
-        <div class="screensaver-copy">
+        <div class="screensaver-copy" id="slideCopy">
           <h1 id="slideText"></h1>
         </div>
       </article>
@@ -102,6 +102,6 @@
     <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
   </section>
 
-  <script type="module" src="assets/js/screensaver.js?v=12"></script>
+  <script type="module" src="assets/js/screensaver.js?v=13"></script>
 </body>
 </html>
