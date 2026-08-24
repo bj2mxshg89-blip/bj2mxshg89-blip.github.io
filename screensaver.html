@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Закрытая заставка с учебными карточками для доски.">
+  <title>Заставка для доски — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/account.css">
+  <link rel="stylesheet" href="assets/css/screensaver.css">
+</head>
+<body class="account-page screensaver-page">
+  <section class="screensaver-gate" id="accessGate" aria-live="polite">
+    <span class="trainer-spinner" aria-hidden="true"></span>
+    <p>Проверяем доступ…</p>
+  </section>
+
+  <main class="screensaver-launcher" id="launcher" hidden>
+    <header class="screensaver-launcher-head">
+      <a class="screensaver-back" href="dashboard.html">← В личный кабинет</a>
+      <div>
+        <div class="site-eyebrow">Закрытый инструмент учителя</div>
+        <h1>Заставка для доски</h1>
+        <p>Выберите предметы и запустите полноэкранный показ. Пары «вопрос — ответ» перемешиваются целиком.</p>
+      </div>
+    </header>
+
+    <section class="screensaver-setup" aria-labelledby="setupTitle">
+      <div class="screensaver-preview" aria-hidden="true">
+        <div class="screensaver-preview-card preview-biology">
+          <div class="screensaver-preview-image"></div>
+          <strong>К какому классу относится животное?</strong>
+        </div>
+      </div>
+
+      <form class="screensaver-options" id="settingsForm">
+        <h2 id="setupTitle">Настройка показа</h2>
+
+        <fieldset>
+          <legend>Предметы</legend>
+          <label class="subject-option subject-biology">
+            <input type="checkbox" name="subject" value="biology" checked>
+            <span><b></b><strong>Биология</strong><small>зелёные карточки</small></span>
+          </label>
+          <label class="subject-option subject-chemistry">
+            <input type="checkbox" name="subject" value="chemistry" checked>
+            <span><b></b><strong>Химия</strong><small>синие карточки</small></span>
+          </label>
+          <label class="subject-option subject-geography">
+            <input type="checkbox" name="subject" value="geography" checked>
+            <span><b></b><strong>География</strong><small>коричневые карточки</small></span>
+          </label>
+        </fieldset>
+
+        <label class="screensaver-duration" for="pairDuration">
+          <span>Время на пару</span>
+          <select id="pairDuration" name="pairDuration">
+            <option value="30">30 секунд · 15 + 15</option>
+            <option value="40">40 секунд · 20 + 20</option>
+            <option value="60">60 секунд · 30 + 30</option>
+          </select>
+        </label>
+
+        <p class="screensaver-form-error" id="settingsError" role="alert"></p>
+        <button class="site-btn screensaver-start" type="submit">Запустить заставку</button>
+      </form>
+    </section>
+  </main>
+
+  <section class="screensaver-show" id="show" hidden>
+    <div class="screensaver-stage" id="stage">
+      <article class="screensaver-slide theme-biology" id="slide" aria-live="polite">
+        <div class="screensaver-image-frame">
+          <img id="slideImage" alt="" decoding="async">
+        </div>
+        <div class="screensaver-copy">
+          <h1 id="slideText"></h1>
+        </div>
+      </article>
+
+      <div class="screensaver-progress" id="progress" aria-hidden="true"><span></span></div>
+
+      <div class="screensaver-controls" id="controls" aria-label="Управление заставкой">
+        <button type="button" data-action="previous" aria-label="Предыдущая карточка">←</button>
+        <button type="button" data-action="toggle" class="screensaver-control-main">Пауза</button>
+        <button type="button" data-action="reveal">Показать ответ</button>
+        <button type="button" data-action="next" aria-label="Следующая карточка">→</button>
+        <button type="button" data-action="exit">Выйти</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screensaver-error" id="fatalError" hidden>
+    <h1>Не удалось открыть заставку</h1>
+    <p id="fatalErrorText"></p>
+    <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
+  </section>
+
+  <script type="module" src="assets/js/screensaver.js?v=11"></script>
+</body>
+</html>
