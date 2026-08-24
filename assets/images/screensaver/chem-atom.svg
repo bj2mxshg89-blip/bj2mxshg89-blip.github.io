@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Схематическая модель атома">
+  <defs>
+    <radialGradient id="bg" cx="35%" cy="25%" r="90%">
+      <stop offset="0" stop-color="#2f7fbd"/>
+      <stop offset="1" stop-color="#102f52"/>
+    </radialGradient>
+    <radialGradient id="proton" cx="32%" cy="28%" r="70%">
+      <stop offset="0" stop-color="#ffb27a"/>
+      <stop offset="1" stop-color="#d94c42"/>
+    </radialGradient>
+    <radialGradient id="neutron" cx="32%" cy="28%" r="70%">
+      <stop offset="0" stop-color="#d9e5ed"/>
+      <stop offset="1" stop-color="#6f8ba1"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="55" y="45" width="1490" height="810" rx="66" fill="none" stroke="#b9e4ff" stroke-opacity=".42" stroke-width="7"/>
+  <g fill="none" stroke="#d4efff" stroke-opacity=".66" stroke-width="7">
+    <ellipse cx="800" cy="450" rx="395" ry="155" transform="rotate(18 800 450)"/>
+    <ellipse cx="800" cy="450" rx="395" ry="155" transform="rotate(78 800 450)"/>
+    <ellipse cx="800" cy="450" rx="395" ry="155" transform="rotate(138 800 450)"/>
+  </g>
+  <circle cx="800" cy="450" r="132" fill="#80c8ff" fill-opacity=".18" filter="url(#glow)"/>
+  <g stroke="#fff" stroke-opacity=".5" stroke-width="4">
+    <circle cx="752" cy="398" r="50" fill="url(#proton)"/>
+    <circle cx="829" cy="387" r="50" fill="url(#neutron)"/>
+    <circle cx="866" cy="459" r="50" fill="url(#proton)"/>
+    <circle cx="790" cy="482" r="50" fill="url(#neutron)"/>
+    <circle cx="730" cy="469" r="50" fill="url(#proton)"/>
+    <circle cx="830" cy="520" r="50" fill="url(#neutron)"/>
+  </g>
+  <g fill="#e9fbff" stroke="#74cdf8" stroke-width="8" filter="url(#glow)">
+    <circle cx="1192" cy="566" r="26"/>
+    <circle cx="594" cy="202" r="26"/>
+    <circle cx="530" cy="650" r="26"/>
+    <circle cx="1010" cy="695" r="26"/>
+    <circle cx="990" cy="220" r="26"/>
+    <circle cx="385" cy="365" r="26"/>
+  </g>
+</svg>

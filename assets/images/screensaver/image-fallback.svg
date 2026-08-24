@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Резервная учебная иллюстрация">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfe8e2"/>
+      <stop offset="1" stop-color="#b9c9c0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g transform="translate(800 450)" fill="none" stroke="#4e6b5b" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" opacity=".78">
+    <circle r="260" stroke-opacity=".25"/>
+    <path d="M-180 150c70-155 165-244 284-267-3 130-70 231-202 302-50 27-105 12-128-32-23-43-3-92 46-113 96-42 182-53 258-34"/>
+    <path d="M-63 184c34-112 88-204 162-276"/>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 import { getAccountContext } from "./supabase-client.js?v=10";
+import { additionalCardPairs } from "./screensaver-more-cards.js?v=13";
 
-const cardPairs = [
+const baseCardPairs = [
   {
     id: "grasshopper-class",
     subject: "biology",
@@ -128,7 +129,7 @@ const cardPairs = [
   {
     id: "snail-type",
     subject: "biology",
-    image: "assets/images/screensaver/bio-snail.webp",
+    image: "assets/images/screensaver/bio-snail-v2.webp",
     alt: "Наземная улитка",
     question: "К какому типу относится улитка?",
     answer: "К типу Моллюски"
@@ -136,7 +137,7 @@ const cardPairs = [
   {
     id: "snail-class",
     subject: "biology",
-    image: "assets/images/screensaver/bio-snail.webp",
+    image: "assets/images/screensaver/bio-snail-v2.webp",
     alt: "Наземная улитка",
     question: "К какому классу относится улитка?",
     answer: "К классу Брюхоногие"
@@ -303,9 +304,13 @@ const cardPairs = [
   }
 ];
 
+const cardPairs = [...baseCardPairs, ...additionalCardPairs];
+const fallbackImage = "assets/images/screensaver/image-fallback.svg";
+
 const elements = Object.fromEntries([
   "accessGate", "launcher", "settingsForm", "questionDuration", "settingsError", "show", "stage",
-  "slide", "slideImage", "slideText", "timer", "timerLabel", "timerValue", "progress", "controls",
+  "slide", "slideImage", "slideCopy", "slideText", "timer", "timerLabel", "timerValue", "progress", "controls",
+  "startButton",
   "fatalError", "fatalErrorText"
 ].map((id) => [id, document.getElementById(id)]));
 
@@ -384,16 +389,57 @@ function animateSlide() {
   elements.slide.classList.add("is-changing");
 }
 
+function fitSlideText() {
+  const text = elements.slideText;
+  const box = elements.slideCopy;
+  text.style.fontSize = "";
+
+  requestAnimationFrame(() => {
+    let size = Number.parseFloat(getComputedStyle(text).fontSize);
+    const minimumSize = Math.max(22, elements.stage.clientWidth * 0.019);
+    while ((text.scrollHeight > box.clientHeight || text.scrollWidth > box.clientWidth) && size > minimumSize) {
+      size = Math.max(minimumSize, size - 2);
+      text.style.fontSize = `${size}px`;
+    }
+  });
+}
+
 function renderSlide() {
   const pair = currentPair();
   const isAnswer = phase === "answer";
   elements.slide.className = `screensaver-slide ${subjectThemes[pair.subject]}${isAnswer ? " is-answer" : ""}`;
+  elements.slideImage.dataset.fallback = "false";
   elements.slideImage.src = pair.image;
   elements.slideImage.alt = pair.alt;
   elements.slideText.textContent = isAnswer ? pair.answer : pair.question;
   const revealButton = elements.controls.querySelector('[data-action="reveal"]');
   revealButton.textContent = isAnswer ? "Вернуть вопрос" : "Показать ответ";
   animateSlide();
+  fitSlideText();
+}
+
+function preloadImage(src) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    let finished = false;
+    const complete = () => {
+      if (finished) return;
+      finished = true;
+      window.clearTimeout(timeout);
+      resolve();
+    };
+    const timeout = window.setTimeout(complete, 12000);
+    image.onload = complete;
+    image.onerror = complete;
+    image.decoding = "sync";
+    image.src = src;
+    if (image.complete) complete();
+  });
+}
+
+async function preloadDeckImages(pairs) {
+  const sources = [...new Set(pairs.map((pair) => pair.image))];
+  await Promise.all(sources.map(preloadImage));
 }
 
 function resetPhase(nextPhase = "question") {
@@ -504,18 +550,28 @@ async function enterFullscreen() {
 }
 
 async function startPresentation(subjects, duration) {
-  deck = shuffled(cardPairs.filter((pair) => subjects.includes(pair.subject)));
-  pairIndex = 0;
-  questionDurationMs = Number(duration) * 1000;
-  playing = true;
-  elements.controls.querySelector('[data-action="toggle"]').textContent = "Пауза";
-  elements.launcher.hidden = true;
-  elements.show.hidden = false;
-  document.body.classList.add("is-presenting");
-  resetPhase("question");
-  showControls();
-  await enterFullscreen();
-  await requestWakeLock();
+  const selectedPairs = cardPairs.filter((pair) => subjects.includes(pair.subject));
+  elements.startButton.disabled = true;
+  elements.startButton.textContent = "Готовим изображения…";
+
+  try {
+    await preloadDeckImages(selectedPairs);
+    deck = shuffled(selectedPairs);
+    pairIndex = 0;
+    questionDurationMs = Number(duration) * 1000;
+    playing = true;
+    elements.controls.querySelector('[data-action="toggle"]').textContent = "Пауза";
+    elements.launcher.hidden = true;
+    elements.show.hidden = false;
+    document.body.classList.add("is-presenting");
+    resetPhase("question");
+    showControls();
+    await enterFullscreen();
+    await requestWakeLock();
+  } finally {
+    elements.startButton.disabled = false;
+    elements.startButton.textContent = "Запустить заставку";
+  }
 }
 
 async function exitPresentation() {
@@ -531,6 +587,13 @@ async function exitPresentation() {
 }
 
 function setupEvents() {
+  elements.slideImage.addEventListener("error", () => {
+    if (elements.slideImage.dataset.fallback === "true") return;
+    elements.slideImage.dataset.fallback = "true";
+    elements.slideImage.src = fallbackImage;
+    elements.slideImage.alt = "Учебная иллюстрация временно недоступна";
+  });
+
   elements.settingsForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const subjects = selectedSubjects();
@@ -586,6 +649,11 @@ function setupEvents() {
   document.addEventListener("visibilitychange", () => {
     if (!elements.show.hidden && playing && document.visibilityState === "visible") void requestWakeLock();
   });
+
+  window.addEventListener("resize", fitSlideText);
+  if (document.fonts?.ready) {
+    document.fonts.ready.then(fitSlideText).catch(() => {});
+  }
 }
 
 async function init() {

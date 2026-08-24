@@ -195,6 +195,7 @@
 
 .screensaver-form-error { min-height: 20px; margin: 12px 0 0; color: var(--bad); font-size: 13px; font-weight: 800; }
 .screensaver-start { width: 100%; min-height: 52px; margin-top: 4px; }
+.screensaver-start:disabled { cursor: wait; opacity: .72; }
 
 .screensaver-show {
   position: fixed;
@@ -298,16 +299,21 @@
   display: grid;
   align-content: center;
   gap: 2.2cqw;
+  height: 72cqh;
   min-width: 0;
+  overflow: hidden;
 }
 
 .screensaver-copy h1 { margin: 0; }
 
 .screensaver-copy h1 {
+  max-width: 100%;
   color: #fffaf0;
   font-size: clamp(36px, 5.1cqw, 84px);
   line-height: 1.05;
   letter-spacing: -.045em;
+  overflow-wrap: anywhere;
+  hyphens: auto;
   text-wrap: balance;
   text-shadow: 0 .15cqw .4cqw rgba(0,0,0,.16);
 }
