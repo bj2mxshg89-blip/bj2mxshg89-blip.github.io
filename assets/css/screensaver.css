@@ -1,0 +1,408 @@
+:root {
+  --biology-dark: #264b35;
+  --biology-mid: #4f7658;
+  --biology-light: #dfead9;
+  --chemistry-dark: #173f64;
+  --chemistry-mid: #3677a6;
+  --chemistry-light: #dcecf7;
+  --geography-dark: #5a3d2b;
+  --geography-mid: #8a6244;
+  --geography-light: #eadfce;
+}
+
+[hidden] { display: none !important; }
+
+.screensaver-page {
+  min-height: 100dvh;
+  background: #eef1ec;
+}
+
+.screensaver-gate,
+.screensaver-error {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+}
+
+.screensaver-gate p { margin: 0; color: var(--muted); font-weight: 800; }
+.screensaver-error h1 { margin: 0; }
+.screensaver-error p { max-width: 560px; color: var(--muted); }
+
+.screensaver-launcher {
+  width: min(1180px, calc(100% - 36px));
+  margin: 0 auto;
+  padding: 34px 0 54px;
+}
+
+.screensaver-launcher-head {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+
+.screensaver-back {
+  width: fit-content;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: #31453b;
+  background: #fff;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: var(--shadow-soft);
+}
+
+.screensaver-launcher-head .site-eyebrow { width: fit-content; margin-bottom: 12px; }
+.screensaver-launcher-head h1 {
+  margin: 0;
+  color: #1f3028;
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.screensaver-launcher-head p {
+  max-width: 720px;
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.screensaver-setup {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(340px, .65fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.screensaver-preview {
+  aspect-ratio: 16 / 9;
+  padding: clamp(18px, 2.4vw, 34px);
+  border-radius: 28px;
+  background: #12251a;
+  box-shadow: 0 24px 64px rgba(20, 39, 29, .2);
+}
+
+.screensaver-preview-card {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  gap: clamp(18px, 2.2vw, 32px);
+  align-items: center;
+  padding: clamp(18px, 2.5vw, 38px);
+  overflow: hidden;
+  border-radius: 19px;
+  color: #fffaf0;
+  background: linear-gradient(135deg, var(--biology-dark), var(--biology-mid));
+}
+
+.screensaver-preview-image {
+  align-self: stretch;
+  border: 7px solid rgba(255,255,255,.8);
+  border-radius: 16px;
+  background: url("../images/screensaver/bio-grasshopper.webp") center / cover no-repeat, #d7e3d2;
+  box-shadow: 0 15px 32px rgba(0,0,0,.2);
+}
+
+.screensaver-preview-card strong {
+  font-size: clamp(20px, 3vw, 42px);
+  line-height: 1.08;
+  letter-spacing: -.035em;
+}
+
+.screensaver-options {
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.screensaver-options h2 { margin: 0 0 22px; font-size: 28px; }
+.screensaver-options fieldset { margin: 0; padding: 0; border: 0; }
+.screensaver-options legend,
+.screensaver-duration > span {
+  margin-bottom: 10px;
+  color: #2b3d34;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.subject-option { display: block; margin-top: 9px; cursor: pointer; }
+.subject-option input { position: absolute; opacity: 0; pointer-events: none; }
+.subject-option > span {
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 10px 13px;
+  border: 2px solid #e0e5df;
+  border-radius: 15px;
+  background: #fafbf9;
+  transition: border-color .16s ease, background .16s ease, transform .16s ease;
+}
+
+.subject-option > span > b {
+  grid-row: 1 / 3;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--subject-color);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--subject-color) 18%, transparent);
+}
+
+.subject-option strong { align-self: end; font-size: 16px; }
+.subject-option small { align-self: start; color: var(--muted); }
+.subject-option input:checked + span {
+  border-color: color-mix(in srgb, var(--subject-color) 60%, white);
+  background: color-mix(in srgb, var(--subject-color) 8%, white);
+}
+.subject-option input:focus-visible + span { outline: 3px solid rgba(49,87,213,.25); outline-offset: 3px; }
+.subject-biology { --subject-color: var(--biology-mid); }
+.subject-chemistry { --subject-color: var(--chemistry-mid); }
+.subject-geography { --subject-color: var(--geography-mid); }
+
+.screensaver-duration { display: grid; margin-top: 22px; }
+.screensaver-duration select {
+  width: 100%;
+  min-height: 50px;
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  color: #26382f;
+  background: #fff;
+  font: inherit;
+  font-weight: 750;
+}
+
+.screensaver-form-error { min-height: 20px; margin: 12px 0 0; color: var(--bad); font-size: 13px; font-weight: 800; }
+.screensaver-start { width: 100%; min-height: 52px; margin-top: 4px; }
+
+.screensaver-show {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #090d0b;
+  user-select: none;
+}
+
+.screensaver-stage {
+  position: relative;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
+  aspect-ratio: 16 / 9;
+  container-type: size;
+  overflow: hidden;
+  background: #111;
+}
+
+.screensaver-slide {
+  --theme-dark: var(--biology-dark);
+  --theme-mid: var(--biology-mid);
+  --theme-light: var(--biology-light);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.14fr .86fr;
+  gap: 4.5cqw;
+  align-items: center;
+  padding: 5cqw;
+  overflow: hidden;
+  color: #fffaf0;
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255,255,255,.15), transparent 23%),
+    radial-gradient(circle at 12% 92%, rgba(0,0,0,.16), transparent 30%),
+    linear-gradient(135deg, var(--theme-dark), var(--theme-mid));
+}
+
+.screensaver-slide::before,
+.screensaver-slide::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.screensaver-slide::before {
+  width: 38cqw;
+  height: 38cqw;
+  right: -18cqw;
+  bottom: -22cqw;
+  border: .18cqw solid rgba(255,255,255,.13);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4cqw rgba(255,255,255,.025), 0 0 0 8cqw rgba(255,255,255,.018);
+}
+
+.screensaver-slide::after {
+  inset: 0;
+  opacity: .13;
+  background-image: radial-gradient(rgba(255,255,255,.55) .08cqw, transparent .08cqw);
+  background-size: 1.3cqw 1.3cqw;
+  mask-image: linear-gradient(90deg, #000, transparent 45%);
+}
+
+.screensaver-slide.theme-chemistry {
+  --theme-dark: var(--chemistry-dark);
+  --theme-mid: var(--chemistry-mid);
+  --theme-light: var(--chemistry-light);
+}
+
+.screensaver-slide.theme-geography {
+  --theme-dark: var(--geography-dark);
+  --theme-mid: var(--geography-mid);
+  --theme-light: var(--geography-light);
+}
+
+.screensaver-image-frame,
+.screensaver-copy { position: relative; z-index: 1; }
+
+.screensaver-image-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: .7cqw;
+  overflow: hidden;
+  border-radius: 2.2cqw;
+  background: color-mix(in srgb, var(--theme-light) 88%, white);
+  box-shadow: 0 2.2cqw 4.6cqw rgba(0,0,0,.25);
+}
+
+.screensaver-image-frame img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 1.6cqw;
+}
+
+.screensaver-copy {
+  display: grid;
+  align-content: center;
+  gap: 2.2cqw;
+  min-width: 0;
+}
+
+.screensaver-copy h1 { margin: 0; }
+
+.screensaver-copy h1 {
+  color: #fffaf0;
+  font-size: clamp(36px, 5.1cqw, 84px);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+  text-shadow: 0 .15cqw .4cqw rgba(0,0,0,.16);
+}
+
+.screensaver-slide.is-answer .screensaver-copy h1 {
+  color: #fff4ce;
+  font-size: clamp(34px, 4.45cqw, 72px);
+}
+
+.screensaver-slide.is-changing .screensaver-image-frame,
+.screensaver-slide.is-changing .screensaver-copy {
+  animation: screensaver-enter .5s cubic-bezier(.2,.75,.2,1) both;
+}
+
+.screensaver-progress {
+  position: absolute;
+  z-index: 4;
+  left: 3cqw;
+  right: 3cqw;
+  bottom: 1.4cqw;
+  height: .3cqw;
+  min-height: 3px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(255,255,255,.18);
+  transition: opacity .25s ease;
+}
+
+.screensaver-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #fff4cc;
+}
+
+.screensaver-controls {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 2.5cqw;
+  display: flex;
+  align-items: center;
+  gap: .65cqw;
+  padding: .65cqw;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 1.25cqw;
+  background: rgba(10,17,13,.78);
+  box-shadow: 0 1.2cqw 3cqw rgba(0,0,0,.3);
+  backdrop-filter: blur(16px);
+  transform: translateX(-50%);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.screensaver-controls button {
+  min-height: 3.1cqw;
+  padding: 0 1.15cqw;
+  border: 0;
+  border-radius: .8cqw;
+  color: #f6f8f6;
+  background: rgba(255,255,255,.1);
+  cursor: pointer;
+  font-size: clamp(13px, 1.05cqw, 18px);
+  font-weight: 800;
+}
+
+.screensaver-controls button:hover { background: rgba(255,255,255,.2); }
+.screensaver-controls .screensaver-control-main { color: #17382a; background: #fff4d4; }
+.screensaver-controls .screensaver-control-main:hover { background: #fff9eb; }
+
+.screensaver-stage.is-controls-hidden .screensaver-controls {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 1cqw);
+}
+.screensaver-stage.is-controls-hidden .screensaver-progress { opacity: 0; }
+
+@keyframes screensaver-enter {
+  from { opacity: 0; transform: translateY(1.2cqw); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 800px) {
+  .screensaver-launcher-head { grid-template-columns: 1fr; gap: 18px; }
+  .screensaver-setup { grid-template-columns: 1fr; }
+  .screensaver-options { padding: 20px; }
+}
+
+@media (max-width: 560px) {
+  .screensaver-launcher { width: min(100% - 24px, 1180px); padding-top: 18px; }
+  .screensaver-launcher-head h1 { font-size: 42px; }
+  .screensaver-launcher-head p { font-size: 16px; }
+  .screensaver-preview { padding: 11px; border-radius: 18px; }
+  .screensaver-preview-card { padding: 14px; gap: 12px; border-radius: 13px; }
+  .screensaver-preview-image { border-width: 4px; border-radius: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
