@@ -21,7 +21,7 @@
       <div>
         <div class="site-eyebrow">Закрытый инструмент учителя</div>
         <h1>Заставка для доски</h1>
-        <p>Выберите предметы и запустите полноэкранный показ. Пары «вопрос — ответ» перемешиваются целиком.</p>
+        <p>В наборе 36 пар «вопрос — ответ»: 16 по биологии, 8 по химии и 12 по географии. Пары перемешиваются целиком.</p>
       </div>
     </header>
 
@@ -40,25 +40,26 @@
           <legend>Предметы</legend>
           <label class="subject-option subject-biology">
             <input type="checkbox" name="subject" value="biology" checked>
-            <span><b></b><strong>Биология</strong><small>зелёные карточки</small></span>
+            <span><b></b><strong>Биология</strong><small>зелёные карточки · 16 пар</small></span>
           </label>
           <label class="subject-option subject-chemistry">
             <input type="checkbox" name="subject" value="chemistry" checked>
-            <span><b></b><strong>Химия</strong><small>синие карточки</small></span>
+            <span><b></b><strong>Химия</strong><small>синие карточки · 8 пар</small></span>
           </label>
           <label class="subject-option subject-geography">
             <input type="checkbox" name="subject" value="geography" checked>
-            <span><b></b><strong>География</strong><small>коричневые карточки</small></span>
+            <span><b></b><strong>География</strong><small>коричневые карточки · 12 пар</small></span>
           </label>
         </fieldset>
 
-        <label class="screensaver-duration" for="pairDuration">
-          <span>Время на пару</span>
-          <select id="pairDuration" name="pairDuration">
-            <option value="30">30 секунд · 15 + 15</option>
-            <option value="40">40 секунд · 20 + 20</option>
-            <option value="60">60 секунд · 30 + 30</option>
+        <label class="screensaver-duration" for="questionDuration">
+          <span>Время на вопрос</span>
+          <select id="questionDuration" name="questionDuration">
+            <option value="15">15 секунд</option>
+            <option value="20" selected>20 секунд</option>
+            <option value="30">30 секунд</option>
           </select>
+          <small>Ответ показывается 6 секунд.</small>
         </label>
 
         <p class="screensaver-form-error" id="settingsError" role="alert"></p>
@@ -78,6 +79,11 @@
         </div>
       </article>
 
+      <div class="screensaver-timer" id="timer">
+        <span id="timerLabel">Вопрос</span>
+        <strong id="timerValue">00:20</strong>
+      </div>
+
       <div class="screensaver-progress" id="progress" aria-hidden="true"><span></span></div>
 
       <div class="screensaver-controls" id="controls" aria-label="Управление заставкой">
@@ -96,6 +102,6 @@
     <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
   </section>
 
-  <script type="module" src="assets/js/screensaver.js?v=11"></script>
+  <script type="module" src="assets/js/screensaver.js?v=12"></script>
 </body>
 </html>

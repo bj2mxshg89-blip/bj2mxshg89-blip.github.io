@@ -6,7 +6,7 @@ const cardPairs = [
     subject: "biology",
     image: "assets/images/screensaver/bio-grasshopper.webp",
     alt: "Кузнечик",
-    question: "К какому классу относится животное, изображённое на рисунке?",
+    question: "К какому классу относится изображённое животное?",
     answer: "К классу Насекомые",
     detail: "У кузнечика три пары ног, а тело разделено на голову, грудь и брюшко."
   },
@@ -68,7 +68,7 @@ const cardPairs = [
     id: "rust-sign",
     subject: "chemistry",
     image: "assets/images/screensaver/chem-rust.webp",
-    alt: "Ржавый и чистый железные гвозди",
+    alt: "Чистый и ржавый железные гвозди",
     question: "Какой признак химической реакции хорошо заметен при ржавлении?",
     answer: "Изменение цвета и образование нового вещества",
     detail: "На поверхности железа появляется слой ржавчины с новыми свойствами."
@@ -108,13 +108,205 @@ const cardPairs = [
     question: "На каком берегу излучины течение обычно сильнее размывает породы?",
     answer: "На внешнем, вогнутом берегу",
     detail: "На внутреннем выпуклом берегу течение слабее, поэтому там накапливаются наносы."
+  },
+  {
+    id: "jellyfish-type",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-jellyfish.webp",
+    alt: "Медуза аурелия",
+    question: "К какому типу относится медуза?",
+    answer: "К типу Кишечнополостные (Стрекающие)"
+  },
+  {
+    id: "jellyfish-class",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-jellyfish.webp",
+    alt: "Медуза аурелия",
+    question: "К какому классу относится медуза аурелия?",
+    answer: "К классу Сцифоидные"
+  },
+  {
+    id: "snail-type",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-snail.webp",
+    alt: "Наземная улитка",
+    question: "К какому типу относится улитка?",
+    answer: "К типу Моллюски"
+  },
+  {
+    id: "snail-class",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-snail.webp",
+    alt: "Наземная улитка",
+    question: "К какому классу относится улитка?",
+    answer: "К классу Брюхоногие"
+  },
+  {
+    id: "frog-type",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-frog.webp",
+    alt: "Лягушка",
+    question: "К какому типу относится лягушка?",
+    answer: "К типу Хордовые"
+  },
+  {
+    id: "frog-class",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-frog.webp",
+    alt: "Лягушка",
+    question: "К какому классу относится лягушка?",
+    answer: "К классу Земноводные"
+  },
+  {
+    id: "owl-type",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-owl.webp",
+    alt: "Филин",
+    question: "К какому типу относится филин?",
+    answer: "К типу Хордовые"
+  },
+  {
+    id: "owl-class",
+    subject: "biology",
+    image: "assets/images/screensaver/bio-owl.webp",
+    alt: "Филин",
+    question: "К какому классу относится филин?",
+    answer: "К классу Птицы"
+  },
+  {
+    id: "flag-japan-country",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-japan.svg",
+    alt: "Флаг Японии",
+    question: "Флаг какой страны изображён?",
+    answer: "Япония"
+  },
+  {
+    id: "flag-japan-capital",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-japan.svg",
+    alt: "Флаг Японии",
+    question: "Назовите столицу Японии.",
+    answer: "Токио"
+  },
+  {
+    id: "flag-france-country",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-france.svg",
+    alt: "Флаг Франции",
+    question: "Флаг какой страны изображён?",
+    answer: "Франция"
+  },
+  {
+    id: "flag-france-capital",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-france.svg",
+    alt: "Флаг Франции",
+    question: "Назовите столицу Франции.",
+    answer: "Париж"
+  },
+  {
+    id: "flag-germany-country",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-germany.svg",
+    alt: "Флаг Германии",
+    question: "Флаг какой страны изображён?",
+    answer: "Германия"
+  },
+  {
+    id: "flag-germany-capital",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-germany.svg",
+    alt: "Флаг Германии",
+    question: "Назовите столицу Германии.",
+    answer: "Берлин"
+  },
+  {
+    id: "flag-italy-country",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-italy.svg",
+    alt: "Флаг Италии",
+    question: "Флаг какой страны изображён?",
+    answer: "Италия"
+  },
+  {
+    id: "flag-italy-capital",
+    subject: "geography",
+    image: "assets/images/screensaver/flag-italy.svg",
+    alt: "Флаг Италии",
+    question: "Назовите столицу Италии.",
+    answer: "Рим"
+  },
+  {
+    id: "darwin-name",
+    subject: "biology",
+    image: "assets/images/screensaver/scientist-darwin.webp",
+    alt: "Портрет Чарлза Дарвина",
+    question: "Какой учёный изображён на портрете?",
+    answer: "Чарлз Дарвин"
+  },
+  {
+    id: "darwin-theory",
+    subject: "biology",
+    image: "assets/images/screensaver/scientist-darwin.webp",
+    alt: "Портрет Чарлза Дарвина",
+    question: "Какую теорию разработал Чарлз Дарвин?",
+    answer: "Теорию эволюции путём естественного отбора"
+  },
+  {
+    id: "linnaeus-name",
+    subject: "biology",
+    image: "assets/images/screensaver/scientist-linnaeus.webp",
+    alt: "Портрет Карла Линнея",
+    question: "Какой учёный изображён на портрете?",
+    answer: "Карл Линней"
+  },
+  {
+    id: "linnaeus-nomenclature",
+    subject: "biology",
+    image: "assets/images/screensaver/scientist-linnaeus.webp",
+    alt: "Портрет Карла Линнея",
+    question: "Какую систему научного именования видов ввёл в широкую практику Карл Линней?",
+    answer: "Бинарную номенклатуру"
+  },
+  {
+    id: "mendeleev-name",
+    subject: "chemistry",
+    image: "assets/images/screensaver/scientist-mendeleev.webp",
+    alt: "Портрет Дмитрия Менделеева",
+    question: "Какой учёный изображён на портрете?",
+    answer: "Дмитрий Иванович Менделеев"
+  },
+  {
+    id: "mendeleev-law",
+    subject: "chemistry",
+    image: "assets/images/screensaver/scientist-mendeleev.webp",
+    alt: "Портрет Дмитрия Менделеева",
+    question: "Какой фундаментальный закон открыл Д. И. Менделеев?",
+    answer: "Периодический закон химических элементов"
+  },
+  {
+    id: "lomonosov-name",
+    subject: "chemistry",
+    image: "assets/images/screensaver/scientist-lomonosov.webp",
+    alt: "Портрет Михаила Ломоносова",
+    question: "Какой учёный изображён на портрете?",
+    answer: "Михаил Васильевич Ломоносов"
+  },
+  {
+    id: "lomonosov-law",
+    subject: "chemistry",
+    image: "assets/images/screensaver/scientist-lomonosov.webp",
+    alt: "Портрет Михаила Ломоносова",
+    question: "Какой закон химии сформулировал М. В. Ломоносов?",
+    answer: "Закон сохранения массы веществ"
   }
 ];
 
 const elements = Object.fromEntries([
-  "accessGate", "launcher", "settingsForm", "pairDuration", "settingsError", "show", "stage",
-  "slide", "slideImage", "slideText", "progress", "controls", "fatalError",
-  "fatalErrorText"
+  "accessGate", "launcher", "settingsForm", "questionDuration", "settingsError", "show", "stage",
+  "slide", "slideImage", "slideText", "timer", "timerLabel", "timerValue", "progress", "controls",
+  "fatalError", "fatalErrorText"
 ].map((id) => [id, document.getElementById(id)]));
 
 const subjectThemes = {
@@ -126,7 +318,8 @@ const subjectThemes = {
 let deck = [];
 let pairIndex = 0;
 let phase = "question";
-let phaseDurationMs = 15000;
+let questionDurationMs = 20000;
+const answerDurationMs = 6000;
 let phaseStartedAt = 0;
 let pausedElapsed = 0;
 let playing = true;
@@ -149,9 +342,13 @@ function selectedSubjects() {
     .map((input) => input.value);
 }
 
-function savePreferences(subjects, duration) {
+function savePreferences(subjects, questionDuration) {
   try {
-    localStorage.setItem("teacherScreensaverSettings", JSON.stringify({ subjects, duration }));
+    localStorage.setItem("teacherScreensaverSettings", JSON.stringify({
+      version: 2,
+      subjects,
+      questionDuration
+    }));
   } catch (_) {
     // The presentation also works when local storage is disabled.
   }
@@ -165,8 +362,12 @@ function restorePreferences() {
     elements.settingsForm.querySelectorAll('input[name="subject"]').forEach((input) => {
       input.checked = allowed.has(input.value);
     });
-    if (["30", "40", "60"].includes(String(saved.duration))) {
-      elements.pairDuration.value = String(saved.duration);
+    const legacyDurations = { "30": "15", "40": "20", "60": "30" };
+    const duration = saved.version === 2
+      ? String(saved.questionDuration)
+      : legacyDurations[String(saved.duration)];
+    if (["15", "20", "30"].includes(duration)) {
+      elements.questionDuration.value = duration;
     }
   } catch (_) {
     // Ignore malformed local preferences.
@@ -200,7 +401,7 @@ function resetPhase(nextPhase = "question") {
   pausedElapsed = 0;
   phaseStartedAt = performance.now();
   renderSlide();
-  updateProgress(0);
+  updateTiming(0);
   if (playing) startTicker();
 }
 
@@ -224,16 +425,28 @@ function toggleReveal() {
   resetPhase(phase === "question" ? "answer" : "question");
 }
 
-function updateProgress(value) {
+function currentPhaseDurationMs() {
+  return phase === "question" ? questionDurationMs : answerDurationMs;
+}
+
+function updateTiming(elapsed) {
+  const duration = currentPhaseDurationMs();
+  const remainingSeconds = Math.max(0, Math.ceil((duration - elapsed) / 1000));
+  const phaseLabel = phase === "question" ? "Вопрос" : "Ответ";
   const line = elements.progress.querySelector("span");
-  line.style.transform = `scaleX(${Math.max(0, Math.min(1, value))})`;
+  line.style.transform = `scaleX(${Math.max(0, Math.min(1, elapsed / duration))})`;
+  elements.timer.dataset.phase = phase;
+  elements.timerLabel.textContent = phaseLabel;
+  elements.timerValue.textContent = `00:${String(remainingSeconds).padStart(2, "0")}`;
+  elements.timer.setAttribute("aria-label", `${phaseLabel}: осталось ${remainingSeconds} секунд`);
 }
 
 function tick(now) {
   if (!playing) return;
   const elapsed = now - phaseStartedAt;
-  updateProgress(elapsed / phaseDurationMs);
-  if (elapsed >= phaseDurationMs) {
+  const duration = currentPhaseDurationMs();
+  updateTiming(elapsed);
+  if (elapsed >= duration) {
     if (phase === "question") resetPhase("answer");
     else nextPair();
     return;
@@ -256,7 +469,7 @@ function setPlaying(next) {
     startTicker();
     scheduleControlsHide();
   } else {
-    pausedElapsed = Math.min(phaseDurationMs, performance.now() - phaseStartedAt);
+    pausedElapsed = Math.min(currentPhaseDurationMs(), performance.now() - phaseStartedAt);
     cancelAnimationFrame(frameId);
     showControls(false);
   }
@@ -293,7 +506,7 @@ async function enterFullscreen() {
 async function startPresentation(subjects, duration) {
   deck = shuffled(cardPairs.filter((pair) => subjects.includes(pair.subject)));
   pairIndex = 0;
-  phaseDurationMs = Number(duration) * 500;
+  questionDurationMs = Number(duration) * 1000;
   playing = true;
   elements.controls.querySelector('[data-action="toggle"]').textContent = "Пауза";
   elements.launcher.hidden = true;
@@ -326,7 +539,7 @@ function setupEvents() {
       return;
     }
     elements.settingsError.textContent = "";
-    const duration = Number(elements.pairDuration.value);
+    const duration = Number(elements.questionDuration.value);
     savePreferences(subjects, duration);
     await startPresentation(subjects, duration);
   });

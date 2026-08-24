@@ -186,6 +186,13 @@
   font-weight: 750;
 }
 
+.screensaver-duration small {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
 .screensaver-form-error { min-height: 20px; margin: 12px 0 0; color: var(--bad); font-size: 13px; font-weight: 800; }
 .screensaver-start { width: 100%; min-height: 52px; margin-top: 4px; }
 
@@ -315,6 +322,44 @@
   animation: screensaver-enter .5s cubic-bezier(.2,.75,.2,1) both;
 }
 
+.screensaver-timer {
+  position: absolute;
+  z-index: 5;
+  top: 2.2cqw;
+  right: 2.2cqw;
+  min-width: 11.5cqw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1cqw;
+  padding: .7cqw 1cqw;
+  border: .08cqw solid rgba(255,255,255,.2);
+  border-radius: 1cqw;
+  color: #f8fbf8;
+  background: rgba(8,17,12,.72);
+  box-shadow: 0 .8cqw 2.2cqw rgba(0,0,0,.2);
+  backdrop-filter: blur(14px);
+  pointer-events: none;
+}
+
+.screensaver-timer span {
+  font-size: clamp(13px, 1.05cqw, 18px);
+  font-weight: 800;
+}
+
+.screensaver-timer strong {
+  min-width: 4.2cqw;
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(20px, 1.8cqw, 31px);
+  line-height: 1;
+  text-align: right;
+}
+
+.screensaver-timer[data-phase="answer"] {
+  color: #392a0f;
+  background: rgba(255,244,206,.94);
+}
+
 .screensaver-progress {
   position: absolute;
   z-index: 4;
@@ -377,7 +422,6 @@
   pointer-events: none;
   transform: translate(-50%, 1cqw);
 }
-.screensaver-stage.is-controls-hidden .screensaver-progress { opacity: 0; }
 
 @keyframes screensaver-enter {
   from { opacity: 0; transform: translateY(1.2cqw); }
