@@ -14,6 +14,10 @@ const assignmentsMigration = readFileSync(new URL(
   "../../supabase/migrations/20260813193000_class_assignments.sql",
   import.meta.url
 ), "utf8");
+const textbookRegistryMigration = readFileSync(new URL(
+  "../../supabase/migrations/20260831090000_harden_book_registry.sql",
+  import.meta.url
+), "utf8");
 
 const expectedTables = [
   "profiles",
@@ -92,4 +96,38 @@ test("внешние ключи назначений индексированы"
   assert.match(assignmentsMigration, /on public\.assignments \(classroom_id, due_at, created_at desc\)/);
   assert.match(assignmentsMigration, /on public\.attempt_progress \(assignment_id, user_id\)/);
   assert.match(assignmentsMigration, /on public\.attempts \(assignment_id, user_id, completed_at desc\)/);
+});
+
+test("реестр учебников воспроизводится из миграции и защищён RLS", () => {
+  for (const table of ["students", "textbooks", "loans"]) {
+    assert.match(textbookRegistryMigration, new RegExp(`create table if not exists public\\.book_registry_${table} \\(`));
+    assert.match(textbookRegistryMigration, new RegExp(`alter table public\\.book_registry_${table} enable row level security;`));
+    assert.match(textbookRegistryMigration, new RegExp(`revoke all on table public\\.book_registry_${table} from public, anon, authenticated;`));
+  }
+});
+
+test("политики реестра требуют одновременно роль учителя и владение строкой", () => {
+  for (const table of ["students", "textbooks", "loans"]) {
+    assert.match(
+      textbookRegistryMigration,
+      new RegExp(`book_registry_${table}_select_own[\\s\\S]+private\\.is_teacher\\(\\)[\\s\\S]+owner_id = \\(select auth\\.uid\\(\\)\\)`)
+    );
+  }
+  assert.doesNotMatch(textbookRegistryMigration, /create policy[\s\S]+to anon/i);
+});
+
+test("браузер реестра не получает TRUNCATE и не может менять owner_id", () => {
+  assert.doesNotMatch(textbookRegistryMigration, /grant\s+[^;]*truncate[^;]*to authenticated/i);
+  assert.doesNotMatch(textbookRegistryMigration, /grant\s+update\s+on table public\.book_registry_[^;]+to authenticated/i);
+  assert.match(textbookRegistryMigration, /grant update \(last_name, first_name\)[^;]+to authenticated/);
+  assert.match(textbookRegistryMigration, /grant update \(title, quantity\)[^;]+to authenticated/);
+});
+
+test("ограничения реестра дублируются на стороне базы", () => {
+  assert.match(textbookRegistryMigration, /unique \(student_id, textbook_id\)/);
+  assert.match(textbookRegistryMigration, /enforce_book_registry_loan_capacity/);
+  assert.match(textbookRegistryMigration, /pg_advisory_xact_lock/);
+  assert.match(textbookRegistryMigration, /issued_quantity >= available_quantity/);
+  assert.match(textbookRegistryMigration, /enforce_book_registry_textbook_quantity/);
+  assert.match(textbookRegistryMigration, /new\.quantity < issued_quantity/);
 });

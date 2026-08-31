@@ -1,6 +1,6 @@
-import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=10";
-import { formatCount } from "./utils.js?v=10";
-import { initAccountLinks } from "./account-widget.js?v=10";
+import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=13";
+import { formatCount } from "./utils.js?v=13";
+import { initAccountLinks } from "./account-widget.js?v=13";
 
 const navigation = document.querySelector("#categoryNavigation");
 const catalogRoot = document.querySelector("#toolCatalog");

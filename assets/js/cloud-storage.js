@@ -3,14 +3,14 @@ import {
   getHistory,
   loadProgress,
   saveProgress
-} from "./storage.js?v=10";
-import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=10";
+} from "./storage.js?v=13";
+import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=13";
 import {
   attemptToCloudRow,
   chooseProgressSource,
   mergeAttemptHistory
-} from "./cloud-records.js?v=10";
-import { assignmentScope } from "./assignment-records.js?v=10";
+} from "./cloud-records.js?v=13";
+import { assignmentScope } from "./assignment-records.js?v=13";
 
 const pendingProgress = new Map();
 

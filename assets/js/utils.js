@@ -1,4 +1,4 @@
-import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=10";
+import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=13";
 
 export { SUPPORTED_QUESTION_TYPES };
 

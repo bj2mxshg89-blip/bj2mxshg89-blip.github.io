@@ -1,4 +1,4 @@
-import { backendConfig } from "./backend-config.js?v=10";
+import { backendConfig } from "./backend-config.js?v=13";
 
 const LOGIN_PATTERN = /^[a-z0-9][a-z0-9._-]{2,31}$/;
 
