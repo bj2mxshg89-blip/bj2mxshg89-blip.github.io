@@ -3,9 +3,10 @@ import { test, expect } from "@playwright/test";
 import { collectRuntimeErrors, expectNoRuntimeErrors } from "./helpers.js";
 
 const mockSource = await readFile(new URL("./fixtures/supabase-client.mock.js", import.meta.url), "utf8");
+const supabaseClientRoute = /\/assets\/js\/supabase-client\.js\?v=\d+$/;
 
 async function mockAccount(page, role) {
-  await page.route(/\/assets\/js\/supabase-client\.js\?v=10$/, (route) => {
+  await page.route(supabaseClientRoute, (route) => {
     route.fulfill({
       contentType: "text/javascript; charset=utf-8",
       body: mockSource.replaceAll("__ROLE__", role)
@@ -18,7 +19,7 @@ test("реестр перенаправляет гостя на вход, а у�
   await page.goto("/textbooks.html");
   await expect(page).toHaveURL(/\/account\.html$/);
 
-  await page.unroute(/\/assets\/js\/supabase-client\.js\?v=10$/);
+  await page.unroute(supabaseClientRoute);
   await mockAccount(page, "student");
   await page.goto("/textbooks.html");
   await expect(page).toHaveURL(/\/dashboard\.html$/);

@@ -1,11 +1,11 @@
-import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=10";
-import { fetchJson, formatDateTime, modeTitle } from "./utils.js?v=10";
+import { loadCatalog, visibleCatalogItems } from "./catalog.js?v=13";
+import { fetchJson, formatDateTime, modeTitle } from "./utils.js?v=13";
 import {
   buildAssignmentUrl,
   getAssignmentState,
   latestAttemptByAssignment,
   summarizeAssignment
-} from "./assignment-records.js?v=10";
+} from "./assignment-records.js?v=13";
 import {
   friendlyAuthError,
   isValidDisplayName,
@@ -15,14 +15,14 @@ import {
   normalizeDisplayName,
   normalizeLogin,
   passwordValidationMessage
-} from "./auth-utils.js?v=10";
-import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=10";
+} from "./auth-utils.js?v=13";
+import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=13";
 import {
   formatTrend,
   groupAttemptsByUser,
   sortAttemptsNewestFirst,
   summarizeAttempts
-} from "./dashboard-records.js?v=10";
+} from "./dashboard-records.js?v=13";
 
 const elements = Object.fromEntries([
   "dashboardRole", "dashboardTitle", "dashboardDescription", "dashboardLoading", "dashboardError",
