@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Интерактивное повторение биологии и географии перед стартовым контролем.">
+  <meta name="theme-color" content="#21422a">
+  <title>Повторение 5 класса — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/teacher-review.css?v=1">
+</head>
+<body class="teacher-review-page">
+  <div class="review-progress" id="reviewProgress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">5→6</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · биология · география · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="dashboard.html">Кабинет</a>
+      <a class="site-nav-link" href="index.html">Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="review-shell">
+    <section class="site-panel review-loading" id="reviewLoading" aria-live="polite">
+      Проверяем доступ…
+    </section>
+
+    <section class="site-panel review-error" id="reviewError" role="alert" hidden>
+      <h2>Не удалось открыть инструмент</h2>
+      <p id="reviewErrorText"></p>
+      <a class="site-btn" href="account.html">Перейти ко входу</a>
+    </section>
+
+    <section class="review-app" id="reviewApp" hidden>
+      <section class="review-home" id="reviewHome">
+        <section class="review-hero">
+          <div class="review-hero-copy">
+            <div class="review-eyebrow">Стартовый контроль · повторение курса 5 класса</div>
+            <h1 id="reviewTitle">Биология за 5 класс</h1>
+            <p id="reviewLead"></p>
+
+            <div class="review-subjects" aria-label="Предмет">
+              <button class="review-subject-btn is-active" type="button" data-subject="biology">Биология</button>
+              <button class="review-subject-btn" type="button" data-subject="geography">География</button>
+            </div>
+          </div>
+
+          <div class="review-hero-side" id="reviewStats"></div>
+        </section>
+
+        <section class="review-mode-panel">
+          <h2>Как провести повторение</h2>
+          <p>Сначала восстановить опорные понятия, затем перейти к фронтальному опросу. На iPhone всё управление продублировано крупными кнопками.</p>
+          <div class="review-modes">
+            <button class="review-mode-btn primary" id="startTheory" type="button">Повторить материал</button>
+            <button class="review-mode-btn" id="startQuiz" type="button">Блиц по всем темам</button>
+            <button class="review-mode-btn" id="startHard" type="button">Сложные вопросы</button>
+          </div>
+        </section>
+
+        <section>
+          <div class="site-section-head">
+            <div><h2>Темы</h2></div>
+            <p>Нажмите на тему, чтобы повторить только нужный блок.</p>
+          </div>
+          <div class="review-topic-grid" id="reviewTopics"></div>
+        </section>
+      </section>
+
+      <section class="review-stage" id="reviewStage" hidden></section>
+    </section>
+  </main>
+
+  <div class="review-toolbar" id="reviewToolbar" hidden>
+    <button class="review-nav-btn" id="reviewPrev" type="button" aria-label="Предыдущий">←</button>
+    <button class="review-action primary" id="reviewReveal" type="button">Показать ответ</button>
+    <button class="review-nav-btn" id="reviewNext" type="button" aria-label="Следующий">→</button>
+    <button class="review-action review-random" id="reviewRandom" type="button">Случайный</button>
+    <button class="review-timer" id="reviewTimer" type="button" title="Перезапустить таймер">00:45</button>
+  </div>
+
+  <script type="module" src="assets/js/teacher-review.js?v=1"></script>
+</body>
+</html>
