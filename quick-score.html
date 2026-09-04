@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Быстрый счётчик правильных ответов для класса 6Я.">
-  <title>Счётчик ответов 6Я — Кабинет учителя</title>
+  <meta name="description" content="Быстрый счётчик правильных ответов для класса 7Я.">
+  <title>Счётчик ответов 7Я — Кабинет учителя</title>
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="assets/css/account.css">
   <style>
@@ -81,7 +81,7 @@
     <section class="site-hero account-hero">
       <div class="site-hero-mark" aria-hidden="true">+1</div>
       <div class="site-eyebrow">Закрытый инструмент учителя</div>
-      <h1>6Я · Правильные ответы</h1>
+      <h1>7Я · Правильные ответы</h1>
       <p>Задайте вопрос и нажмите на карточку ученика, который ответил правильно.</p>
     </section>
 
@@ -118,8 +118,8 @@
   <script type="module">
     import { getAccountContext } from "./assets/js/supabase-client.js?v=13";
 
-    const students = ["Лучников Богдан", "Лейман Арчи-Мирон", "Филиппов Артём", "Кисляков Илья", "Петько Юлия", "Голещихин Роман", "Семенова Василиса", "Милосердная Милана", "Беляева Любовь", "Джаджиев Александр", "Мангушева Амира", "Диговец Полина", "Сагаев Адам", "Кош Семен", "Колодий Артём", "Беленко София", "Муллаянов Роман", "Зуева Екатерина", "Смирнов Евгений", "Менафов Ахмед", "Донскова Полина", "Черных Глеб", "Мотин Владимир", "Пахомова Аглая", "Шабашов Александр", "Трусов Михаил", "Зеленина Таисия", "Батюшкина Мария", "Фузуллаев Али", "Анашкин Александр", "Ермолаев Андрей", "Селеменева Алина", "Полищук Арсений", "Бодункова Наталья", "Анашкин Сергей", "Ботин Вячеслав"];
-    const STORAGE_KEY = "teacher_quick_score_6ya_v1";
+    const students = ["Нефедова Яна", "Валевская Ева", "Ефремова Анастасия", "Мангушев Амир", "Крутяев Арсений", "Метр Дианна", "Алиева Надира", "Мержоев Дамир", "Журавлев Данил", "Пятибратова Ульяна", "Исаева Алина", "Боякова Виктория", "Лаврентьева Полина", "Валовой Дмитрий", "Железогло Георгий", "Гуляева Людмила", "Паршенков Даниил", "Кисеев Илья", "Нестеров Роман", "Червакова Анна", "Никишкин Илья", "Кузьмина Арина", "Пенченкова Елизавета", "Макаренков Микаэль", "Карпов Роман", "Ивантьев Виктор", "Холова Таисия"];
+    const STORAGE_KEY = "teacher_quick_score_7ya_v1";
     const scoreLoading = document.getElementById("scoreLoading");
     const scoreError = document.getElementById("scoreError");
     const scoreErrorText = document.getElementById("scoreErrorText");
@@ -174,7 +174,7 @@
     }
 
     function resetAll() {
-      if (!confirm("Сбросить все баллы у 6Я?")) return;
+      if (!confirm("Сбросить все баллы у 7Я?")) return;
       students.forEach((name) => { scores[name] = 0; });
       history = [];
       save();
