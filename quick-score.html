@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Быстрый счётчик правильных ответов для класса 6Я.">
+  <title>Счётчик ответов 6Я — Кабинет учителя</title>
+  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/account.css">
+  <style>
+    .score-page { min-height: 100vh; }
+    .score-shell { max-width: 1500px; }
+    .score-toolbar {
+      position: sticky; top: 0; z-index: 15;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      margin: 0 0 18px; padding: 14px 0;
+      background: color-mix(in srgb, var(--site-bg, #f4f7fb) 94%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .score-stats, .score-actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .score-stat {
+      padding:10px 14px; border-radius:14px; background:#fff;
+      border:1px solid rgba(23,32,51,.12); font-weight:800;
+    }
+    .score-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:12px;
+    }
+    .score-card {
+      position:relative; min-height:118px; padding:16px; border-radius:20px;
+      border:2px solid rgba(23,32,51,.08); background:#fff;
+      box-shadow:0 8px 24px rgba(26,39,67,.08);
+      cursor:pointer; user-select:none; transition:.14s ease;
+      color:#172033;
+    }
+    .score-card:hover { transform:translateY(-2px); }
+    .score-card:active { transform:scale(.985); }
+    .score-name { font-size:19px; font-weight:850; line-height:1.15; padding-right:50px; }
+    .score-value {
+      position:absolute; right:14px; top:12px; width:44px; height:44px;
+      display:grid; place-items:center; border-radius:50%; font-size:22px; font-weight:900;
+      background:rgba(255,255,255,.8); box-shadow:0 2px 10px rgba(0,0,0,.08);
+    }
+    .score-hint { position:absolute; left:16px; bottom:13px; font-size:13px; opacity:.68; font-weight:700; }
+    .score-rank { position:absolute; right:14px; bottom:12px; font-size:12px; opacity:.62; font-weight:800; }
+    .level-1 { background:#edf8ee; border-color:#c9e8cf; }
+    .level-2 { background:#d9f0dc; border-color:#9ed1a7; }
+    .level-3 { background:#bfe6c5; border-color:#70bc7d; }
+    .level-4 { background:#91d49d; border-color:#43a957; }
+    .level-5 { background:#53bd67; border-color:#258a39; color:#0c3d17; }
+    .score-flash { animation:score-pop .25s ease; }
+    @keyframes score-pop { 50% { transform:scale(1.035); } }
+    .score-note { margin-top:18px; text-align:center; opacity:.68; font-size:13px; }
+    .score-access-error { margin-top:20px; }
+    @media (max-width:650px) {
+      .score-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+      .score-card { min-height:105px; padding:12px; border-radius:16px; }
+      .score-name { font-size:16px; padding-right:40px; }
+      .score-value { width:36px; height:36px; right:10px; top:10px; font-size:19px; }
+      .score-hint { left:12px; bottom:10px; font-size:11px; }
+    }
+  </style>
+</head>
+<body class="account-page score-page">
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · биология · география · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="dashboard.html">← Кабинет учителя</a>
+      <a class="site-nav-link" href="account.html">Аккаунт</a>
+    </nav>
+  </header>
+
+  <main class="site-page account-shell score-shell">
+    <section class="site-hero account-hero">
+      <div class="site-hero-mark" aria-hidden="true">+1</div>
+      <div class="site-eyebrow">Закрытый инструмент учителя</div>
+      <h1>6Я · Правильные ответы</h1>
+      <p>Задайте вопрос и нажмите на карточку ученика, который ответил правильно.</p>
+    </section>
+
+    <section class="site-panel trainer-loading" id="scoreLoading" aria-live="polite">
+      <span class="trainer-spinner" aria-hidden="true"></span>
+      <span>Проверяем доступ…</span>
+    </section>
+
+    <section class="site-panel account-error score-access-error" id="scoreError" role="alert" hidden>
+      <h2>Нет доступа</h2>
+      <p id="scoreErrorText">Этот инструмент доступен только учителю.</p>
+      <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
+    </section>
+
+    <section id="scoreApp" hidden>
+      <div class="score-toolbar">
+        <div class="score-stats">
+          <div class="score-stat">Всего баллов: <span id="totalScore">0</span></div>
+          <div class="score-stat">Лидер: <span id="leaderName">—</span></div>
+        </div>
+        <div class="score-actions">
+          <button class="site-btn secondary" id="undoButton" type="button">↶ Отменить</button>
+          <button class="site-btn secondary" id="sortButton" type="button">⇅ Сортировка</button>
+          <button class="site-btn danger" id="resetButton" type="button">Сбросить всё</button>
+        </div>
+      </div>
+      <div class="score-grid" id="scoreGrid"></div>
+      <p class="score-note">Баллы сохраняются автоматически на этом устройстве.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">Счётчик доступен только из аккаунта учителя</footer>
+
+  <script type="module">
+    import { getAccountContext } from "./assets/js/supabase-client.js?v=13";
+
+    const students = ["Лучников Богдан", "Лейман Арчи-Мирон", "Филиппов Артём", "Кисляков Илья", "Петько Юлия", "Голещихин Роман", "Семенова Василиса", "Милосердная Милана", "Беляева Любовь", "Джаджиев Александр", "Мангушева Амира", "Диговец Полина", "Сагаев Адам", "Кош Семен", "Колодий Артём", "Беленко София", "Муллаянов Роман", "Зуева Екатерина", "Смирнов Евгений", "Менафов Ахмед", "Донскова Полина", "Черных Глеб", "Мотин Владимир", "Пахомова Аглая", "Шабашов Александр", "Трусов Михаил", "Зеленина Таисия", "Батюшкина Мария", "Фузуллаев Али", "Анашкин Александр", "Ермолаев Андрей", "Селеменева Алина", "Полищук Арсений", "Бодункова Наталья", "Анашкин Сергей", "Ботин Вячеслав"];
+    const STORAGE_KEY = "teacher_quick_score_6ya_v1";
+    const scoreLoading = document.getElementById("scoreLoading");
+    const scoreError = document.getElementById("scoreError");
+    const scoreErrorText = document.getElementById("scoreErrorText");
+    const scoreApp = document.getElementById("scoreApp");
+    const scoreGrid = document.getElementById("scoreGrid");
+    const totalScore = document.getElementById("totalScore");
+    const leaderName = document.getElementById("leaderName");
+    const undoButton = document.getElementById("undoButton");
+    const sortButton = document.getElementById("sortButton");
+    const resetButton = document.getElementById("resetButton");
+
+    let scores = Object.fromEntries(students.map((name) => [name, 0]));
+    let history = [];
+    let sorted = false;
+
+    function loadSaved() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved?.scores) scores = { ...scores, ...saved.scores };
+        if (Array.isArray(saved?.history)) history = saved.history.filter((name) => students.includes(name));
+      } catch (error) {
+        console.warn("Не удалось прочитать сохранённый счёт.", error);
+      }
+    }
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ scores, history }));
+    }
+
+    function level(score) {
+      if (score <= 0) return "";
+      if (score === 1) return "level-1";
+      if (score === 2) return "level-2";
+      if (score === 3) return "level-3";
+      if (score <= 5) return "level-4";
+      return "level-5";
+    }
+
+    function addPoint(name) {
+      scores[name] = (scores[name] || 0) + 1;
+      history.push(name);
+      save();
+      render(name);
+    }
+
+    function undo() {
+      const name = history.pop();
+      if (!name) return;
+      scores[name] = Math.max(0, (scores[name] || 0) - 1);
+      save();
+      render(name);
+    }
+
+    function resetAll() {
+      if (!confirm("Сбросить все баллы у 6Я?")) return;
+      students.forEach((name) => { scores[name] = 0; });
+      history = [];
+      save();
+      render();
+    }
+
+    function toggleSort() {
+      sorted = !sorted;
+      sortButton.textContent = sorted ? "⇅ По рассадке" : "⇅ Сортировка";
+      render();
+    }
+
+    function render(flashName = "") {
+      let list = [...students];
+      if (sorted) list.sort((a, b) => (scores[b] - scores[a]) || a.localeCompare(b, "ru"));
+
+      scoreGrid.replaceChildren();
+      list.forEach((name, index) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "score-card " + level(scores[name] || 0) + (flashName === name ? " score-flash" : "");
+        card.setAttribute("aria-label", name + ": " + (scores[name] || 0) + ". Добавить один балл.");
+
+        const nameEl = document.createElement("div");
+        nameEl.className = "score-name";
+        nameEl.textContent = name;
+
+        const valueEl = document.createElement("div");
+        valueEl.className = "score-value";
+        valueEl.textContent = String(scores[name] || 0);
+
+        const hintEl = document.createElement("div");
+        hintEl.className = "score-hint";
+        hintEl.textContent = "+1 за правильный ответ";
+
+        card.append(nameEl, valueEl, hintEl);
+
+        if (sorted) {
+          const rankEl = document.createElement("div");
+          rankEl.className = "score-rank";
+          rankEl.textContent = "№" + (index + 1);
+          card.append(rankEl);
+        }
+
+        card.addEventListener("click", () => addPoint(name));
+        scoreGrid.append(card);
+      });
+
+      const total = students.reduce((sum, name) => sum + (scores[name] || 0), 0);
+      const maxScore = Math.max(0, ...students.map((name) => scores[name] || 0));
+      const leaders = maxScore > 0 ? students.filter((name) => scores[name] === maxScore) : [];
+      totalScore.textContent = String(total);
+      leaderName.textContent = leaders.length ? leaders.join(", ") + " (" + maxScore + ")" : "—";
+      undoButton.disabled = history.length === 0;
+    }
+
+    async function openScore() {
+      try {
+        const account = await getAccountContext();
+        if (!account.signedIn) {
+          window.location.replace("account.html");
+          return;
+        }
+        if (account.profile?.role !== "teacher") {
+          scoreLoading.hidden = true;
+          scoreError.hidden = false;
+          scoreErrorText.textContent = "Этот инструмент доступен только аккаунту учителя.";
+          return;
+        }
+        loadSaved();
+        render();
+        scoreLoading.hidden = true;
+        scoreApp.hidden = false;
+      } catch (error) {
+        console.error(error);
+        scoreLoading.hidden = true;
+        scoreError.hidden = false;
+        scoreErrorText.textContent = "Не удалось проверить аккаунт. Обновите страницу или войдите заново.";
+      }
+    }
+
+    undoButton.addEventListener("click", undo);
+    sortButton.addEventListener("click", toggleSort);
+    resetButton.addEventListener("click", resetAll);
+    openScore();
+  </script>
+</body>
+</html>
