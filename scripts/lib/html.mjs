@@ -20,7 +20,13 @@ export function fallbackCardLinks(source) {
   while ((match = anchorPattern.exec(source))) {
     const attributes = new Map(htmlAttributes(match[1]).map(({ name, value }) => [name, value]));
     const classes = (attributes.get("class") || "").split(/\s+/);
-    if (classes.includes("tool-link") && attributes.has("href")) links.push(attributes.get("href"));
+    if (
+      classes.includes("tool-link") &&
+      attributes.has("href") &&
+      !attributes.has("data-catalog-ignore")
+    ) {
+      links.push(attributes.get("href"));
+    }
   }
   return links;
 }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Плод, семя и прорастание</title>
+  <desc id="desc">Разрез плода с семенами, строение семени и молодой проросток</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf1dc"/><stop offset="1" stop-color="#f7e4d1"/></linearGradient></defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <g transform="translate(245 150)"><circle cx="170" cy="250" r="196" fill="#d95e4d"/><path d="M170 54c-4-58 38-103 93-109" fill="none" stroke="#6e7540" stroke-width="26" stroke-linecap="round"/><path d="M249-41c84-11 119 49 117 50-70 25-109 5-117-50z" fill="#6a9a52"/><path d="M170 72c112 0 183 80 183 178s-71 178-183 178z" fill="#f6d6bd"/><ellipse cx="244" cy="180" rx="23" ry="46" fill="#8c5936" transform="rotate(20 244 180)"/><ellipse cx="264" cy="300" rx="23" ry="46" fill="#8c5936" transform="rotate(-12 264 300)"/></g>
+  <g transform="translate(690 142)"><path d="M0 297C16 94 157-11 302 28c128 34 170 174 103 298-68 126-223 174-333 85C30 377 0 341 0 297z" fill="#b7824f" stroke="#775636" stroke-width="16"/><path d="M76 293c12-115 86-176 169-153 74 21 99 100 59 171-40 73-129 101-192 51-25-20-42-42-36-69z" fill="#f4e0b8"/><path d="M184 161c-12 85 11 148 81 190" fill="none" stroke="#6d9855" stroke-width="22" stroke-linecap="round"/><path d="M211 252c-70-5-81-61-80-61 63-12 87 27 80 61z" fill="#7cac5e"/></g>
+  <path d="M0 748c298-77 790-76 1200 0v152H0z" fill="#9a704d"/>
+  <g transform="translate(870 500)"><path d="M116 252V82" stroke="#4c8048" stroke-width="24"/><path d="M116 137C29 130 12 60 14 60c78-14 107 34 102 77zM116 126c88-7 105-78 103-78-78-14-107 34-103 78z" fill="#65a35b"/><path d="M116 252c-16 51-41 92-75 129M116 252c9 55 31 98 68 132" fill="none" stroke="#ead6aa" stroke-width="16" stroke-linecap="round"/></g>
+  <g fill="none" stroke="#8d6340" stroke-width="11" stroke-linecap="round"><path d="M580 402h78"/><path d="m640 384 28 18-28 18"/><path d="M941 414v69"/><path d="m923 469 18 28 18-28"/></g>
+</svg>

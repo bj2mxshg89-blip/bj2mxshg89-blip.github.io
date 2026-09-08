@@ -21,7 +21,7 @@
       <div>
         <div class="site-eyebrow">Закрытый инструмент учителя</div>
         <h1>Заставка для доски</h1>
-        <p>В наборе 120 пар «вопрос — ответ»: 48 по биологии, 36 по химии и 36 по географии. Пары перемешиваются целиком.</p>
+        <p>В наборе 162 пары «вопрос — ответ»: 90 по биологии за 5–6 классы, 36 по химии и 36 по географии. Пары перемешиваются целиком.</p>
       </div>
     </header>
 
@@ -29,7 +29,7 @@
       <div class="screensaver-preview" aria-hidden="true">
         <div class="screensaver-preview-card preview-biology">
           <div class="screensaver-preview-image"></div>
-          <strong>К какому классу относится животное?</strong>
+          <strong>Что изучает биология?</strong>
         </div>
       </div>
 
@@ -40,7 +40,7 @@
           <legend>Предметы</legend>
           <label class="subject-option subject-biology">
             <input type="checkbox" name="subject" value="biology" checked>
-            <span><b></b><strong>Биология</strong><small>зелёные карточки · 48 пар</small></span>
+            <span><b></b><strong>Биология</strong><small>зелёные карточки · 90 пар</small></span>
           </label>
           <label class="subject-option subject-chemistry">
             <input type="checkbox" name="subject" value="chemistry" checked>
@@ -50,6 +50,20 @@
             <input type="checkbox" name="subject" value="geography" checked>
             <span><b></b><strong>География</strong><small>коричневые карточки · 36 пар</small></span>
           </label>
+        </fieldset>
+
+        <fieldset class="biology-grade-filter" id="biologyGradeFieldset">
+          <legend>Класс биологии</legend>
+          <div class="biology-grade-options">
+            <label class="biology-grade-option">
+              <input type="checkbox" name="biologyGrade" value="5" checked>
+              <span><strong>5 класс</strong><small>36 вопросов</small></span>
+            </label>
+            <label class="biology-grade-option">
+              <input type="checkbox" name="biologyGrade" value="6" checked>
+              <span><strong>6 класс</strong><small>54 вопроса</small></span>
+            </label>
+          </div>
         </fieldset>
 
         <label class="screensaver-duration" for="questionDuration">
@@ -102,6 +116,6 @@
     <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
   </section>
 
-  <script type="module" src="assets/js/screensaver.js?v=13"></script>
+  <script type="module" src="assets/js/screensaver.js?v=14"></script>
 </body>
 </html>
