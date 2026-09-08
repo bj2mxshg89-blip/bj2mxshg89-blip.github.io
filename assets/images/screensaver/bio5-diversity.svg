@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Разнообразие живой природы</title>
+  <desc id="desc">Берёза, лиса, мухомор и дрожжевые клетки</desc>
+  <rect width="1200" height="900" fill="#e8f0df"/>
+  <path d="M0 690c242-92 429-45 612 3 213 56 384 16 588-55v262H0z" fill="#aac68c"/>
+  <g transform="translate(185 100)"><path d="M127 533c-18-205 4-349 22-490" stroke="#f6f0de" stroke-width="56"/><g stroke="#3d4539" stroke-width="12"><path d="M130 154h39M123 241H87M119 357h43M112 452H73"/></g><g fill="#5e9959"><circle cx="72" cy="115" r="88"/><circle cx="175" cy="99" r="94"/><circle cx="118" cy="37" r="81"/><circle cx="213" cy="186" r="78"/><circle cx="49" cy="216" r="79"/></g></g>
+  <g transform="translate(469 442)"><path d="M0 157c39-139 140-198 267-133 59 30 83 92 67 154H97z" fill="#c96f37"/><path d="M270 70c63-88 129-54 139 13 9 63-40 116-109 108z" fill="#c96f37"/><path d="m318 54 28-92 45 92z" fill="#b65f32"/><path d="m350 62 61-68 7 99z" fill="#b65f32"/><path d="M390 126c-34 37-74 52-114 35 19 55 90 66 130 20z" fill="#f2d5b7"/><circle cx="369" cy="93" r="10" fill="#252c25"/><path d="M44 135c-88-49-126 32-70 77 41 34 95 9 124-33" fill="none" stroke="#b85f31" stroke-width="35" stroke-linecap="round"/></g>
+  <g transform="translate(845 130)"><path d="M109 272v173" stroke="#ead8b5" stroke-width="58" stroke-linecap="round"/><path d="M-8 265c12-133 88-210 183-178 74 24 102 99 85 178z" fill="#d95e4b"/><g fill="#fff6dd"><circle cx="55" cy="176" r="17"/><circle cx="143" cy="131" r="22"/><circle cx="192" cy="215" r="14"/></g></g>
+  <g transform="translate(915 610)" fill="#c8a96b" stroke="#765c32" stroke-width="8"><circle cx="0" cy="0" r="57"/><circle cx="78" cy="-22" r="43"/><circle cx="116" cy="45" r="51"/><circle cx="38" cy="70" r="46"/></g>
+  <g fill="#fff" opacity=".85"><circle cx="903" cy="590" r="12"/><circle cx="1006" cy="646" r="9"/><circle cx="945" cy="702" r="11"/></g>
+</svg>

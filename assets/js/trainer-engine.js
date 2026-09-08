@@ -13,7 +13,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=13";
+} from "./utils.js?v=14";
 import {
   appendHistory,
   clearProgress,
@@ -21,14 +21,14 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=13";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=13";
+} from "./storage.js?v=14";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=14";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=13";
+} from "./question-renderers.js?v=14";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -44,17 +44,17 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=13";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=13";
-import { initAccountLinks } from "./account-widget.js?v=13";
+} from "./question-types.js?v=14";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=14";
+import { initAccountLinks } from "./account-widget.js?v=14";
 import {
   prepareCloudProgress,
   queueCloudProgress,
   removeCloudProgress,
   saveCompletedAttempt
-} from "./cloud-storage.js?v=13";
-import { assignmentScope } from "./assignment-records.js?v=13";
-import { loadAssignmentContext } from "./assignments.js?v=13";
+} from "./cloud-storage.js?v=14";
+import { assignmentScope } from "./assignment-records.js?v=14";
+import { loadAssignmentContext } from "./assignments.js?v=14";
 
 class TrainerEngine {
   constructor() {

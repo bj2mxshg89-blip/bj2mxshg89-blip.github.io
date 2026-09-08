@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Световой микроскоп</title>
+  <desc id="desc">Схема микроскопа с окуляром, объективами и предметным столиком</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4efdf"/><stop offset="1" stop-color="#d9e8ed"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="20" stdDeviation="20" flood-opacity=".2"/></filter></defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <g filter="url(#s)"><path d="M467 85h196v96H467z" fill="#243f35"/><path d="M498 163h136v263H498z" fill="#426a55"/><path d="m600 370 170 44-24 91-174-46z" fill="#73947b"/><path d="M708 465h113l-28 116H680z" fill="#29493a"/><path d="M642 565h270v59H642z" fill="#253f35"/><path d="M514 368c-181 91-246 292-137 408h147c-87-75-45-227 88-272z" fill="#60886b"/><path d="M372 735h465c69 0 120 44 137 95H253c17-51 60-95 119-95z" fill="#2e5541"/><ellipse cx="751" cy="670" rx="89" ry="41" fill="#d6dfcf" stroke="#2e5541" stroke-width="17"/><path d="M729 581v76" stroke="#2e5541" stroke-width="25"/><circle cx="456" cy="453" r="47" fill="#d7af48" stroke="#2e5541" stroke-width="14"/><circle cx="456" cy="453" r="17" fill="#fff4c6"/></g>
+  <g fill="none" stroke="#b77145" stroke-width="10" stroke-linecap="round"><path d="M263 122h179"/><path d="M898 450H802"/><path d="M914 594H814"/><path d="M265 452h142"/></g>
+  <g fill="#b77145"><circle cx="450" cy="122" r="12"/><circle cx="794" cy="450" r="12"/><circle cx="806" cy="594" r="12"/><circle cx="415" cy="452" r="12"/></g>
+</svg>

@@ -107,7 +107,7 @@
   align-self: stretch;
   border: 7px solid rgba(255,255,255,.8);
   border-radius: 16px;
-  background: url("../images/screensaver/bio-grasshopper.webp") center / cover no-repeat, #d7e3d2;
+  background: url("../images/screensaver/bio5-science.svg") center / cover no-repeat, #d7e3d2;
   box-shadow: 0 15px 32px rgba(0,0,0,.2);
 }
 
@@ -172,6 +172,46 @@
 .subject-biology { --subject-color: var(--biology-mid); }
 .subject-chemistry { --subject-color: var(--chemistry-mid); }
 .subject-geography { --subject-color: var(--geography-mid); }
+
+.biology-grade-filter {
+  margin-top: 18px !important;
+  padding: 15px !important;
+  border: 1px solid #dfe7df !important;
+  border-radius: 16px;
+  background: #f7faf6;
+  transition: opacity .16s ease;
+}
+
+.biology-grade-filter:disabled { opacity: .5; }
+
+.biology-grade-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.biology-grade-option { cursor: pointer; }
+.biology-grade-option input { position: absolute; opacity: 0; pointer-events: none; }
+.biology-grade-option > span {
+  min-height: 58px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  padding: 9px 12px;
+  border: 2px solid #dce5dc;
+  border-radius: 13px;
+  color: #31453b;
+  background: #fff;
+  transition: border-color .16s ease, background .16s ease;
+}
+
+.biology-grade-option strong { font-size: 15px; }
+.biology-grade-option small { color: var(--muted); font-size: 12px; }
+.biology-grade-option input:checked + span {
+  border-color: color-mix(in srgb, var(--biology-mid) 62%, white);
+  background: color-mix(in srgb, var(--biology-mid) 9%, white);
+}
+.biology-grade-option input:focus-visible + span { outline: 3px solid rgba(49,87,213,.25); outline-offset: 3px; }
 
 .screensaver-duration { display: grid; margin-top: 22px; }
 .screensaver-duration select {
@@ -312,7 +352,7 @@
   font-size: clamp(36px, 5.1cqw, 84px);
   line-height: 1.05;
   letter-spacing: -.045em;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
   hyphens: auto;
   text-wrap: balance;
   text-shadow: 0 .15cqw .4cqw rgba(0,0,0,.16);

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Среды обитания организмов</title>
+  <desc id="desc">Водная, наземно-воздушная, почвенная и организменная среды</desc>
+  <rect width="600" height="450" fill="#8ecddd"/><rect x="600" width="600" height="450" fill="#dfe9c6"/><rect y="450" width="600" height="450" fill="#9a7150"/><rect x="600" y="450" width="600" height="450" fill="#eed7c9"/>
+  <path d="M0 210c160-74 304 48 600-20v260H0z" fill="#4f9fb9" opacity=".88"/><g transform="translate(170 230)"><path d="M0 66c78-105 213-105 293 0-80 106-215 106-293 0z" fill="#f1b84a"/><path d="m285 66 110-85v170z" fill="#dc8d3f"/><circle cx="68" cy="44" r="13" fill="#243b3e"/><path d="M121 23c43 30 43 58 0 87" fill="none" stroke="#d28235" stroke-width="10"/></g>
+  <path d="M850 450V187" stroke="#7c583e" stroke-width="44"/><g fill="#5d9c5c"><circle cx="844" cy="134" r="128"/><circle cx="727" cy="205" r="86"/><circle cx="961" cy="215" r="91"/></g><g transform="translate(782 183)"><ellipse cx="79" cy="66" rx="76" ry="54" fill="#a96843"/><circle cx="139" cy="41" r="46" fill="#a96843"/><path d="M125 4 143-43l25 50M-5 68c-71-36-96 36-35 65 39 19 71-12 96-42" fill="none" stroke="#8b4e35" stroke-width="25" stroke-linecap="round"/><circle cx="152" cy="33" r="6"/></g>
+  <path d="M0 690c174-76 375-84 600-21" fill="none" stroke="#6f4e38" stroke-width="18"/><g transform="translate(180 595)"><ellipse cx="110" cy="106" rx="112" ry="71" fill="#4d4944"/><circle cx="209" cy="89" r="62" fill="#4d4944"/><path d="m225 72 94 21-91 22z" fill="#d8a785"/><circle cx="211" cy="70" r="8" fill="#fff"/><circle cx="213" cy="70" r="4"/><path d="M78 45 48 0M139 43l22-48" stroke="#4d4944" stroke-width="38" stroke-linecap="round"/></g>
+  <g transform="translate(750 555)"><path d="M90 30c151-54 282 39 298 157 16 119-98 216-248 177C8 330-37 210 21 116 37 89 60 59 90 30z" fill="#d98978"/><path d="M91 129c67-38 160-14 198 54 37 67 6 142-60 170-80 34-165-10-181-90-11-56 6-106 43-134z" fill="#f1b3a4"/></g>
+  <g transform="translate(940 675)" fill="#7d3a69"><ellipse cx="0" cy="0" rx="48" ry="20" transform="rotate(35)"/><ellipse cx="70" cy="-35" rx="39" ry="17" transform="rotate(-20)"/><circle cx="43" cy="47" r="23"/></g>
+  <path d="M600 0v900M0 450h1200" stroke="#fff" stroke-width="14" opacity=".8"/>
+</svg>

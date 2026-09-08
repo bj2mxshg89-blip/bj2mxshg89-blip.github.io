@@ -1,5 +1,6 @@
-import { getAccountContext } from "./supabase-client.js?v=13";
-import { additionalCardPairs } from "./screensaver-more-cards.js?v=13";
+import { getAccountContext } from "./supabase-client.js?v=14";
+import { additionalCardPairs } from "./screensaver-more-cards.js?v=14";
+import { biologyCardPairs } from "./screensaver-biology-cards.js?v=14";
 
 const baseCardPairs = [
   {
@@ -304,13 +305,17 @@ const baseCardPairs = [
   }
 ];
 
-const cardPairs = [...baseCardPairs, ...additionalCardPairs];
+const existingCardPairs = [...baseCardPairs, ...additionalCardPairs];
+const cardPairs = [
+  ...biologyCardPairs,
+  ...existingCardPairs.filter((pair) => pair.subject !== "biology")
+];
 const fallbackImage = "assets/images/screensaver/image-fallback.svg";
 
 const elements = Object.fromEntries([
   "accessGate", "launcher", "settingsForm", "questionDuration", "settingsError", "show", "stage",
   "slide", "slideImage", "slideCopy", "slideText", "timer", "timerLabel", "timerValue", "progress", "controls",
-  "startButton",
+  "startButton", "biologyGradeFieldset",
   "fatalError", "fatalErrorText"
 ].map((id) => [id, document.getElementById(id)]));
 
@@ -347,11 +352,22 @@ function selectedSubjects() {
     .map((input) => input.value);
 }
 
-function savePreferences(subjects, questionDuration) {
+function selectedBiologyGrades() {
+  return [...elements.settingsForm.querySelectorAll('input[name="biologyGrade"]:checked')]
+    .map((input) => Number(input.value));
+}
+
+function updateBiologyGradeState() {
+  const biologySelected = elements.settingsForm.querySelector('input[name="subject"][value="biology"]').checked;
+  elements.biologyGradeFieldset.disabled = !biologySelected;
+}
+
+function savePreferences(subjects, biologyGrades, questionDuration) {
   try {
     localStorage.setItem("teacherScreensaverSettings", JSON.stringify({
-      version: 2,
+      version: 3,
       subjects,
+      biologyGrades,
       questionDuration
     }));
   } catch (_) {
@@ -367,8 +383,14 @@ function restorePreferences() {
     elements.settingsForm.querySelectorAll('input[name="subject"]').forEach((input) => {
       input.checked = allowed.has(input.value);
     });
+    if (saved.version >= 3 && Array.isArray(saved.biologyGrades)) {
+      const allowedGrades = new Set(saved.biologyGrades.map(Number));
+      elements.settingsForm.querySelectorAll('input[name="biologyGrade"]').forEach((input) => {
+        input.checked = allowedGrades.has(Number(input.value));
+      });
+    }
     const legacyDurations = { "30": "15", "40": "20", "60": "30" };
-    const duration = saved.version === 2
+    const duration = saved.version >= 2
       ? String(saved.questionDuration)
       : legacyDurations[String(saved.duration)];
     if (["15", "20", "30"].includes(duration)) {
@@ -377,6 +399,7 @@ function restorePreferences() {
   } catch (_) {
     // Ignore malformed local preferences.
   }
+  updateBiologyGradeState();
 }
 
 function currentPair() {
@@ -549,8 +572,10 @@ async function enterFullscreen() {
   try { await elements.stage.requestFullscreen(); } catch (_) { /* Fullscreen can be enabled manually. */ }
 }
 
-async function startPresentation(subjects, duration) {
-  const selectedPairs = cardPairs.filter((pair) => subjects.includes(pair.subject));
+async function startPresentation(subjects, biologyGrades, duration) {
+  const selectedPairs = cardPairs.filter((pair) => (
+    subjects.includes(pair.subject) && (pair.subject !== "biology" || biologyGrades.includes(pair.grade))
+  ));
   elements.startButton.disabled = true;
   elements.startButton.textContent = "Готовим изображения…";
 
@@ -601,10 +626,19 @@ function setupEvents() {
       elements.settingsError.textContent = "Выберите хотя бы один предмет.";
       return;
     }
+    const biologyGrades = selectedBiologyGrades();
+    if (subjects.includes("biology") && !biologyGrades.length) {
+      elements.settingsError.textContent = "Выберите хотя бы один класс биологии.";
+      return;
+    }
     elements.settingsError.textContent = "";
     const duration = Number(elements.questionDuration.value);
-    savePreferences(subjects, duration);
-    await startPresentation(subjects, duration);
+    savePreferences(subjects, biologyGrades, duration);
+    await startPresentation(subjects, biologyGrades, duration);
+  });
+
+  elements.settingsForm.addEventListener("change", (event) => {
+    if (event.target.matches('input[name="subject"][value="biology"]')) updateBiologyGradeState();
   });
 
   elements.controls.addEventListener("click", async (event) => {
@@ -659,6 +693,7 @@ function setupEvents() {
 async function init() {
   setupEvents();
   restorePreferences();
+  updateBiologyGradeState();
   try {
     const account = await getAccountContext({ refresh: true });
     if (!account.signedIn) {
