@@ -1,6 +1,6 @@
-import { getAccountContext } from "./supabase-client.js?v=14";
-import { additionalCardPairs } from "./screensaver-more-cards.js?v=14";
-import { biologyCardPairs } from "./screensaver-biology-cards.js?v=14";
+import { getAccountContext } from "./supabase-client.js?v=15";
+import { additionalCardPairs } from "./screensaver-more-cards.js?v=15";
+import { biologyCardPairs } from "./screensaver-biology-cards.js?v=15";
 
 const baseCardPairs = [
   {

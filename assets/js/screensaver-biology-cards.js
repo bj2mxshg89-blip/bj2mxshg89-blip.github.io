@@ -1,16 +1,16 @@
 const images = {
-  science: "assets/images/screensaver/bio5-science.svg",
-  living: "assets/images/screensaver/bio5-living.svg",
-  diversity: "assets/images/screensaver/bio5-diversity.svg",
-  habitats: "assets/images/screensaver/bio5-habitats.svg",
-  methods: "assets/images/screensaver/bio5-methods.svg",
-  microscope: "assets/images/screensaver/bio5-microscope.svg",
-  cell: "assets/images/screensaver/bio5-cell.svg",
-  roots: "assets/images/screensaver/bio6-roots.svg",
-  shoot: "assets/images/screensaver/bio6-shoot.svg",
-  leaf: "assets/images/screensaver/bio-leaf-cross-section.webp",
-  flower: "assets/images/screensaver/bio-flower.webp",
-  fruitSeed: "assets/images/screensaver/bio6-fruit-seed.svg"
+  science: "assets/images/screensaver/bio5-science.webp",
+  living: "assets/images/screensaver/bio5-living.webp",
+  diversity: "assets/images/screensaver/bio5-diversity.webp",
+  habitats: "assets/images/screensaver/bio5-habitats.webp",
+  methods: "assets/images/screensaver/bio5-methods.webp",
+  microscope: "assets/images/screensaver/bio5-microscope.webp",
+  cell: "assets/images/screensaver/bio5-cell.webp",
+  roots: "assets/images/screensaver/bio6-roots.webp",
+  shoot: "assets/images/screensaver/bio6-shoot.webp",
+  leaf: "assets/images/screensaver/bio6-leaf.webp",
+  flower: "assets/images/screensaver/bio6-flower.webp",
+  fruitSeed: "assets/images/screensaver/bio6-fruit-seed.webp"
 };
 
 function biologyCard(grade, topic, image, alt, id, question, answer) {

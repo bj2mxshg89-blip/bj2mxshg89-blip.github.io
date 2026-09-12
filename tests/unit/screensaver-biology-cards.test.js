@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
 import { biologyCardPairs } from "../../assets/js/screensaver-biology-cards.js";
@@ -49,6 +49,10 @@ test("у каждой карточки есть уникальный id, воп�
       assert.ok(card[field].trim(), `${card.id}: пустое поле ${field}`);
     }
     assert.ok(existsSync(join(repositoryRoot, card.image)), `${card.id}: нет изображения ${card.image}`);
+    assert.match(card.image, /\.webp$/, `${card.id}: биологическая карточка должна использовать WebP`);
+    const signature = readFileSync(join(repositoryRoot, card.image)).subarray(0, 12);
+    assert.equal(signature.subarray(0, 4).toString(), "RIFF", `${card.id}: повреждён WebP`);
+    assert.equal(signature.subarray(8, 12).toString(), "WEBP", `${card.id}: повреждён WebP`);
   }
 });
 

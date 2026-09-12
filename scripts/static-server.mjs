@@ -14,7 +14,8 @@ const mimeTypes = new Map([
   [".svg", "image/svg+xml"],
   [".png", "image/png"],
   [".jpg", "image/jpeg"],
-  [".jpeg", "image/jpeg"]
+  [".jpeg", "image/jpeg"],
+  [".webp", "image/webp"]
 ]);
 
 async function existingFile(requestPath) {
