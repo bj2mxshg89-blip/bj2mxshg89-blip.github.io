@@ -1,4 +1,4 @@
-import { getAccountContext } from "./supabase-client.js?v=14";
+import { getAccountContext } from "./supabase-client.js?v=15";
 
 export async function initAccountLinks() {
   const links = [...document.querySelectorAll("[data-account-link]")];

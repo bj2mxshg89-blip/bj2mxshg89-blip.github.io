@@ -1,6 +1,6 @@
-import { assignmentScope, parseAssignmentId } from "./assignment-records.js?v=14";
-import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=14";
-import { TestLoadError } from "./utils.js?v=14";
+import { assignmentScope, parseAssignmentId } from "./assignment-records.js?v=15";
+import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=15";
+import { TestLoadError } from "./utils.js?v=15";
 
 function assignmentError(message, detail) {
   return new TestLoadError(message, [detail]);
