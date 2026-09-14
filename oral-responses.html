@@ -12,15 +12,12 @@
       --oral-green-soft: #e9f8f1;
       --oral-red: #b42318;
       --oral-red-soft: #fff0ee;
-      --oral-amber: #9a6700;
-      --oral-amber-soft: #fff7d6;
     }
 
+    * { box-sizing: border-box; }
     body.modal-open { overflow: hidden; }
 
-    .oral-hero {
-      background: linear-gradient(135deg, #123d34 0%, #16815a 56%, #54af86 100%);
-    }
+    .oral-hero { background: linear-gradient(135deg, #123d34 0%, #16815a 56%, #54af86 100%); }
 
     .oral-layout {
       display: grid;
@@ -37,10 +34,7 @@
     }
 
     .controls h2,
-    .classroom-head h2 {
-      margin: 0;
-      font-size: 20px;
-    }
+    .classroom-head h2 { margin: 0; font-size: 20px; }
 
     .controls-note {
       margin: 6px 0 0;
@@ -90,13 +84,7 @@
       text-align: center;
     }
 
-    .lesson-stat strong {
-      display: block;
-      color: #173f35;
-      font-size: 18px;
-      line-height: 1;
-    }
-
+    .lesson-stat strong { display: block; color: #173f35; font-size: 18px; line-height: 1; }
     .lesson-stat span {
       display: block;
       margin-top: 5px;
@@ -114,18 +102,9 @@
       margin-bottom: 16px;
     }
 
-    .actions .site-btn {
-      min-height: 42px;
-      padding: 9px 10px;
-      font-size: 12px;
-    }
-
+    .actions .site-btn { min-height: 42px; padding: 9px 10px; font-size: 12px; }
     .actions .wide { grid-column: 1 / -1; }
-
-    .import-btn {
-      background: var(--oral-green);
-    }
-
+    .import-btn { background: var(--oral-green); }
     .file { display: none; }
 
     .section-head {
@@ -136,10 +115,7 @@
       margin: 14px 0 8px;
     }
 
-    .section-head h3 {
-      margin: 0;
-      font-size: 14px;
-    }
+    .section-head h3 { margin: 0; font-size: 14px; }
 
     .count-badge {
       display: inline-flex;
@@ -173,6 +149,7 @@
 
     .summary-row {
       width: 100%;
+      min-width: 0;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
@@ -203,21 +180,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 auto;
+      border: 1px solid var(--score-border, #d7ddda);
       border-radius: 999px;
+      color: var(--score-fg, #66736e);
+      background: var(--score-bg, #eef2f0);
       font-weight: 950;
       font-variant-numeric: tabular-nums;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
     }
 
-    .mini-score {
-      min-width: 31px;
-      height: 26px;
-      padding: 0 7px;
-      font-size: 12px;
-    }
-
-    .score-positive { color: #116546; background: #dff5e9; }
-    .score-zero { color: #66736e; background: #eef2f0; }
-    .score-negative { color: #a62318; background: #fee5e2; }
+    .mini-score { min-width: 31px; height: 26px; padding: 0 7px; font-size: 12px; }
 
     .unseated-wrap {
       display: flex;
@@ -232,6 +205,8 @@
     }
 
     .unseated-chip {
+      max-width: 100%;
+      min-width: 0;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -243,6 +218,13 @@
       font-size: 11px;
       font-weight: 750;
       cursor: pointer;
+    }
+
+    .unseated-chip > span:first-child {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .unseated-chip:hover { background: var(--oral-green-soft); }
@@ -258,11 +240,7 @@
       line-height: 1.4;
     }
 
-    .classroom {
-      min-width: 0;
-      padding: 20px;
-      overflow: auto;
-    }
+    .classroom { min-width: 0; padding: 20px; overflow: auto; }
 
     .classroom-head {
       display: flex;
@@ -290,10 +268,7 @@
       white-space: nowrap;
     }
 
-    .classroom-stage {
-      min-width: 610px;
-      padding: 22px 0 8px;
-    }
+    .classroom-stage { min-width: 610px; padding: 22px 0 8px; }
 
     .teacher {
       max-width: 790px;
@@ -318,8 +293,10 @@
 
     .desk {
       position: relative;
+      min-width: 0;
+      overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
       min-height: 96px;
       padding: 25px 8px 8px;
@@ -336,11 +313,16 @@
       text-align: center;
       font-size: 11px;
       font-weight: 850;
+      pointer-events: none;
     }
 
     .seat {
       position: relative;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
       min-height: 56px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -357,36 +339,35 @@
     }
 
     .seat.occupied {
-      color: #11563d;
-      border: 1px solid #84c7a8;
-      background: var(--oral-green-soft);
+      border: 1px solid var(--score-border, #c8cfcc);
+      color: var(--score-fg, #42504b);
+      background: var(--score-bg, #f1f3f2);
       cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, box-shadow .15s ease, transform .08s ease;
     }
 
     .seat.occupied:hover,
     .seat.occupied:focus-visible {
-      border-color: var(--oral-green);
-      background: #dcf6e9;
-      box-shadow: 0 0 0 3px rgba(22, 129, 90, .14);
+      border-color: var(--score-accent, #7d8984);
+      box-shadow: 0 0 0 3px var(--score-ring, rgba(93, 108, 102, .14));
       outline: 0;
+      transform: translateY(-1px);
     }
 
     .seat-name {
+      display: block;
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
       overflow: hidden;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 850;
       line-height: 1.15;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .seat-score {
-      min-width: 30px;
-      height: 22px;
-      padding: 0 6px;
-      font-size: 11px;
-    }
+    .seat-score { min-width: 30px; height: 22px; padding: 0 6px; font-size: 11px; }
 
     .empty-classroom {
       max-width: 790px;
@@ -399,17 +380,8 @@
       text-align: center;
     }
 
-    .empty-classroom strong {
-      display: block;
-      margin-bottom: 7px;
-      color: #23483c;
-      font-size: 18px;
-    }
-
-    .empty-classroom span {
-      font-size: 12px;
-      line-height: 1.5;
-    }
+    .empty-classroom strong { display: block; margin-bottom: 7px; color: #23483c; font-size: 18px; }
+    .empty-classroom span { font-size: 12px; line-height: 1.5; }
 
     .modal-backdrop {
       position: fixed;
@@ -427,7 +399,8 @@
 
     .student-card {
       width: min(470px, 100%);
-      overflow: hidden;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
       border: 1px solid rgba(255,255,255,.5);
       border-radius: 22px;
       background: #fff;
@@ -457,18 +430,8 @@
       letter-spacing: .65px;
     }
 
-    .student-card-head h2 {
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.1;
-      overflow-wrap: anywhere;
-    }
-
-    .student-card-head p {
-      margin: 7px 0 0;
-      color: rgba(255,255,255,.82);
-      font-size: 12px;
-    }
+    .student-card-head h2 { margin: 0; font-size: 24px; line-height: 1.1; overflow-wrap: anywhere; }
+    .student-card-head p { margin: 7px 0 0; color: rgba(255,255,255,.82); font-size: 12px; }
 
     .close-card {
       position: absolute;
@@ -495,16 +458,8 @@
       margin-bottom: 18px;
     }
 
-    .answer-count {
-      text-align: center;
-    }
-
-    .answer-count strong {
-      display: block;
-      font-size: 22px;
-      line-height: 1;
-    }
-
+    .answer-count { text-align: center; }
+    .answer-count strong { display: block; font-size: 22px; line-height: 1; }
     .answer-count span {
       display: block;
       margin-top: 5px;
@@ -521,17 +476,15 @@
     .big-score {
       min-width: 92px;
       padding: 11px 12px;
+      border: 1px solid var(--score-border, #d7ddda);
       border-radius: 18px;
+      color: var(--score-fg, #66736e);
+      background: var(--score-bg, #eef2f0);
       text-align: center;
+      transition: .15s ease;
     }
 
-    .big-score strong {
-      display: block;
-      font-size: 38px;
-      line-height: 1;
-      font-variant-numeric: tabular-nums;
-    }
-
+    .big-score strong { display: block; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
     .big-score span {
       display: block;
       margin-top: 5px;
@@ -539,14 +492,10 @@
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .4px;
-      opacity: .72;
+      opacity: .76;
     }
 
-    .score-buttons {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    .score-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
     .score-btn {
       min-height: 74px;
@@ -560,45 +509,15 @@
       box-shadow: 0 8px 18px rgba(15, 48, 38, .1);
     }
 
-    .score-btn small {
-      display: block;
-      margin-top: 4px;
-      color: rgba(255,255,255,.76);
-      font-size: 10px;
-      font-weight: 700;
-    }
-
+    .score-btn small { display: block; margin-top: 4px; color: rgba(255,255,255,.76); font-size: 10px; font-weight: 700; }
     .score-btn.correct { background: var(--oral-green); }
     .score-btn.wrong { background: var(--oral-red); }
     .score-btn:active { transform: translateY(1px); }
 
-    .history-wrap {
-      margin-top: 15px;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-    }
-
-    .history-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .history-head strong {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .35px;
-    }
-
-    .history-dots {
-      min-height: 29px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
+    .history-wrap { margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .history-head { margin-bottom: 8px; }
+    .history-head strong { font-size: 11px; text-transform: uppercase; letter-spacing: .35px; }
+    .history-dots { min-height: 29px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 
     .history-dot {
       width: 28px;
@@ -615,13 +534,7 @@
     .history-dot.minus { color: #a62318; background: #fee5e2; }
     .history-empty { color: var(--muted); font-size: 11px; }
 
-    .card-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
     .card-actions button {
       min-height: 38px;
       border: 1px solid var(--line);
@@ -675,16 +588,8 @@
     }
 
     @media print {
-      .site-header,
-      .site-hero,
-      .controls,
-      .site-footer,
-      .modal-backdrop,
-      .toast { display: none !important; }
-
-      .site-page,
-      .oral-layout,
-      .classroom-stage { width: 100%; min-width: 0; margin: 0; padding: 0; }
+      .site-header, .site-hero, .controls, .site-footer, .modal-backdrop, .toast { display: none !important; }
+      .site-page, .oral-layout, .classroom-stage { width: 100%; min-width: 0; margin: 0; padding: 0; }
       .oral-layout { display: block; }
       .classroom { border: 0; box-shadow: none; }
       .desk { break-inside: avoid; box-shadow: none; }
@@ -716,7 +621,7 @@
         <span class="site-hero-chip">Та же схема рассадки</span>
         <span class="site-hero-chip">Импорт JSON</span>
         <span class="site-hero-chip">Автосохранение</span>
-        <span class="site-hero-chip">Итог за урок</span>
+        <span class="site-hero-chip">Цвет по баллам</span>
       </div>
     </section>
 
@@ -768,7 +673,7 @@
         <div class="classroom-head">
           <div>
             <h2>Классная комната</h2>
-            <p>Нажмите на фамилию ученика, чтобы открыть карточку ответа. Балл виден прямо на месте.</p>
+            <p>Нажмите на ученика, чтобы открыть карточку. Чем выше балл, тем насыщеннее зелёный; чем ниже — тем насыщеннее красный.</p>
           </div>
           <span class="classroom-badge">18 парт · 36 мест</span>
         </div>
@@ -793,18 +698,9 @@
       </header>
       <div class="student-card-body">
         <div class="score-panel">
-          <div class="answer-count correct">
-            <strong id="correctCount">0</strong>
-            <span>правильно</span>
-          </div>
-          <div class="big-score score-zero" id="bigScore">
-            <strong id="scoreValue">0</strong>
-            <span>итог</span>
-          </div>
-          <div class="answer-count wrong">
-            <strong id="wrongCount">0</strong>
-            <span>ошибок</span>
-          </div>
+          <div class="answer-count correct"><strong id="correctCount">0</strong><span>правильно</span></div>
+          <div class="big-score" id="bigScore"><strong id="scoreValue">0</strong><span>итог</span></div>
+          <div class="answer-count wrong"><strong id="wrongCount">0</strong><span>ошибок</span></div>
         </div>
 
         <div class="score-buttons">
@@ -813,9 +709,7 @@
         </div>
 
         <div class="history-wrap">
-          <div class="history-head">
-            <strong>Ответы на этом уроке</strong>
-          </div>
+          <div class="history-head"><strong>Ответы на этом уроке</strong></div>
           <div class="history-dots" id="historyDots"></div>
         </div>
 
@@ -832,66 +726,83 @@
   <script>
     const STORAGE_KEY = "teacher_oral_responses_v1";
     const DESKS = 18;
+    const MAX_COLOR_LEVEL = 6;
 
     let state = emptyState();
     let activeStudent = null;
     let toastTimer = null;
 
-    const classNameEl = document.getElementById("className");
-    const studentsStatEl = document.getElementById("studentsStat");
-    const answersStatEl = document.getElementById("answersStat");
-    const activeStatEl = document.getElementById("activeStat");
-    const summaryCountEl = document.getElementById("summaryCount");
-    const summaryListEl = document.getElementById("summaryList");
-    const unseatedSectionEl = document.getElementById("unseatedSection");
-    const unseatedCountEl = document.getElementById("unseatedCount");
-    const unseatedListEl = document.getElementById("unseatedList");
-    const statusEl = document.getElementById("status");
-    const desksEl = document.getElementById("desks");
-    const classroomStageEl = document.getElementById("classroomStage");
-    const fileInputEl = document.getElementById("fileInput");
-    const downloadLinkEl = document.getElementById("downloadLink");
-    const modalEl = document.getElementById("studentModal");
-    const cardNameEl = document.getElementById("studentCardName");
-    const cardSeatEl = document.getElementById("studentCardSeat");
-    const correctCountEl = document.getElementById("correctCount");
-    const wrongCountEl = document.getElementById("wrongCount");
-    const scoreValueEl = document.getElementById("scoreValue");
-    const bigScoreEl = document.getElementById("bigScore");
-    const historyDotsEl = document.getElementById("historyDots");
-    const undoButtonEl = document.getElementById("undoButton");
-    const toastEl = document.getElementById("toast");
+    const $ = id => document.getElementById(id);
+    const classNameEl = $("className");
+    const studentsStatEl = $("studentsStat");
+    const answersStatEl = $("answersStat");
+    const activeStatEl = $("activeStat");
+    const summaryCountEl = $("summaryCount");
+    const summaryListEl = $("summaryList");
+    const unseatedSectionEl = $("unseatedSection");
+    const unseatedCountEl = $("unseatedCount");
+    const unseatedListEl = $("unseatedList");
+    const statusEl = $("status");
+    const desksEl = $("desks");
+    const classroomStageEl = $("classroomStage");
+    const fileInputEl = $("fileInput");
+    const downloadLinkEl = $("downloadLink");
+    const modalEl = $("studentModal");
+    const cardNameEl = $("studentCardName");
+    const cardSeatEl = $("studentCardSeat");
+    const correctCountEl = $("correctCount");
+    const wrongCountEl = $("wrongCount");
+    const scoreValueEl = $("scoreValue");
+    const bigScoreEl = $("bigScore");
+    const historyDotsEl = $("historyDots");
+    const undoButtonEl = $("undoButton");
+    const toastEl = $("toast");
 
     function emptyState() {
-      return {
-        className: "",
-        sourceFile: "",
-        seats: {},
-        unassigned: [],
-        scores: {}
-      };
+      return {className: "", sourceFile: "", seats: {}, unassigned: [], scores: {}};
     }
 
-    function normalizeName(value) {
-      return String(value ?? "").trim().replace(/\s+/g, " ");
+    function normalizeName(value) { return String(value ?? "").trim().replace(/\s+/g, " "); }
+    function seatKey(desk, side) { return `desk-${desk}-${side}`; }
+    function isSeatKey(key) { return /^desk-(?:[1-9]|1[0-8])-(?:left|right)$/.test(key); }
+    function displayScore(score) { return score > 0 ? `+${score}` : String(score); }
+
+    function scorePalette(score) {
+      const value = Number(score) || 0;
+      if (value === 0) {
+        return {bg: "#f1f3f2", fg: "#56625e", border: "#cbd2cf", accent: "#7d8984", ring: "rgba(93,108,102,.14)"};
+      }
+
+      const level = Math.min(MAX_COLOR_LEVEL, Math.abs(value));
+      const positive = [
+        ["#edf9f2", "#176b49", "#b8dfca", "#45a477", "rgba(22,129,90,.13)"],
+        ["#dff5e9", "#116546", "#94d2b2", "#2f9869", "rgba(22,129,90,.16)"],
+        ["#c9efd9", "#0f5f42", "#6bc295", "#218b5f", "rgba(22,129,90,.19)"],
+        ["#a8e5c2", "#0b563a", "#48b47c", "#147c52", "rgba(16,115,76,.22)"],
+        ["#75d39d", "#073f2b", "#25a866", "#0d6e47", "rgba(11,99,65,.25)"],
+        ["#35b978", "#ffffff", "#158754", "#0a6840", "rgba(8,91,57,.28)"]
+      ];
+      const negative = [
+        ["#fff1ef", "#9d2a20", "#f0c3bd", "#cf6258", "rgba(180,35,24,.12)"],
+        ["#fee4e1", "#9f251c", "#e9aaa3", "#c84d42", "rgba(180,35,24,.16)"],
+        ["#fbcac4", "#8e2018", "#df8177", "#bb392f", "rgba(180,35,24,.19)"],
+        ["#f5a49a", "#771a14", "#d85c50", "#aa2d24", "rgba(166,35,25,.22)"],
+        ["#ec7468", "#5e130f", "#ca3d32", "#93241c", "rgba(145,31,23,.25)"],
+        ["#d94a3d", "#ffffff", "#ad2b21", "#7d1e17", "rgba(121,27,20,.28)"]
+      ];
+
+      const source = value > 0 ? positive : negative;
+      const [bg, fg, border, accent, ring] = source[level - 1];
+      return {bg, fg, border, accent, ring};
     }
 
-    function seatKey(desk, side) {
-      return `desk-${desk}-${side}`;
-    }
-
-    function isSeatKey(key) {
-      return /^desk-(?:[1-9]|1[0-8])-(?:left|right)$/.test(key);
-    }
-
-    function scoreClass(score) {
-      if (score > 0) return "score-positive";
-      if (score < 0) return "score-negative";
-      return "score-zero";
-    }
-
-    function displayScore(score) {
-      return score > 0 ? `+${score}` : String(score);
+    function applyScoreStyle(element, score) {
+      const palette = scorePalette(score);
+      element.style.setProperty("--score-bg", palette.bg);
+      element.style.setProperty("--score-fg", palette.fg);
+      element.style.setProperty("--score-border", palette.border);
+      element.style.setProperty("--score-accent", palette.accent);
+      element.style.setProperty("--score-ring", palette.ring);
     }
 
     function getRecord(name) {
@@ -901,9 +812,7 @@
       const record = state.scores[name];
       record.correct = Number.isFinite(Number(record.correct)) ? Math.max(0, Number(record.correct)) : 0;
       record.wrong = Number.isFinite(Number(record.wrong)) ? Math.max(0, Number(record.wrong)) : 0;
-      record.history = Array.isArray(record.history)
-        ? record.history.filter(value => value === 1 || value === -1)
-        : [];
+      record.history = Array.isArray(record.history) ? record.history.filter(v => v === 1 || v === -1) : [];
       return record;
     }
 
@@ -915,8 +824,8 @@
     function getAllStudents() {
       const result = [];
       const seen = new Set();
-      const add = rawName => {
-        const name = normalizeName(rawName);
+      const add = raw => {
+        const name = normalizeName(raw);
         if (!name || seen.has(name)) return;
         seen.add(name);
         result.push(name);
@@ -935,14 +844,11 @@
       if (!key) return "Без места";
       const match = key.match(/^desk-(\d+)-(left|right)$/);
       if (!match) return "Место не определено";
-      const side = match[2] === "left" ? "слева" : "справа";
-      return `Парта ${match[1]}, ${side}`;
+      return `Парта ${match[1]}, ${match[2] === "left" ? "слева" : "справа"}`;
     }
 
     function deriveClassName(data, fileName) {
-      const candidates = [data?.className, data?.class, data?.title, data?.name]
-        .map(normalizeName)
-        .filter(Boolean);
+      const candidates = [data?.className, data?.class, data?.title, data?.name].map(normalizeName).filter(Boolean);
       if (candidates.length) return candidates[0];
       const clean = String(fileName || "").replace(/\.json$/i, "").trim();
       return clean || "Загруженный класс";
@@ -959,29 +865,27 @@
 
     function readStudentName(value) {
       if (typeof value === "string" || typeof value === "number") return normalizeName(value);
-      if (value && typeof value === "object") {
-        return normalizeName(value.name ?? value.fullName ?? value.fio ?? value.student ?? value.label);
-      }
+      if (value && typeof value === "object") return normalizeName(value.name ?? value.fullName ?? value.fio ?? value.student ?? value.label);
       return "";
     }
 
     function importToState(data, fileName) {
       const next = emptyState();
       const used = new Set();
+
       const place = (key, rawValue) => {
         if (!isSeatKey(key)) return;
         const rawName = readStudentName(rawValue);
         if (!rawName) return;
         const name = makeUniqueName(rawName, used);
-        if (!name) return;
         used.add(name);
         next.seats[key] = name;
       };
+
       const addUnassigned = rawValue => {
         const rawName = readStudentName(rawValue);
         if (!rawName) return;
         const name = makeUniqueName(rawName, used);
-        if (!name) return;
         used.add(name);
         next.unassigned.push(name);
       };
@@ -992,19 +896,13 @@
         if (data.seats && typeof data.seats === "object" && !Array.isArray(data.seats)) {
           Object.entries(data.seats).forEach(([key, value]) => place(key, value));
         }
-
         if (Array.isArray(data.unassigned)) data.unassigned.forEach(addUnassigned);
-
         if (!used.size && Array.isArray(data.students)) {
           data.students.forEach(student => {
-            if (student && typeof student === "object" && isSeatKey(student.seat ?? student.seatKey ?? "")) {
-              place(student.seat ?? student.seatKey, student);
-            } else {
-              addUnassigned(student);
-            }
+            const key = student && typeof student === "object" ? (student.seat ?? student.seatKey ?? "") : "";
+            isSeatKey(key) ? place(key, student) : addUnassigned(student);
           });
         }
-
         if (!used.size && Array.isArray(data.names)) data.names.forEach(addUnassigned);
       }
 
@@ -1018,9 +916,7 @@
       return next;
     }
 
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
+    function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
     function loadState() {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -1080,7 +976,7 @@
         if (!empty) {
           empty = document.createElement("div");
           empty.className = "empty-classroom";
-          empty.innerHTML = "<strong>Класс пока не загружен</strong><span>Используйте кнопку «Импорт JSON класса». Можно загрузить тот же файл, который вы используете в программе рассадки.</span>";
+          empty.innerHTML = "<strong>Класс пока не загружен</strong><span>Используйте кнопку «Импорт JSON класса». Можно загрузить тот же файл, который используется в программе рассадки.</span>";
           classroomStageEl.insertBefore(empty, classroomStageEl.querySelector(".teacher"));
         }
         classroomStageEl.querySelector(".teacher").style.display = "none";
@@ -1089,8 +985,7 @@
 
       desksEl.style.display = "grid";
       classroomStageEl.querySelector(".teacher").style.display = "block";
-      const empty = classroomStageEl.querySelector(".empty-classroom");
-      if (empty) empty.remove();
+      classroomStageEl.querySelector(".empty-classroom")?.remove();
 
       for (let i = DESKS; i >= 1; i--) {
         const desk = document.createElement("div");
@@ -1109,8 +1004,14 @@
             seat.innerHTML = '<span class="seat-name">Пусто</span>';
           } else {
             const score = getScore(name);
+            const scoreBadge = document.createElement("span");
+            scoreBadge.className = "seat-score";
+            scoreBadge.textContent = displayScore(score);
+            applyScoreStyle(seat, score);
+            applyScoreStyle(scoreBadge, score);
             seat.setAttribute("aria-label", `${name}, ${describeSeat(key)}, итог ${displayScore(score)}`);
-            seat.innerHTML = `<span class="seat-name">${escapeHTML(name)}</span><span class="seat-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+            seat.innerHTML = `<span class="seat-name" title="${escapeHTML(name)}">${escapeHTML(name)}</span>`;
+            seat.appendChild(scoreBadge);
             seat.addEventListener("click", () => openCard(name));
           }
           desk.appendChild(seat);
@@ -1128,13 +1029,17 @@
         return;
       }
 
-      const ordered = [...students].sort((a, b) => a.localeCompare(b, "ru"));
-      ordered.forEach(name => {
+      [...students].sort((a, b) => a.localeCompare(b, "ru")).forEach(name => {
         const score = getScore(name);
         const row = document.createElement("button");
         row.type = "button";
         row.className = "summary-row";
-        row.innerHTML = `<span class="summary-name">${escapeHTML(name)}</span><span class="mini-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+        const badge = document.createElement("span");
+        badge.className = "mini-score";
+        badge.textContent = displayScore(score);
+        applyScoreStyle(badge, score);
+        row.innerHTML = `<span class="summary-name" title="${escapeHTML(name)}">${escapeHTML(name)}</span>`;
+        row.appendChild(badge);
         row.addEventListener("click", () => openCard(name));
         summaryListEl.appendChild(row);
       });
@@ -1147,11 +1052,16 @@
       unseatedListEl.innerHTML = "";
 
       students.forEach(name => {
+        const score = getScore(name);
         const chip = document.createElement("button");
         chip.type = "button";
         chip.className = "unseated-chip";
-        const score = getScore(name);
-        chip.innerHTML = `<span>${escapeHTML(name)}</span><span class="mini-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+        const badge = document.createElement("span");
+        badge.className = "mini-score";
+        badge.textContent = displayScore(score);
+        applyScoreStyle(badge, score);
+        chip.innerHTML = `<span title="${escapeHTML(name)}">${escapeHTML(name)}</span>`;
+        chip.appendChild(badge);
         chip.addEventListener("click", () => openCard(name));
         unseatedListEl.appendChild(chip);
       });
@@ -1163,7 +1073,7 @@
       renderStudentCard();
       modalEl.classList.add("open");
       document.body.classList.add("modal-open");
-      document.getElementById("correctButton").focus();
+      $("correctButton").focus();
     }
 
     function closeCard() {
@@ -1176,14 +1086,12 @@
       if (!activeStudent) return;
       const record = getRecord(activeStudent);
       const score = getScore(activeStudent);
-      const seat = findStudentSeat(activeStudent);
-
       cardNameEl.textContent = activeStudent;
-      cardSeatEl.textContent = describeSeat(seat);
+      cardSeatEl.textContent = describeSeat(findStudentSeat(activeStudent));
       correctCountEl.textContent = record.correct;
       wrongCountEl.textContent = record.wrong;
       scoreValueEl.textContent = displayScore(score);
-      bigScoreEl.className = `big-score ${scoreClass(score)}`;
+      applyScoreStyle(bigScoreEl, score);
 
       historyDotsEl.innerHTML = "";
       if (!record.history.length) {
@@ -1203,8 +1111,7 @@
     function addAnswer(value) {
       if (!activeStudent) return;
       const record = getRecord(activeStudent);
-      if (value === 1) record.correct++;
-      else record.wrong++;
+      value === 1 ? record.correct++ : record.wrong++;
       record.history.push(value);
       saveState();
       render();
@@ -1233,14 +1140,9 @@
 
     function resetAllScores() {
       const students = getAllStudents();
-      if (!students.length) {
-        setStatus("Сначала загрузите класс.");
-        return;
-      }
+      if (!students.length) return setStatus("Сначала загрузите класс.");
       if (!confirm("Начать новый урок с этим классом? Все текущие баллы будут обнулены.")) return;
-      students.forEach(name => {
-        state.scores[name] = {correct: 0, wrong: 0, history: []};
-      });
+      students.forEach(name => { state.scores[name] = {correct: 0, wrong: 0, history: []}; });
       saveState();
       render();
       setStatus("Баллы обнулены. Рассадка сохранена — можно начинать новый урок.");
@@ -1248,16 +1150,13 @@
     }
 
     function clearClass() {
-      if (!getAllStudents().length) {
-        setStatus("Класс уже очищен.");
-        return;
-      }
+      if (!getAllStudents().length) return setStatus("Класс уже очищен.");
       if (!confirm("Очистить текущий класс, рассадку и все набранные баллы? После этого можно загрузить другой JSON.")) return;
       closeCard();
       state = emptyState();
       localStorage.removeItem(STORAGE_KEY);
-      render();
       fileInputEl.value = "";
+      render();
       setStatus("Класс очищен. Теперь можно загрузить другой JSON-файл.");
       showToast("Текущий класс удалён.");
     }
@@ -1268,8 +1167,7 @@
       reader.onload = () => {
         try {
           const data = JSON.parse(reader.result);
-          const studentsNow = getAllStudents();
-          if (studentsNow.length && !confirm("Заменить текущий класс данными из нового JSON? Текущие баллы будут потеряны.")) {
+          if (getAllStudents().length && !confirm("Заменить текущий класс данными из нового JSON? Текущие баллы будут потеряны.")) {
             fileInputEl.value = "";
             return;
           }
@@ -1294,10 +1192,7 @@
 
     function exportResults() {
       const students = getAllStudents();
-      if (!students.length) {
-        setStatus("Нет данных для экспорта.");
-        return;
-      }
+      if (!students.length) return setStatus("Нет данных для экспорта.");
 
       const result = {
         type: "oral-responses",
@@ -1305,19 +1200,17 @@
         className: state.className,
         exportedAt: new Date().toISOString(),
         sourceFile: state.sourceFile,
-        students: students
-          .map(name => {
-            const record = getRecord(name);
-            return {
-              name,
-              seat: findStudentSeat(name),
-              correct: record.correct,
-              wrong: record.wrong,
-              score: getScore(name),
-              history: [...record.history]
-            };
-          })
-          .sort((a, b) => a.name.localeCompare(b.name, "ru"))
+        students: students.map(name => {
+          const record = getRecord(name);
+          return {
+            name,
+            seat: findStudentSeat(name),
+            correct: record.correct,
+            wrong: record.wrong,
+            score: getScore(name),
+            history: [...record.history]
+          };
+        }).sort((a, b) => a.name.localeCompare(b.name, "ru"))
       };
 
       const blob = new Blob([JSON.stringify(result, null, 2)], {type: "application/json"});
@@ -1330,9 +1223,7 @@
       setStatus("Итоги урока экспортированы в JSON.");
     }
 
-    function setStatus(text) {
-      statusEl.textContent = text;
-    }
+    function setStatus(text) { statusEl.textContent = text; }
 
     function showToast(text) {
       toastEl.textContent = text;
@@ -1342,29 +1233,21 @@
     }
 
     function escapeHTML(value) {
-      return String(value).replace(/[&<>\"]/g, character => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '\"': "&quot;"
-      }[character]));
+      return String(value).replace(/[&<>\"]/g, character => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[character]));
     }
 
-    document.getElementById("importButton").addEventListener("click", () => fileInputEl.click());
+    $("importButton").addEventListener("click", () => fileInputEl.click());
     fileInputEl.addEventListener("change", event => importFile(event.target.files[0]));
-    document.getElementById("resetScoresButton").addEventListener("click", resetAllScores);
-    document.getElementById("clearClassButton").addEventListener("click", clearClass);
-    document.getElementById("exportButton").addEventListener("click", exportResults);
-    document.getElementById("closeCardButton").addEventListener("click", closeCard);
-    document.getElementById("correctButton").addEventListener("click", () => addAnswer(1));
-    document.getElementById("wrongButton").addEventListener("click", () => addAnswer(-1));
-    document.getElementById("undoButton").addEventListener("click", undoLast);
-    document.getElementById("resetStudentButton").addEventListener("click", resetStudent);
+    $("resetScoresButton").addEventListener("click", resetAllScores);
+    $("clearClassButton").addEventListener("click", clearClass);
+    $("exportButton").addEventListener("click", exportResults);
+    $("closeCardButton").addEventListener("click", closeCard);
+    $("correctButton").addEventListener("click", () => addAnswer(1));
+    $("wrongButton").addEventListener("click", () => addAnswer(-1));
+    $("undoButton").addEventListener("click", undoLast);
+    $("resetStudentButton").addEventListener("click", resetStudent);
 
-    modalEl.addEventListener("click", event => {
-      if (event.target === modalEl) closeCard();
-    });
-
+    modalEl.addEventListener("click", event => { if (event.target === modalEl) closeCard(); });
     document.addEventListener("keydown", event => {
       if (!modalEl.classList.contains("open")) return;
       if (event.key === "Escape") closeCard();
@@ -1374,9 +1257,7 @@
 
     loadState();
     render();
-    if (getAllStudents().length) {
-      setStatus("Восстановлен предыдущий класс. Баллы сохранены.");
-    }
+    if (getAllStudents().length) setStatus("Восстановлен предыдущий класс. Баллы сохранены.");
   </script>
 </body>
 </html>
