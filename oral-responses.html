@@ -1,0 +1,1382 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Устные ответы — кабинет учителя</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    :root {
+      --oral-green: #16815a;
+      --oral-green-dark: #123d34;
+      --oral-green-soft: #e9f8f1;
+      --oral-red: #b42318;
+      --oral-red-soft: #fff0ee;
+      --oral-amber: #9a6700;
+      --oral-amber-soft: #fff7d6;
+    }
+
+    body.modal-open { overflow: hidden; }
+
+    .oral-hero {
+      background: linear-gradient(135deg, #123d34 0%, #16815a 56%, #54af86 100%);
+    }
+
+    .oral-layout {
+      display: grid;
+      grid-template-columns: 330px minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .controls {
+      align-self: start;
+      position: sticky;
+      top: 14px;
+      padding: 18px;
+    }
+
+    .controls h2,
+    .classroom-head h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .controls-note {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .current-class {
+      margin: 16px 0 0;
+      padding: 13px 14px;
+      border: 1px solid #c8e7d8;
+      border-radius: 14px;
+      background: var(--oral-green-soft);
+    }
+
+    .current-class small {
+      display: block;
+      margin-bottom: 3px;
+      color: #477668;
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .55px;
+    }
+
+    .current-class strong {
+      display: block;
+      color: #11563d;
+      font-size: 16px;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+
+    .lesson-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin: 10px 0 14px;
+    }
+
+    .lesson-stat {
+      padding: 9px 5px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .lesson-stat strong {
+      display: block;
+      color: #173f35;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .lesson-stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .35px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .actions .site-btn {
+      min-height: 42px;
+      padding: 9px 10px;
+      font-size: 12px;
+    }
+
+    .actions .wide { grid-column: 1 / -1; }
+
+    .import-btn {
+      background: var(--oral-green);
+    }
+
+    .file { display: none; }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 14px 0 8px;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .count-badge {
+      display: inline-flex;
+      min-width: 28px;
+      min-height: 24px;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 7px;
+      border-radius: 9px;
+      color: #116546;
+      background: var(--oral-green-soft);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .summary-list {
+      max-height: 340px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fbfefc;
+    }
+
+    .summary-empty {
+      padding: 18px 13px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .summary-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 10px;
+      border: 0;
+      border-bottom: 1px solid #edf1ef;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .summary-row:last-child { border-bottom: 0; }
+    .summary-row:hover { background: #f1f8f5; }
+
+    .summary-name {
+      min-width: 0;
+      overflow: hidden;
+      color: #26322e;
+      font-size: 12px;
+      font-weight: 750;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-score,
+    .seat-score {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mini-score {
+      min-width: 31px;
+      height: 26px;
+      padding: 0 7px;
+      font-size: 12px;
+    }
+
+    .score-positive { color: #116546; background: #dff5e9; }
+    .score-zero { color: #66736e; background: #eef2f0; }
+    .score-negative { color: #a62318; background: #fee5e2; }
+
+    .unseated-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-height: 110px;
+      overflow: auto;
+      padding: 7px;
+      border: 1px dashed #bdcbbc;
+      border-radius: 12px;
+      background: #fbfefc;
+    }
+
+    .unseated-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      border: 1px solid #cfe1d8;
+      border-radius: 999px;
+      color: #264f42;
+      background: #fff;
+      font-size: 11px;
+      font-weight: 750;
+      cursor: pointer;
+    }
+
+    .unseated-chip:hover { background: var(--oral-green-soft); }
+
+    .status {
+      margin-top: 11px;
+      padding: 10px 11px;
+      border-radius: 11px;
+      color: #116546;
+      background: var(--oral-green-soft);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .classroom {
+      min-width: 0;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .classroom-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .classroom-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .classroom-badge {
+      padding: 7px 10px;
+      border-radius: 10px;
+      color: #116546;
+      background: var(--oral-green-soft);
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .classroom-stage {
+      min-width: 610px;
+      padding: 22px 0 8px;
+    }
+
+    .teacher {
+      max-width: 790px;
+      margin: 22px auto 0;
+      padding: 11px;
+      border-radius: 13px;
+      color: #fff;
+      background: #173f35;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 850;
+      box-shadow: 0 8px 20px rgba(18, 61, 52, .14);
+    }
+
+    .desks {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(165px, 1fr));
+      gap: 24px 15px;
+      max-width: 790px;
+      margin: 0 auto;
+    }
+
+    .desk {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      min-height: 96px;
+      padding: 25px 8px 8px;
+      border: 2px solid #31574d;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 5px 14px rgba(18, 61, 52, .06);
+    }
+
+    .desk-title {
+      position: absolute;
+      inset: 5px 0 auto;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 850;
+    }
+
+    .seat {
+      position: relative;
+      min-height: 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 5px;
+      border: 1px dashed #b9c8c3;
+      border-radius: 10px;
+      color: #8b948f;
+      background: #f8fbfa;
+      text-align: center;
+      font: inherit;
+      cursor: default;
+    }
+
+    .seat.occupied {
+      color: #11563d;
+      border: 1px solid #84c7a8;
+      background: var(--oral-green-soft);
+      cursor: pointer;
+    }
+
+    .seat.occupied:hover,
+    .seat.occupied:focus-visible {
+      border-color: var(--oral-green);
+      background: #dcf6e9;
+      box-shadow: 0 0 0 3px rgba(22, 129, 90, .14);
+      outline: 0;
+    }
+
+    .seat-name {
+      width: 100%;
+      overflow: hidden;
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.15;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .seat-score {
+      min-width: 30px;
+      height: 22px;
+      padding: 0 6px;
+      font-size: 11px;
+    }
+
+    .empty-classroom {
+      max-width: 790px;
+      margin: 70px auto 10px;
+      padding: 28px 24px;
+      border: 1px dashed #bdcbbc;
+      border-radius: 18px;
+      color: #5f6e68;
+      background: #fbfefc;
+      text-align: center;
+    }
+
+    .empty-classroom strong {
+      display: block;
+      margin-bottom: 7px;
+      color: #23483c;
+      font-size: 18px;
+    }
+
+    .empty-classroom span {
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(12, 28, 23, .54);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .student-card {
+      width: min(470px, 100%);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 22px;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(10, 36, 27, .28);
+      animation: cardIn .16s ease-out;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(10px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .student-card-head {
+      position: relative;
+      padding: 22px 58px 18px 22px;
+      color: #fff;
+      background: linear-gradient(135deg, #123d34 0%, #16815a 100%);
+    }
+
+    .student-card-head small {
+      display: block;
+      margin-bottom: 5px;
+      color: rgba(255,255,255,.72);
+      font-size: 10px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .65px;
+    }
+
+    .student-card-head h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .student-card-head p {
+      margin: 7px 0 0;
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+    }
+
+    .close-card {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 10px;
+      color: #fff;
+      background: rgba(255,255,255,.12);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .student-card-body { padding: 20px 22px 22px; }
+
+    .score-panel {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .answer-count {
+      text-align: center;
+    }
+
+    .answer-count strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .answer-count span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .35px;
+    }
+
+    .answer-count.correct strong { color: var(--oral-green); }
+    .answer-count.wrong strong { color: var(--oral-red); }
+
+    .big-score {
+      min-width: 92px;
+      padding: 11px 12px;
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .big-score strong {
+      display: block;
+      font-size: 38px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .big-score span {
+      display: block;
+      margin-top: 5px;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      opacity: .72;
+    }
+
+    .score-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .score-btn {
+      min-height: 74px;
+      border: 0;
+      border-radius: 16px;
+      color: #fff;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(15, 48, 38, .1);
+    }
+
+    .score-btn small {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,255,255,.76);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .score-btn.correct { background: var(--oral-green); }
+    .score-btn.wrong { background: var(--oral-red); }
+    .score-btn:active { transform: translateY(1px); }
+
+    .history-wrap {
+      margin-top: 15px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .history-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .history-head strong {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .35px;
+    }
+
+    .history-dots {
+      min-height: 29px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .history-dot {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .history-dot.plus { color: #116546; background: #dff5e9; }
+    .history-dot.minus { color: #a62318; background: #fee5e2; }
+    .history-empty { color: var(--muted); font-size: 11px; }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .card-actions button {
+      min-height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: #44534d;
+      background: #fff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .card-actions button:hover { background: #f7faf8; }
+    .card-actions button.danger { color: #9e251b; border-color: #efc8c3; background: #fff8f7; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      z-index: 1200;
+      max-width: min(520px, calc(100vw - 32px));
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #fff;
+      background: #173f35;
+      box-shadow: 0 10px 30px rgba(12, 46, 35, .2);
+      font-size: 12px;
+      font-weight: 750;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 8px);
+      transition: .18s ease;
+    }
+
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 930px) {
+      .oral-layout { grid-template-columns: 1fr; }
+      .controls { position: static; }
+      .desks { grid-template-columns: repeat(3, minmax(150px, 1fr)); }
+      .summary-list { max-height: 230px; }
+    }
+
+    @media (max-width: 620px) {
+      .classroom { padding: 16px; }
+      .classroom-stage { min-width: 545px; }
+      .desks { grid-template-columns: repeat(3, 165px); }
+      .student-card-body { padding: 17px; }
+      .student-card-head { padding-left: 18px; }
+      .score-btn { min-height: 68px; }
+    }
+
+    @media print {
+      .site-header,
+      .site-hero,
+      .controls,
+      .site-footer,
+      .modal-backdrop,
+      .toast { display: none !important; }
+
+      .site-page,
+      .oral-layout,
+      .classroom-stage { width: 100%; min-width: 0; margin: 0; padding: 0; }
+      .oral-layout { display: block; }
+      .classroom { border: 0; box-shadow: none; }
+      .desk { break-inside: avoid; box-shadow: none; }
+      .teacher { color: #fff !important; background: #333 !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="site-brand" href="index.html" aria-label="Кабинет учителя — главная">
+      <span class="site-brand-mark">H₂O</span>
+      <span class="site-brand-copy">
+        <strong>Кабинет учителя</strong>
+        <small>Химия · практика · инструменты</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a class="site-nav-link" href="index.html">← Все инструменты</a>
+    </nav>
+  </header>
+
+  <main class="site-page">
+    <section class="site-hero oral-hero">
+      <div class="site-hero-mark" aria-hidden="true">+1</div>
+      <div class="site-eyebrow">Работа на уроке · устные ответы</div>
+      <h1>Учёт устных ответов</h1>
+      <p>Нажмите на ученика в классе и отмечайте ответы: +1 за правильный, −1 за неправильный. Итог считается автоматически.</p>
+      <div class="site-hero-chips">
+        <span class="site-hero-chip">Та же схема рассадки</span>
+        <span class="site-hero-chip">Импорт JSON</span>
+        <span class="site-hero-chip">Автосохранение</span>
+        <span class="site-hero-chip">Итог за урок</span>
+      </div>
+    </section>
+
+    <div class="oral-layout">
+      <aside class="site-panel controls">
+        <h2>Урок</h2>
+        <p class="controls-note">Загрузите JSON из программы рассадки. Текущие баллы сохраняются в браузере автоматически.</p>
+
+        <div class="current-class">
+          <small>Текущий класс</small>
+          <strong id="className">Класс не загружен</strong>
+        </div>
+
+        <div class="lesson-stats">
+          <div class="lesson-stat"><strong id="studentsStat">0</strong><span>учеников</span></div>
+          <div class="lesson-stat"><strong id="answersStat">0</strong><span>ответов</span></div>
+          <div class="lesson-stat"><strong id="activeStat">0</strong><span>ответили</span></div>
+        </div>
+
+        <div class="actions">
+          <button class="site-btn import-btn wide" id="importButton">Импорт JSON класса</button>
+          <button class="site-btn secondary" id="resetScoresButton">Сбросить баллы</button>
+          <button class="site-btn ghost" id="exportButton">Экспорт итогов</button>
+          <button class="site-btn ghost" onclick="window.print()">Печать</button>
+          <button class="site-btn danger" id="clearClassButton">Очистить класс</button>
+        </div>
+
+        <input class="file" type="file" id="fileInput" accept=".json,application/json">
+        <a class="file" id="downloadLink"></a>
+
+        <div class="section-head">
+          <h3>Итоги урока</h3>
+          <span class="count-badge" id="summaryCount">0</span>
+        </div>
+        <div class="summary-list" id="summaryList"></div>
+
+        <div id="unseatedSection" hidden>
+          <div class="section-head">
+            <h3>Без места</h3>
+            <span class="count-badge" id="unseatedCount">0</span>
+          </div>
+          <div class="unseated-wrap" id="unseatedList"></div>
+        </div>
+
+        <div class="status" id="status" aria-live="polite">Загрузите JSON-файл класса, чтобы начать урок.</div>
+      </aside>
+
+      <section class="site-panel classroom">
+        <div class="classroom-head">
+          <div>
+            <h2>Классная комната</h2>
+            <p>Нажмите на фамилию ученика, чтобы открыть карточку ответа. Балл виден прямо на месте.</p>
+          </div>
+          <span class="classroom-badge">18 парт · 36 мест</span>
+        </div>
+
+        <div class="classroom-stage" id="classroomStage">
+          <div class="desks" id="desks"></div>
+          <div class="teacher">Стол учителя</div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><a href="index.html">Ко всем учебным инструментам</a></footer>
+
+  <div class="modal-backdrop" id="studentModal" role="dialog" aria-modal="true" aria-labelledby="studentCardName">
+    <article class="student-card">
+      <header class="student-card-head">
+        <small>Карточка ученика</small>
+        <h2 id="studentCardName">Ученик</h2>
+        <p id="studentCardSeat">Место</p>
+        <button class="close-card" id="closeCardButton" type="button" aria-label="Закрыть карточку">×</button>
+      </header>
+      <div class="student-card-body">
+        <div class="score-panel">
+          <div class="answer-count correct">
+            <strong id="correctCount">0</strong>
+            <span>правильно</span>
+          </div>
+          <div class="big-score score-zero" id="bigScore">
+            <strong id="scoreValue">0</strong>
+            <span>итог</span>
+          </div>
+          <div class="answer-count wrong">
+            <strong id="wrongCount">0</strong>
+            <span>ошибок</span>
+          </div>
+        </div>
+
+        <div class="score-buttons">
+          <button class="score-btn correct" id="correctButton" type="button">+1 · Правильно<small>добавить один балл</small></button>
+          <button class="score-btn wrong" id="wrongButton" type="button">−1 · Неправильно<small>вычесть один балл</small></button>
+        </div>
+
+        <div class="history-wrap">
+          <div class="history-head">
+            <strong>Ответы на этом уроке</strong>
+          </div>
+          <div class="history-dots" id="historyDots"></div>
+        </div>
+
+        <div class="card-actions">
+          <button id="undoButton" type="button">↶ Отменить последнее</button>
+          <button class="danger" id="resetStudentButton" type="button">Сбросить ученика</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "teacher_oral_responses_v1";
+    const DESKS = 18;
+
+    let state = emptyState();
+    let activeStudent = null;
+    let toastTimer = null;
+
+    const classNameEl = document.getElementById("className");
+    const studentsStatEl = document.getElementById("studentsStat");
+    const answersStatEl = document.getElementById("answersStat");
+    const activeStatEl = document.getElementById("activeStat");
+    const summaryCountEl = document.getElementById("summaryCount");
+    const summaryListEl = document.getElementById("summaryList");
+    const unseatedSectionEl = document.getElementById("unseatedSection");
+    const unseatedCountEl = document.getElementById("unseatedCount");
+    const unseatedListEl = document.getElementById("unseatedList");
+    const statusEl = document.getElementById("status");
+    const desksEl = document.getElementById("desks");
+    const classroomStageEl = document.getElementById("classroomStage");
+    const fileInputEl = document.getElementById("fileInput");
+    const downloadLinkEl = document.getElementById("downloadLink");
+    const modalEl = document.getElementById("studentModal");
+    const cardNameEl = document.getElementById("studentCardName");
+    const cardSeatEl = document.getElementById("studentCardSeat");
+    const correctCountEl = document.getElementById("correctCount");
+    const wrongCountEl = document.getElementById("wrongCount");
+    const scoreValueEl = document.getElementById("scoreValue");
+    const bigScoreEl = document.getElementById("bigScore");
+    const historyDotsEl = document.getElementById("historyDots");
+    const undoButtonEl = document.getElementById("undoButton");
+    const toastEl = document.getElementById("toast");
+
+    function emptyState() {
+      return {
+        className: "",
+        sourceFile: "",
+        seats: {},
+        unassigned: [],
+        scores: {}
+      };
+    }
+
+    function normalizeName(value) {
+      return String(value ?? "").trim().replace(/\s+/g, " ");
+    }
+
+    function seatKey(desk, side) {
+      return `desk-${desk}-${side}`;
+    }
+
+    function isSeatKey(key) {
+      return /^desk-(?:[1-9]|1[0-8])-(?:left|right)$/.test(key);
+    }
+
+    function scoreClass(score) {
+      if (score > 0) return "score-positive";
+      if (score < 0) return "score-negative";
+      return "score-zero";
+    }
+
+    function displayScore(score) {
+      return score > 0 ? `+${score}` : String(score);
+    }
+
+    function getRecord(name) {
+      if (!state.scores[name] || typeof state.scores[name] !== "object") {
+        state.scores[name] = {correct: 0, wrong: 0, history: []};
+      }
+      const record = state.scores[name];
+      record.correct = Number.isFinite(Number(record.correct)) ? Math.max(0, Number(record.correct)) : 0;
+      record.wrong = Number.isFinite(Number(record.wrong)) ? Math.max(0, Number(record.wrong)) : 0;
+      record.history = Array.isArray(record.history)
+        ? record.history.filter(value => value === 1 || value === -1)
+        : [];
+      return record;
+    }
+
+    function getScore(name) {
+      const record = getRecord(name);
+      return record.correct - record.wrong;
+    }
+
+    function getAllStudents() {
+      const result = [];
+      const seen = new Set();
+      const add = rawName => {
+        const name = normalizeName(rawName);
+        if (!name || seen.has(name)) return;
+        seen.add(name);
+        result.push(name);
+      };
+      Object.values(state.seats).forEach(add);
+      state.unassigned.forEach(add);
+      return result;
+    }
+
+    function findStudentSeat(name) {
+      const entry = Object.entries(state.seats).find(([, student]) => student === name);
+      return entry ? entry[0] : null;
+    }
+
+    function describeSeat(key) {
+      if (!key) return "Без места";
+      const match = key.match(/^desk-(\d+)-(left|right)$/);
+      if (!match) return "Место не определено";
+      const side = match[2] === "left" ? "слева" : "справа";
+      return `Парта ${match[1]}, ${side}`;
+    }
+
+    function deriveClassName(data, fileName) {
+      const candidates = [data?.className, data?.class, data?.title, data?.name]
+        .map(normalizeName)
+        .filter(Boolean);
+      if (candidates.length) return candidates[0];
+      const clean = String(fileName || "").replace(/\.json$/i, "").trim();
+      return clean || "Загруженный класс";
+    }
+
+    function makeUniqueName(name, used) {
+      const base = normalizeName(name);
+      if (!base) return "";
+      if (!used.has(base)) return base;
+      let index = 2;
+      while (used.has(`${base} (${index})`)) index++;
+      return `${base} (${index})`;
+    }
+
+    function readStudentName(value) {
+      if (typeof value === "string" || typeof value === "number") return normalizeName(value);
+      if (value && typeof value === "object") {
+        return normalizeName(value.name ?? value.fullName ?? value.fio ?? value.student ?? value.label);
+      }
+      return "";
+    }
+
+    function importToState(data, fileName) {
+      const next = emptyState();
+      const used = new Set();
+      const place = (key, rawValue) => {
+        if (!isSeatKey(key)) return;
+        const rawName = readStudentName(rawValue);
+        if (!rawName) return;
+        const name = makeUniqueName(rawName, used);
+        if (!name) return;
+        used.add(name);
+        next.seats[key] = name;
+      };
+      const addUnassigned = rawValue => {
+        const rawName = readStudentName(rawValue);
+        if (!rawName) return;
+        const name = makeUniqueName(rawName, used);
+        if (!name) return;
+        used.add(name);
+        next.unassigned.push(name);
+      };
+
+      if (Array.isArray(data)) {
+        data.forEach(addUnassigned);
+      } else if (data && typeof data === "object") {
+        if (data.seats && typeof data.seats === "object" && !Array.isArray(data.seats)) {
+          Object.entries(data.seats).forEach(([key, value]) => place(key, value));
+        }
+
+        if (Array.isArray(data.unassigned)) data.unassigned.forEach(addUnassigned);
+
+        if (!used.size && Array.isArray(data.students)) {
+          data.students.forEach(student => {
+            if (student && typeof student === "object" && isSeatKey(student.seat ?? student.seatKey ?? "")) {
+              place(student.seat ?? student.seatKey, student);
+            } else {
+              addUnassigned(student);
+            }
+          });
+        }
+
+        if (!used.size && Array.isArray(data.names)) data.names.forEach(addUnassigned);
+      }
+
+      if (!used.size) throw new Error("В JSON не найден список учеников.");
+
+      next.className = deriveClassName(data, fileName);
+      next.sourceFile = fileName || "";
+      [...Object.values(next.seats), ...next.unassigned].forEach(name => {
+        next.scores[name] = {correct: 0, wrong: 0, history: []};
+      });
+      return next;
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadState() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      try {
+        const parsed = JSON.parse(saved);
+        if (!parsed || typeof parsed !== "object") return;
+        state = {
+          className: normalizeName(parsed.className),
+          sourceFile: normalizeName(parsed.sourceFile),
+          seats: parsed.seats && typeof parsed.seats === "object" ? parsed.seats : {},
+          unassigned: Array.isArray(parsed.unassigned) ? parsed.unassigned.map(normalizeName).filter(Boolean) : [],
+          scores: parsed.scores && typeof parsed.scores === "object" ? parsed.scores : {}
+        };
+        Object.keys(state.seats).forEach(key => {
+          const name = normalizeName(state.seats[key]);
+          if (!isSeatKey(key) || !name) delete state.seats[key];
+          else state.seats[key] = name;
+        });
+        getAllStudents().forEach(getRecord);
+      } catch {
+        localStorage.removeItem(STORAGE_KEY);
+        state = emptyState();
+      }
+    }
+
+    function render() {
+      const students = getAllStudents();
+      classNameEl.textContent = state.className || "Класс не загружен";
+      studentsStatEl.textContent = students.length;
+
+      let answers = 0;
+      let active = 0;
+      students.forEach(name => {
+        const record = getRecord(name);
+        const count = record.correct + record.wrong;
+        answers += count;
+        if (count > 0) active++;
+      });
+      answersStatEl.textContent = answers;
+      activeStatEl.textContent = active;
+
+      renderClassroom(students.length > 0);
+      renderSummary(students);
+      renderUnseated();
+
+      if (activeStudent && students.includes(activeStudent)) renderStudentCard();
+      else if (activeStudent) closeCard();
+    }
+
+    function renderClassroom(hasStudents) {
+      desksEl.innerHTML = "";
+
+      if (!hasStudents) {
+        desksEl.style.display = "none";
+        let empty = classroomStageEl.querySelector(".empty-classroom");
+        if (!empty) {
+          empty = document.createElement("div");
+          empty.className = "empty-classroom";
+          empty.innerHTML = "<strong>Класс пока не загружен</strong><span>Используйте кнопку «Импорт JSON класса». Можно загрузить тот же файл, который вы используете в программе рассадки.</span>";
+          classroomStageEl.insertBefore(empty, classroomStageEl.querySelector(".teacher"));
+        }
+        classroomStageEl.querySelector(".teacher").style.display = "none";
+        return;
+      }
+
+      desksEl.style.display = "grid";
+      classroomStageEl.querySelector(".teacher").style.display = "block";
+      const empty = classroomStageEl.querySelector(".empty-classroom");
+      if (empty) empty.remove();
+
+      for (let i = DESKS; i >= 1; i--) {
+        const desk = document.createElement("div");
+        desk.className = "desk";
+        desk.innerHTML = `<div class="desk-title">Парта ${i}</div>`;
+
+        ["left", "right"].forEach(side => {
+          const key = seatKey(i, side);
+          const name = state.seats[key];
+          const seat = document.createElement("button");
+          seat.type = "button";
+          seat.className = `seat${name ? " occupied" : ""}`;
+
+          if (!name) {
+            seat.disabled = true;
+            seat.innerHTML = '<span class="seat-name">Пусто</span>';
+          } else {
+            const score = getScore(name);
+            seat.setAttribute("aria-label", `${name}, ${describeSeat(key)}, итог ${displayScore(score)}`);
+            seat.innerHTML = `<span class="seat-name">${escapeHTML(name)}</span><span class="seat-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+            seat.addEventListener("click", () => openCard(name));
+          }
+          desk.appendChild(seat);
+        });
+        desksEl.appendChild(desk);
+      }
+    }
+
+    function renderSummary(students) {
+      summaryListEl.innerHTML = "";
+      summaryCountEl.textContent = students.length;
+
+      if (!students.length) {
+        summaryListEl.innerHTML = '<div class="summary-empty">Здесь появятся ученики и их текущие баллы.</div>';
+        return;
+      }
+
+      const ordered = [...students].sort((a, b) => a.localeCompare(b, "ru"));
+      ordered.forEach(name => {
+        const score = getScore(name);
+        const row = document.createElement("button");
+        row.type = "button";
+        row.className = "summary-row";
+        row.innerHTML = `<span class="summary-name">${escapeHTML(name)}</span><span class="mini-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+        row.addEventListener("click", () => openCard(name));
+        summaryListEl.appendChild(row);
+      });
+    }
+
+    function renderUnseated() {
+      const students = state.unassigned.filter(Boolean);
+      unseatedSectionEl.hidden = students.length === 0;
+      unseatedCountEl.textContent = students.length;
+      unseatedListEl.innerHTML = "";
+
+      students.forEach(name => {
+        const chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "unseated-chip";
+        const score = getScore(name);
+        chip.innerHTML = `<span>${escapeHTML(name)}</span><span class="mini-score ${scoreClass(score)}">${displayScore(score)}</span>`;
+        chip.addEventListener("click", () => openCard(name));
+        unseatedListEl.appendChild(chip);
+      });
+    }
+
+    function openCard(name) {
+      if (!getAllStudents().includes(name)) return;
+      activeStudent = name;
+      renderStudentCard();
+      modalEl.classList.add("open");
+      document.body.classList.add("modal-open");
+      document.getElementById("correctButton").focus();
+    }
+
+    function closeCard() {
+      modalEl.classList.remove("open");
+      document.body.classList.remove("modal-open");
+      activeStudent = null;
+    }
+
+    function renderStudentCard() {
+      if (!activeStudent) return;
+      const record = getRecord(activeStudent);
+      const score = getScore(activeStudent);
+      const seat = findStudentSeat(activeStudent);
+
+      cardNameEl.textContent = activeStudent;
+      cardSeatEl.textContent = describeSeat(seat);
+      correctCountEl.textContent = record.correct;
+      wrongCountEl.textContent = record.wrong;
+      scoreValueEl.textContent = displayScore(score);
+      bigScoreEl.className = `big-score ${scoreClass(score)}`;
+
+      historyDotsEl.innerHTML = "";
+      if (!record.history.length) {
+        historyDotsEl.innerHTML = '<span class="history-empty">Ответов пока нет.</span>';
+      } else {
+        record.history.slice(-18).forEach(value => {
+          const dot = document.createElement("span");
+          dot.className = `history-dot ${value === 1 ? "plus" : "minus"}`;
+          dot.textContent = value === 1 ? "+" : "−";
+          dot.title = value === 1 ? "Правильный ответ" : "Неправильный ответ";
+          historyDotsEl.appendChild(dot);
+        });
+      }
+      undoButtonEl.disabled = record.history.length === 0;
+    }
+
+    function addAnswer(value) {
+      if (!activeStudent) return;
+      const record = getRecord(activeStudent);
+      if (value === 1) record.correct++;
+      else record.wrong++;
+      record.history.push(value);
+      saveState();
+      render();
+      showToast(`${activeStudent}: ${value === 1 ? "+1" : "−1"}. Итог ${displayScore(getScore(activeStudent))}`);
+    }
+
+    function undoLast() {
+      if (!activeStudent) return;
+      const record = getRecord(activeStudent);
+      const last = record.history.pop();
+      if (last === 1) record.correct = Math.max(0, record.correct - 1);
+      if (last === -1) record.wrong = Math.max(0, record.wrong - 1);
+      saveState();
+      render();
+      if (last) showToast("Последнее действие отменено.");
+    }
+
+    function resetStudent() {
+      if (!activeStudent) return;
+      if (!confirm(`Сбросить все баллы ученика «${activeStudent}» за этот урок?`)) return;
+      state.scores[activeStudent] = {correct: 0, wrong: 0, history: []};
+      saveState();
+      render();
+      showToast("Баллы ученика сброшены.");
+    }
+
+    function resetAllScores() {
+      const students = getAllStudents();
+      if (!students.length) {
+        setStatus("Сначала загрузите класс.");
+        return;
+      }
+      if (!confirm("Начать новый урок с этим классом? Все текущие баллы будут обнулены.")) return;
+      students.forEach(name => {
+        state.scores[name] = {correct: 0, wrong: 0, history: []};
+      });
+      saveState();
+      render();
+      setStatus("Баллы обнулены. Рассадка сохранена — можно начинать новый урок.");
+      showToast("Новый урок: баллы обнулены.");
+    }
+
+    function clearClass() {
+      if (!getAllStudents().length) {
+        setStatus("Класс уже очищен.");
+        return;
+      }
+      if (!confirm("Очистить текущий класс, рассадку и все набранные баллы? После этого можно загрузить другой JSON.")) return;
+      closeCard();
+      state = emptyState();
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+      fileInputEl.value = "";
+      setStatus("Класс очищен. Теперь можно загрузить другой JSON-файл.");
+      showToast("Текущий класс удалён.");
+    }
+
+    function importFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          const studentsNow = getAllStudents();
+          if (studentsNow.length && !confirm("Заменить текущий класс данными из нового JSON? Текущие баллы будут потеряны.")) {
+            fileInputEl.value = "";
+            return;
+          }
+          state = importToState(data, file.name);
+          activeStudent = null;
+          saveState();
+          render();
+          setStatus(`Загружено учеников: ${getAllStudents().length}. Можно начинать опрос.`);
+          showToast(`Класс «${state.className}» загружен.`);
+        } catch (error) {
+          alert(error?.message || "Не удалось прочитать JSON-файл.");
+        } finally {
+          fileInputEl.value = "";
+        }
+      };
+      reader.onerror = () => {
+        alert("Не удалось прочитать файл.");
+        fileInputEl.value = "";
+      };
+      reader.readAsText(file, "utf-8");
+    }
+
+    function exportResults() {
+      const students = getAllStudents();
+      if (!students.length) {
+        setStatus("Нет данных для экспорта.");
+        return;
+      }
+
+      const result = {
+        type: "oral-responses",
+        version: 1,
+        className: state.className,
+        exportedAt: new Date().toISOString(),
+        sourceFile: state.sourceFile,
+        students: students
+          .map(name => {
+            const record = getRecord(name);
+            return {
+              name,
+              seat: findStudentSeat(name),
+              correct: record.correct,
+              wrong: record.wrong,
+              score: getScore(name),
+              history: [...record.history]
+            };
+          })
+          .sort((a, b) => a.name.localeCompare(b.name, "ru"))
+      };
+
+      const blob = new Blob([JSON.stringify(result, null, 2)], {type: "application/json"});
+      const url = URL.createObjectURL(blob);
+      const safeClass = (state.className || "class").replace(/[^\p{L}\p{N}_-]+/gu, "-").replace(/^-+|-+$/g, "") || "class";
+      downloadLinkEl.href = url;
+      downloadLinkEl.download = `ustnye-otvety-${safeClass}.json`;
+      downloadLinkEl.click();
+      setTimeout(() => URL.revokeObjectURL(url), 0);
+      setStatus("Итоги урока экспортированы в JSON.");
+    }
+
+    function setStatus(text) {
+      statusEl.textContent = text;
+    }
+
+    function showToast(text) {
+      toastEl.textContent = text;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1500);
+    }
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>\"]/g, character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '\"': "&quot;"
+      }[character]));
+    }
+
+    document.getElementById("importButton").addEventListener("click", () => fileInputEl.click());
+    fileInputEl.addEventListener("change", event => importFile(event.target.files[0]));
+    document.getElementById("resetScoresButton").addEventListener("click", resetAllScores);
+    document.getElementById("clearClassButton").addEventListener("click", clearClass);
+    document.getElementById("exportButton").addEventListener("click", exportResults);
+    document.getElementById("closeCardButton").addEventListener("click", closeCard);
+    document.getElementById("correctButton").addEventListener("click", () => addAnswer(1));
+    document.getElementById("wrongButton").addEventListener("click", () => addAnswer(-1));
+    document.getElementById("undoButton").addEventListener("click", undoLast);
+    document.getElementById("resetStudentButton").addEventListener("click", resetStudent);
+
+    modalEl.addEventListener("click", event => {
+      if (event.target === modalEl) closeCard();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!modalEl.classList.contains("open")) return;
+      if (event.key === "Escape") closeCard();
+      if (event.key === "+" || event.key === "=") addAnswer(1);
+      if (event.key === "-") addAnswer(-1);
+    });
+
+    loadState();
+    render();
+    if (getAllStudents().length) {
+      setStatus("Восстановлен предыдущий класс. Баллы сохранены.");
+    }
+  </script>
+</body>
+</html>
