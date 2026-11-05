@@ -213,6 +213,9 @@
 }
 .biology-grade-option input:focus-visible + span { outline: 3px solid rgba(49,87,213,.25); outline-offset: 3px; }
 
+.screensaver-grade-note { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.screensaver-deck-summary { margin: 0; font-weight: 600; font-size: 14px; }
+
 .screensaver-duration { display: grid; margin-top: 22px; }
 .screensaver-duration select {
   width: 100%;
