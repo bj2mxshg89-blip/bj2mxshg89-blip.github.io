@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { test, expect } from "@playwright/test";
 import { biologyCardPairs } from "../../assets/js/screensaver-biology-cards.js";
+import { geographyCardsForGrade } from "../../assets/js/screensaver-geography-cards.js";
 import { collectRuntimeErrors, expectNoRuntimeErrors } from "./helpers.js";
 
 const mockSource = await readFile(new URL("./fixtures/supabase-client.mock.js", import.meta.url), "utf8");
@@ -134,4 +135,88 @@ test("настройка классов помещается на экран ш�
   await expect(page.locator("#launcher")).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(1);
+});
+
+for (const grade of [5, 6]) {
+  test(`география ${grade} класса: полный набор, ответы и изображения на доске`, async ({ page }) => {
+    test.setTimeout(90_000);
+    const expectedCards = geographyCardsForGrade(grade);
+    const byQuestion = new Map(expectedCards.map((card) => [card.question, card]));
+    const runtimeErrors = collectRuntimeErrors(page);
+    await mockAccount(page, "teacher");
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto("/screensaver.html");
+    await page.locator('input[name="subject"][value="biology"]').uncheck({ force: true });
+    await page.locator('input[name="subject"][value="chemistry"]').uncheck({ force: true });
+    await page.locator(`input[name="geographyGrade"][value="${grade}"]`).check({ force: true });
+    await expect(page.locator("#deckSummary")).toHaveText(`Карточек в выбранном наборе: ${expectedCards.length}`);
+    await page.locator("#settingsForm").evaluate((form) => form.requestSubmit());
+    await expect(page.locator("#show")).toBeVisible();
+    await page.locator('[data-action="toggle"]').evaluate((button) => button.click());
+    const seen = new Set();
+    async function expectFits() {
+      const result = await page.locator("#slideText").evaluate(async (text) => {
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const box = text.closest(".screensaver-copy");
+        return text.scrollWidth <= box.clientWidth + 1 && box.scrollHeight <= box.clientHeight + 1;
+      });
+      expect(result).toBe(true);
+    }
+    for (let index = 0; index < expectedCards.length; index += 1) {
+      const question = await page.locator("#slideText").textContent();
+      const card = byQuestion.get(question);
+      expect(card, question).toBeTruthy();
+      seen.add(card.id);
+      await expect(page.locator("#slideImage")).toHaveAttribute("src", card.image);
+      await expect.poll(() => page.locator("#slideImage").evaluate((image) => image.complete && image.naturalWidth > 0)).toBe(true);
+      await expectFits();
+      await page.locator('[data-action="reveal"]').evaluate((button) => button.click());
+      await expect(page.locator("#slideText")).toHaveText(card.answer);
+      await expect(page.locator("#timerValue")).toHaveText("00:06");
+      await expectFits();
+      if (index < expectedCards.length - 1) {
+        await page.locator('[data-action="next"]').evaluate((button) => button.click());
+      }
+    }
+    expect(seen.size).toBe(expectedCards.length);
+    await expectNoRuntimeErrors(runtimeErrors);
+  });
+}
+
+test("класс географии сохраняется и не зависит от биологии", async ({ page }) => {
+  await mockAccount(page, "teacher");
+  await page.goto("/screensaver.html");
+  await page.locator('input[name="biologyGrade"][value="6"]').uncheck({ force: true });
+  await page.locator('input[name="geographyGrade"][value="6"]').check({ force: true });
+  await expect(page.locator("#deckSummary")).toHaveText("Карточек в выбранном наборе: 162");
+  await page.locator("#settingsForm").evaluate((form) => form.requestSubmit());
+  await expect(page.locator("#show")).toBeVisible();
+  await page.reload();
+  await expect(page.locator('input[name="geographyGrade"][value="6"]')).toBeChecked();
+  await expect(page.locator('input[name="biologyGrade"][value="6"]')).not.toBeChecked();
+});
+
+test("настройки предыдущей версии ограничивают географию 5 классом", async ({ page }) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("teacherScreensaverSettings", JSON.stringify({
+      version: 3, subjects: ["geography"], biologyGrades: [6], questionDuration: 30
+    }));
+  });
+  await mockAccount(page, "teacher");
+  await page.goto("/screensaver.html");
+  await expect(page.locator('input[name="geographyGrade"][value="5"]')).toBeChecked();
+  await expect(page.locator("#questionDuration")).toHaveValue("30");
+  await expect(page.locator('input[name="biologyGrade"][value="6"]')).toBeChecked();
+  await expect(page.locator("#deckSummary")).toHaveText("Карточек в выбранном наборе: 36");
+});
+
+test("класс географии отключается вместе с предметом, счётчик обновляется", async ({ page }) => {
+  await mockAccount(page, "teacher");
+  await page.goto("/screensaver.html");
+  await page.locator('input[name="subject"][value="geography"]').uncheck({ force: true });
+  await expect(page.locator('input[name="geographyGrade"][value="5"]')).toBeDisabled();
+  await expect(page.locator("#deckSummary")).toHaveText("Карточек в выбранном наборе: 126");
+  await page.locator('input[name="subject"][value="geography"]').check({ force: true });
+  await expect(page.locator('input[name="geographyGrade"][value="5"]')).toBeEnabled();
+  await expect(page.locator("#deckSummary")).toHaveText("Карточек в выбранном наборе: 162");
 });

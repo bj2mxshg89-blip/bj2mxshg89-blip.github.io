@@ -7,7 +7,7 @@
   <title>Заставка для доски — Кабинет учителя</title>
   <link rel="stylesheet" href="assets/css/site.css">
   <link rel="stylesheet" href="assets/css/account.css">
-  <link rel="stylesheet" href="assets/css/screensaver.css?v=13">
+  <link rel="stylesheet" href="assets/css/screensaver.css?v=16">
 </head>
 <body class="account-page screensaver-page">
   <section class="screensaver-gate" id="accessGate" aria-live="polite">
@@ -21,7 +21,7 @@
       <div>
         <div class="site-eyebrow">Закрытый инструмент учителя</div>
         <h1>Заставка для доски</h1>
-        <p>В наборе 162 пары «вопрос — ответ»: 90 по биологии за 5–6 классы, 36 по химии и 36 по географии. Пары перемешиваются целиком.</p>
+        <p>216 пар «вопрос — ответ»: 90 по биологии, 36 по химии и 90 по географии. Выберите предметы и класс — вопросы и ответы будут сменяться автоматически.</p>
       </div>
     </header>
 
@@ -48,7 +48,7 @@
           </label>
           <label class="subject-option subject-geography">
             <input type="checkbox" name="subject" value="geography" checked>
-            <span><b></b><strong>География</strong><small>коричневые карточки · 36 пар</small></span>
+            <span><b></b><strong>География</strong><small id="geographyCount">коричневые карточки · 36 пар</small></span>
           </label>
         </fieldset>
 
@@ -66,6 +66,21 @@
           </div>
         </fieldset>
 
+        <fieldset class="biology-grade-filter" id="geographyGradeFieldset">
+          <legend>Класс географии</legend>
+          <div class="biology-grade-options">
+            <label class="biology-grade-option">
+              <input type="radio" name="geographyGrade" value="5" checked>
+              <span><strong>5 класс</strong><small>36 карточек · программа 5 класса</small></span>
+            </label>
+            <label class="biology-grade-option">
+              <input type="radio" name="geographyGrade" value="6">
+              <span><strong>6 класс</strong><small>90 карточек · программа 5–6 классов</small></span>
+            </label>
+          </div>
+          <p class="screensaver-grade-note">Вопросы старших классов не попадут в младший набор.</p>
+        </fieldset>
+
         <label class="screensaver-duration" for="questionDuration">
           <span>Время на вопрос</span>
           <select id="questionDuration" name="questionDuration">
@@ -76,6 +91,7 @@
           <small>Ответ показывается 6 секунд.</small>
         </label>
 
+        <p class="screensaver-deck-summary" id="deckSummary" aria-live="polite">Карточек в выбранном наборе: 162</p>
         <p class="screensaver-form-error" id="settingsError" role="alert"></p>
         <button class="site-btn screensaver-start" id="startButton" type="submit">Запустить заставку</button>
       </form>
@@ -116,6 +132,6 @@
     <a class="site-btn" href="dashboard.html">Вернуться в кабинет</a>
   </section>
 
-  <script type="module" src="assets/js/screensaver.js?v=15"></script>
+  <script type="module" src="assets/js/screensaver.js?v=16"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
-import { getAccountContext } from "./supabase-client.js?v=15";
-import { additionalCardPairs } from "./screensaver-more-cards.js?v=15";
-import { biologyCardPairs } from "./screensaver-biology-cards.js?v=15";
+import { getAccountContext } from "./supabase-client.js?v=16";
+import { additionalCardPairs } from "./screensaver-more-cards.js?v=16";
+import { biologyCardPairs } from "./screensaver-biology-cards.js?v=16";
+import { geographyCardPairs, geographyCardsForGrade } from "./screensaver-geography-cards.js?v=16";
 
 const baseCardPairs = [
   {
@@ -308,14 +309,15 @@ const baseCardPairs = [
 const existingCardPairs = [...baseCardPairs, ...additionalCardPairs];
 const cardPairs = [
   ...biologyCardPairs,
-  ...existingCardPairs.filter((pair) => pair.subject !== "biology")
+  ...geographyCardPairs,
+  ...existingCardPairs.filter((pair) => pair.subject === "chemistry")
 ];
 const fallbackImage = "assets/images/screensaver/image-fallback.svg";
 
 const elements = Object.fromEntries([
   "accessGate", "launcher", "settingsForm", "questionDuration", "settingsError", "show", "stage",
   "slide", "slideImage", "slideCopy", "slideText", "timer", "timerLabel", "timerValue", "progress", "controls",
-  "startButton", "biologyGradeFieldset",
+  "startButton", "biologyGradeFieldset", "geographyGradeFieldset", "deckSummary", "geographyCount",
   "fatalError", "fatalErrorText"
 ].map((id) => [id, document.getElementById(id)]));
 
@@ -357,17 +359,42 @@ function selectedBiologyGrades() {
     .map((input) => Number(input.value));
 }
 
+function selectedGeographyGrade() {
+  return Number(elements.settingsForm.querySelector('input[name="geographyGrade"]:checked')?.value);
+}
+
+function selectedCardPairs(subjects, biologyGrades, geographyGrade) {
+  const geographyIds = new Set(geographyCardsForGrade(geographyGrade).map((pair) => pair.id));
+  return cardPairs.filter((pair) => (
+    subjects.includes(pair.subject)
+    && (pair.subject !== "biology" || biologyGrades.includes(pair.grade))
+    && (pair.subject !== "geography" || geographyIds.has(pair.id))
+  ));
+}
+
 function updateBiologyGradeState() {
   const biologySelected = elements.settingsForm.querySelector('input[name="subject"][value="biology"]').checked;
   elements.biologyGradeFieldset.disabled = !biologySelected;
 }
 
-function savePreferences(subjects, biologyGrades, questionDuration) {
+function updateSettingsState() {
+  updateBiologyGradeState();
+  const subjects = selectedSubjects();
+  elements.geographyGradeFieldset.disabled = !subjects.includes("geography");
+  const geographyGrade = selectedGeographyGrade();
+  const geographyCount = geographyCardsForGrade(geographyGrade).length;
+  elements.geographyCount.textContent = `коричневые карточки · ${geographyCount} пар`;
+  const count = selectedCardPairs(subjects, selectedBiologyGrades(), geographyGrade).length;
+  elements.deckSummary.textContent = `Карточек в выбранном наборе: ${count}`;
+}
+
+function savePreferences(subjects, biologyGrades, geographyGrade, questionDuration) {
   try {
     localStorage.setItem("teacherScreensaverSettings", JSON.stringify({
-      version: 3,
+      version: 4,
       subjects,
       biologyGrades,
+      geographyGrade,
       questionDuration
     }));
   } catch (_) {
@@ -389,6 +416,9 @@ function restorePreferences() {
         input.checked = allowedGrades.has(Number(input.value));
       });
     }
+    if (saved.version >= 4 && [5, 6].includes(saved.geographyGrade)) {
+      elements.settingsForm.querySelector(`input[name="geographyGrade"][value="${saved.geographyGrade}"]`).checked = true;
+    }
     const legacyDurations = { "30": "15", "40": "20", "60": "30" };
     const duration = saved.version >= 2
       ? String(saved.questionDuration)
@@ -399,7 +429,7 @@ function restorePreferences() {
   } catch (_) {
     // Ignore malformed local preferences.
   }
-  updateBiologyGradeState();
+  updateSettingsState();
 }
 
 function currentPair() {
@@ -420,7 +450,9 @@ function fitSlideText() {
   requestAnimationFrame(() => {
     let size = Number.parseFloat(getComputedStyle(text).fontSize);
     const minimumSize = Math.max(22, elements.stage.clientWidth * 0.019);
-    while ((text.scrollHeight > box.clientHeight || text.scrollWidth > box.clientWidth) && size > minimumSize) {
+    // Оставляем запас для выступающих частей букв и округления высоты строк.
+    while ((text.scrollHeight > box.clientHeight - 8 || text.scrollWidth > box.clientWidth
+      || box.scrollHeight > box.clientHeight) && size > minimumSize) {
       size = Math.max(minimumSize, size - 2);
       text.style.fontSize = `${size}px`;
     }
@@ -572,10 +604,8 @@ async function enterFullscreen() {
   try { await elements.stage.requestFullscreen(); } catch (_) { /* Fullscreen can be enabled manually. */ }
 }
 
-async function startPresentation(subjects, biologyGrades, duration) {
-  const selectedPairs = cardPairs.filter((pair) => (
-    subjects.includes(pair.subject) && (pair.subject !== "biology" || biologyGrades.includes(pair.grade))
-  ));
+async function startPresentation(subjects, biologyGrades, geographyGrade, duration) {
+  const selectedPairs = selectedCardPairs(subjects, biologyGrades, geographyGrade);
   elements.startButton.disabled = true;
   elements.startButton.textContent = "Готовим изображения…";
 
@@ -631,14 +661,24 @@ function setupEvents() {
       elements.settingsError.textContent = "Выберите хотя бы один класс биологии.";
       return;
     }
+    const geographyGrade = selectedGeographyGrade();
+    if (subjects.includes("geography") && ![5, 6].includes(geographyGrade)) {
+      elements.settingsError.textContent = "Выберите класс географии.";
+      return;
+    }
     elements.settingsError.textContent = "";
     const duration = Number(elements.questionDuration.value);
-    savePreferences(subjects, biologyGrades, duration);
-    await startPresentation(subjects, biologyGrades, duration);
+    savePreferences(subjects, biologyGrades, geographyGrade, duration);
+    try {
+      await startPresentation(subjects, biologyGrades, geographyGrade, duration);
+    } catch (_) {
+      elements.settingsError.textContent = "Не удалось запустить показ. Попробуйте ещё раз.";
+    }
   });
 
-  elements.settingsForm.addEventListener("change", (event) => {
-    if (event.target.matches('input[name="subject"][value="biology"]')) updateBiologyGradeState();
+  elements.settingsForm.addEventListener("change", () => {
+    elements.settingsError.textContent = "";
+    updateSettingsState();
   });
 
   elements.controls.addEventListener("click", async (event) => {
@@ -693,7 +733,7 @@ function setupEvents() {
 async function init() {
   setupEvents();
   restorePreferences();
-  updateBiologyGradeState();
+  updateSettingsState();
   try {
     const account = await getAccountContext({ refresh: true });
     if (!account.signedIn) {

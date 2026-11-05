@@ -1,4 +1,4 @@
-import { TestLoadError, fetchJson, isPlainObject } from "./utils.js?v=15";
+import { TestLoadError, fetchJson, isPlainObject } from "./utils.js?v=16";
 
 const CATALOG_SCHEMA_VERSION = 2;
 const ID_PATTERN = /^[a-z0-9][a-z0-9-]*$/;

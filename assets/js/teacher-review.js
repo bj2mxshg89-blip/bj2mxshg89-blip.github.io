@@ -1,4 +1,4 @@
-import { getAccountContext } from "./supabase-client.js?v=15";
+import { getAccountContext } from "./supabase-client.js?v=16";
 
 const elements = Object.fromEntries([
   "reviewLoading", "reviewError", "reviewErrorText", "reviewApp", "reviewHome", "reviewStage",
