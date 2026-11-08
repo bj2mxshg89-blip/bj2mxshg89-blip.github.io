@@ -1,4 +1,4 @@
-import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=16";
+import { getAccountContext, getSupabaseClient } from "./supabase-client.js?v=17";
 import {
   loanFor,
   loansForStudent,
@@ -13,7 +13,7 @@ import {
   validateLoanAssignment,
   validateStudentInput,
   validateTextbookInput
-} from "./textbook-registry.js?v=16";
+} from "./textbook-registry.js?v=17";
 
 const elements = Object.fromEntries([
   "registryLoading", "registryError", "registryErrorText", "registryRetry", "registryApp",

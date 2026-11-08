@@ -1,7 +1,7 @@
-import { getAccountContext } from "./supabase-client.js?v=16";
-import { additionalCardPairs } from "./screensaver-more-cards.js?v=16";
-import { biologyCardPairs } from "./screensaver-biology-cards.js?v=16";
-import { geographyCardPairs, geographyCardsForGrade } from "./screensaver-geography-cards.js?v=16";
+import { getAccountContext } from "./supabase-client.js?v=17";
+import { additionalCardPairs } from "./screensaver-more-cards.js?v=17";
+import { biologyCardPairs } from "./screensaver-biology-cards.js?v=17";
+import { geographyCardPairs, geographyCardsForGrade } from "./screensaver-geography-cards.js?v=17";
 
 const baseCardPairs = [
   {

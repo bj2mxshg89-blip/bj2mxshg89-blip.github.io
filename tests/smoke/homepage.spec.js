@@ -19,7 +19,7 @@ test("главная строит динамический каталог из 1
   await expect(page.locator('a[href="test.html?id=hybridization-theory"]')).toHaveCount(1);
   await expect(page.locator('a[href="test.html?id=organic-classification"]')).toHaveCount(1);
   await expect(page.locator('a[href="test.html?id=redox-trainer"]')).toHaveCount(1);
-  await expect(page.locator('a[href="hydrocarbons.html"]')).toHaveCount(1);
+  await expect(page.locator('a[href="test.html?id=hydrocarbons"]')).toHaveCount(1);
   await expect(page.locator("#toolCatalog")).not.toContainText("старая версия");
   await expectNoRuntimeErrors(runtimeErrors);
 });

@@ -85,17 +85,18 @@ export function validateTestContent(test, expectedId) {
         .filter(Boolean)
         .map((question) => getQuestionMaxPoints(question));
       if (!maxima.length || !Number.isInteger(count) || count < 1 || count > maxima.length) return;
-      const selectedMaxima = count === maxima.length
-        ? maxima
-        : test.settings?.shuffleQuestions === false
-          ? maxima.slice(0, count)
-          : [...maxima].sort((left, right) => left - right).slice(0, count);
-      const minimum = selectedMaxima.reduce((sum, value) => sum + value, 0);
-      const maximum = count === maxima.length || test.settings?.shuffleQuestions === false
-        ? minimum
-        : [...maxima].sort((left, right) => right - left)
-          .slice(0, count)
+      const pools = Array.isArray(variant.selectionGroups) && variant.selectionGroups.length
+        ? variant.selectionGroups : [{ questionIds, count }];
+      let minimum = 0, maximum = 0;
+      for (const pool of pools) {
+        const scores = (pool.questionIds || []).map((id) => questionMap.get(id)).filter(Boolean)
+          .map((question) => getQuestionMaxPoints(question));
+        const ordered = test.settings?.shuffleQuestions === false;
+        minimum += (ordered ? scores : [...scores].sort((a, b) => a - b)).slice(0, pool.count)
           .reduce((sum, value) => sum + value, 0);
+        maximum += (ordered ? scores : [...scores].sort((a, b) => b - a)).slice(0, pool.count)
+          .reduce((sum, value) => sum + value, 0);
+      }
       attemptMaximums.push({
         variantId: variant.id,
         mode,

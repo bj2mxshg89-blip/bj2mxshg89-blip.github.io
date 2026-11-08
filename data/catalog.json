@@ -118,13 +118,13 @@
       "symbol": "CₙH₂ₙ",
       "color": "#087f82",
       "softColor": "#e7f6f4",
-      "questionCount": 24,
+      "questionCount": 764,
       "modes": [
         "training",
         "test"
       ],
       "meta": "4 раздела · контрольная на 24 задания",
-      "url": "hydrocarbons.html",
+      "url": "test.html?id=hydrocarbons",
       "linkLabel": "Открыть",
       "status": "active",
       "order": 50

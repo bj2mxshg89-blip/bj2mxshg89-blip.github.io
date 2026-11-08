@@ -67,7 +67,7 @@ test("каталог показывает 10 карточек без устар�
   assert.equal(items.find((item) => item.id === "alkane-homology").url, "test.html?id=alkane-homology");
   assert.equal(items.find((item) => item.id === "alkane-homology").questionCount, 180);
   assert.equal(items.find((item) => item.id === "redox-trainer").url, "test.html?id=redox-trainer");
-  assert.equal(items.find((item) => item.id === "hydrocarbons").url, "hydrocarbons.html");
+  assert.equal(items.find((item) => item.id === "hydrocarbons").url, "test.html?id=hydrocarbons");
   assert.equal(items.some((item) => item.id.endsWith("-legacy")), false);
   assert.equal(items.every((item) => item.status === "active"), true);
 });

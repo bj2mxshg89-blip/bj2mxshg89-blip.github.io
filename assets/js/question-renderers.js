@@ -1,4 +1,5 @@
-import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=16";
+import { evaluateAnswer, formatAnswer, formatCorrectAnswer } from "./question-types.js?v=17";
+import { appendFormattedValue, appendChemicalZoom, chemicalDiagram } from "./chemical-diagrams.js?v=17";
 
 const renderers = {
   single: renderSingleQuestion,
@@ -6,6 +7,7 @@ const renderers = {
   matching: renderMatchingQuestion,
   number: renderNumberQuestion,
   text: renderTextQuestion,
+  chemical: renderChemicalQuestion,
   sequence: renderSequenceQuestion
 };
 
@@ -16,12 +18,18 @@ export function renderQuestionContent(container, content, { append = false, revi
     return;
   }
 
+  if (Array.isArray(content)) {
+    content.forEach((part) => renderQuestionContent(container, part, { append: true, review }));
+    return;
+  }
+
   const figure = document.createElement("figure");
   figure.className = `question-content${review ? " is-review" : ""}`;
   const value = document.createElement("div");
   value.className = `question-content-value${content.format === "formula" ? " is-formula" : ""}`;
-  value.textContent = content.text;
+  appendFormattedValue(value, content.text, content.format);
   figure.appendChild(value);
+  if (!review) appendChemicalZoom(figure);
 
   if (content.caption) {
     const caption = document.createElement("figcaption");
@@ -48,6 +56,7 @@ export function renderQuestionOptions(context) {
   }
 
   renderer(context);
+  if (context.question.type !== "chemical") appendChemicalZoom(context.container);
 }
 
 function renderSingleQuestion(context) {
@@ -129,7 +138,10 @@ function renderTextQuestion({
   locked,
   revealCorrect,
   onChange,
-  onEnter
+  onEnter,
+  settings = question.textAnswer,
+  inputLabel = "Ваш ответ",
+  onInput = null
 }) {
   const wrapper = document.createElement("div");
   wrapper.className = "text-answer answer-input-card";
@@ -142,16 +154,16 @@ function renderTextQuestion({
   const label = document.createElement("label");
   label.className = "text-answer-label";
   label.htmlFor = inputId;
-  label.textContent = "Ваш ответ";
+  label.textContent = inputLabel;
 
   const input = document.createElement("input");
   input.id = inputId;
   input.type = "text";
   input.className = "text-answer-input";
   input.value = typeof selected === "string" ? selected : "";
-  input.placeholder = question.textAnswer.placeholder;
-  input.inputMode = question.textAnswer.inputMode;
-  input.maxLength = question.textAnswer.maxLength;
+  input.placeholder = settings.placeholder;
+  input.inputMode = settings.inputMode || "text";
+  input.maxLength = settings.maxLength;
   input.autocomplete = "off";
   input.spellcheck = false;
   input.readOnly = locked;
@@ -162,13 +174,12 @@ function renderTextQuestion({
   const help = document.createElement("div");
   help.id = helpId;
   help.className = "text-answer-help";
-  help.textContent = `Не более ${question.textAnswer.maxLength} символов.`;
+  help.textContent = `Не более ${settings.maxLength} символов.`;
 
-  input.addEventListener("input", () => onChange({
-    value: input.value,
-    focusKey: input.dataset.focusKey,
-    render: false
-  }));
+  input.addEventListener("input", () => {
+    onChange({ value: input.value, focusKey: input.dataset.focusKey, render: false });
+    onInput?.(input.value);
+  });
 
   let isComposing = false;
   input.addEventListener("compositionstart", () => { isComposing = true; });
@@ -181,6 +192,28 @@ function renderTextQuestion({
 
   wrapper.append(label, input, help);
   container.appendChild(wrapper);
+}
+
+function renderChemicalQuestion(context) {
+  const isStructure = context.question.chemical.kind === "structure";
+  const preview = document.createElement("div");
+  preview.className = "chemical-preview";
+  preview.setAttribute("aria-live", "polite");
+  function updatePreview(value) {
+    preview.replaceChildren();
+    if (!isStructure || !value.trim()) return;
+    try {
+      preview.append(chemicalDiagram(value));
+      appendChemicalZoom(preview);
+    } catch (error) {
+      const help = document.createElement("p");
+      help.className = "text-answer-help"; help.textContent = error.message;
+      preview.append(help);
+    }
+  }
+  renderTextQuestion({ ...context, settings: context.question.chemical,
+    inputLabel: isStructure ? "Структурная формула" : "Название вещества", onInput: updatePreview });
+  if (isStructure) { context.container.append(preview); updatePreview(context.selected || ""); }
 }
 
 function renderChoiceQuestion({
@@ -231,7 +264,7 @@ function renderChoiceQuestion({
 
     const text = document.createElement("span");
     text.className = "answer-text";
-    text.textContent = question.options[originalIndex];
+    appendFormattedValue(text, question.options[originalIndex], question.optionFormats?.[originalIndex]);
 
     label.append(input, marker, text);
 
@@ -280,7 +313,7 @@ function renderMatchingQuestion({
     const selectId = `matching-${question.id}-${item.id}`;
     label.htmlFor = selectId;
     label.className = item.format === "formula" ? "matching-text is-formula" : "matching-text";
-    label.textContent = item.text;
+    appendFormattedValue(label, item.text, item.format);
     prompt.append(marker, label);
 
     const control = document.createElement("div");
@@ -297,12 +330,13 @@ function renderMatchingQuestion({
     placeholder.textContent = "Выберите ответ";
     select.appendChild(placeholder);
 
-    optionOrder.forEach((optionId) => {
+    const hasStructures = question.options.some((option) => option.format === "structure");
+    optionOrder.forEach((optionId, optionIndex) => {
       const option = optionMap.get(optionId);
       if (!option) return;
       const node = document.createElement("option");
       node.value = option.id;
-      node.textContent = option.text;
+      node.textContent = hasStructures ? `${optionIndex + 1}. ${option.text}` : option.text;
       node.selected = selected[item.id] === option.id;
       node.disabled = !question.allowOptionReuse && usedOptions.has(option.id) && selected[item.id] !== option.id;
       select.appendChild(node);
@@ -335,6 +369,17 @@ function renderMatchingQuestion({
   });
 
   container.appendChild(grid);
+  if (question.options.some((option) => option.format === "structure")) {
+    const reference = document.createElement("div");
+    reference.className = "matching-structure-options";
+    optionOrder.forEach((optionId, index) => {
+      const option = optionMap.get(optionId);
+      const row = document.createElement("div");
+      const marker = document.createElement("strong"); marker.textContent = `${index + 1}. `;
+      row.append(marker); appendFormattedValue(row, option.text, option.format); reference.append(row);
+    });
+    container.append(reference);
+  }
 }
 
 function renderSequenceQuestion({
@@ -384,7 +429,7 @@ function renderSequenceQuestion({
 
     const value = document.createElement("span");
     value.className = `sequence-text${item.format === "formula" ? " is-formula" : ""}`;
-    value.textContent = item.text;
+    appendFormattedValue(value, item.text, item.format);
 
     const controls = document.createElement("span");
     controls.className = "sequence-controls";
@@ -483,6 +528,9 @@ export function questionInstruction(question) {
   if (question.type === "text") {
     return question.validationMessage || "Введите краткий текстовый ответ.";
   }
+  if (question.type === "chemical") return question.chemical.kind === "structure"
+    ? "Запишите сокращённую структурную формулу. Для боковых групп используйте скобки; для тройной связи — ≡ или #."
+    : "Введите название вещества. Положение кратной связи можно указать до или после суффикса.";
   return question.type === "multiple"
     ? "Выберите все правильные ответы."
     : "Выберите один правильный ответ.";
@@ -490,6 +538,16 @@ export function questionInstruction(question) {
 
 export function appendReviewContent(container, question, answer, evaluation) {
   renderQuestionContent(container, question.content, { append: true, review: true });
+  if (question.type === "chemical" && question.chemical.kind === "structure") {
+    for (const [label, value] of [["Ваш ответ", answer], ["Правильный ответ", question.correct[0]]]) {
+      container.append(reviewLine(label, typeof value === "string" && value.trim() ? value : "Нет ответа"));
+      if (typeof value === "string" && value.trim()) {
+        try { container.append(chemicalDiagram(value)); } catch (_) { /* Invalid answers stay visible as text. */ }
+      }
+    }
+    container.append(explanationBlock(question.explanation));
+    return;
+  }
   if (question.type === "sequence") {
     container.append(
       reviewLine("Ваш порядок", formatAnswer(question, answer)),
@@ -515,7 +573,7 @@ export function appendReviewContent(container, question, answer, evaluation) {
     row.className = `matching-review-row${detail.correct ? "" : " is-wrong"}`;
     const prompt = document.createElement("strong");
     prompt.className = detail.itemFormat === "formula" ? "is-formula" : "";
-    prompt.textContent = detail.itemText;
+    appendFormattedValue(prompt, detail.itemText, detail.itemFormat);
     const status = document.createElement("span");
     status.className = "matching-review-status";
     status.textContent = detail.correct ? "✓ Верно" : "✕ Ошибка";

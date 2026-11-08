@@ -7,14 +7,14 @@ import {
   normalizeDisplayName,
   normalizeLogin,
   passwordValidationMessage
-} from "./auth-utils.js?v=16";
+} from "./auth-utils.js?v=17";
 import {
   getAccountContext,
   getSupabaseClient,
   signInWithLogin,
   signOutAccount,
   updateAccountPassword
-} from "./supabase-client.js?v=16";
+} from "./supabase-client.js?v=17";
 
 const elements = Object.fromEntries([
   "pageStatus", "signedOutPanel", "signedInPanel", "loginForm", "loginStatus",
