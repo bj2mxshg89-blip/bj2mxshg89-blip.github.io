@@ -1258,3 +1258,37 @@
   .trainer-feedback-answer,
   .trainer-review-line { overflow-wrap: anywhere; }
 }
+
+/* Shared chemical content, input preview and study materials. */
+.chemical-diagram { display: inline-flex; align-items: center; justify-content: center; max-width: 100%; min-width: 0; color: var(--trainer-accent-dark, #173f64); vertical-align: middle; }
+.chemical-diagram svg { display: block; max-width: 100%; height: auto; font-family: Arial, sans-serif; }
+.answer-text:has(.chemical-diagram), .matching-text:has(.chemical-diagram) { min-width: 0; width: 100%; }
+.chemical-zoom-button { margin: 10px 0; min-height: 44px; }
+.chemical-preview { margin-top: 12px; }
+.chemical-preview:not(:empty) { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: var(--trainer-soft); }
+.chemical-preview .chemical-zoom-button { display: block; }
+.chemical-dialog { width: min(96vw, 1100px); max-height: 90dvh; overflow: auto; padding: 22px; border: 1px solid var(--line); border-radius: 20px; color: var(--ink); background: white; }
+.chemical-dialog::backdrop { background: rgba(10, 25, 40, .65); }
+.chemical-dialog h2 { margin: 0 0 16px; }
+.chemical-zoom-frame { max-width: 100%; overflow: auto; margin: 18px 0; padding: 12px; border: 1px solid var(--line); border-radius: 12px; }
+.chemical-zoom-frame .chemical-diagram { max-width: none; width: max-content; }
+.chemical-zoom-frame svg { max-width: none; width: auto; }
+.matching-structure-options { display: grid; gap: 12px; padding: 16px; margin-top: 16px; border: 1px solid var(--line); border-radius: 14px; }
+.matching-structure-options > div { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.trainer-variant-group { padding: 10px; border: 1px solid var(--line); border-radius: 12px; }
+.trainer-variant-group > summary { padding: 4px; cursor: pointer; font-weight: 700; }
+.trainer-variant-group .trainer-choice { margin-top: 9px; }
+.study-materials { margin-top: 24px; }
+.study-materials > h3 { font-size: 20px; }
+.study-content { padding: 0 16px 16px; line-height: 1.65; }
+.study-content h4 { margin: 20px 0 10px; }
+.study-table-frame { overflow-x: auto; max-width: 100%; }
+.study-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.study-table td, .study-table th { padding: 12px; text-align: left; border-bottom: 1px solid var(--line); }
+.study-table th { background: var(--trainer-soft); }
+.study-cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.study-card { padding: 14px; border: 1px solid var(--line); border-radius: 14px; }
+.study-card > summary { cursor: pointer; padding: 6px 0; }
+.study-card-instruction { display: block; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.study-card > strong { display: block; margin-top: 16px; color: var(--trainer-accent-dark); }
+@media print { .chemical-zoom-button, .study-materials { display: none !important; } }

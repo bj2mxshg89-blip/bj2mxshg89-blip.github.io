@@ -1,6 +1,6 @@
-import { createClient } from "./vendor/supabase.js?v=16";
-import { backendConfig } from "./backend-config.js?v=16";
-import { loginToEmail } from "./auth-utils.js?v=16";
+import { createClient } from "./vendor/supabase.js?v=17";
+import { backendConfig } from "./backend-config.js?v=17";
+import { loginToEmail } from "./auth-utils.js?v=17";
 
 let client = null;
 let accountPromise = null;

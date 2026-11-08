@@ -16,12 +16,25 @@ function validPermutation(candidate, source) {
 export function createAttemptQuestionOrder({
   baseQuestionIds,
   selectionCount,
+  selectionGroups = null,
   shuffleQuestions = false,
   retryQuestionIds = null
 }, shuffle = (values) => [...values]) {
   const base = uniqueKnownIds(baseQuestionIds, baseQuestionIds || []);
   if (Array.isArray(retryQuestionIds) && retryQuestionIds.length) {
     return uniqueKnownIds(retryQuestionIds, base);
+  }
+
+  if (Array.isArray(selectionGroups) && selectionGroups.length) {
+    const selected = selectionGroups.flatMap((group) => {
+      const ids = uniqueKnownIds(group.questionIds, base);
+      const candidate = shuffleQuestions ? shuffle([...ids]) : ids;
+      const ordered = validPermutation(candidate, ids) ? candidate : ids;
+      return ordered.slice(0, group.count);
+    });
+    const unique = uniqueKnownIds(selected, base);
+    const candidate = shuffleQuestions ? shuffle([...unique]) : unique;
+    return validPermutation(candidate, unique) ? candidate : unique;
   }
 
   let ordered = [...base];

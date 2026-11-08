@@ -13,7 +13,7 @@ import {
   subjectTitle,
   validateTestDefinition,
   variantTitle
-} from "./utils.js?v=16";
+} from "./utils.js?v=17";
 import {
   appendHistory,
   clearProgress,
@@ -21,14 +21,14 @@ import {
   loadProgress,
   saveProgress,
   updateSettings
-} from "./storage.js?v=16";
-import { calculateResult, isAnswerCorrect } from "./grading.js?v=16";
+} from "./storage.js?v=17";
+import { calculateResult, isAnswerCorrect } from "./grading.js?v=17";
 import {
   appendReviewContent,
   questionInstruction,
   renderQuestionContent,
   renderQuestionOptions
-} from "./question-renderers.js?v=16";
+} from "./question-renderers.js?v=17";
 import {
   createQuestionOptionOrder,
   evaluateAnswer,
@@ -44,17 +44,18 @@ import {
   normalizeAnswer,
   normalizeQuestionOptionOrder,
   updateQuestionAnswer
-} from "./question-types.js?v=16";
-import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=16";
-import { initAccountLinks } from "./account-widget.js?v=16";
+} from "./question-types.js?v=17";
+import { createAttemptQuestionOrder, restoreQuestionOrder } from "./attempt-selection.js?v=17";
+import { renderStudyMaterials } from "./study-materials.js?v=17";
+import { initAccountLinks } from "./account-widget.js?v=17";
 import {
   prepareCloudProgress,
   queueCloudProgress,
   removeCloudProgress,
   saveCompletedAttempt
-} from "./cloud-storage.js?v=16";
-import { assignmentScope } from "./assignment-records.js?v=16";
-import { loadAssignmentContext } from "./assignments.js?v=16";
+} from "./cloud-storage.js?v=17";
+import { assignmentScope } from "./assignment-records.js?v=17";
+import { loadAssignmentContext } from "./assignments.js?v=17";
 
 class TrainerEngine {
   constructor() {
@@ -73,7 +74,7 @@ class TrainerEngine {
       "trainerHero", "heroSymbol", "heroEyebrow", "heroTitle", "heroDescription", "heroChips",
       "setupPanel", "variantChoices", "modeChoices", "setupStatus", "startAttemptButton",
       "assignmentPanel", "assignmentClass", "assignmentDeadline", "assignmentConfiguration",
-      "referencePanel", "referenceTitle", "referenceList", "cloudStatus",
+      "referencePanel", "referenceTitle", "referenceList", "studyMaterials", "cloudStatus",
       "historyLink", "introTitle", "introDescription", "resumeCard", "resumeTitle", "resumeText",
       "resumeButton", "discardButton", "workPanel", "questionCounter", "answeredCounter",
       "correctCounter", "correctCounterLabel", "mistakeCounter", "questionNavigation", "backToSetupButton",
@@ -175,6 +176,7 @@ class TrainerEngine {
     }));
 
     const historyUrl = `results.html?id=${encodeURIComponent(test.id)}`;
+    renderStudyMaterials(this.elements.studyMaterials, test.studyMaterials);
     this.elements.historyLink.href = historyUrl;
     this.elements.resultHistoryLink.href = historyUrl;
 
@@ -219,6 +221,7 @@ class TrainerEngine {
 
   renderVariantChoices() {
     this.elements.variantChoices.replaceChildren();
+    const groups = new Map();
     const variants = this.assignment
       ? this.test.variants.filter((variant) => variant.id === this.assignment.variantId)
       : this.test.variants;
@@ -250,7 +253,17 @@ class TrainerEngine {
       body.appendChild(count);
       label.append(input, body);
       label.classList.toggle("is-locked", Boolean(this.assignment));
-      this.elements.variantChoices.appendChild(label);
+      let target = this.elements.variantChoices;
+      if (variant.group) {
+        if (!groups.has(variant.group)) {
+          const group = document.createElement("details"); group.className = "trainer-variant-group";
+          const summary = document.createElement("summary"); summary.textContent = variant.group;
+          group.append(summary); target.append(group); groups.set(variant.group, group);
+        }
+        target = groups.get(variant.group);
+        if (input.checked) target.open = true;
+      }
+      target.appendChild(label);
     });
   }
 
@@ -300,6 +313,7 @@ class TrainerEngine {
   }
 
   variantQuestionCount(variant, mode) {
+    if (variant.selectionGroups) return variant.selectionGroups.reduce((sum, group) => sum + group.count, 0);
     return variant.selectionCount?.[mode] || variant.questionIds.length;
   }
 
@@ -369,6 +383,7 @@ class TrainerEngine {
     const order = createAttemptQuestionOrder({
       baseQuestionIds: variant.questionIds,
       selectionCount: this.variantQuestionCount(variant, mode),
+      selectionGroups: variant.selectionGroups,
       shuffleQuestions: this.test.settings.shuffleQuestions,
       retryQuestionIds: isRetry ? questionIds : null
     }, shuffledCopy);

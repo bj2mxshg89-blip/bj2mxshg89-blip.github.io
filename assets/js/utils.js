@@ -1,8 +1,10 @@
-import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=16";
+import { SUPPORTED_QUESTION_TYPES, validateQuestionType } from "./question-types.js?v=17";
+import { parseChemicalStructure } from "./chemical-structures.js?v=17";
+import { validateStudyMaterials } from "./study-materials.js?v=17";
 
 export { SUPPORTED_QUESTION_TYPES };
 
-const QUESTION_CONTENT_FORMATS = new Set(["text", "formula"]);
+const QUESTION_CONTENT_FORMATS = new Set(["text", "formula", "structure"]);
 
 export function formatCount(count, one, few, many) {
   const numeric = Math.abs(Number(count));
@@ -134,6 +136,7 @@ export function validateTestDefinition(test, expectedId) {
   validateSettings(test.settings, errors);
   validateGrading(test.grading, errors);
   validateReference(test.reference, errors);
+  validateStudyMaterials(test.studyMaterials, errors);
 
   const sectionIds = validateSections(test.sections, errors);
   const questionIds = validateQuestions(test.questions, sectionIds, errors);
@@ -305,6 +308,16 @@ function validateQuestions(questions, sectionIds, errors) {
 
 function validateQuestionContent(question, id, errors) {
   if (question.content === undefined) return;
+  if (Array.isArray(question.content)) {
+    if (!question.content.length || question.content.length > 12) {
+      errors.push(`Ошибка в вопросе ${id}: content должен содержать от 1 до 12 блоков.`);
+    }
+    question.content.forEach((content) => {
+      if (Array.isArray(content)) errors.push(`Ошибка в вопросе ${id}: вложенные массивы content запрещены.`);
+      else validateQuestionContent({ content }, id, errors);
+    });
+    return;
+  }
   if (!isPlainObject(question.content)) {
     errors.push(`Ошибка в вопросе ${id}: поле «content» должно быть объектом.`);
     return;
@@ -314,8 +327,12 @@ function validateQuestionContent(question, id, errors) {
   }
   if (!QUESTION_CONTENT_FORMATS.has(question.content.format)) {
     errors.push(
-      `Ошибка в вопросе ${id}: поле «content.format» должно иметь значение «text» или «formula».`
+      `Ошибка в вопросе ${id}: поле «content.format» должно иметь значение «text», «formula» или «structure».`
     );
+  }
+  if (question.content.format === "structure") {
+    try { parseChemicalStructure(question.content.text); }
+    catch (error) { errors.push(`Ошибка в вопросе ${id}: ${error.message}`); }
   }
   if (question.content.caption !== undefined &&
       (typeof question.content.caption !== "string" || !question.content.caption.trim())) {
@@ -341,6 +358,9 @@ function validateVariants(variants, questionIds, errors) {
     if (typeof variant.title !== "string" || !variant.title.trim()) {
       errors.push(`Вариант «${variant.id}»: отсутствует название.`);
     }
+    if (variant.group !== undefined && (typeof variant.group !== "string" || !variant.group.trim())) {
+      errors.push(`Вариант «${variant.id}»: group должен быть непустой строкой.`);
+    }
 
     if (!Array.isArray(variant.questionIds) || variant.questionIds.length === 0) {
       errors.push(`Вариант «${variant.id}»: список questionIds пуст.`);
@@ -356,6 +376,32 @@ function validateVariants(variants, questionIds, errors) {
       }
       ownIds.add(questionId);
     });
+
+    if (variant.selectionGroups !== undefined) {
+      if (!Array.isArray(variant.selectionGroups) || !variant.selectionGroups.length) {
+        errors.push(`Вариант «${variant.id}»: selectionGroups должен быть непустым массивом.`);
+      } else {
+        const grouped = new Set();
+        let total = 0;
+        for (const group of variant.selectionGroups) {
+          if (!group || !Array.isArray(group.questionIds) || !Number.isInteger(group.count)
+            || group.count < 1 || group.count > group.questionIds.length) {
+            errors.push(`Вариант «${variant.id}»: некорректная группа выборки.`); continue;
+          }
+          total += group.count;
+          for (const id of group.questionIds) {
+            if (!ownIds.has(id) || grouped.has(id)) errors.push(`Вариант «${variant.id}»: группы должны содержать разные известные вопросы.`);
+            grouped.add(id);
+          }
+        }
+        if (grouped.size !== ownIds.size) errors.push(`Вариант «${variant.id}»: группы должны покрывать все questionIds.`);
+        for (const mode of ["training", "test"]) {
+          if (variant.selectionCount?.[mode] !== undefined && variant.selectionCount[mode] !== total) {
+            errors.push(`Вариант «${variant.id}»: selectionCount.${mode} не совпадает с размером групп.`);
+          }
+        }
+      }
+    }
 
     if (variant.selectionCount !== undefined) {
       if (!isPlainObject(variant.selectionCount)) {

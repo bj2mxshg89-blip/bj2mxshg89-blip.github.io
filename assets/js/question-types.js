@@ -1,4 +1,6 @@
-const FORMATS = new Set(["text", "formula"]);
+import { parseChemicalStructure, chemicalAnswerMatches, normalizeChemicalName } from "./chemical-structures.js?v=17";
+
+const FORMATS = new Set(["text", "formula", "structure"]);
 const NUMBER_PATTERN = /^[+-]?\d+(?:[.,]\d+)?$/;
 const TEXT_INPUT_MODES = new Set(["none", "text", "decimal", "numeric", "tel", "search", "email", "url"]);
 const UNICODE_MINUS_PATTERN = /[\u2212\u2013\u2014]/g;
@@ -36,6 +38,16 @@ function formatChoice(question, rawAnswer) {
 
 function validateChoice(question, errors) {
   const id = question.id;
+  if (question.optionFormats !== undefined && (!Array.isArray(question.optionFormats)
+    || question.optionFormats.length !== question.options?.length
+    || question.optionFormats.some((format) => !FORMATS.has(format)))) {
+    errors.push(`Ошибка в вопросе ${id}: optionFormats должен задавать формат каждого варианта ответа.`);
+  }
+  if (Array.isArray(question.optionFormats)) {
+    question.optionFormats.forEach((format, index) => {
+      if (format === "structure") validateStructure(question.options?.[index], id, errors);
+    });
+  }
   if (!Array.isArray(question.options) || question.options.length < 2) {
     errors.push(`Ошибка в вопросе ${id}: требуется не менее двух вариантов ответа.`);
   } else {
@@ -422,6 +434,7 @@ function validateMatching(question, errors) {
       if (item.format !== undefined && !FORMATS.has(item.format)) {
         errors.push(`Ошибка в вопросе ${id}: у строки «${itemId || index + 1}» недопустимый format «${String(item.format)}».`);
       }
+      if (item.format === "structure") validateStructure(item.text, id, errors);
       if (typeof item.explanation !== "string" || !item.explanation.trim()) {
         errors.push(`Ошибка в вопросе ${id}: у строки «${itemId || index + 1}» отсутствует explanation.`);
       }
@@ -447,6 +460,10 @@ function validateMatching(question, errors) {
       if (typeof option.text !== "string" || !option.text.trim()) {
         errors.push(`Ошибка в вопросе ${id}: у варианта «${optionId || index + 1}» отсутствует текст.`);
       }
+      if (option.format !== undefined && !FORMATS.has(option.format)) {
+        errors.push(`Ошибка в вопросе ${id}: недопустимый формат варианта matching.`);
+      }
+      if (option.format === "structure") validateStructure(option.text, id, errors);
     });
   }
 
@@ -487,6 +504,43 @@ function checkedAnswerStatus(evaluation) {
   return evaluation.isFullyCorrect
     ? "✓ Ответ проверен: верно"
     : "! Ответ проверен: требуется разбор";
+}
+
+function validateStructure(value, id, errors) {
+  try { parseChemicalStructure(value); }
+  catch (error) { errors.push(`Ошибка в вопросе ${id}: ${error.message}`); }
+}
+
+function validateChemical(question, errors) {
+  const settings = question.chemical;
+  if (!settings || !["name", "structure"].includes(settings.kind)) {
+    errors.push(`Ошибка в вопросе ${question.id}: chemical.kind должен быть name или structure.`);
+    return;
+  }
+  if (!Number.isInteger(settings.maxLength) || settings.maxLength < 1 || settings.maxLength > 240
+    || typeof settings.placeholder !== "string" || !settings.placeholder.trim()) {
+    errors.push(`Ошибка в вопросе ${question.id}: укажите chemical.maxLength (1–240) и placeholder.`);
+  }
+  if (!Array.isArray(question.correct) || !question.correct.length) {
+    errors.push(`Ошибка в вопросе ${question.id}: требуется массив допустимых химических ответов.`);
+    return;
+  }
+  const names = new Set();
+  for (const value of question.correct) {
+    if (typeof value !== "string" || !value.trim() || value.length > settings.maxLength) {
+      errors.push(`Ошибка в вопросе ${question.id}: недопустимый правильный химический ответ.`);
+    } else if (settings.kind === "structure") validateStructure(value, question.id, errors);
+    else {
+      const normalized = normalizeChemicalName(value);
+      if (names.has(normalized)) errors.push(`Ошибка в вопросе ${question.id}: повторяется допустимое название.`);
+      names.add(normalized);
+    }
+  }
+}
+
+function evaluateChemical(question, answer) {
+  const correct = chemicalAnswerMatches(question, answer);
+  return { earnedPoints: correct ? 1 : 0, maxPoints: 1, isFullyCorrect: correct, details: [] };
 }
 
 function savedAnswerStatus(answered, mode) {
@@ -707,6 +761,29 @@ const choiceType = {
 const questionTypes = Object.freeze({
   single: choiceType,
   multiple: choiceType,
+  chemical: {
+    getEmptyAnswer: () => "",
+    normalizeAnswer: normalizeStoredTextAnswer,
+    hasAnyAnswer: (_question, answer) => typeof answer === "string" && Boolean(answer.trim()),
+    isAnswerComplete: (question, answer) => typeof answer === "string" && Boolean(answer.trim())
+      && answer.length <= question.chemical.maxLength,
+    evaluateAnswer: evaluateChemical,
+    formatAnswer: formatText,
+    formatCorrectAnswer: (question) => question.correct[0],
+    getFeedbackDetails: (question, answer) => [
+      { label: "Ваш ответ", value: formatText(question, answer) },
+      { label: "Правильный ответ", value: question.correct[0] }
+    ],
+    getQuestionMaxPoints: () => 1,
+    incompleteAnswerMessage: (question) => `Введите ответ длиной до ${question.chemical.maxLength} символов.`,
+    updateAnswer: (_question, _current, change) => typeof change.value === "string" ? change.value : "",
+    createOptionOrder: () => [], normalizeOptionOrder: () => [], validate: validateChemical,
+    getValidationAnswer: (question) => question.correct[0],
+    getAnswerStatus(question, answer, context) {
+      return context.isChecked ? checkedAnswerStatus(evaluateChemical(question, answer))
+        : savedAnswerStatus(typeof answer === "string" && Boolean(answer.trim()), context.mode);
+    }
+  },
   matching: {
     getEmptyAnswer: () => ({}),
     normalizeAnswer: normalizeMatchingAnswer,
