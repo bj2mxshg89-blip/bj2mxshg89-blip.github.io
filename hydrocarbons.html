@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b2241">
+<meta name="description" content="Интерактивный тренажёр по органической химии: классификация, гомологи, изомеры, номенклатура и контрольная работа.">
+<title>Углеводороды — интерактивный тренажёр</title>
+<style>
+:root{--navy:#0b2241;--navy2:#173c63;--ink:#142638;--muted:#63738a;--line:#dce5ee;--bg:#f3f6fa;--white:#fff;--teal:#087f82;--tealbg:#e7f6f4;--orange:#f09831;--orangebg:#fff2df;--red:#b83c42;--redbg:#fff0f0;--green:#17805a;--greenbg:#eaf8f0;--shadow:0 12px 40px rgba(11,34,65,.075);font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.55;font-size:16px}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #68c7cd;outline-offset:2px}a{color:var(--teal)}.shell{max-width:1230px;margin:auto;padding:0 24px}.site-head{background:linear-gradient(112deg,#091d38 0%,#153d64 75%,#205977 100%);color:white;padding:24px 0 27px;position:relative;overflow:hidden}.site-head:after{content:"";position:absolute;right:-130px;top:-210px;width:530px;height:530px;border-radius:50%;border:80px solid rgba(255,255,255,.055);pointer-events:none}.head-row{display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;z-index:1}.brand{display:flex;align-items:center;gap:15px;min-width:0}.logo{width:50px;height:50px;flex:0 0 50px;border-radius:15px;background:rgba(255,255,255,.12);display:grid;place-items:center;border:1px solid rgba(255,255,255,.16)}.logo svg{width:31px;height:31px}.brand small{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#95dfe4;font-weight:800}.brand h1{font-size:clamp(1.1rem,2.4vw,1.55rem);line-height:1.2;letter-spacing:-.02em;margin:4px 0 0;font-weight:750}.subline{font-size:.88rem;color:#bdcde0;margin-top:7px}.head-controls{display:flex;gap:9px;flex-wrap:wrap}.switcher{display:flex;gap:5px;padding:5px;border:1px solid rgba(255,255,255,.18);border-radius:13px;background:rgba(0,0,0,.15)}.switcher button{border:0;border-radius:9px;padding:10px 15px;background:transparent;color:#d9e9f5;font-weight:700;font-size:.86rem;white-space:nowrap}.switcher button.active{background:white;color:var(--navy);box-shadow:0 3px 12px rgba(0,0,0,.12)}.main{padding:30px 0 65px}.overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:24px}.topic-card{display:block;text-align:left;width:100%;border:1px solid var(--line);background:#fff;border-radius:16px;padding:17px;transition:.18s;box-shadow:0 3px 15px rgba(11,34,65,.025)}.topic-card:hover{transform:translateY(-2px);border-color:#8abdc3}.topic-card.active{border-color:var(--teal);box-shadow:0 0 0 2px rgba(8,127,130,.12),var(--shadow)}.topic-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:var(--teal);font-size:.75rem;font-weight:850;letter-spacing:.1em}.topic-name{font-weight:800;font-size:1.08rem;margin:9px 0 4px;line-height:1.3}.topic-meta{font-size:.8rem;color:var(--muted)}.mini-progress{height:5px;background:#e7edf3;border-radius:20px;margin-top:15px;overflow:hidden}.mini-progress>i{display:block;background:var(--teal);height:100%;border-radius:20px;transition:.25s}.panel{background:white;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}.workspace{display:grid;grid-template-columns:257px minmax(0,1fr);align-items:start;gap:20px}.workspace>.panel{min-width:0}.aside-head{padding:22px 20px 13px;border-bottom:1px solid var(--line)}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:.7rem;font-weight:850;color:var(--teal)}.aside-head h2{font-size:1.15rem;line-height:1.3;margin:8px 0 5px}.aside-head p{font-size:.8rem;color:var(--muted);margin:0 0 10px}.stages{padding:11px}.stage-link{display:flex;align-items:center;width:100%;border:1px solid transparent;gap:10px;border-radius:11px;padding:11px 10px;background:transparent;text-align:left;color:var(--ink);margin-bottom:3px;line-height:1.27}.stage-link.active{background:var(--tealbg);color:#056b6f;border-color:#c5e9e8}.stage-link:hover:not(.active){background:#f3f7fa}.stage-num{width:29px;height:29px;flex:0 0 29px;display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;font-size:.77rem;font-weight:850;background:white}.stage-link.active .stage-num{border-color:var(--teal);background:var(--teal);color:white}.stage-text{flex:1;font-size:.84rem;font-weight:670}.stage-check{color:var(--green);font-weight:900}.aside-bottom{padding:15px 17px;border-top:1px solid var(--line);color:var(--muted);font-size:.79rem}.content-head{padding:25px 31px 18px;border-bottom:1px solid var(--line)}.content-head h2{font-size:clamp(1.33rem,2.7vw,1.76rem);margin:8px 0 6px;letter-spacing:-.03em;line-height:1.26}.content-head p{margin:0;color:var(--muted);font-size:.9rem;max-width:800px}.content-body{padding:26px 31px 29px;min-height:410px}.stage-label{display:flex;gap:9px;align-items:center;color:var(--teal);font-size:.78rem;font-weight:800;letter-spacing:.055em}.pill{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:800;background:var(--tealbg);color:#086b6e;padding:5px 10px;border-radius:30px}.pill.orange{background:var(--orangebg);color:#955b14}.top-progress{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:20px}.top-progress span{font-size:.79rem;color:var(--muted);font-weight:700}.bar{height:8px;background:#e6edf3;border-radius:99px;overflow:hidden;flex:1;max-width:280px}.bar span{height:100%;background:var(--teal);display:block;border-radius:99px;transition:.25s}.question-title{font-size:1.18rem;font-weight:800;line-height:1.44;max-width:780px;margin:2px 0 19px}.formula-wrap{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:12px;margin:16px 0 24px}.chem-card{background:#f1f6fa;border:1px solid #d9e5ed;border-radius:15px;padding:20px 16px;flex:1 1 180px;min-width:0;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px}.chem-card em{font-style:normal;color:#718497;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.chem{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"DejaVu Sans Mono",monospace;font-weight:720;font-size:clamp(.91rem,1.65vw,1.17rem);letter-spacing:-.04em;overflow-wrap:anywhere}.chem.inline{font-size:1em}.versus{display:flex;align-items:center;font-weight:900;color:#9baabc;flex:0 0 20px;justify-content:center}.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:15px 0 20px}.option{border:1.5px solid var(--line);border-radius:12px;padding:14px 14px;display:flex;align-items:center;gap:12px;background:white;min-height:64px;text-align:left;font-weight:640;line-height:1.4;transition:.12s}.option:not(:disabled):hover{border-color:#9bc5c9;background:#f8fcfc}.option.selected{border-color:var(--teal);background:#ecf8f7}.option.correct{border-color:var(--green);background:var(--greenbg)}.option.wrong{border-color:var(--red);background:var(--redbg)}.choice-indicator{width:24px;height:24px;border:1.5px solid #a3b3c2;border-radius:50%;flex:0 0 24px;display:grid;place-items:center;font-size:.75rem;font-weight:850;background:white;color:#42607a}.multi .choice-indicator{border-radius:6px}.option.selected .choice-indicator{background:var(--teal);border-color:var(--teal);color:white}.helptext{font-size:.79rem;color:var(--muted);margin:-8px 0 14px}.input-label{display:block;font-size:.8rem;font-weight:800;margin:0 0 8px;color:#3b546b}.text-input{width:100%;border:1.5px solid #b9cbda;border-radius:11px;padding:15px 16px;outline:none;background:white;font-size:1.04rem;color:var(--ink)}.text-input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #d6f1f0}.text-input:disabled{background:#f5f7fa;color:#6d7783}.hint-line{font-size:.8rem;color:var(--muted);margin-top:9px}.match-grid{display:grid;gap:10px;margin:17px 0 20px}.match-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;align-items:center;border:1px solid var(--line);border-radius:11px;padding:10px 12px;background:#fbfdfe}.match-left{font-size:.95rem;font-weight:700}.match-row select{width:100%;border:1px solid #b8c9d7;background:white;border-radius:8px;padding:10px;color:var(--ink);font-size:.84rem}.match-row select:disabled{background:#f2f6f8}.match-row.good{border-color:#91cfaa;background:var(--greenbg)}.match-row.bad{border-color:#e8a3a3;background:var(--redbg)}.feedback{margin:20px 0 0;border-radius:13px;padding:16px 18px;border:1px solid;line-height:1.6}.feedback.good{border-color:#b2deca;background:var(--greenbg)}.feedback.bad{border-color:#f0c7c7;background:var(--redbg)}.feedback strong{display:block;margin-bottom:5px}.feedback p{margin:5px 0 0;font-size:.92rem}.feedback .answer{font-size:.86rem;font-weight:800;margin-top:9px}.actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}.actions-right{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);border-radius:10px;padding:11px 18px;background:white;font-weight:800;color:var(--ink);font-size:.9rem;min-height:44px}.btn:hover:not(:disabled){background:#f1f5f8}.btn.primary{background:var(--teal);color:white;border-color:var(--teal)}.btn.primary:hover:not(:disabled){background:#066c70}.btn.dark{background:var(--navy);color:white;border-color:var(--navy)}.btn.warn{background:#fff3e4;border-color:#e7c58c;color:#805513}.btn.small{padding:7px 12px;font-size:.78rem;min-height:34px}.theory{max-width:850px}.theory h3{margin:25px 0 10px;font-size:1.07rem}.theory p{margin:10px 0;line-height:1.75}.theory ul{padding-left:24px;line-height:1.8}.theory li{margin:5px 0}.theory-table{width:100%;border-collapse:collapse;margin:14px 0 18px;display:block;overflow-x:auto}.theory-table th,.theory-table td{text-align:left;border-bottom:1px solid var(--line);padding:12px 11px;vertical-align:top;font-size:.9rem;white-space:normal}.theory-table th{background:#f4f8fa;font-size:.78rem;color:#597087;text-transform:uppercase;letter-spacing:.04em}.note{border-left:4px solid var(--orange);background:#fff8ee;border-radius:0 10px 10px 0;padding:13px 16px;margin:15px 0;font-size:.9rem}.keybox{background:#edf8f7;border:1px solid #c5e6e4;border-radius:12px;padding:16px;margin:17px 0}.flash-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.flash{background:linear-gradient(150deg,#f0f8fb,#e8f5f3);border:1px solid #c6e5e3;border-radius:18px;min-height:240px;display:flex;justify-content:center;align-items:center;flex-direction:column;gap:24px;text-align:center;padding:30px 16px;margin:22px 0}.flash .chem{font-size:clamp(1.12rem,2.9vw,1.7rem)}.flash .revealed{font-size:1.15rem;font-weight:800;color:#066e71;padding:10px 22px;background:white;border:1px solid #c1e0e0;border-radius:99px}.flash .unknown{font-size:.88rem;color:#5b7b8c}.exam-intro{max-width:780px;padding:12px 0}.exam-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}.stat{border:1px solid var(--line);border-radius:13px;padding:17px;background:#fbfdff}.stat strong{font-size:1.65rem;color:var(--navy);display:block}.stat span{font-size:.77rem;color:var(--muted);font-weight:700}.section-breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:15px 0}.breakdown{padding:17px;border:1px solid var(--line);border-radius:12px;background:#fbfdff}.breakdown strong{display:block}.breakdown small{color:var(--muted)}.exam-map{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 22px}.exam-map button{border:1px solid var(--line);background:white;border-radius:8px;width:37px;height:37px;font-size:.81rem;font-weight:750}.exam-map button.done{background:#e2f4f1;border-color:#abd4cb;color:#065e65}.exam-map button.current{background:var(--navy);color:white;border-color:var(--navy)}.exam-map button.done.current{background:var(--teal)}.result-hero{text-align:center;padding:25px 15px 10px}.result-circle{border:10px solid #e5eff2;width:142px;height:142px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;flex-direction:column}.result-circle strong{font-size:2.1rem;line-height:1.25}.result-circle span{color:var(--muted);font-size:.8rem}.grade{font-size:1.55rem;font-weight:850;margin-bottom:8px}.review{border:1px solid var(--line);border-radius:12px;margin:9px 0;overflow:hidden}.review summary{cursor:pointer;padding:15px;display:flex;align-items:center;gap:10px;font-weight:700;list-style:none}.review summary::-webkit-details-marker{display:none}.review summary:after{content:'⌄';margin-left:auto;color:#8493a1}.review[open] summary:after{content:'⌃'}.review .review-body{padding:0 15px 17px;font-size:.88rem}.review.good summary{background:#f0faf4}.review.bad summary{background:#fff5f5}.tag{display:inline-block;padding:3px 9px;border-radius:30px;background:#e8eef5;color:#4f6580;font-size:.74rem;font-weight:750}.empty{text-align:center;color:var(--muted);padding:35px 0}.footer{font-size:.8rem;text-align:center;color:var(--muted);padding:0 20px 34px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:950px){.workspace{grid-template-columns:210px minmax(0,1fr)}.overview{grid-template-columns:repeat(2,1fr)}.content-head,.content-body{padding-left:22px;padding-right:22px}.aside-head{padding-left:15px;padding-right:15px}}@media(max-width:660px){.shell{padding:0 14px}.site-head{padding:17px 0 20px}.head-row{flex-direction:column;align-items:stretch}.head-controls{width:100%}.switcher{width:100%}.switcher button{flex:1}.overview{gap:8px}.topic-card{padding:13px}.topic-name{font-size:.92rem;margin-top:6px}.topic-meta{font-size:.72rem}.main{padding-top:18px}.workspace{grid-template-columns:minmax(0,1fr);gap:12px}.aside-head{padding:15px 16px 5px;border:0}.aside-head h2{font-size:1rem}.aside-head p,.aside-bottom{display:none}.stages{display:flex;overflow-x:auto;gap:6px;padding:10px 12px 13px}.stage-link{flex:0 0 auto;width:auto;max-width:200px;padding:8px 9px;margin:0;border-color:var(--line)}.stage-text{font-size:.75rem}.stage-num{width:25px;height:25px;flex-basis:25px}.content-head{padding:20px 17px 16px}.content-body{padding:20px 17px 23px;min-height:330px}.options{grid-template-columns:1fr;gap:9px}.chem-card{flex-basis:100%;padding:18px 8px}.versus{width:100%;height:8px}.match-row{grid-template-columns:1fr;gap:7px}.exam-stats{gap:7px}.stat{padding:12px}.stat strong{font-size:1.35rem}.section-breakdown{grid-template-columns:1fr}.actions{align-items:stretch}.actions-right{justify-content:flex-end}.btn{padding:10px 13px}.flash{min-height:210px}.brand h1{font-size:1.3rem}}@media print{.site-head,.overview,.workspace>.panel:first-child,.actions,.exam-map,.footer{display:none!important}.shell{max-width:none}.workspace{display:block}.panel{box-shadow:none;border:0}.main{padding:0}.content-body{padding:10px 0}.review{break-inside:avoid}.review .review-body{display:block!important}}
+
+.structure-frame{display:inline-flex;max-width:100%;overflow-x:auto;overflow-y:hidden;align-items:center;vertical-align:middle;color:#163954;scrollbar-width:thin;scrollbar-color:#b3cad5 transparent;padding:2px 3px}
+.structure-frame svg{max-width:none;flex:none;display:block}
+.structure-frame.compact svg{height:auto;max-height:155px}
+.option .structure-frame{width:100%;justify-content:flex-start}
+.option .structure-frame svg{transform-origin:left center}
+.chem-card{overflow:hidden}
+.chem-card .structure-frame{max-width:100%;min-height:85px}
+.flash .structure-frame{max-width:100%;color:#123b58}
+.flash .structure-frame svg{max-height:210px}
+.match-left .structure-frame{max-width:100%}
+.match-left .structure-frame svg{max-height:145px}
+.correct-list{display:grid;gap:8px}.correct-list>div{border-top:1px solid #dce8ef;padding-top:6px}.branch-explainer{margin-top:21px;border:1px solid #bddde2;background:#eef9f9;padding:18px;border-radius:14px;text-align:center}
+.branch-explainer b{display:block;margin-bottom:6px}.branch-explainer p{text-align:left}.branch-explainer small{display:block;margin-top:8px;color:#486476}
+.branch-explainer .structure-frame{justify-content:center;max-width:100%}
+.branch-explainer .structure-frame svg{max-height:185px}
+.bank-info{color:var(--muted);font-size:.8rem;margin-top:7px}
+.new-set{font-size:.84rem}
+.answer-preview{background:#f3f8fa;border:1px dashed #abc7d4;padding:8px;margin:11px 0;border-radius:12px;min-height:40px}
+.answer-preview:empty{display:none}.mobile-scroll-tip{display:none}@media(max-width:750px){.mobile-scroll-tip{display:block}}
+.answer-preview strong{font-size:.78rem;color:#557287;display:block;margin:4px 0 0}
+@media(max-width:750px){.options{grid-template-columns:1fr}.match-row{grid-template-columns:1fr}.chem-card{padding:12px 8px}.option{padding:10px}.structure-frame svg{max-height:135px}.flash{padding:20px 10px}}
+
+/* v5: Formula-choice cards: no intrinsic SVG width may expand the answer grid. */
+.options.has-structures{grid-template-columns:minmax(0,1fr)}
+.options .option{min-width:0;max-width:100%;width:100%}
+.option>.option-content{display:block;min-width:0;max-width:100%;flex:1 1 0;overflow:hidden}
+.option-content .structure-frame{display:flex;width:100%;max-width:100%;min-width:0;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;justify-content:flex-start}
+.option-content .structure-frame svg{flex:0 0 auto;max-width:none}
+/* Match cards can contain the same large drawings. */
+.match-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.match-left{min-width:0;max-width:100%;overflow:hidden}
+.match-left .structure-frame{display:flex;width:100%;max-width:100%;min-width:0;overflow-x:auto;justify-content:flex-start}
+.match-row select{min-width:0}
+@media(max-width:750px){.match-row{grid-template-columns:minmax(0,1fr)}}
+
+/* v6 — All structural drawings must remain fully visible. SVGs fit their
+   container rather than exposing only the left edge behind a hidden scroll. */
+.structure-frame,
+.option-content .structure-frame,
+.match-left .structure-frame,
+.chem-card .structure-frame,
+.flash .structure-frame,
+.answer-preview .structure-frame,
+.branch-explainer .structure-frame {
+  display:inline-flex;
+  vertical-align:middle;
+  max-width:100%;
+  min-width:0;
+  width:auto;
+  height:auto;
+  overflow:visible;
+  align-items:center;
+  justify-content:center;
+}
+.structure-frame svg,
+.option .structure-frame svg,
+.option-content .structure-frame svg,
+.match-left .structure-frame svg,
+.chem-card .structure-frame svg,
+.flash .structure-frame svg,
+.answer-preview .structure-frame svg,
+.branch-explainer .structure-frame svg {
+  display:block;
+  box-sizing:border-box;
+  max-width:100%;
+  min-width:0;
+  width:auto;
+  height:auto;
+  flex:0 1 auto;
+  transform:none;
+}
+.options.has-structures{grid-template-columns:minmax(0,1fr)}
+.option, .option-content, .match-left, .match-row, .chem-card{min-width:0;max-width:100%}
+.option>.option-content{overflow:visible;flex:1 1 0}
+.match-left{overflow:visible}
+.match-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.match-row select{min-width:0}
+/* Show BOTH full structural formulae in homolog/isomer pair questions. */
+.formula-wrap.formula-pair-structures{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  justify-items:stretch;
+  width:100%;
+  max-width:100%;
+  gap:8px;
+}
+.formula-pair-structures .chem-card,
+.single-structure .chem-card{
+  width:100%;
+  flex:1 1 auto;
+  overflow:visible;
+}
+.formula-pair-structures .versus{justify-self:center;min-height:22px}
+.formula-pair-structures .structure-frame{max-width:100%;}
+/* For tiny screens, stack all matched formula rows rather than compressing. */
+@media(max-width:850px){
+  .match-row{grid-template-columns:minmax(0,1fr)}
+  .match-left .structure-frame{max-width:100%}
+}
+@media(max-width:390px){
+  .content-body{padding:18px 16px 23px}
+  .content-head{padding:20px 16px 15px}
+  .chem-card{padding:14px 8px}
+}
+
+/* Full-size formula inspection, available on every question and flashcard. */
+.zoom-formula-btn{margin:0 0 17px;border-color:#9ccbd0;color:#086b6e;background:#e9f7f7}
+.zoom-formula-btn:hover:not(:disabled){background:#d5eff0}
+.formula-dialog{width:min(96vw,1050px);max-height:88vh;border:1px solid #b9d6e1;border-radius:18px;padding:18px;background:#fff;color:#142638;box-shadow:0 25px 90px rgba(3,22,45,.34);overflow-y:auto;overscroll-behavior:contain}
+.formula-dialog::backdrop{background:rgba(6,21,40,.68)}
+.zoom-header{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:-18px;background:#fff;padding:9px 0 14px;z-index:2;border-bottom:1px solid #dce5ee}
+.zoom-header h2{font-size:clamp(1rem,3vw,1.3rem);margin:0}
+.zoom-info{font-size:.86rem;color:#63738a;margin:12px 0 17px}
+.zoom-list{display:grid;gap:16px}
+.zoom-chemical{min-width:0;border:1px solid #d9e5ed;border-radius:12px;background:#f2f7fa;padding:10px 12px 15px}
+.zoom-chemical h3{font-size:.85rem;color:#506a82;margin:0 0 11px;font-weight:800}
+.zoom-diagram{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:7px 3px 12px;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.formula-dialog .zoom-diagram .structure-frame{width:max-content;max-width:none;min-width:max-content;overflow:visible;justify-content:flex-start}
+.formula-dialog .zoom-diagram .structure-frame svg{width:auto;height:auto;max-width:none;max-height:none;min-width:max-content;flex:none}
+@media(max-width:400px){.formula-dialog{padding:10px}.zoom-header{top:-10px}}
+
+/* Formula choices in matching are shown graphically, not cropped by native selects. */
+.match-reference{margin:14px 0 20px;border:1px solid #cbdfe9;border-radius:12px;background:#f8fbfd;padding:15px}
+.match-reference>strong{display:block;font-size:.91rem;margin-bottom:12px}
+.match-reference-list{display:grid;grid-template-columns:minmax(0,1fr);gap:9px}
+.match-reference-item{min-width:0;display:flex;align-items:center;gap:11px;padding:8px;border:1px solid #dfe9ef;background:#fff;border-radius:10px}
+.match-option-letter{flex:0 0 30px;display:grid;place-items:center;border:1px solid #8eabb9;border-radius:9px;width:30px;height:30px;font-weight:800;color:#194564}
+.match-reference-content{min-width:0;flex:1 1 0;display:block;overflow:visible}
+.match-reference-content .structure-frame{max-width:100%;min-width:0;overflow:visible}
+.match-reference-content .structure-frame svg{max-width:100%;height:auto;flex:0 1 auto}
+.feedback .answer{overflow-wrap:anywhere}
+
+.site-home-link{display:inline-flex;position:relative;z-index:1;align-items:center;min-height:44px;margin-bottom:14px;color:#d9e9f5;font-size:.88rem;font-weight:700;text-decoration:none}.site-home-link:hover{text-decoration:underline}.site-home-link:focus-visible{outline:3px solid #68c7cd;outline-offset:3px}
+</style>
+</head>
+<body>
+<header class="site-head"><nav class="shell" aria-label="Навигация по сайту"><a class="site-home-link" href="index.html">← Кабинет учителя</a></nav><div class="shell head-row"><div class="brand"><div class="logo" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 8L22 7 27 19 16 27 5 20 9 8Z"/><path d="M9 8L16 16 27 19M16 16L16 27M16 16L22 7"/><circle cx="9" cy="8" r="2.6" fill="#95dfe4"/><circle cx="27" cy="19" r="2.6" fill="#95dfe4"/><circle cx="16" cy="27" r="2.6" fill="#95dfe4"/></svg></div><div><small>Химия • 10 класс</small><h1>Алифатические углеводороды</h1><div class="subline">Классификация · Гомологи · Изомеры · Номенклатура</div></div></div><div class="head-controls"><div class="switcher" role="tablist" aria-label="Режим работы"><button id="trainTab" type="button" role="tab" aria-selected="true">Тренировка</button><button id="examTab" type="button" role="tab" aria-selected="false">Контрольная</button></div></div></div></header>
+<main class="shell main"><div id="overview" class="overview"></div><div class="workspace"><aside class="panel" id="sidebar"></aside><section class="panel" id="mainPanel" aria-live="polite"></section></div></main>
+<footer class="footer">Автономный тренажёр · Работает без интернета · Прогресс сохраняется локально, если это разрешено браузером</footer>
+<script>
+'use strict';
+// Весь банк заданий встроен в HTML. Интернет и сервер не требуются.
+const CLASSES=['Алканы','Алкены','Алкины','Алкадиены'];
+let autoId=0;
+const question=(type,prompt,opts,answer,explain,more={})=>({id:'q'+(++autoId),type,prompt,options:opts||[],answer,explain,...more});
+const single=(p,o,a,e,m)=>question('single',p,o,a,e,m);
+const multi=(p,o,a,e,m)=>question('multiple',p,o,a,e,m);
+const match=(p,rows,options,e)=>question('match',p,options,rows.map(x=>x[1]),e,{rows:rows.map(x=>x[0])});
+const naming=(p,formula,answer,e,aliases=[])=>question('input-name',p,[],answer,e,{formula,aliases});
+const struct=(p,name,formula,e)=>question('input-formula',p,[],formula,e,{name});
+const stage=(name,description,questions)=>({kind:'quiz',name,description,questions});
+const theoretical=(name,html)=>({kind:'theory',name,description:'Краткая теория и примеры',html,questions:[]});
+const flashStage=(name,description,cards)=>({kind:'flash',name,description,cards,questions:[]});
+const SUBSCRIPT={'0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉'};
+function esc(v){return String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));}
+function chem(s){return esc(s).replace(/\d/g,d=>SUBSCRIPT[d]).replace(/#/g,'≡').replace(/-/g,'–');}
+function looksFormula(s){return /CH|C\(|C#|C≡|C=|H\d/i.test(s);}
+function pretty(s){const v=String(s||'');return looksFormula(v)&&/^(?:CH[0-9]?|C|[-=#()])+$/i.test(v)?visualFormula(v,true):looksFormula(v)?`<span class="chem inline">${chem(v)}</span>`:esc(v);}
+const formulaCard=(s,label='')=>`<div class="chem-card">${label?`<em>${esc(label)}</em>`:''}${visualFormula(s)}</div>`;
+// Школьная развёрнутая запись: боковые группы рисуются вертикальными связями.
+function drawStructure(raw, compact=false){
+ const src=String(raw||'').toUpperCase().replace(/[₀-₉]/g,c=>String('₀₁₂₃₄₅₆₇₈₉'.indexOf(c))).replace(/[—–−]/g,'-').replace(/≡/g,'#').replace(/\s/g,'');
+ const parts=src.match(/CH[0-9]?|C|[-=#()]/g)||[];
+ if(parts.join('')!==src||!parts.length)return `<span class="chem">${chem(raw)}</span>`;
+ const nodes=[],edges=[],stack=[],branchCount={},gap=93;let last=-1,pending=1,nextMain=0,isFirstBranch=false;
+ const add=(label)=>{
+  let x,y;
+  if(isFirstBranch&&stack.length){const ctx=stack[stack.length-1],n=branchCount[ctx.parent]=(branchCount[ctx.parent]||0)+1;
+   ctx.sign=n%2? -1:1;ctx.level=Math.ceil(n/2); x=nodes[ctx.parent].x; y=nodes[ctx.parent].y+ctx.sign*70*ctx.level;
+  }else if(stack.length){const ctx=stack[stack.length-1]; x=last>=0?nodes[last].x+gap:nodes[ctx.parent].x; y=nodes[ctx.parent].y+ctx.sign*70*ctx.level;}
+  else {x=nextMain++*gap;y=0;}
+  const id=nodes.length;nodes.push({label,x,y});if(last>=0)edges.push({a:last,b:id,order:pending});last=id;pending=1;isFirstBranch=false;
+ };
+ for(const t of parts){
+  if(t==='-'||t==='='||t==='#'){pending=t==='-'?1:t==='='?2:3;}
+  else if(t==='('){stack.push({parent:last,sign:-1,level:1});isFirstBranch=true;pending=1;}
+  else if(t===')'){if(!stack.length)return `<span class="chem">${chem(raw)}</span>`;last=stack.pop().parent;isFirstBranch=false;}
+  else add(t);
+ }
+ if(stack.length)return `<span class="chem">${chem(raw)}</span>`;
+ const minX=Math.min(...nodes.map(n=>n.x)),maxX=Math.max(...nodes.map(n=>n.x));
+ const minY=Math.min(...nodes.map(n=>n.y)),maxY=Math.max(...nodes.map(n=>n.y));
+ const marginX=38,marginY=34,width=maxX-minX+2*marginX,height=maxY-minY+2*marginY;
+ const bonds=edges.map(e=>{
+  const a=nodes[e.a],b=nodes[e.b],vx=b.x-a.x,vy=b.y-a.y,L=Math.hypot(vx,vy)||1,ux=vx/L,uy=vy/L,nx=-uy,ny=ux;
+  const padX=Math.abs(ux)>0.6?27:19;const ax=a.x+ux*padX,ay=a.y+uy*padX,bx=b.x-ux*padX,by=b.y-uy*padX;
+  const offsets=e.order===1?[0]:e.order===2?[-3.4,3.4]:[-5.2,0,5.2];
+  return offsets.map(off=>`<line x1="${(ax+nx*off-minX+marginX).toFixed(1)}" y1="${(ay+ny*off-minY+marginY).toFixed(1)}" x2="${(bx+nx*off-minX+marginX).toFixed(1)}" y2="${(by+ny*off-minY+marginY).toFixed(1)}"/>`).join('');
+ }).join('');
+ const atoms=nodes.map(n=>`<text x="${n.x-minX+marginX}" y="${n.y-minY+marginY}" text-anchor="middle" dominant-baseline="central">${esc(n.label).replace(/\d/g,d=>SUBSCRIPT[d])}</text>`).join('');
+ const ratio=compact?' compact':'';
+ return `<span class="structure-frame${ratio}" title="${esc(raw)}"><svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="Структурная формула: ${esc(raw)}"><g stroke="currentColor" stroke-width="2.3" stroke-linecap="round">${bonds}</g><g font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="currentColor">${atoms}</g></svg></span>`;
+}
+function visualFormula(s,compact=true){return drawStructure(s,compact);}
+const nameAlternatives={
+ 'бутен-1':['1-бутен','бутен-1'], 'бутен-2':['2-бутен','бутен-2'], 'пентен-1':['1-пентен','пентен-1'], 'пентен-2':['2-пентен','пентен-2'],
+ 'бутин-1':['1-бутин','бутин-1'], 'бутин-2':['2-бутин','бутин-2'], 'пентин-1':['1-пентин','пентин-1'], 'гексен-2':['2-гексен','гексен-2'],
+ 'бутадиен-1,3':['1,3-бутадиен','бутадиен-1,3','дивинил'], 'пентадиен-1,3':['1,3-пентадиен','пентадиен-1,3'],
+ '2-метилпропан':['изобутан'], '2-метилбутан':['изопентан'], '2,2-диметилпропан':['неопентан'], 'этин':['ацетилен'], 'этен':['этилен'],
+ '2-метилбутадиен-1,3':['изопрен','2-метил-1,3-бутадиен']
+};
+const theoryClass=`<div class="theory"><p>Алифатические углеводороды — соединения углерода и водорода, не содержащие ароматического кольца. В этом тренажёре рассматриваются <b>ациклические</b> (с открытой цепью) углеводороды.</p><table class="theory-table"><thead><tr><th>Класс</th><th>Отличительный признак</th><th>Общая формула*</th><th>Пример</th></tr></thead><tbody><tr><td><b>Алканы</b></td><td>Только одинарные связи C–C</td><td>CₙH₂ₙ₊₂</td><td><span class="chem">CH₃–CH₂–CH₃</span></td></tr><tr><td><b>Алкены</b></td><td>Одна двойная связь C=C</td><td>CₙH₂ₙ</td><td><span class="chem">CH₂=CH–CH₃</span></td></tr><tr><td><b>Алкины</b></td><td>Одна тройная связь C≡C</td><td>CₙH₂ₙ₋₂</td><td><span class="chem">CH≡C–CH₃</span></td></tr><tr><td><b>Алкадиены</b></td><td>Две двойные связи C=C</td><td>CₙH₂ₙ₋₂</td><td><span class="chem">CH₂=CH–CH=CH₂</span></td></tr></tbody></table><p style="color:var(--muted);font-size:.82rem">* Формулы приведены для ациклических соединений указанных классов.</p><div class="note"><b>Важно!</b> Алкины и алкадиены имеют одинаковую общую молекулярную формулу CₙH₂ₙ₋₂. Отличить их только по составу нельзя: необходимо видеть связи между атомами.</div><h3>Алгоритм</h3><ol><li>Посмотрите, какие связи соединяют атомы углерода.</li><li>Если все C–C одинарные — <b>алкан</b>.</li><li>Если одна C=C — <b>алкен</b>.</li><li>Если одна C≡C — <b>алкин</b>.</li><li>Если две C=C — <b>алкадиен</b>.</li></ol><div class="keybox">Разветвление углеродной цепи само по себе не меняет класс соединения. Например, 2-метилпропан — алкан.</div></div>`;
+const theoryHom=`<div class="theory"><p><b>Гомологи</b> — вещества одного гомологического ряда, сходные по строению и химическим свойствам, состав которых отличается на одну или несколько групп –CH₂–.</p><div class="keybox"><b>Главный критерий:</b> вещества должны относиться к <b>одному классу</b> и различаться по числу атомов углерода. У соединений одного ряда разность молекулярных формул составляет (CH₂)ₖ, где k — натуральное число.</div><table class="theory-table"><thead><tr><th>Пара</th><th>Гомологи?</th><th>Почему</th></tr></thead><tbody><tr><td>Пропан и пентан</td><td><b>Да</b></td><td>Оба алканы, разница C₂H₄ = 2CH₂</td></tr><tr><td>Пропан и пентен</td><td><b>Нет</b></td><td>Алкан и алкен — разные классы</td></tr><tr><td>Бутен-1 и бутен-2</td><td><b>Нет</b></td><td>Одинаковый состав C₄H₈; это изомеры</td></tr><tr><td>Бутин-1 и бутадиен-1,3</td><td><b>Нет</b></td><td>Разные классы, хотя общая формула одинакова</td></tr></tbody></table><h3>Последовательность проверки</h3><ol><li>Определите класс каждого соединения.</li><li>Убедитесь, что классы совпадают.</li><li>Сравните молекулярные формулы. Если разница (CH₂)ₖ — это гомологи.</li></ol><div class="note">Один и тот же молекулярный состав не делает вещества гомологами. Гомологи должны отличаться составом!</div></div>`;
+const theoryIso=`<div class="theory"><p><b>Изомеры</b> — вещества с одинаковой молекулярной формулой, но разным строением молекул (или пространственным расположением атомов). В основных заданиях рассмотрим <b>структурную изомерию</b>.</p><div class="keybox"><b>Пример.</b> Бутан <span class="chem inline">CH₃–CH₂–CH₂–CH₃</span> и 2-метилпропан <span class="chem inline">CH₃–CH(CH₃)–CH₃</span> имеют формулу C₄H₁₀, но различаются углеродным скелетом.</div><table class="theory-table"><thead><tr><th>Тип изомерии</th><th>Пример</th><th>Что изменилось?</th></tr></thead><tbody><tr><td><b>Углеродного скелета</b></td><td>Бутан / 2-метилпропан</td><td>Расположение атомов C в цепи</td></tr><tr><td><b>Положения двойной связи</b></td><td>Бутен-1 / бутен-2</td><td>Место связи C=C</td></tr><tr><td><b>Положения тройной связи</b></td><td>Бутин-1 / бутин-2</td><td>Место связи C≡C</td></tr><tr><td><b>Межклассовая</b></td><td>Бутин-1 / бутадиен-1,3</td><td>Разные классы при одной формуле C₄H₆</td></tr></tbody></table><h3>Не путайте четыре ситуации</h3><ul><li><b>Изомеры:</b> одинаковая молекулярная формула, разное строение.</li><li><b>Гомологи:</b> один класс, молекулярные формулы отличаются на (CH₂)ₖ.</li><li><b>Одно вещество:</b> формула просто записана в другом направлении.</li><li><b>Ни то ни другое:</b> не выполняется ни один из критериев.</li></ul><div class="note">Например, <span class="chem inline">CH₂=CH–CH₂–CH₃</span> и <span class="chem inline">CH₃–CH₂–CH=CH₂</span> — <b>одно и то же вещество</b>, бутен-1.</div></div>`;
+const theoryNames=`<div class="theory"><p>Название по систематической номенклатуре показывает число атомов углерода, тип связи, её положение и расположение заместителей.</p><div class="keybox"><b>Как записываем названия в тренажёре:</b> номер кратной связи ставим в конце: <b>бутен-2, пентин-1, бутадиен-1,3</b>. Такое написание используется во всех заданиях и правильных ответах.</div><h3>Алгоритм названия по формуле</h3><ol><li>Выберите <b>самую длинную цепь, содержащую кратную связь</b> (если она есть).</li><li>Пронумеруйте цепь с конца, ближайшего к кратной связи. Для алканов выбирайте нумерацию с меньшими номерами заместителей.</li><li>Найдите боковые группы и их положения: метил-, этил- и т. д.</li><li>Укажите главную цепь, положение кратной связи и суффикс: <b>-ан, -ен, -ин, -диен</b>.</li></ol><table class="theory-table"><thead><tr><th>Структурная формула</th><th>Название</th></tr></thead><tbody><tr><td><span class="chem">CH₃–CH₂–CH₃</span></td><td>Пропан</td></tr><tr><td><span class="chem">CH₂=CH–CH₂–CH₃</span></td><td>Бутен-1</td></tr><tr><td><span class="chem">CH₃–C≡C–CH₃</span></td><td>Бутин-2</td></tr><tr><td><span class="chem">CH₂=CH–CH=CH₂</span></td><td>Бутадиен-1,3</td></tr><tr><td><span class="chem">CH₃–CH(CH₃)–CH₂–CH₃</span></td><td>2-метилбутан</td></tr></tbody></table><h3>Как записывать структурную формулу</h3><p>Для «3-метилпентена-1» запишите главную цепь из пяти атомов углерода, двойную связь между C₁ и C₂ и метильную группу у C₃:</p><div class="keybox" style="text-align:center"><span class="chem">CH₂=CH–CH(CH₃)–CH₂–CH₃</span></div><p>Тренажёр принимает сокращённые структурные формулы с дефисами или без них; для тройной связи используйте символ <b>≡</b> или обычный <b>#</b>. Формулу можно записать и в обратном направлении.</p><div class="note"><b>Важно:</b> молекулярная формула вида C₅H₁₂ здесь не заменяет структурную: она не показывает расположение связей и боковых групп.</div></div>`;
+
+const classification={id:'class',title:'Классификация',number:'01',subtitle:'Находим класс по химическим связям',stages:[
+ theoretical('Как распознать класс',theoryClass),
+ flashStage('Узнаём по формуле','Сначала предположите класс, затем откройте ответ. Формулы идут от простых к более сложным.',[
+  ['CH3-CH2-CH3','Алканы','Все связи между атомами углерода одинарные.'],['CH2=CH-CH3','Алкены','Одна двойная связь C=C.'],['CH#C-CH3','Алкины','Одна тройная связь C≡C.'],['CH2=CH-CH=CH2','Алкадиены','Две двойные связи C=C.'],['CH3-CH(CH3)-CH3','Алканы','Разветвлённый скелет, но все связи одинарные.'],['CH3-CH=CH-CH3','Алкены','Двойная связь находится внутри цепи.'],['CH3-C#C-CH3','Алкины','Тройная связь находится внутри цепи.'],['CH2=C(CH3)-CH=CH2','Алкадиены','Две двойные связи, есть боковая группа CH₃.'],['CH2=CH-CH2-CH=CH2','Алкадиены','Две двойные связи разделены группой –CH₂–.'],['CH3-CH2-CH2-CH3','Алканы','Четыре атома углерода, все связи одинарные.']
+ ]),
+ stage('Простые формулы','Выберите класс углеводорода. Один правильный ответ.',[
+  single('К какому классу относится соединение?',CLASSES,'Алканы','В молекуле только одинарные связи C–C.',{formula:'CH3-CH3'}),
+  single('К какому классу относится соединение?',CLASSES,'Алкены','Одна двойная связь C=C.',{formula:'CH2=CH2'}),
+  single('К какому классу относится соединение?',CLASSES,'Алкины','Одна тройная связь C≡C.',{formula:'CH#CH'}),
+  single('К какому классу относится соединение?',CLASSES,'Алкадиены','Две двойные связи C=C.',{formula:'CH2=CH-CH=CH2'}),
+  single('Определите класс вещества.',CLASSES,'Алкины','Связь C≡C определяет принадлежность к алкинам.',{formula:'CH3-CH2-C#CH'}),
+  single('Определите класс вещества.',CLASSES,'Алканы','В этой цепи нет кратных связей.',{formula:'CH3-CH2-CH2-CH2-CH3'}),
+  single('Определите класс вещества.',CLASSES,'Алкены','Связь C=C одна, поэтому это алкен.',{formula:'CH3-CH2-CH=CH2'}),
+  single('Определите класс вещества.',CLASSES,'Алкадиены','В молекуле две двойные связи.',{formula:'CH2=CH-CH2-CH=CH2'})
+ ]),
+ stage('Разветвлённые цепи','Теперь в формулах появятся боковые группы. Они не определяют класс.',[
+  single('Определите класс разветвлённого углеводорода.',CLASSES,'Алканы','Одинарные связи: алкан.',{formula:'CH3-CH(CH3)-CH2-CH3'}),
+  single('Определите класс разветвлённого углеводорода.',CLASSES,'Алкены','Молекула содержит одну двойную связь.',{formula:'CH2=C(CH3)-CH2-CH3'}),
+  single('Определите класс разветвлённого углеводорода.',CLASSES,'Алкины','Молекула содержит одну тройную связь.',{formula:'CH#C-CH(CH3)-CH3'}),
+  single('Определите класс разветвлённого углеводорода.',CLASSES,'Алкадиены','Молекула содержит две двойные связи.',{formula:'CH2=C(CH3)-CH=CH2'}),
+  single('Определите класс разветвлённого углеводорода.',CLASSES,'Алканы','Разветвления не создают кратных связей.',{formula:'CH3-C(CH3)(CH3)-CH3'}),
+  single('Определите класс вещества.',CLASSES,'Алкены','Одна двойная связь, хотя цепь разветвлена.',{formula:'CH3-CH=CH-CH(CH3)-CH3'})
+ ]),
+ stage('Выберите все подходящие','В каждом задании может быть несколько правильных формул.',[
+  multi('Какие из предложенных веществ относятся к алканам?',['CH3-CH2-CH3','CH2=CH-CH3','CH3-CH(CH3)-CH3','CH3-C#CH','CH3-CH2-CH2-CH3'],['CH3-CH2-CH3','CH3-CH(CH3)-CH3','CH3-CH2-CH2-CH3'],'Алканы содержат только одинарные C–C.'),
+  multi('Найдите все алкены.',['CH2=CH-CH3','CH3-CH2-CH3','CH3-CH=CH-CH3','CH2=CH-CH=CH2','CH2=C(CH3)-CH3'],['CH2=CH-CH3','CH3-CH=CH-CH3','CH2=C(CH3)-CH3'],'У алкена одна двойная связь, у диена — две.'),
+  multi('Найдите все алкины.',['CH#C-CH3','CH3-C#C-CH3','CH2=CH-CH=CH2','CH3-CH=CH-CH3','CH#C-CH2-CH3'],['CH#C-CH3','CH3-C#C-CH3','CH#C-CH2-CH3'],'Алкины содержат одну тройную связь.'),
+  multi('Найдите все алкадиены.',['CH2=CH-CH=CH2','CH2=CH-CH2-CH=CH2','CH3-CH=CH-CH3','CH2=C(CH3)-CH=CH2','CH3-C#C-CH3'],['CH2=CH-CH=CH2','CH2=CH-CH2-CH=CH2','CH2=C(CH3)-CH=CH2'],'Ключевой признак — две двойные связи между атомами углерода.'),
+  multi('Какие формулы содержат кратные связи?',['CH3-CH3','CH2=CH2','CH#C-CH3','CH3-C(CH3)(CH3)-CH3','CH2=CH-CH=CH2'],['CH2=CH2','CH#C-CH3','CH2=CH-CH=CH2'],'Кратными называют двойную и тройную связи.')
+ ]),
+ stage('Соответствие','Для каждой формулы выберите правильный класс.',[
+  match('Соотнесите формулы и классы углеводородов.',[['CH3-CH2-CH3','Алканы'],['CH2=CH-CH3','Алкены'],['CH#C-CH3','Алкины'],['CH2=CH-CH=CH2','Алкадиены']],CLASSES,'Определяйте класс по числу и типу кратных связей.'),
+  match('Сопоставьте более сложные формулы с классами.',[['CH3-CH(CH3)-CH3','Алканы'],['CH2=C(CH3)-CH3','Алкены'],['CH#C-CH(CH3)-CH3','Алкины'],['CH2=C(CH3)-CH=CH2','Алкадиены']],CLASSES,'Разветвлённость не меняет принадлежность к классу.'),
+  match('Распределите вещества по классам.',[['Пентен-2','Алкены'],['Бутадиен-1,3','Алкадиены'],['2-метилбутан','Алканы'],['Бутин-2','Алкины']],CLASSES,'Суффиксы -ан, -ен, -ин, -диен показывают тип связи.')
+ ])
+]};
+
+const HOMYES=['Да, являются','Нет, не являются'];
+const homologs={id:'hom',title:'Гомологи',number:'02',subtitle:'От пары веществ до соответствия',stages:[
+ theoretical('Что такое гомологи',theoryHom),
+ stage('Два вещества','Решите, являются ли вещества гомологами. Следите за классом и составом.',[
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Пропан C₃H₈ и пентан C₅H₁₂ — алканы, разница 2CH₂.',{pair:['Пропан','Пентан']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Пропан — алкан, пентен — алкен. Классы различаются.',{pair:['Пропан','Пентен-1']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Бутен-1 и пентен-2 — алкены, разница CH₂.',{pair:['Бутен-1','Пентен-2']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Бутен-1 и бутен-2 имеют одинаковую молекулярную формулу, это изомеры.',{pair:['Бутен-1','Бутен-2']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Оба вещества — алкины, молекулы отличаются на CH₂.',{pair:['Бутин-1','Пентин-1']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Алкин и алкадиен относятся к разным классам.',{pair:['Бутин-1','Бутадиен-1,3']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Этан и пропан — соседние члены ряда алканов.',{pair:['CH3-CH3','CH3-CH2-CH3']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Обе формулы соответствуют C₄H₁₀, но имеют разный скелет. Это изомеры.',{pair:['CH3-CH2-CH2-CH3','CH3-CH(CH3)-CH3']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Пропен C₃H₆ и бутен-2 C₄H₈ — алкены, разница CH₂.',{pair:['CH2=CH-CH3','CH3-CH=CH-CH3']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Первое вещество — алкин, второе — алкадиен.',{pair:['CH#C-CH3','CH2=CH-CH=CH2']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Пентан C₅H₁₂ и 2-метилпентан C₆H₁₄ принадлежат ряду алканов.',{pair:['Пентан','2-метилпентан']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Этен — алкен; этан — алкан. Разные ряды.',{pair:['Этен','Этан']})
+ ]),
+ stage('Найдите одного гомолога','Из четырёх веществ выберите одного гомолога исходного.',[
+  single('Какое вещество — гомолог этана?',['Этен','Бутан','Бутен-1','Пропин'],'Бутан','Бутан и этан — алканы; разница C₂H₄.'),
+  single('Найдите гомолог пропена.',['Пентен-2','Бутан','Пропин','Пропан'],'Пентен-2','Оба алкены, отличаются на две группы CH₂.'),
+  single('Найдите гомолог бутина-2.',['Пентин-1','Бутадиен-1,3','Бутин-1','Бутен-2'],'Пентин-1','Пентин-1 — алкин с пятью атомами C, а исходный содержит четыре.'),
+  single('Найдите гомолог бутадиена-1,3.',['Пентадиен-1,3','Бутин-1','Бутен-1','Бутадиен-1,2'],'Пентадиен-1,3','Оба алкадиены; разница в одной группе CH₂.'),
+  single('Найдите гомолог 2-метилпропана.',['2-метилбутан','Бутан','Бутен-1','2-метилпропен'],'2-метилбутан','Оба алканы, но 2-метилбутан на CH₂ больше.'),
+  single('Найдите гомолог соединения.', ['CH2=CH-CH3','CH3-CH2-CH3','CH#C-CH3','CH2=CH-CH=CH2'],'CH2=CH-CH3','Данная формула — этен; пропен является его гомологом.',{formula:'CH2=CH2'})
+ ]),
+ stage('Найдите всех гомологов','Выберите все верные ответы — их больше одного.',[
+  multi('Выберите всех гомологов пропана.',['Этан','Пентан','Пропен','Бутан','Пропин'],['Этан','Пентан','Бутан'],'Этан, бутан и пентан принадлежат ряду алканов и отличаются от пропана числом CH₂.'),
+  multi('Выберите всех гомологов бутена-1.',['Пропен','Пентен-1','Бутен-2','Гексен-2','Пентан'],['Пропен','Пентен-1','Гексен-2'],'Алкены с другим числом атомов C — гомологи, бутен-2 — изомер.'),
+  multi('Выберите всех гомологов пропина.',['Этин','Бутин-2','Пентин-1','Бутадиен-1,3','Пропен'],['Этин','Бутин-2','Пентин-1'],'Все выбранные вещества — алкины; остальные принадлежат другим классам.'),
+  multi('Выберите всех гомологов бутадиена-1,3.',['Пентадиен-1,3','Гексадиен-1,3','Бутин-1','Бутадиен-1,2','Бутен-2'],['Пентадиен-1,3','Гексадиен-1,3'],'Диены с пятью или шестью атомами углерода — гомологи диена с четырьмя C.'),
+  multi('Выберите гомологов 2-метилбутана.',['Пропан','2-метилпропан','2,2-диметилпропан','Гексан','Бутен-1'],['Пропан','2-метилпропан','Гексан'],'Гомологи-алканы должны иметь другое число атомов C. 2,2-диметилпропан — изомер.')
+ ]),
+ stage('Соответствие','К каждому веществу подберите гомолога. Лишние варианты могут присутствовать.',[
+  match('Подберите по одному гомологу. Представлены четыре класса.',[['Этан','Бутан'],['Пропен','Пентен-1'],['Пропин','Бутин-2'],['Бутадиен-1,3','Пентадиен-1,3']],['Бутан','Пентен-1','Бутин-2','Пентадиен-1,3','Бутен-1','Бутин-1'],'Сначала определите класс; затем проверьте, что состав отличается на (CH₂)ₖ.'),
+  match('Подберите гомолога к каждой формуле.',['CH3-CH2-CH3','CH2=CH-CH3','CH#C-CH3','CH2=CH-CH=CH2'].map((s,i)=>[s,['CH3-CH2-CH2-CH3','CH2=CH-CH2-CH3','CH#C-CH2-CH3','CH2=CH-CH=CH-CH3'][i]]),['CH3-CH2-CH2-CH3','CH2=CH-CH2-CH3','CH#C-CH2-CH3','CH2=CH-CH=CH-CH3','CH3-CH2-CH3'],'Во всех правильных парах молекулы отличаются одной группой CH₂.'),
+  match('Сопоставьте вещества и их гомологи.',['Пентан','Бутен-1','Бутин-2','Пентадиен-1,3'].map((s,i)=>[s,['Гексан','Пропен','Пентин-1','Бутадиен-1,3'][i]]),['Гексан','Пропен','Пентин-1','Бутадиен-1,3','Пентен-2','Бутин-1'],'Изомеры нельзя считать гомологами даже при совпадении класса.')
+ ])
+]};
+
+const ISOREL=['Изомеры','Гомологи','Одно и то же вещество','Ни то ни другое'];
+const ISONO=['Да, являются','Нет, не являются'];
+const ISOTYPES=['Углеродного скелета','Положения двойной связи','Положения тройной связи','Межклассовая'];
+const isomers={id:'iso',title:'Изомерия',number:'03',subtitle:'Сравниваем состав и строение',stages:[
+ theoretical('Суть изомерии',theoryIso),
+ stage('Являются ли изомерами?','Установите, совпадает ли молекулярная формула и отличается ли строение.',[
+  single('Являются ли вещества изомерами?',ISONO,ISONO[0],'Пентан и 2-метилбутан имеют формулу C₅H₁₂, но разную цепь.',{pair:['Пентан','2-метилбутан']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[1],'Бутан C₄H₁₀ и пентан C₅H₁₂ имеют разный состав.',{pair:['Бутан','Пентан']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[0],'Обе молекулы C₄H₈, но двойная связь находится в разных положениях.',{pair:['Бутен-1','Бутен-2']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[1],'Бутен-1 имеет состав C₄H₈, а бутин-1 — C₄H₆.',{pair:['Бутен-1','Бутин-1']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[0],'Оба вещества C₄H₆; один алкин, другой алкадиен.',{pair:['Бутин-1','Бутадиен-1,3']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[1],'Пентан C₅H₁₂, 2-метилпропан C₄H₁₀: разный состав.',{pair:['Пентан','2-метилпропан']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[0],'Разное положение тройной связи, одинаковая молекулярная формула C₄H₆.',{pair:['Бутин-1','Бутин-2']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[0],'Молекулы C₅H₁₀ отличаются строением углеродного скелета.',{pair:['Пентен-1','2-метилбутен-1']}),
+  single('Являются ли вещества изомерами?',ISONO,ISONO[1],'Это одна и та же молекула, записанная с разных концов.',{pair:['CH2=CH-CH2-CH3','CH3-CH2-CH=CH2']})
+ ]),
+ stage('Изомеры, гомологи или одно вещество','Различайте четыре возможные ситуации.',[
+  single('Как связаны эти вещества?',ISOREL,'Изомеры','Одинаковая формула C₄H₁₀, но разные углеродные скелеты.',{pair:['Бутан','2-метилпропан']}),
+  single('Как связаны эти вещества?',ISOREL,'Гомологи','Оба алкены и отличаются на CH₂.',{pair:['Бутен-1','Пентен-1']}),
+  single('Как связаны эти формулы?',ISOREL,'Одно и то же вещество','Формула бутена-1 просто записана в обратном направлении.',{pair:['CH3-CH2-CH=CH2','CH2=CH-CH2-CH3']}),
+  single('Как связаны эти вещества?',ISOREL,'Ни то ни другое','Пропан — алкан C₃H₈, пропен — алкен C₃H₆.',{pair:['Пропан','Пропен']}),
+  single('Как связаны эти вещества?',ISOREL,'Изомеры','Общая формула C₄H₆, но разные классы: алкин и алкадиен.',{pair:['Бутин-1','Бутадиен-1,3']}),
+  single('Как связаны эти вещества?',ISOREL,'Гомологи','Оба алкены, разница CH₂.',{pair:['Бутен-2','Пентен-2']}),
+  single('Как связаны эти формулы?',ISOREL,'Одно и то же вещество','Одна и та же цепь из пяти C, просто прочитана справа налево.',{pair:['CH3-CH2-CH2-CH2-CH3','CH3-CH2-CH2-CH2-CH3']}),
+  single('Как связаны эти вещества?',ISOREL,'Ни то ни другое','Этин — алкин C₂H₂, пропен — алкен C₃H₆.',{pair:['Этин','Пропен']}),
+  single('Как связаны эти вещества?',ISOREL,'Изомеры','Бутен-1 и 2-метилпропен имеют состав C₄H₈.',{pair:['Бутен-1','2-метилпропен']})
+ ]),
+ stage('Найдите одного изомера','Найдите среди предложенных соединений изомер исходного вещества.',[
+  single('Какое вещество является изомером бутена-1?',['Пентен-1','Бутен-2','Бутан','Пропин'],'Бутен-2','Два алкена C₄H₈ отличаются положением двойной связи.'),
+  single('Найдите изомер пентана.',['2-метилбутан','Гексан','Пентен-1','Бутан'],'2-метилбутан','Пентан и 2-метилбутан: C₅H₁₂, но разный скелет.'),
+  single('Найдите изомер бутина-1.',['Пентин-1','Бутен-2','Бутадиен-1,3','Бутан'],'Бутадиен-1,3','Оба соединения C₄H₆. Это межклассовые изомеры.'),
+  single('Найдите изомер гексана.',['2,3-диметилбутан','Пентан','Гексен-1','Гептан'],'2,3-диметилбутан','Гексан и 2,3-диметилбутан: C₆H₁₄.'),
+  single('Найдите изомер бутина-2.',['Пропин','Бутин-1','Пентин-2','Бутен-2'],'Бутин-1','Одинаковая молекулярная формула C₄H₆; отличается положение тройной связи.')
+ ]),
+ stage('Найдите всех изомеров','В каждом задании отметьте все правильные варианты.',[
+  multi('Выберите все изомеры бутина-1.',['Бутин-2','Бутадиен-1,3','Бутадиен-1,2','Бутен-1','Пентин-1'],['Бутин-2','Бутадиен-1,3','Бутадиен-1,2'],'Все три правильных вещества имеют формулу C₄H₆, но разные структуры.'),
+  multi('Выберите все структурные изомеры пентана.',['2-метилбутан','2,2-диметилпропан','Гексан','2-метилпентан','Бутан'],['2-метилбутан','2,2-диметилпропан'],'Всего три структурных изомера C₅H₁₂: пентан и два выбранных соединения.'),
+  multi('Выберите все изомеры пентена-1.',['Пентен-2','2-метилбутен-1','2-метилбутен-2','Пентин-1','Бутен-1'],['Пентен-2','2-метилбутен-1','2-метилбутен-2'],'Все верные соединения имеют формулу C₅H₁₀.'),
+  multi('Выберите все изомеры бутена-1.',['2-метилпропен','Бутен-2','Бутин-1','Пентен-1','Бутан'],['2-метилпропен','Бутен-2'],'Формула C₄H₈ одинакова у бутена-1, бутена-2 и 2-метилпропена.'),
+  multi('Выберите все изомеры бутадиена-1,3.',['Бутин-1','Бутин-2','Бутадиен-1,2','Бутен-2','Пентадиен-1,3'],['Бутин-1','Бутин-2','Бутадиен-1,2'],'В каждом правильном варианте формула C₄H₆.')
+ ]),
+ stage('Тип структурной изомерии','Определите, чем различаются молекулы, затем выполните соответствие.',[
+  single('Определите тип изомерии.',ISOTYPES,'Углеродного скелета','Бутан и 2-метилпропан различаются расположением атомов углерода.',{pair:['Бутан','2-метилпропан']}),
+  single('Определите тип изомерии.',ISOTYPES,'Положения двойной связи','Отличается положение двойной связи C=C.',{pair:['Пентен-1','Пентен-2']}),
+  single('Определите тип изомерии.',ISOTYPES,'Положения тройной связи','Отличается положение тройной связи C≡C.',{pair:['Бутин-1','Бутин-2']}),
+  single('Определите тип изомерии.',ISOTYPES,'Межклассовая','Один алкин, второй алкадиен, при формуле C₄H₆.',{pair:['Бутин-1','Бутадиен-1,3']}),
+  match('Установите тип изомерии для каждой пары.',[['Бутан / 2-метилпропан','Углеродного скелета'],['Бутен-1 / бутен-2','Положения двойной связи'],['Бутин-1 / бутин-2','Положения тройной связи'],['Бутин-1 / бутадиен-1,3','Межклассовая']],ISOTYPES,'Сопоставляйте разные способы изменения структуры при сохранении молекулярного состава.'),
+  match('Сопоставьте формулы пар с типом изомерии.',[['CH3-CH2-CH2-CH3 / CH3-CH(CH3)-CH3','Углеродного скелета'],['CH2=CH-CH2-CH3 / CH3-CH=CH-CH3','Положения двойной связи'],['CH#C-CH2-CH3 / CH3-C#C-CH3','Положения тройной связи'],['CH#C-CH2-CH3 / CH2=CH-CH=CH2','Межклассовая']],ISOTYPES,'Одинаковая формула C₄H₆ у алкинов и диенов — пример межклассовой изомерии.')
+ ])
+]};
+
+const nomenclature={id:'name',title:'Номенклатура',number:'04',subtitle:'От формулы к названию и обратно',stages:[
+ theoretical('Как называть вещества',theoryNames),
+ stage('Назовите простое вещество','Введите название вещества по сокращённой структурной формуле.',[
+  naming('Назовите соединение.','CH3-CH2-CH3','Пропан','Три атома углерода и только одинарные связи.'),
+  naming('Назовите соединение.','CH3-CH2-CH2-CH3','Бутан','Четыре атома C, одинарные связи.'),
+  naming('Назовите соединение.','CH2=CH-CH3','Пропен','Три атома C, одна двойная связь.'),
+  naming('Назовите соединение.','CH2=CH-CH2-CH3','Бутен-1','Двойная связь начинается у первого атома C.'),
+  naming('Назовите соединение.','CH3-CH=CH-CH3','Бутен-2','Двойная связь находится между вторым и третьим атомами.'),
+  naming('Назовите соединение.','CH#CH','Этин','Два атома C, тройная связь.', ['Ацетилен']),
+  naming('Назовите соединение.','CH3-C#C-CH3','Бутин-2','Тройная связь между C₂ и C₃.'),
+  naming('Назовите соединение.','CH2=CH-CH=CH2','Бутадиен-1,3','Четыре атома C, двойные связи у C₁ и C₃.')
+ ]),
+ stage('Назовите разветвлённое','Учитывайте боковые группы и положение кратной связи.',[
+  naming('Назовите соединение.','CH3-CH(CH3)-CH3','2-метилпропан','Главная цепь — пропан, метильная группа у C₂.'),
+  naming('Назовите соединение.','CH3-CH(CH3)-CH2-CH3','2-метилбутан','Цепь из четырёх атомов C, метильная группа у C₂.'),
+  naming('Назовите соединение.','CH3-C(CH3)(CH3)-CH3','2,2-диметилпропан','Два метильных заместителя у второго атома пропана.'),
+  naming('Назовите соединение.','CH3-CH2-CH(CH3)-CH2-CH3','3-метилпентан','Главная цепь — пентан, метильная группа у C₃.'),
+  naming('Назовите соединение.','CH2=CH-CH(CH3)-CH3','3-метилбутен-1','Двойная связь получает минимальный номер — 1; метильная группа у C₃.'),
+  naming('Назовите соединение.','CH2=C(CH3)-CH2-CH3','2-метилбутен-1','Главная цепь — бутен-1, метильная группа у C₂.'),
+  naming('Назовите соединение.','CH#C-CH(CH3)-CH3','3-метилбутин-1','Тройная связь у C₁, метильная группа у C₃.'),
+  naming('Назовите соединение.','CH2=C(CH3)-CH=CH2','2-метилбутадиен-1,3','Двойные связи в положениях 1,3; метильная группа у C₂.')
+ ]),
+ stage('Запишите структурную формулу','Введите сокращённую структурную формулу; проверяется само строение, а не порядок символов.',[
+  struct('Напишите формулу по названию.','Этан','CH3-CH3','Одна связь C–C, каждый углерод связан с тремя H.'),
+  struct('Напишите формулу по названию.','Бутан','CH3-CH2-CH2-CH3','Четыре атома C в одной цепи, все C–C одинарные.'),
+  struct('Напишите формулу по названию.','Пропен','CH2=CH-CH3','Три атома углерода и двойная связь.'),
+  struct('Напишите формулу по названию.','Бутен-2','CH3-CH=CH-CH3','Двойная связь между вторым и третьим C.'),
+  struct('Напишите формулу по названию.','Пропин','CH#C-CH3','Тройная связь между C₁ и C₂.'),
+  struct('Напишите формулу по названию.','Бутадиен-1,3','CH2=CH-CH=CH2','Двойные связи между C₁–C₂ и C₃–C₄.'),
+  struct('Напишите формулу по названию.','2-метилпропан','CH3-CH(CH3)-CH3','К C₂ главной цепи присоединён CH₃.'),
+  struct('Напишите формулу по названию.','2-метилбутан','CH3-CH(CH3)-CH2-CH3','Четыре C в цепи и метильная группа у второго.')
+ ]),
+ stage('Формула по сложному названию','Самостоятельно расставьте заместители, двойные и тройные связи.',[
+  struct('Составьте сокращённую структурную формулу.','3-метилпентен-1','CH2=CH-CH(CH3)-CH2-CH3','Цепь из пяти атомов C, двойная связь у C₁, метил у C₃.'),
+  struct('Составьте сокращённую структурную формулу.','2-метилбутен-1','CH2=C(CH3)-CH2-CH3','Четыре C в цепи, двойная связь у C₁, метил у C₂.'),
+  struct('Составьте сокращённую структурную формулу.','2,3-диметилбутан','CH3-CH(CH3)-CH(CH3)-CH3','Метильные заместители у C₂ и C₃.'),
+  struct('Составьте сокращённую структурную формулу.','3-метилбутин-1','CH#C-CH(CH3)-CH3','Цепь из четырёх C, тройная связь у C₁ и метил у C₃.'),
+  struct('Составьте сокращённую структурную формулу.','4-метилпентин-2','CH3-C#C-CH(CH3)-CH3','Тройная связь у C₂, метил у C₄.'),
+  struct('Составьте сокращённую структурную формулу.','2-метилбутадиен-1,3','CH2=C(CH3)-CH=CH2','Две двойные связи (1,3) и метил у второго атома.'),
+  struct('Составьте сокращённую структурную формулу.','3,3-диметилпентан','CH3-CH2-C(CH3)(CH3)-CH2-CH3','Два метильных заместителя у C₃ в пентановой цепи.'),
+  struct('Составьте сокращённую структурную формулу.','4-метилгексен-2','CH3-CH=CH-CH(CH3)-CH2-CH3','Шесть атомов в основной цепи, двойная связь у C₂, метил у C₄.'),
+  naming('Назовите соединение.','CH3-CH2-CH(CH3)-CH(CH3)-CH3','2,3-диметилпентан','Нумеруем с правого конца: заместители у C₂ и C₃.'),
+  naming('Назовите соединение.','CH3-CH2-CH=CH-CH(CH3)-CH3','5-метилгексен-3','Двойная связь находится у C₃ с любой стороны; метил получает меньший номер 2, поэтому правильное название — 2-метилгексен-3.')
+ ])
+]};
+// В последней задаче неоднозначная нумерация исправлена: меньший номер заместителя (2).
+const lastNameQ=nomenclature.stages[4].questions.at(-1);
+lastNameQ.answer='2-метилгексен-3';
+lastNameQ.explain='Двойная связь в положении 3 с обоих концов. Нумеруем со стороны метильной группы, чтобы она получила номер 2.';
+
+const topics=[classification,homologs,isomers,nomenclature];
+const examPool={
+ class:[
+  single('Определите класс углеводорода.',CLASSES,'Алкадиены','В молекуле две двойные связи.',{formula:'CH3-CH=CH-CH=CH2'}),
+  single('Определите класс углеводорода.',CLASSES,'Алкины','Присутствует одна тройная связь.',{formula:'CH3-CH2-C#C-CH3'}),
+  single('Определите класс углеводорода.',CLASSES,'Алкены','Одна двойная связь C=C.',{formula:'CH2=CH-CH2-CH2-CH3'}),
+  single('Определите класс углеводорода.',CLASSES,'Алканы','Нет кратных связей.',{formula:'CH3-CH(CH3)-CH(CH3)-CH3'}),
+  multi('Выберите все алкены.',['CH3-CH2-CH=CH2','CH3-CH2-CH3','CH2=C(CH3)-CH2-CH3','CH#C-CH2-CH3'],['CH3-CH2-CH=CH2','CH2=C(CH3)-CH2-CH3'],'У алкенов ровно одна двойная связь.'),
+  multi('Выберите все углеводороды с тройной связью.',['CH3-C#C-CH2-CH3','CH2=CH-CH2-CH3','CH3-CH2-CH2-C#CH','CH2=CH-CH=CH2'],['CH3-C#C-CH2-CH3','CH3-CH2-CH2-C#CH'],'Тройная связь обозначается ≡.'),
+  match('Установите соответствие между формулой и классом.',[['CH3-CH2-CH2-CH2-CH3','Алканы'],['CH3-CH2-CH=CH2','Алкены'],['CH3-C#C-CH2-CH3','Алкины'],['CH3-CH=CH-CH=CH2','Алкадиены']],CLASSES,'Класс определяет число и тип кратных связей.'),
+  single('К какому классу относится вещество 2-метилпентен-1?',CLASSES,'Алкены','Суффикс -ен указывает на одну двойную связь.'),
+  single('К какому классу относится гексадиен-1,4?',CLASSES,'Алкадиены','Суффикс -диен означает две двойные связи.')
+ ],
+ hom:[
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Оба вещества — алкены, разница C₂H₄.',{pair:['Пропен','Пентен-1']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Бутин-2 и бутин-1 — изомеры, а не гомологи.',{pair:['Бутин-2','Бутин-1']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[0],'Пентан и гептан — алканы, разница 2CH₂.',{pair:['Пентан','Гептан']}),
+  single('Являются ли вещества гомологами?',HOMYES,HOMYES[1],'Алкин и алкадиен — разные классы.',{pair:['Пентин-1','Пентадиен-1,3']}),
+  multi('Выберите всех гомологов пентена-2.',['Гексен-1','Бутен-1','Пентен-1','Пентан','Пропен'],['Гексен-1','Бутен-1','Пропен'],'Нужны другие алкены с отличающимся числом атомов C.'),
+  multi('Какие вещества — гомологи бутана?',['Этан','Пентан','2-метилпропан','Гексан','Бутен-1'],['Этан','Пентан','Гексан'],'Бутан и 2-метилпропан — изомеры; другие алканы с иным числом C — гомологи.'),
+  match('Подберите к каждому веществу гомолога.',[['Пропан','Пентан'],['Бутен-2','Гексен-1'],['Бутин-1','Пропин'],['Пентадиен-1,3','Бутадиен-1,3']],['Пентан','Гексен-1','Пропин','Бутадиен-1,3','Бутен-1'],'Сохраняются класс соединения и тип кратных связей, меняется число CH₂.'),
+  single('Найдите гомолог 2-метилбутана.',['3-метилпентан','Пентан','2,2-диметилпропан','Бутен-2'],'3-метилпентан','Оба алканы, формулы C₅H₁₂ и C₆H₁₄.'),
+  single('Найдите гомолог гексина-1.',['Пентин-2','Гексадиен-1,3','Гексин-2','Гексен-1'],'Пентин-2','Алкины с разным числом углеродных атомов.')
+ ],
+ iso:[
+  single('Являются ли вещества структурными изомерами?',ISONO,ISONO[0],'Гексан и 3-метилпентан — C₆H₁₄.',{pair:['Гексан','3-метилпентан']}),
+  single('Являются ли вещества структурными изомерами?',ISONO,ISONO[1],'Это два разных алкана с разным числом C.',{pair:['2-метилбутан','2-метилпентан']}),
+  single('Как связаны два вещества?',ISOREL,'Одно и то же вещество','Обе записи соответствуют пентену-2.',{pair:['CH3-CH=CH-CH2-CH3','CH3-CH2-CH=CH-CH3']}),
+  single('Как связаны два вещества?',ISOREL,'Изомеры','Один алкин, другой алкадиен, формула C₅H₈.',{pair:['Пентин-1','Пентадиен-1,3']}),
+  single('Как связаны вещества?',ISOREL,'Гомологи','Пентан и гексан — алканы, разница CH₂.',{pair:['Пентан','Гексан']}),
+  multi('Найдите все структурные изомеры 2-метилбутана.',['Пентан','2,2-диметилпропан','Бутан','2-метилпентан','Пентен-1'],['Пентан','2,2-диметилпропан'],'Все правильные ответы имеют состав C₅H₁₂.'),
+  single('Определите тип изомерии.',ISOTYPES,'Межклассовая','Пентин-1 и пентадиен-1,3 — C₅H₈.',{pair:['Пентин-1','Пентадиен-1,3']}),
+  match('Установите тип изомерии.',[['Пентан / 2-метилбутан','Углеродного скелета'],['Пентен-1 / пентен-2','Положения двойной связи'],['Пентин-1 / пентин-2','Положения тройной связи'],['Пентин-1 / пентадиен-1,3','Межклассовая']],ISOTYPES,'Используйте общую формулу и положение связей.'),
+  single('Как связаны вещества?',ISOREL,'Ни то ни другое','Пентан (алкан) и пентен-1 (алкен) имеют разный состав.',{pair:['Пентан','Пентен-1']})
+ ],
+ name:[
+  naming('Назовите вещество по формуле.','CH3-CH2-CH=CH-CH2-CH3','Гексен-3','Двойная связь у третьего атома.'),
+  naming('Назовите вещество по формуле.','CH3-CH2-CH2-C#CH','Пентин-1','Нумеруем с конца, ближайшего к тройной связи.'),
+  naming('Назовите вещество по формуле.','CH3-CH(CH3)-CH(CH3)-CH3','2,3-диметилбутан','Метильные группы у C₂ и C₃.'),
+  naming('Назовите вещество по формуле.','CH2=CH-CH2-CH(CH3)-CH3','4-метилпентен-1','Двойная связь у C₁, метил у C₄.'),
+  struct('Составьте формулу вещества.','Пентен-2','CH3-CH=CH-CH2-CH3','Главная цепь из пяти C, двойная связь у C₂.'),
+  struct('Составьте формулу вещества.','Гексин-1','CH#C-CH2-CH2-CH2-CH3','Шесть C, тройная связь у первого.'),
+  struct('Составьте формулу вещества.','3-метилпентан','CH3-CH2-CH(CH3)-CH2-CH3','Главная цепь из пяти C, метил у третьего.'),
+  struct('Составьте формулу вещества.','Пентадиен-1,3','CH2=CH-CH=CH-CH3','Пять C, двойные связи у первого и третьего атомов.'),
+  struct('Составьте формулу вещества.','2-метилбутадиен-1,3','CH2=C(CH3)-CH=CH2','Две двойные связи и метил у C₂.'),
+  naming('Назовите вещество по формуле.','CH3-CH(CH3)-CH2-CH(CH3)-CH3','2,4-диметилпентан','Главная цепь содержит пять атомов C; метильные заместители у C₂ и C₄.')
+ ]
+};
+
+// Молекулярно-графовая проверка сокращённых структурных формул.
+// Корректные записи в противоположных направлениях имеют одинаковую каноническую форму.
+function parseStructure(original){
+ let str=String(original||'').trim().toUpperCase().replace(/[₀-₉]/g,x=>'₀₁₂₃₄₅₆₇₈₉'.indexOf(x)).replace(/[\s\u200b]/g,'').replace(/[—–−]/g,'-').replace(/≡/g,'#').replace(/(^|[-=(#])H([0-9])C/g,'$1CH$2');
+ if(!str)throw Error('Введите сокращённую структурную формулу.');
+ if(/^C\d+H\d+$/i.test(str))throw Error('Нужна структурная формула (например, CH3-CH2-CH3), а не только молекулярная.');
+ let i=0,last=null,bond=1,stack=[],nodes=[];
+ while(i<str.length){
+  const ch=str[i];
+  if(ch==='-'||ch==='='||ch==='#'){
+   if(last===null||bond!==1)throw Error('Проверьте расположение знаков химических связей.');
+   bond=ch==='-'?1:ch==='='?2:3;i++;continue;
+  }
+  if(ch==='('){if(last===null||bond!==1)throw Error('Проверьте запись боковой группы.');stack.push(last);i++;continue;}
+  if(ch===')'){if(!stack.length||bond!==1)throw Error('Проверьте скобки в формуле.');last=stack.pop();i++;continue;}
+  if(ch!=='C')throw Error('Используйте сокращённую формулу из групп CH3, CH2, CH и C; связи - = ≡.');
+  i++;let h=0;
+  if(str[i]==='H'){i++;let digits='';while(i<str.length&&/[0-9]/.test(str[i]))digits+=str[i++];h=digits?Number(digits):1;}
+  if(h>4)throw Error('Число атомов H при одном атоме C не может превышать 4.');
+  const id=nodes.length;nodes.push({h,links:[]});
+  if(last!==null){nodes[last].links.push([id,bond]);nodes[id].links.push([last,bond]);}
+  last=id;bond=1;
+  if(nodes.length>25)throw Error('Формула слишком длинная для этого тренажёра.');
+ }
+ if(stack.length||bond!==1)throw Error('Формула не завершена: проверьте связи и скобки.');
+ if(nodes.length===0)throw Error('Введите структурную формулу.');
+ for(const n of nodes){const val=n.links.reduce((sum,link)=>sum+link[1],n.h);if(val!==4)throw Error('Проверьте валентность углерода и количество атомов водорода в каждой группе.');}
+ const walk=(node,parent)=>`H${nodes[node].h}[${nodes[node].links.filter(x=>x[0]!==parent).map(x=>`${x[1]}:${walk(x[0],node)}`).sort().join('|')}]`;
+ const strings=nodes.map((_,j)=>walk(j,-1));strings.sort();return strings[0];
+}
+function normalizeName(s){
+ const input=String(s||'').toLowerCase().replace(/ё/g,'е').replace(/[—–−]/g,'-').replace(/\s+/g,'').replace(/\./g,'').replace(/[()]/g,'');
+ // Во вводе альтернативное положение локанта преобразуем к принятой учебной форме.
+ return input.replace(/([а-я]+)-(\d+(?:,\d+)*)-(диен|ен|ин)([а-я]*)/g,(_,stem,positions,suffix,ending)=>`${stem}${suffix}${ending}-${positions}`);
+}
+function sameName(q,answer){const candidates=[q.answer,...(nameAlternatives[q.answer.toLowerCase()]||[]),...(q.aliases||[])];return candidates.some(x=>normalizeName(x)===normalizeName(answer));}
+function evaluate(q,response){
+ if(q.type==='single'){return {points:response===q.answer?1:0,max:1};}
+ if(q.type==='multiple'){const a=Array.isArray(response)?response:[];return {points:a.length===q.answer.length&&q.answer.every(x=>a.includes(x))?1:0,max:1};}
+ if(q.type==='match'){const a=response||{};const right=q.answer.reduce((sum,v,i)=>sum+(a[i]===v?1:0),0);return {points:right,max:q.rows.length};}
+ if(q.type==='input-name')return {points:sameName(q,response)?1:0,max:1};
+ if(q.type==='input-formula'){
+  if(!String(response||'').trim())return {points:0,max:1,error:'Формула не введена.'};
+  try{return {points:parseStructure(response)===parseStructure(q.answer)?1:0,max:1};}
+  catch(err){return {points:0,max:1,error:err.message};}
+ }
+ return {points:0,max:1};
+}
+function correctText(q){if(q.type==='match')return q.rows.map((r,i)=>`${r} → ${q.answer[i]}`).join('; ');if(q.type==='multiple')return q.answer.join('; ');return q.answer;}
+function correctDisplay(q){
+ if(q.type==='multiple')return `<div class="correct-list">${q.answer.map(x=>`<div>${pretty(x)}</div>`).join('')}</div>`;
+ if(q.type==='match')return `<div class="correct-list">${q.rows.map((x,i)=>`<div>${pretty(x)} → ${pretty(q.answer[i])}</div>`).join('')}</div>`;
+ return pretty(q.answer);
+}
+function responseText(q,a){if(q.type==='match')return q.rows.map((r,i)=>`${r} → ${(a||{})[i]||'—'}`).join('; ');if(q.type==='multiple')return a?.length?a.join('; '):'Нет ответа';return a||'Нет ответа';}
+function isAnswered(q,a){if(q.type==='match')return Object.keys(a||{}).some(k=>!!a[k]);if(q.type==='multiple')return Array.isArray(a)&&a.length>0;return typeof a==='string'&&a.trim().length>0;}
+// Расширенный проверяемый каталог: класс / систематическое название / структурная формула.
+// Все разветвлённые молекулы отображаются связями и заместителями (SVG), а не скобками.
+const EXTRA_CATALOG_ROWS = [
+ ['Алканы','Этан','CH3-CH3'],
+ ['Алканы','Пропан','CH3-CH2-CH3'],
+ ['Алканы','Бутан','CH3-CH2-CH2-CH3'],
+ ['Алканы','2-метилпропан','CH3-CH(CH3)-CH3'],
+ ['Алканы','Пентан','CH3-CH2-CH2-CH2-CH3'],
+ ['Алканы','2-метилбутан','CH3-CH(CH3)-CH2-CH3'],
+ ['Алканы','2,2-диметилпропан','CH3-C(CH3)(CH3)-CH3'],
+ ['Алканы','Гексан','CH3-CH2-CH2-CH2-CH2-CH3'],
+ ['Алканы','2-метилпентан','CH3-CH(CH3)-CH2-CH2-CH3'],
+ ['Алканы','3-метилпентан','CH3-CH2-CH(CH3)-CH2-CH3'],
+ ['Алканы','2,2-диметилбутан','CH3-C(CH3)(CH3)-CH2-CH3'],
+ ['Алканы','2,3-диметилбутан','CH3-CH(CH3)-CH(CH3)-CH3'],
+ ['Алканы','Гептан','CH3-CH2-CH2-CH2-CH2-CH2-CH3'],
+ ['Алканы','2-метилгексан','CH3-CH(CH3)-CH2-CH2-CH2-CH3'],
+ ['Алканы','3-метилгексан','CH3-CH2-CH(CH3)-CH2-CH2-CH3'],
+ ['Алканы','3-этилпентан','CH3-CH2-CH(CH2-CH3)-CH2-CH3'],
+ ['Алканы','2,2-диметилпентан','CH3-C(CH3)(CH3)-CH2-CH2-CH3'],
+ ['Алканы','2,3-диметилпентан','CH3-CH(CH3)-CH(CH3)-CH2-CH3'],
+ ['Алканы','2,4-диметилпентан','CH3-CH(CH3)-CH2-CH(CH3)-CH3'],
+ ['Алканы','3,3-диметилпентан','CH3-CH2-C(CH3)(CH3)-CH2-CH3'],
+ ['Алканы','2,2,3-триметилбутан','CH3-C(CH3)(CH3)-CH(CH3)-CH3'],
+ ['Алканы','Октан','CH3-CH2-CH2-CH2-CH2-CH2-CH2-CH3'],
+ ['Алканы','2-метилгептан','CH3-CH(CH3)-CH2-CH2-CH2-CH2-CH3'],
+ ['Алканы','3-метилгептан','CH3-CH2-CH(CH3)-CH2-CH2-CH2-CH3'],
+ ['Алканы','3-этилгексан','CH3-CH2-CH(CH2-CH3)-CH2-CH2-CH3'],
+ ['Алканы','2,2-диметилгексан','CH3-C(CH3)(CH3)-CH2-CH2-CH2-CH3'],
+ ['Алканы','2,3-диметилгексан','CH3-CH(CH3)-CH(CH3)-CH2-CH2-CH3'],
+ ['Алканы','3,4-диметилгексан','CH3-CH2-CH(CH3)-CH(CH3)-CH2-CH3'],
+ ['Алканы','2,2,4-триметилпентан','CH3-C(CH3)(CH3)-CH2-CH(CH3)-CH3'],
+ ['Алканы','2,3,3-триметилпентан','CH3-CH(CH3)-C(CH3)(CH3)-CH2-CH3'],
+ ['Алкены','Этен','CH2=CH2'],
+ ['Алкены','Пропен','CH2=CH-CH3'],
+ ['Алкены','Бутен-1','CH2=CH-CH2-CH3'],
+ ['Алкены','Бутен-2','CH3-CH=CH-CH3'],
+ ['Алкены','2-метилпропен','CH2=C(CH3)-CH3'],
+ ['Алкены','Пентен-1','CH2=CH-CH2-CH2-CH3'],
+ ['Алкены','Пентен-2','CH3-CH=CH-CH2-CH3'],
+ ['Алкены','2-метилбутен-1','CH2=C(CH3)-CH2-CH3'],
+ ['Алкены','3-метилбутен-1','CH2=CH-CH(CH3)-CH3'],
+ ['Алкены','2-метилбутен-2','CH3-C(CH3)=CH-CH3'],
+ ['Алкены','Гексен-1','CH2=CH-CH2-CH2-CH2-CH3'],
+ ['Алкены','Гексен-2','CH3-CH=CH-CH2-CH2-CH3'],
+ ['Алкены','Гексен-3','CH3-CH2-CH=CH-CH2-CH3'],
+ ['Алкены','2-метилпентен-1','CH2=C(CH3)-CH2-CH2-CH3'],
+ ['Алкены','3-метилпентен-1','CH2=CH-CH(CH3)-CH2-CH3'],
+ ['Алкены','4-метилпентен-1','CH2=CH-CH2-CH(CH3)-CH3'],
+ ['Алкены','2-метилпентен-2','CH3-C(CH3)=CH-CH2-CH3'],
+ ['Алкены','3-метилпентен-2','CH3-CH=C(CH3)-CH2-CH3'],
+ ['Алкены','4-метилпентен-2','CH3-CH=CH-CH(CH3)-CH3'],
+ ['Алкены','2,3-диметилбутен-1','CH2=C(CH3)-CH(CH3)-CH3'],
+ ['Алкены','3,3-диметилбутен-1','CH2=CH-C(CH3)(CH3)-CH3'],
+ ['Алкены','2,3-диметилбутен-2','CH3-C(CH3)=C(CH3)-CH3'],
+ ['Алкены','Гептен-1','CH2=CH-CH2-CH2-CH2-CH2-CH3'],
+ ['Алкены','Гептен-2','CH3-CH=CH-CH2-CH2-CH2-CH3'],
+ ['Алкены','3-метилгексен-1','CH2=CH-CH(CH3)-CH2-CH2-CH3'],
+ ['Алкены','5-метилгексен-2','CH3-CH=CH-CH2-CH(CH3)-CH3'],
+ ['Алкены','Октен-1','CH2=CH-CH2-CH2-CH2-CH2-CH2-CH3'],
+ ['Алкины','Этин','CH#CH'],
+ ['Алкины','Пропин','CH#C-CH3'],
+ ['Алкины','Бутин-1','CH#C-CH2-CH3'],
+ ['Алкины','Бутин-2','CH3-C#C-CH3'],
+ ['Алкины','Пентин-1','CH#C-CH2-CH2-CH3'],
+ ['Алкины','Пентин-2','CH3-C#C-CH2-CH3'],
+ ['Алкины','3-метилбутин-1','CH#C-CH(CH3)-CH3'],
+ ['Алкины','Гексин-1','CH#C-CH2-CH2-CH2-CH3'],
+ ['Алкины','Гексин-2','CH3-C#C-CH2-CH2-CH3'],
+ ['Алкины','Гексин-3','CH3-CH2-C#C-CH2-CH3'],
+ ['Алкины','3-метилпентин-1','CH#C-CH(CH3)-CH2-CH3'],
+ ['Алкины','4-метилпентин-1','CH#C-CH2-CH(CH3)-CH3'],
+ ['Алкины','4-метилпентин-2','CH3-C#C-CH(CH3)-CH3'],
+ ['Алкины','3,3-диметилбутин-1','CH#C-C(CH3)(CH3)-CH3'],
+ ['Алкины','Гептин-1','CH#C-CH2-CH2-CH2-CH2-CH3'],
+ ['Алкины','Гептин-2','CH3-C#C-CH2-CH2-CH2-CH3'],
+ ['Алкины','Гептин-3','CH3-CH2-C#C-CH2-CH2-CH3'],
+ ['Алкины','4-метилгексин-1','CH#C-CH2-CH(CH3)-CH2-CH3'],
+ ['Алкины','Октин-1','CH#C-CH2-CH2-CH2-CH2-CH2-CH3'],
+ ['Алкадиены','Пропадиен-1,2','CH2=C=CH2'],
+ ['Алкадиены','Бутадиен-1,3','CH2=CH-CH=CH2'],
+ ['Алкадиены','Бутадиен-1,2','CH2=C=CH-CH3'],
+ ['Алкадиены','Пентадиен-1,3','CH2=CH-CH=CH-CH3'],
+ ['Алкадиены','Пентадиен-1,4','CH2=CH-CH2-CH=CH2'],
+ ['Алкадиены','Пентадиен-1,2','CH2=C=CH-CH2-CH3'],
+ ['Алкадиены','Пентадиен-2,3','CH3-CH=C=CH-CH3'],
+ ['Алкадиены','2-метилбутадиен-1,3','CH2=C(CH3)-CH=CH2'],
+ ['Алкадиены','Гексадиен-1,3','CH2=CH-CH=CH-CH2-CH3'],
+ ['Алкадиены','Гексадиен-1,4','CH2=CH-CH2-CH=CH-CH3'],
+ ['Алкадиены','Гексадиен-1,5','CH2=CH-CH2-CH2-CH=CH2'],
+ ['Алкадиены','Гексадиен-2,4','CH3-CH=CH-CH=CH-CH3'],
+ ['Алкадиены','Гексадиен-1,2','CH2=C=CH-CH2-CH2-CH3'],
+ ['Алкадиены','2-метилпентадиен-1,3','CH2=C(CH3)-CH=CH-CH3'],
+ ['Алкадиены','3-метилпентадиен-1,3','CH2=CH-C(CH3)=CH-CH3'],
+ ['Алкадиены','2,3-диметилбутадиен-1,3','CH2=C(CH3)-C(CH3)=CH2'],
+ ['Алкадиены','Гептадиен-1,3','CH2=CH-CH=CH-CH2-CH2-CH3'],
+ ['Алкадиены','Гептадиен-1,5','CH2=CH-CH2-CH2-CH=CH-CH3'],
+ ['Алкадиены','Гептадиен-2,4','CH3-CH=CH-CH=CH-CH2-CH3'],
+ ['Алкадиены','Октадиен-1,3','CH2=CH-CH=CH-CH2-CH2-CH2-CH3']
+];
+const catalog=EXTRA_CATALOG_ROWS.map(([cls,name,formula])=>({cls,name,formula,n:(formula.match(/C/g)||[]).length,key:parseStructure(formula),branch:formula.includes('(')}));
+const seenStructures=new Map();for(const m of catalog){if(seenStructures.has(m.key))throw Error(`Повторяющиеся структуры: ${m.name} / ${seenStructures.get(m.key)}`);seenStructures.set(m.key,m.name);}
+const cRng=(()=>{let x=0x352AF1B3;return ()=>((x=(Math.imul(x,1664525)+1013904223)>>>0)/4294967296)})();
+function cShuffle(xs){const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(cRng()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function cPick(xs){if(!xs.length)throw Error('Нет кандидатов для генерации');return xs[Math.floor(cRng()*xs.length)];}
+function cSample(xs,n){return cShuffle(xs).slice(0,n);}
+function cUnique(xs){return [...new Set(xs)];}
+function cSimilar(a,b){return a.n===b.n && (a.cls===b.cls||(a.cls==='Алкины'&&b.cls==='Алкадиены')||(a.cls==='Алкадиены'&&b.cls==='Алкины'))&&a.key!==b.key;}
+function cHom(a,b){return a.cls===b.cls&&a.n!==b.n;}
+function cFmt(m,form){return form?m.formula:m.name;}
+function cClass(pool,n=1){return cSample(catalog.filter(m=>m.cls===pool),n);}
+function cAddStage(t,stageIdx,questions){t.stages[stageIdx].questions.push(...questions);}
+const classPool=Object.fromEntries(CLASSES.map(cls=>[cls,catalog.filter(m=>m.cls===cls)]));
+// Классификация: отдельный запас различных структур для начальной и повышенной сложности.
+classification.stages[1].cards.push(...cShuffle(catalog.filter(x=>x.n<=6)).slice(0,26).map(m=>[m.formula,m.cls,`Это ${m.cls.toLowerCase()}: класс определяется по C–C, C=C и C≡C, а не наличием заместителей.`]));
+cAddStage(classification,2,cShuffle(catalog.filter(m=>!m.branch&&m.n<=8)).map(m=>single('Определите класс соединения по его строению.',CLASSES,m.cls,`Вещество «${m.name}» относится к классу «${m.cls.toLowerCase()}».`,{formula:m.formula})));
+cAddStage(classification,3,cShuffle(catalog.filter(m=>m.branch)).map(m=>single('К какому классу относится разветвлённое соединение?',CLASSES,m.cls,`Боковые группы не меняют класс. «${m.name}» — ${m.cls.toLowerCase()}.`,{formula:m.formula})));
+for(let i=0;i<28;i++){
+ const cls=CLASSES[i%4],yes=cSample(classPool[cls],3),no=cSample(catalog.filter(m=>m.cls!==cls),3),o=cShuffle([...yes,...no]);
+ cAddStage(classification,4,[multi(`Выберите все вещества класса «${cls.toLowerCase()}».`,o.map(m=>m.formula),yes.map(m=>m.formula),`Проверьте тип и число кратных связей: ${cls.toLowerCase()}.`)]);
+}
+for(let i=0;i<17;i++){
+ const ms=CLASSES.map(cls=>cPick(classPool[cls]));
+ cAddStage(classification,5,[match('Соотнесите каждую структурную формулу с классом.',ms.map(m=>[m.formula,m.cls]),cShuffle(CLASSES),'Разветвлённость и длина цепи не определяют класс: важны кратные связи.')]);
+}
+// Гомология: задания строятся только из пар одного гомологического ряда с разным числом C.
+for(let i=0;i<46;i++){
+ const a=cPick(catalog.filter(m=>m.n>=3));
+ const yes=i%2===0;
+ const b=yes?cPick(catalog.filter(m=>cHom(a,m))):cPick(catalog.filter(m=>!cHom(a,m)&&m.key!==a.key&&(i%4===1?m.n===a.n:true)));
+ const form=i%3!==0;
+ cAddStage(homologs,1,[single('Являются ли эти вещества гомологами?',HOMYES,yes?HOMYES[0]:HOMYES[1],yes?`Оба вещества — ${a.cls.toLowerCase()}; разница молекулярных формул соответствует ${(Math.abs(a.n-b.n))} группе(ам) CH₂.`:`Вещества не являются гомологами: ${a.cls.toLowerCase()} и ${b.cls.toLowerCase()}, либо одинаковое число атомов C.`,{pair:[cFmt(a,form),cFmt(b,form)]})]);
+}
+for(let i=0;i<32;i++){
+ const a=cPick(catalog.filter(m=>m.n>=3));
+ const yes=cPick(catalog.filter(m=>cHom(a,m)));
+ const no=cSample(catalog.filter(m=>!cHom(a,m)&&m.key!==a.key),3);
+ const opts=cShuffle([yes,...no]);
+ cAddStage(homologs,2,[single(`Найдите гомолог вещества «${a.name}».`,opts.map(m=>i%2?m.formula:m.name),cFmt(yes,i%2===1),`Оба вещества относятся к классу «${a.cls.toLowerCase()}», но содержат разное число атомов C.`)]);
+}
+for(let i=0;i<29;i++){
+ const a=cPick(catalog.filter(m=>m.n>=3));
+ const yes=cSample(catalog.filter(m=>cHom(a,m)),3);
+ const no=cSample(catalog.filter(m=>!cHom(a,m)&&m.key!==a.key),3);
+ cAddStage(homologs,3,[multi(`Выберите ВСЕ гомологи вещества «${a.name}».`,cShuffle([...yes,...no]).map(m=>m.name),yes.map(m=>m.name),`Все правильные соединения принадлежат классу «${a.cls.toLowerCase()}» и отличаются числом атомов углерода.`)]);
+}
+for(let i=0;i<20;i++){
+ const as=CLASSES.map(cls=>cPick(classPool[cls].filter(x=>x.n<=7)));
+ const bs=as.map(a=>cPick(catalog.filter(m=>cHom(a,m))));
+ const form=false; // В выпадающем списке лучше использовать названия, а не скобочные формулы.
+ const opts=cShuffle([...bs,cPick(catalog.filter(m=>m.key!==as[0].key&&!bs.some(x=>x.key===m.key)))]);
+ cAddStage(homologs,4,[match('Установите соответствие между веществами и их гомологами.',as.map((m,k)=>[cFmt(m,form),cFmt(bs[k],form)]),opts.map(m=>cFmt(m,form)),'Каждый гомолог должен относиться к тому же классу, но отличаться числом атомов C.')]);
+}
+// Изомерия: учитываем совпадение молекулярной формулы и отсутствие графового тождества.
+const isoAnchors=catalog.filter(a=>catalog.some(b=>cSimilar(a,b)));
+for(let i=0;i<42;i++){
+ const a=cPick(isoAnchors),yes=i%2===0;
+ const b=yes?cPick(catalog.filter(m=>cSimilar(a,m))):cPick(catalog.filter(m=>!cSimilar(a,m)&&m.key!==a.key));
+ const form=i%3!==0;
+ cAddStage(isomers,1,[single('Являются ли два вещества структурными изомерами?',ISONO,yes?ISONO[0]:ISONO[1],yes?`Оба вещества имеют одинаковую молекулярную формулу с ${a.n} атомами C, но разное строение.`:'Для изомерии нужно совпадение молекулярных формул и различие структур.',{pair:[cFmt(a,form),cFmt(b,form)]})]);
+}
+for(let i=0;i<40;i++){
+ const relation=i%4;const a=cPick(isoAnchors);let b,answer;
+ if(relation===0){b=cPick(catalog.filter(m=>cSimilar(a,m)));answer='Изомеры';}
+ else if(relation===1){b=cPick(catalog.filter(m=>cHom(a,m)));answer='Гомологи';}
+ else if(relation===2){b=a;answer='Одно и то же вещество';}
+ else {b=cPick(catalog.filter(m=>m.key!==a.key&&!cHom(a,m)&&!cSimilar(a,m)));answer='Ни то ни другое';}
+ let pair=relation===2?[a.formula,a.formula.split('-').reverse().join('-')]:[cFmt(a,i%2===0),cFmt(b,i%2===0)];
+ // Для ветвящихся формул запись в обратном порядке требует инверсии текстового обхода.
+ if(relation===2){const comp=a.formula.split('-');if(a.branch||a.formula.includes('=')||a.formula.includes('#'))pair=[a.name,a.formula];else pair=[a.formula,comp.reverse().join('-')];}
+ cAddStage(isomers,2,[single('Как связаны эти два соединения?',ISOREL,answer,`Ответ: ${answer.toLowerCase()}. Классификация основывается на составе и строении, а не только на похожем названии.`,{pair})]);
+}
+for(let i=0;i<30;i++){
+ const a=cPick(isoAnchors),yes=cPick(catalog.filter(m=>cSimilar(a,m)));
+ const no=cSample(catalog.filter(m=>!cSimilar(a,m)&&m.key!==a.key),3);
+ const form=i%2!==0;
+ cAddStage(isomers,3,[single(`Найдите один структурный изомер вещества «${a.name}».`,cShuffle([yes,...no]).map(m=>cFmt(m,form)),cFmt(yes,form),'У структурных изомеров совпадает молекулярная формула, но отличается строение.')]);
+}
+for(let i=0;i<27;i++){
+ const a=cPick(isoAnchors.filter(m=>catalog.filter(x=>cSimilar(m,x)).length>=3));
+ const yes=cSample(catalog.filter(m=>cSimilar(a,m)),3),no=cSample(catalog.filter(m=>!cSimilar(a,m)&&m.key!==a.key),3);
+ cAddStage(isomers,4,[multi(`Выберите ВСЕ структурные изомеры вещества «${a.name}».`,cShuffle([...yes,...no]).map(m=>m.name),yes.map(m=>m.name),`Все правильные ответы имеют одинаковую молекулярную формулу (число атомов C: ${a.n}) при разном строении.`)]);
+}
+for(let i=0;i<28;i++){
+ let a,b,type;
+ if(i%4===0){a=cPick(classPool['Алканы'].filter(x=>!x.branch&&x.n>=4&&x.n<=7));b=cPick(classPool['Алканы'].filter(x=>x.branch&&x.n===a.n));type=ISOTYPES[0];}
+ if(i%4===1){a=cPick(classPool['Алкены'].filter(x=>!x.branch&&x.n>=4&&x.n<=7));b=cPick(classPool['Алкены'].filter(x=>!x.branch&&x.n===a.n&&x.key!==a.key));type=ISOTYPES[1];}
+ if(i%4===2){a=cPick(classPool['Алкины'].filter(x=>!x.branch&&x.n>=4&&x.n<=7));b=cPick(classPool['Алкины'].filter(x=>!x.branch&&x.n===a.n&&x.key!==a.key));type=ISOTYPES[2];}
+ if(i%4===3){a=cPick(classPool['Алкины'].filter(x=>x.n>=4&&x.n<=7));b=cPick(classPool['Алкадиены'].filter(x=>x.n===a.n));type=ISOTYPES[3];}
+ cAddStage(isomers,5,[single('Определите вид структурной изомерии.',ISOTYPES,type,'Сравните углеродный скелет, расположение кратной связи и принадлежность к классу.',{pair:[i%2?a.formula:a.name,i%2?b.formula:b.name]})]);
+}
+// Номенклатура: читаем, называем и сами записываем больше независимых структур.
+cAddStage(nomenclature,1,cShuffle(catalog.filter(m=>!m.branch&&m.n<=7)).map(m=>naming('Назовите углеводород по структурной формуле.',m.formula,m.name,`Вещество относится к классу «${m.cls.toLowerCase()}», в цепи ${m.n} атомов C.`)));
+cAddStage(nomenclature,2,cShuffle(catalog.filter(m=>m.branch)).map(m=>naming('Определите систематическое название разветвлённого углеводорода.',m.formula,m.name,'Найдите главную цепь и положение заместителей; учтите кратную связь, если она имеется.')));
+cAddStage(nomenclature,3,cShuffle(catalog.filter(m=>!m.branch&&m.n<=7)).map(m=>struct('Запишите сокращённую структурную формулу.',m.name,m.formula,`Главная цепь: ${m.n} атомов C. Проверьте тип и расположение кратных связей.`)));
+cAddStage(nomenclature,4,cShuffle(catalog.filter(m=>m.branch)).map(m=>struct('Запишите сокращённую структурную формулу с боковыми группами.',m.name,m.formula,'Скобки при вводе обозначают боковую ветвь. После проверки вы увидите правильное пространственное расположение ветвей на рисунке.')));
+// Расширяем контрольную отдельными экземплярами заданий, чтобы хранились самостоятельные ID.
+function cClone(q){const more={};for(const k of ['formula','pair','rows','name','aliases'])if(q[k]!=null)more[k]=q[k];return question(q.type,q.prompt,q.options,q.answer,q.explain,more);}
+for(const t of topics){const candidates=t.stages.flatMap(s=>s.kind==='quiz'?s.questions:[]);examPool[t.id].push(...cSample(candidates,Math.min(90,candidates.length)).map(cClone));}
+
+// Теоретическая подсказка: как понимать боковые группы в скобочной записи.
+const branchExample=`<div class="branch-explainer"><b>Как читать разветвлённую формулу</b><p>В компактной записи CH₃–CH(CH₃)–CH₃ группа CH₃ в скобках присоединена <b>сбоку</b> к соседнему атому углерода. Для понимания строения смотрите рисунок:</p>${visualFormula('CH3-CH(CH3)-CH3')}<small>Боковая ветвь показана вертикальной связью. Это <b>2-метилпропан</b>.</small></div>`;
+classification.stages[0].html+=branchExample;
+homologs.stages[0].html+='<p class="note">Среди вариантов встречаются не только прямые цепи, но и разветвлённые соединения: это тоже члены гомологических рядов.</p>';
+isomers.stages[0].html+=branchExample;
+nomenclature.stages[0].html+=branchExample+'<p class="note">При вводе формулы скобки по-прежнему используются как обозначение боковой группы. Ниже поля ввода появится рисунок вашей формулы — можно сразу увидеть расположение ветвей.</p>';
+
+// Вариант каждого вопроса фиксируется на всю попытку: не меняется при проверке,
+// переходе назад и перезагрузке страницы. При следующей попытке варианты новые.
+function questionFingerprint(q){
+ const opts=q.type==='single'||q.type==='multiple'?q.options.slice().sort():q.options;
+ const pair=q.pair? q.pair.slice().sort():null;
+ return JSON.stringify([q.type,q.prompt,q.formula||null,q.name||null,pair,q.rows||null,opts,q.answer]);
+}
+function randomSubset(stage, old=null, limit=16, preferUnseen=true){
+ const target=Math.min(limit,stage.questions.length),last=new Set(old?.ids||[]),fingerprints=new Set();
+ const buckets=[[],[],[],[]];
+ for(const q of stage.questions){
+  const repeat=last.has(q.id),seen=preferUnseen&&!!db.progress[q.id];
+  buckets[(repeat?2:0)+(seen?1:0)].push(q);
+ }
+ const chosen=[],counts=new Map();
+ for(const bucket of buckets){
+  let candidates=shuffle(bucket);
+  while(candidates.length&&chosen.length<target){
+   candidates=candidates.filter(q=>!fingerprints.has(questionFingerprint(q)));
+   if(!candidates.length)break;
+   const singleAnswers=candidates.filter(q=>q.type==='single');
+   let pool=candidates;
+   if(singleAnswers.length && singleAnswers.length===candidates.length){
+    const least=Math.min(...candidates.map(q=>counts.get(q.answer)||0));
+    pool=candidates.filter(q=>(counts.get(q.answer)||0)===least);
+   }
+   const pick=pool[Math.floor(Math.random()*pool.length)];
+   chosen.push(pick);fingerprints.add(questionFingerprint(pick));
+   counts.set(pick.answer,(counts.get(pick.answer)||0)+1);
+   candidates=candidates.filter(q=>q.id!==pick.id);
+  }
+  if(chosen.length===target)break;
+ }
+ // В крошечных фиксированных банках допустимы повторяющиеся шаблоны,
+ // но их порядок и порядок ответов всё равно перемешиваются.
+ if(chosen.length<target){
+  for(const q of shuffle(stage.questions)){
+   if(chosen.length>=target)break;
+   if(!chosen.includes(q))chosen.push(q);
+  }
+ }
+ return shuffle(chosen);
+}
+function questionLayouts(questions){
+ const layouts={};
+ // Правильные позиции перемешаны и сбалансированы: нет постоянного «ответ Б».
+ const groups=new Map();
+ for(const q of questions){
+  if(q.type==='single'&&q.options.includes(q.answer)){
+   const k=q.options.length;
+   if(!groups.has(k))groups.set(k,[]);
+   groups.get(k).push(q);
+  }
+ }
+ const targets={};
+ for(const [k,group] of groups){
+  const slots=shuffle(group.map((_,i)=>i%k));
+  shuffle(group).forEach((q,i)=>targets[q.id]=slots[i]);
+ }
+ for(const q of questions){
+  const options=shuffle(q.options||[]);
+  if(Object.prototype.hasOwnProperty.call(targets,q.id)){
+   const oldIndex=options.indexOf(q.answer),newIndex=targets[q.id];
+   if(oldIndex>=0)[options[oldIndex],options[newIndex]]=[options[newIndex],options[oldIndex]];
+  }
+  layouts[q.id]={
+   options,
+   rows:q.type==='match'?shuffle(q.rows.map((_,i)=>i)):null,
+   reversePair:!!q.pair&&Math.random()<0.5
+  };
+ }
+ return layouts;
+}
+function viewFor(q){
+ if(state.mode==='exam'){
+  if(!db.exam)return {options:q.options,rows:null,reversePair:false};
+  if(!db.exam.layouts)db.exam.layouts=questionLayouts(examQuestions());
+  if(!db.exam.layouts[q.id])db.exam.layouts[q.id]=questionLayouts([q])[q.id];
+  return db.exam.layouts[q.id];
+ }
+ const sel=selectionForCurrent();
+ if(!sel.layouts){sel.layouts=questionLayouts(currentQuizQuestions());save();}
+ if(!sel.layouts[q.id]){sel.layouts[q.id]=questionLayouts([q])[q.id];save();}
+ return sel.layouts[q.id];
+}
+function examMix(questions){
+ const shuffled=shuffle(questions),out=[];
+ const byId=new Map(Object.entries(examPool).flatMap(([topic,list])=>list.map(q=>[q.id,topic])));
+ while(shuffled.length){
+  let candidates=shuffled;
+  if(out.length>=2){
+   const a=out[out.length-1],b=out[out.length-2];
+   if(byId.get(a.id)===byId.get(b.id)){
+    const alternating=candidates.filter(q=>byId.get(q.id)!==byId.get(a.id));
+    if(alternating.length)candidates=alternating;
+   }
+  }
+  if(out.length>=2&&out[out.length-1].type===out[out.length-2].type){
+   const diffType=candidates.filter(q=>q.type!==out[out.length-1].type);
+   if(diffType.length)candidates=diffType;
+  }
+  const chosen=candidates[Math.floor(Math.random()*candidates.length)];
+  out.push(chosen);shuffled.splice(shuffled.indexOf(chosen),1);
+ }
+ return out;
+}
+const DBKEY='orgchem_hydrocarbon_html_v4';
+const load=()=>{try{return JSON.parse(localStorage.getItem(DBKEY))||{};}catch{return {};}};
+const db=load();db.progress=db.progress||{};db.history=db.history||[];db.selections=db.selections||{};
+const save=()=>{try{localStorage.setItem(DBKEY,JSON.stringify(db));}catch{}};
+let state={mode:'train',topic:0,stage:0,question:0,flash:0,revealed:false,response:null,checked:false,examIndex:0,showResults:false};
+function stageCount(t,s){const st=topics[t].stages[s];return st.kind==='quiz'?st.questions.length:st.kind==='flash'?st.cards.length:0;}
+function currentKey(){return topics[state.topic].id+':'+state.stage;}
+function selectionForCurrent(){const s=topics[state.topic].stages[state.stage];if(s.kind!=='quiz')return null;
+ const key=currentKey(), old=db.selections[key];
+ const valid=old&&Array.isArray(old.ids)&&old.ids.length&&old.ids.every(id=>s.questions.some(q=>q.id===id));
+ if(valid)return old;
+ const choices=randomSubset(s,old,16,true);
+ db.selections[key]={ids:choices.map(q=>q.id),layouts:questionLayouts(choices),attempt:(old?.attempt||0)+1};save();return db.selections[key];
+}
+function currentQuizQuestions(){const s=topics[state.topic].stages[state.stage],sel=selectionForCurrent();return sel.ids.map(id=>s.questions.find(q=>q.id===id)).filter(Boolean);}
+function questionAt(){return currentQuizQuestions()[state.question];}
+function newQuizSelection(){const s=topics[state.topic].stages[state.stage];if(s.kind!=='quiz')return;
+ const old=selectionForCurrent(),sample=randomSubset(s,old,16,true);
+ db.selections[currentKey()]={ids:sample.map(q=>q.id),layouts:questionLayouts(sample),attempt:old.attempt+1};save();state.question=0;resetTrainingQuestion();render();}
+
+function getDoneCount(topic){return topic.stages.reduce((acc,s)=>acc+(s.kind==='quiz'?s.questions.filter(q=>db.progress[q.id]).length:s.kind==='flash'?s.cards.filter((_,i)=>db.progress[`flash_${topic.id}_${i}`]).length:0),0);}
+function getTotalCount(topic){return topic.stages.reduce((acc,s)=>acc+(s.kind==='quiz'?s.questions.length:s.kind==='flash'?s.cards.length:0),0);}
+function resetTrainingQuestion(){const q=questionAt();const old=db.progress[q.id],fresh=old&&old.attempt===selectionForCurrent().attempt;state.response=fresh?structuredCloneSafe(old.response):blank(q);state.checked=!!fresh;}
+function blank(q){return q.type==='multiple'?[]:q.type==='match'?{}:'';}
+function structuredCloneSafe(x){return JSON.parse(JSON.stringify(x));}
+function selectTopic(t){state.topic=t;state.stage=0;state.question=0;state.flash=0;state.revealed=false;state.mode='train';state.checked=false;render();scrollToPanel();}
+function selectStage(s){state.stage=s;state.question=0;state.flash=0;state.revealed=false;state.checked=false;if(topics[state.topic].stages[s].kind==='quiz')resetTrainingQuestion();render();scrollToPanel();}
+function scrollToPanel(){if(window.innerWidth<670)document.getElementById('mainPanel').scrollIntoView({block:'start',behavior:'smooth'});}
+function nextStage(){const stages=topics[state.topic].stages;if(state.stage<stages.length-1)selectStage(state.stage+1);else if(state.topic<topics.length-1)selectTopic(state.topic+1);else selectTopic(0);}
+function prevStage(){if(state.stage>0)selectStage(state.stage-1);else if(state.topic>0){state.topic--;selectStage(topics[state.topic].stages.length-1);}}
+function showMode(mode){state.mode=mode;state.showResults=false;render();scrollToPanel();}
+function renderHeader(){const isExam=state.mode==='exam';document.getElementById('trainTab').classList.toggle('active',!isExam);document.getElementById('examTab').classList.toggle('active',isExam);document.getElementById('trainTab').setAttribute('aria-selected',String(!isExam));document.getElementById('examTab').setAttribute('aria-selected',String(isExam));}
+function renderOverview(){const root=document.getElementById('overview');if(state.mode==='exam'){root.style.display='none';return;}root.style.display='grid';root.innerHTML=topics.map((t,i)=>{const completed=getDoneCount(t),total=getTotalCount(t);return `<button class="topic-card ${state.topic===i?'active':''}" onclick="selectTopic(${i})"><div class="topic-top"><span>БЛОК ${t.number}</span><span>${total?Math.round(100*completed/total):0}%</span></div><div class="topic-name">${esc(t.title)}</div><div class="topic-meta">${esc(t.subtitle)}</div><div class="mini-progress"><i style="width:${100*completed/total}%"></i></div></button>`}).join('');}
+function renderSidebar(){const el=document.getElementById('sidebar');if(state.mode==='exam'){
+ const e=db.exam;el.innerHTML=`<div class="aside-head"><div class="eyebrow">Режим контроля</div><h2>Контрольная работа</h2><p>Все четыре раздела, без подсказок.</p></div><div class="stages">${(e&&e.status==='active'?['Классификация','Гомологи','Изомерия','Номенклатура']:['24 задания','Несколько форматов','Итоговая оценка','Разбор после сдачи']).map((v,i)=>`<div class="stage-link" style="cursor:default"><span class="stage-num">${i+1}</span><span class="stage-text">${esc(v)}</span></div>`).join('')}</div><div class="aside-bottom">Все ответы проверяются только после сдачи контрольной.</div>`;return;
+ }
+ const t=topics[state.topic];el.innerHTML=`<div class="aside-head"><div class="eyebrow">Блок ${t.number}</div><h2>${esc(t.title)}</h2><p>${esc(t.subtitle)}</p></div><nav class="stages" aria-label="Этапы тренировки">${t.stages.map((s,i)=>{let total=stageCount(state.topic,i),done=s.kind==='quiz'?s.questions.filter(q=>db.progress[q.id]).length:s.kind==='flash'?s.cards.filter((_,j)=>db.progress[`flash_${t.id}_${j}`]).length:0;return `<button class="stage-link ${state.stage===i?'active':''}" onclick="selectStage(${i})"><span class="stage-num">${i===0?'Т':i}</span><span class="stage-text">${esc(s.name)}${total?`<span style="display:block;font-size:.72rem;opacity:.65;margin-top:3px">${done} из ${total}</span>`:''}</span>${total&&done===total?'<span class="stage-check">✓</span>':''}</button>`}).join('')}</nav><div class="aside-bottom">Этапы доступны в любом порядке. Для лучшего результата рекомендуется идти последовательно.</div>`;
+}
+function setPanel(head,body){document.getElementById('mainPanel').innerHTML=`<div class="content-head">${head}</div><div class="content-body">${body}</div>`;attachFormulaZoom();}
+function attachFormulaZoom(){
+ const el=document.querySelector('#mainPanel .content-body');
+ if(!el||el.querySelector('.zoom-formula-btn')||!el.querySelector('.structure-frame svg'))return;
+ const b=document.createElement('button');b.type='button';b.className='btn small zoom-formula-btn';
+ b.textContent='⤢ Увеличить формулы';b.title='Рассмотреть все атомы и кратные связи крупнее';
+ b.addEventListener('click',openFormulaGallery);
+ const anchor=el.querySelector('.formula-wrap')||el.querySelector('.options.has-structures')||el.querySelector('.match-grid')||el.querySelector('.flash')||el.querySelector('.branch-explainer');
+ if(anchor)anchor.insertAdjacentElement('afterend',b);else el.prepend(b);
+}
+function openFormulaGallery(){
+ const originals=[...document.querySelectorAll('#mainPanel .content-body .structure-frame[title]')];
+ if(!originals.length)return;
+ let dlg=document.getElementById('formulaGallery');
+ if(!dlg){dlg=document.createElement('dialog');dlg.id='formulaGallery';dlg.className='formula-dialog';document.body.appendChild(dlg);}
+ const items=originals.map((frame,i)=>{
+  const raw=frame.getAttribute('title');
+  const card=frame.closest('.chem-card'),option=frame.closest('.option'),match=frame.closest('.match-row'),refitem=frame.closest('.match-reference-item');
+  const letter=option?.querySelector('.choice-indicator')?.textContent?.trim();
+  const label=card?.querySelector('em')?.textContent?.trim()||(refitem?`Вариант ${refitem.querySelector('.match-option-letter')?.textContent?.trim()}`:letter?`Вариант ${letter}`:match?`Строка ${[...match.parentNode.children].indexOf(match)+1}`:`Формула ${i+1}`);
+  return `<section class="zoom-chemical"><h3>${esc(label)}</h3><div class="zoom-diagram">${drawStructure(raw,false)}</div></section>`;
+ }).join('');
+ dlg.innerHTML=`<div class="zoom-header"><h2>Структурные формулы крупным планом</h2><form method="dialog"><button class="btn small" aria-label="Закрыть увеличенные формулы">Закрыть ✕</button></form></div><p class="zoom-info">Формулы показаны без обрезки. Длинную цепь можно прокручивать горизонтально внутри увеличенного изображения.</p><div class="zoom-list">${items}</div>`;
+ if(!dlg.open)dlg.showModal();
+}
+
+function trainingHead(t,s){return `<div class="stage-label">БЛОК ${t.number} <span style="color:#c1cbd5">/</span> ${esc(t.title)}</div><h2>${esc(s.name)}</h2><p>${esc(s.description)}</p>`;}
+function renderTheory(){const t=topics[state.topic],s=t.stages[state.stage];setPanel(trainingHead(t,s),`${s.html}<div class="actions"><button class="btn" onclick="${state.stage>0?'prevStage()':'selectTopic(0)'}">${state.stage===0?'К первому блоку':'Назад'}</button><button class="btn primary" onclick="nextStage()">Начать задания →</button></div>`);}
+function renderFlash(){const t=topics[state.topic],s=t.stages[state.stage];const card=s.cards[state.flash];const shown=state.revealed;const count=s.cards.length;const body=`<div class="top-progress"><span>Карточка ${state.flash+1} из ${count}</span><div class="bar"><span style="width:${100*(state.flash+1)/count}%"></span></div></div><div class="flash">${visualFormula(card[0])}${shown?`<div class="revealed">${esc(card[1])}</div><div style="font-size:.9rem;color:#4b6676;max-width:460px">${esc(card[2])}</div>`:'<div class="unknown">Определите класс вещества, затем откройте ответ</div>'}</div><div class="actions"><button class="btn" onclick="moveFlash(-1)" ${state.flash===0?'disabled':''}>← Предыдущая</button><div class="actions-right">${shown?`<button class="btn primary" onclick="moveFlash(1)">${state.flash===count-1?'К заданиям →':'Следующая формула →'}</button>`:`<button class="btn primary" onclick="revealFlash()">Показать ответ</button>`}</div></div>`;setPanel(trainingHead(t,s),body);}
+function revealFlash(){const t=topics[state.topic];state.revealed=true;db.progress[`flash_${t.id}_${state.flash}`]=true;save();render();}
+function moveFlash(step){const s=topics[state.topic].stages[state.stage];if(step>0&&state.flash===s.cards.length-1){nextStage();return;}state.flash=Math.max(0,Math.min(s.cards.length-1,state.flash+step));state.revealed=false;render();}
+function showFormulas(q){if(q.formula)return `<div class="formula-wrap single-structure">${formulaCard(q.formula)}</div>`;if(q.pair){const pair=viewFor(q).reversePair?q.pair.slice().reverse():q.pair;const hasStructures=pair.some(x=>looksFormula(x));return `<div class="formula-wrap ${hasStructures?'formula-pair-structures':'formula-pair-names'}">${pair.map((x,i)=>`${i?'<div class="versus">↔</div>':''}${looksFormula(x)?formulaCard(x,`Вещество ${i+1}`):`<div class="chem-card"><em>Вещество ${i+1}</em><span style="font-size:1.15rem;font-weight:800">${esc(x)}</span></div>`}`).join('')}</div>`;}if(q.name)return `<div class="formula-wrap"><div class="chem-card"><em>Название вещества</em><span style="font-size:1.18rem;font-weight:800">${esc(q.name)}</span></div></div>`;return '';
+}
+function questionView(q,response,checked,mode){const exam=mode==='exam',view=viewFor(q);const result=checked?evaluate(q,response):null;let html=`<div class="stage-label"><span class="pill ${exam?'orange':''}">${q.type==='single'?'Один ответ':q.type==='multiple'?'Несколько ответов':q.type==='match'?'Соответствие':q.type==='input-name'?'Название вещества':'Структурная формула'}</span></div><h3 class="question-title">${esc(q.prompt)}</h3>${showFormulas(q)}`;
+ if(q.type==='single'||q.type==='multiple'){
+  const isMulti=q.type==='multiple';html+=`<div class="options ${isMulti?'multi':''} ${view.options.some(v=>looksFormula(String(v)))?'has-structures':''}" role="group" aria-label="Варианты ответа">${view.options.map((v,i)=>{const selected=isMulti?Array.isArray(response)&&response.includes(v):response===v;const right=isMulti?q.answer.includes(v):q.answer===v;const tone=checked&&!exam?(right?'correct':selected?'wrong':''):'';return `<button type="button" class="option ${selected?'selected':''} ${tone}" onclick="chooseOption(${i})" ${checked?'disabled':''} aria-pressed="${selected}"><span class="choice-indicator">${selected?(isMulti?'✓':'●'):String.fromCharCode(65+i)}</span><span class="option-content">${pretty(v)}</span></button>`}).join('')}</div>${isMulti?'<p class="helptext">Можно выбрать несколько ответов. Проверяются все отмеченные варианты.</p>':''}<p class="helptext mobile-scroll-tip">Все атомы и связи показаны целиком. Если формула мелкая, нажмите «Увеличить формулы».</p>`;
+ }else if(q.type==='match'){
+ const hasFormulaOptions=view.options.some(o=>looksFormula(String(o)));
+ if(hasFormulaOptions)html+=`<div class="match-reference"><strong>Варианты для сопоставления — полные формулы</strong><div class="match-reference-list">${view.options.map((o,i)=>`<div class="match-reference-item"><span class="match-option-letter">${String.fromCharCode(1040+i)}</span><span class="match-reference-content">${pretty(o)}</span></div>`).join('')}</div><p class="hint-line">Найдите нужную формулу и выберите в списке её букву.</p></div>`;
+ html+=`<div class="match-grid">${(view.rows||q.rows.map((_,i)=>i)).map((original,position)=>{const left=q.rows[original],v=(response||{})[original]||'';const good=checked&&!exam&&v===q.answer[original];const bad=checked&&!exam&&!good;return `<div class="match-row ${good?'good':bad?'bad':''}"><div class="match-left"><span class="tag">${position+1}</span> ${pretty(left)}</div><select aria-label="Ответ для строки ${position+1}" onchange="chooseMatch(${original},this.value)" ${checked?'disabled':''}><option value="">Выберите соответствие…</option>${view.options.map((o,i)=>`<option value="${esc(o)}" ${v===o?'selected':''}>${hasFormulaOptions?'Вариант '+String.fromCharCode(1040+i):esc(o)}</option>`).join('')}</select></div>`}).join('')}</div><p class="helptext">Каждое правильное соответствие даёт один балл. Используйте каждый вариант не более одного раза.</p>`;
+ }else{
+  html+=`<label class="input-label" for="answerInput">${q.type==='input-name'?'Название по номенклатуре':'Сокращённая структурная формула'}</label><input id="answerInput" class="text-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="${q.type==='input-name'?'Например: 2-метилбутан':'Например: CH3-CH(CH3)-CH3'}" value="${esc(response||'')}" oninput="typeAnswer(this.value)" onkeydown="if(event.key==='Enter'&&!event.isComposing){event.preventDefault();${exam?'examNext()':'checkTraining()'}}" ${checked?'disabled':''}>${q.type==='input-formula'?'<div id="answerPreview" class="answer-preview"></div>':''}<p class="hint-line">${q.type==='input-name'?'Записывайте номер связи в конце: бутен-1, бутин-2, бутадиен-1,3.':'Скобки обозначают боковую ветвь (CH3). При вводе ниже отображается её положение; связи: -, = и # или ≡.'}</p>`;
+ }
+ if(checked&&!exam){const good=result.points===result.max;html+=`<div class="feedback ${good?'good':'bad'}" role="status"><strong>${good?'✓ Верно!':`✕ ${q.type==='match'?`Верных соответствий: ${result.points} из ${result.max}`:'Неверно'}`}</strong>${result.error?`<p>${esc(result.error)}</p>`:''}<p>${esc(q.explain)}</p>${!good?`<div class="answer">Правильный ответ: ${correctDisplay(q)}</div>`:''}</div>`;}
+ return html;
+}
+function chooseOption(index){const q=state.mode==='exam'?examQuestion():questionAt();if(state.mode==='train'&&state.checked)return;const val=viewFor(q).options[index];let response=state.mode==='exam'?examResponse(q):state.response;if(q.type==='single')response=val;else{response=Array.isArray(response)?response.slice():[];response=response.includes(val)?response.filter(x=>x!==val):[...response,val];}
+ if(state.mode==='exam'){db.exam.answers[q.id]=response;save();}else state.response=response;render();}
+function chooseMatch(index,value){const q=state.mode==='exam'?examQuestion():questionAt();const response=state.mode==='exam'?{...examResponse(q)}:{...state.response};response[index]=value;if(state.mode==='exam'){db.exam.answers[q.id]=response;save();}else state.response=response;}
+function typeAnswer(value){const q=state.mode==='exam'?examQuestion():questionAt();if(state.mode==='exam'){db.exam.answers[q.id]=value;save();}else state.response=value;if(q.type==='input-formula')showInputPreview(value);}
+function showInputPreview(value){const el=document.getElementById('answerPreview');if(!el)return;try{if(!value.trim()){el.innerHTML='';return;}parseStructure(value);el.innerHTML='<strong>Как выглядит ваша запись:</strong>'+visualFormula(value);attachFormulaZoom();}catch{el.innerHTML='';}}
+function checkTraining(){const q=questionAt();if(state.checked)return;if(!isAnswered(q,state.response)){const input=document.getElementById('answerInput');if(input)input.focus();else alert('Сначала выберите или введите ответ.');return;}state.checked=true;const result=evaluate(q,state.response);db.progress[q.id]={response:structuredCloneSafe(state.response),points:result.points,max:result.max,time:Date.now(),attempt:selectionForCurrent().attempt};save();render();}
+function trainingNext(step){const s=topics[state.topic].stages[state.stage],questions=currentQuizQuestions();if(step<0){if(state.question>0){state.question--;resetTrainingQuestion();render();}else prevStage();return;}
+ if(state.question<questions.length-1){state.question++;resetTrainingQuestion();render();}else nextStage();}
+function retryTraining(){const q=questionAt();delete db.progress[q.id];save();state.response=blank(q);state.checked=false;render();}
+function renderTrainingQuiz(){const t=topics[state.topic],s=t.stages[state.stage],q=questionAt(),n=currentQuizQuestions().length;const body=`<div class="top-progress"><span>Задание ${state.question+1} из ${n}</span><div class="bar"><span style="width:${100*(state.question+1)/n}%"></span></div></div>${questionView(q,state.response,state.checked,'train')}<div class="bank-info">Случайная подборка: ${n} заданий из банка ${s.questions.length}. Варианты ответов и соответствия перемешаны; новые подборки по возможности избегают повторов. В каталоге ${catalog.length} веществ.</div><div class="actions"><div class="actions-right"><button class="btn new-set" onclick="newQuizSelection()" title="Случайные задания из расширенного банка">↻ Новая подборка</button><button class="btn" onclick="trainingNext(-1)">← Назад</button></div><div class="actions-right">${state.checked?`<button class="btn" onclick="retryTraining()">Повторить</button><button class="btn primary" onclick="trainingNext(1)">${state.question===n-1?'Следующий этап →':'Следующее задание →'}</button>`:`<button class="btn primary" onclick="checkTraining()">Проверить ответ</button>`}</div></div>`;setPanel(trainingHead(t,s),body);if(q.type==='input-formula')showInputPreview(state.response||'');}
+function shuffle(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function newExam(){
+ const quotas={class:{single:2,multiple:2,match:2},hom:{single:2,multiple:2,match:2},iso:{single:3,multiple:2,match:1},name:{'input-name':3,'input-formula':3}};
+ const previous=new Set(db.exam?.questions||[]);
+ const chosen=topics.flatMap(t=>Object.entries(quotas[t.id]).flatMap(([type,n])=>{
+  const pool=shuffle(examPool[t.id].filter(q=>q.type===type));
+  return pool.filter(q=>!previous.has(q.id)).concat(pool.filter(q=>previous.has(q.id))).slice(0,n);
+ }));
+ const arranged=examMix(chosen);
+ db.exam={status:'active',questions:arranged.map(q=>q.id),layouts:questionLayouts(arranged),answers:{},started:Date.now()};
+ state.examIndex=0;state.showResults=false;save();render();}
+
+function examQuestions(){if(!db.exam)return[];const lookup=Object.values(examPool).flat().reduce((o,q)=>(o[q.id]=q,o),{});return db.exam.questions.map(id=>lookup[id]).filter(Boolean);}
+function examQuestion(){return examQuestions()[state.examIndex];}
+function examResponse(q){return db.exam.answers[q.id]??blank(q);}
+function examNext(){if(!db.exam||db.exam.status!=='active')return;const questions=examQuestions();if(state.examIndex<questions.length-1){state.examIndex++;render();}else submitExam();}
+function examPrev(){state.examIndex=Math.max(0,state.examIndex-1);render();}
+function examJump(i){state.examIndex=i;render();}
+function submitExam(){const e=db.exam;if(!e||e.status!=='active')return;const qs=examQuestions();const unanswered=qs.filter(q=>!isAnswered(q,e.answers[q.id])).length;
+ if(unanswered&&!confirm(`Осталось заданий без ответа: ${unanswered}. Завершить контрольную?`))return;
+ if(!unanswered&&!confirm('Завершить контрольную работу и получить оценку?'))return;
+ let points=0,max=0;const detail={};for(const q of qs){const r=evaluate(q,e.answers[q.id]??blank(q));points+=r.points;max+=r.max;detail[q.id]=r;}
+ const pct=max?Math.round(points/max*100):0;const grade=pct>=90?5:pct>=70?4:pct>=50?3:2;e.status='completed';e.finished=Date.now();e.points=points;e.max=max;e.pct=pct;e.grade=grade;e.detail=detail;db.history.unshift({finished:e.finished,pct,grade,points,max});db.history=db.history.slice(0,10);save();state.showResults=true;render();scrollToPanel();
+}
+function renderExamIntro(){const active=db.exam?.status==='active',completed=db.exam?.status==='completed';const last=db.history[0];setPanel(`<div class="stage-label">ИТОГОВАЯ РАБОТА</div><h2>Контрольная по углеводородам</h2><p>Четыре раздела, задания разных форматов. Итоговая оценка после сдачи.</p>`,`<div class="exam-intro"><h3 style="font-size:1.3rem;margin-top:0">Проверьте, насколько хорошо вы освоили тему</h3><p>В контрольную случайным образом попадают задания по классификации углеводородов, гомологии, изомерии и номенклатуре. В каждом разделе — шесть заданий.</p><div class="exam-stats"><div class="stat"><strong>24</strong><span>задания</span></div><div class="stat"><strong>4</strong><span>раздела</span></div><div class="stat"><strong>1–4</strong><span>балла за задание*</span></div></div><div class="note">* В заданиях на соответствие каждый правильный ответ оценивается отдельно. В остальных заданиях один балл начисляется только за полностью правильный ответ.</div><div class="theory"><h3>Шкала оценивания</h3><p>0–49% — «2» · 50–69% — «3» · 70–89% — «4» · 90–100% — «5».</p><p><b>Во время работы</b> подсказок и мгновенной проверки нет. Порядок вопросов и вариантов ответа перемешивается для каждой попытки, а вопросы предыдущей работы по возможности не повторяются. После сдачи доступен разбор ошибок.</p></div>${last?`<div class="keybox"><b>Предыдущий результат:</b> ${last.pct}% — оценка «${last.grade}».</div>`:''}<div class="actions"><span class="tag">Ответы сохраняются на этом устройстве</span><div class="actions-right">${active?'<button class="btn" onclick="renderExamQuestion()">Продолжить начатую</button>':completed?'<button class="btn" onclick="state.showResults=true;render()">Посмотреть прошлый результат</button>':''}<button class="btn primary" onclick="${active?'confirmNewExam()':'newExam()'}">${active?'Начать заново':'Начать контрольную →'}</button></div></div></div>`);}
+function confirmNewExam(){if(confirm('Текущая попытка будет заменена новой. Продолжить?'))newExam();}
+function renderExamQuestion(){const qs=examQuestions();const q=qs[state.examIndex];if(!q){delete db.exam;save();renderExamIntro();return;}const completed=qs.filter(x=>isAnswered(x,db.exam.answers[x.id])).length;const nav=`<div class="exam-map">${qs.map((x,i)=>`<button type="button" class="${isAnswered(x,db.exam.answers[x.id])?'done':''} ${state.examIndex===i?'current':''}" onclick="examJump(${i})" title="Задание ${i+1}" aria-label="Перейти к заданию ${i+1}">${i+1}</button>`).join('')}</div>`;
+ const topic=topics.find(t=>examPool[t.id].includes(q));const body=`<div class="top-progress"><span>Вопрос ${state.examIndex+1} из ${qs.length} · Отвечено: ${completed}</span><div class="bar"><span style="width:${100*completed/qs.length}%"></span></div></div>${nav}${questionView(q,examResponse(q),false,'exam')}<div class="actions"><button class="btn" onclick="examPrev()" ${state.examIndex===0?'disabled':''}>← Предыдущее</button><div class="actions-right"><button class="btn warn" onclick="submitExam()">Завершить работу</button><button class="btn primary" onclick="examNext()">${state.examIndex===qs.length-1?'Сдать работу':'Следующее →'}</button></div></div>`;
+ setPanel(`<div class="stage-label">КОНТРОЛЬНАЯ <span style="color:#c1cbd5">/</span> ${esc(topic?.title||'')}</div><h2>Задание ${state.examIndex+1}</h2><p>Ответы можно изменять до сдачи работы. Правильные ответы появятся после проверки.</p>`,body);}
+function renderResults(){const e=db.exam;if(!e||e.status!=='completed'){renderExamIntro();return;}const qs=examQuestions();const pct=e.pct;const rstats=topics.map(t=>{let total=0,points=0;for(const q of qs.filter(q=>examPool[t.id].includes(q))){total+=(e.detail[q.id]?.max||1);points+=(e.detail[q.id]?.points||0);}return {name:t.title,points,total};});
+ const list=qs.map((q,i)=>{const result=e.detail[q.id]||{points:0,max:1};const good=result.points===result.max;const response=e.answers[q.id]??blank(q);return `<details class="review ${good?'good':'bad'}"><summary><span style="color:${good?'var(--green)':'var(--red)'}">${good?'✓':'✕'}</span><span>№${i+1}. ${esc(q.prompt)} <small style="color:var(--muted)">(${result.points}/${result.max})</small></span></summary><div class="review-body">${showFormulas(q)}<p><b>Ваш ответ:</b> ${pretty(responseText(q,response))}</p><p><b>Правильный ответ:</b> ${correctDisplay(q)}</p><p>${esc(q.explain)}</p></div></details>`}).join('');
+ setPanel(`<div class="stage-label">КОНТРОЛЬНАЯ ЗАВЕРШЕНА</div><h2>Результаты и разбор</h2><p>Работа проверена. Ниже можно разобрать каждое задание и увидеть допущенные ошибки.</p>`,`<div class="result-hero"><div class="result-circle" style="border-color:${pct>=70?'#aadbd1':pct>=50?'#f2d5a4':'#efb9b9'}"><strong>${pct}%</strong><span>${e.points} из ${e.max} баллов</span></div><div class="grade">Оценка «${e.grade}»</div><p style="color:var(--muted)">Итог по шкале: 50% / 70% / 90%</p></div><h3 style="margin-top:18px">Результаты по разделам</h3><div class="section-breakdown">${rstats.map(x=>`<div class="breakdown"><strong>${esc(x.name)}</strong><small>${x.points} из ${x.total} баллов</small><div class="mini-progress"><i style="width:${x.total?x.points/x.total*100:0}%"></i></div></div>`).join('')}</div><h3>Разбор всех заданий</h3><p style="font-size:.85rem;color:var(--muted)">Нажмите на строку задания, чтобы посмотреть свой ответ и объяснение.</p>${list}<div class="actions"><button class="btn" onclick="window.print()">Распечатать результат</button><div class="actions-right"><button class="btn" onclick="state.showResults=false;render()">К началу контрольной</button><button class="btn primary" onclick="newExam()">Новая попытка →</button></div></div>`);}
+function render(){renderHeader();renderOverview();renderSidebar();if(state.mode==='exam'){
+ if(state.showResults&&db.exam?.status==='completed'){renderResults();return;}
+ if(db.exam?.status==='active'){renderExamQuestion();return;}
+ renderExamIntro();return;
+ }
+ const s=topics[state.topic].stages[state.stage];if(s.kind==='theory')renderTheory();else if(s.kind==='flash')renderFlash();else renderTrainingQuiz();
+}
+document.getElementById('trainTab').addEventListener('click',()=>showMode('train'));
+document.getElementById('examTab').addEventListener('click',()=>showMode('exam'));
+// Для автоматизированной самопроверки и последующей доработки в консоли.
+window.chemTrainer={topics,examPool,parseStructure,evaluate,normalizeName,catalog,drawStructure,cHom,cSimilar};
+render();
+</script>
+</body>
+</html>

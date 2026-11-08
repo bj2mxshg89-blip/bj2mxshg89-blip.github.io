@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-08-18",
+  "updatedAt": "2026-11-08",
   "sections": [
     {
       "id": "organic",
@@ -108,6 +108,26 @@
       "status": "active",
       "order": 40,
       "wide": false
+    },
+    {
+      "id": "hydrocarbons",
+      "title": "Алифатические углеводороды",
+      "description": "Классификация, гомологи, изомеры и номенклатура: теория, структурные формулы, тренировка и контрольная работа.",
+      "section": "organic",
+      "kicker": "Химия · 10 класс",
+      "symbol": "CₙH₂ₙ",
+      "color": "#087f82",
+      "softColor": "#e7f6f4",
+      "questionCount": 24,
+      "modes": [
+        "training",
+        "test"
+      ],
+      "meta": "4 раздела · контрольная на 24 задания",
+      "url": "hydrocarbons.html",
+      "linkLabel": "Открыть",
+      "status": "active",
+      "order": 50
     },
     {
       "id": "inorg-nomenclature",
